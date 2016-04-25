@@ -1636,6 +1636,7 @@ pre .css ~ * .id {
 }
 #footer .outer {
   padding: 0 30px;
+  overflow: hidden;
 }
 .footer-left {
   float: left;
