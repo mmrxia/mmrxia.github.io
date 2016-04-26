@@ -1098,6 +1098,7 @@ a {
 .article-entry table th {
   border: 1px solid #dedede;
   padding: 0 10px;
+  word-break: break-word;
 }
 .article-entry figure table {
   border: none;
