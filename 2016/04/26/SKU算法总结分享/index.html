@@ -4,16 +4,39 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <meta name="description" content="敬请期待…">
+    <meta name="description" content="1. SKU简介下面是SKU来自维基百科的解释：
+
+最小存货单位（Stock Keeping Unit, SKU）是一个会计学名词，定义为保存库存控制的最小可用单位，例如纺织品中一个SKU通常表示规格、颜色、款式，而在连锁零售门店中有时称单品为一个SKU。
+
+直观一点的实际应用，可以参考淘宝的商品SKU选择界面，如下：
+
+2. 基础数据    //属性集
+    var keys = [">
 <meta property="og:type" content="article">
 <meta property="og:title" content="SKU算法总结分享">
 <meta property="og:url" content="http://mmrxia.github.io/2016/04/26/SKU算法总结分享/index.html">
 <meta property="og:site_name" content="Jerry's Diary">
-<meta property="og:description" content="敬请期待…">
-<meta property="og:updated_time" content="2016-04-27T05:06:39.312Z">
+<meta property="og:description" content="1. SKU简介下面是SKU来自维基百科的解释：
+
+最小存货单位（Stock Keeping Unit, SKU）是一个会计学名词，定义为保存库存控制的最小可用单位，例如纺织品中一个SKU通常表示规格、颜色、款式，而在连锁零售门店中有时称单品为一个SKU。
+
+直观一点的实际应用，可以参考淘宝的商品SKU选择界面，如下：
+
+2. 基础数据    //属性集
+    var keys = [">
+<meta property="og:image" content="http://7xth8v.com2.z0.glb.qiniucdn.com/image/sku.png">
+<meta property="og:updated_time" content="2016-04-28T09:30:18.479Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="SKU算法总结分享">
-<meta name="twitter:description" content="敬请期待…">
+<meta name="twitter:description" content="1. SKU简介下面是SKU来自维基百科的解释：
+
+最小存货单位（Stock Keeping Unit, SKU）是一个会计学名词，定义为保存库存控制的最小可用单位，例如纺织品中一个SKU通常表示规格、颜色、款式，而在连锁零售门店中有时称单品为一个SKU。
+
+直观一点的实际应用，可以参考淘宝的商品SKU选择界面，如下：
+
+2. 基础数据    //属性集
+    var keys = [">
+<meta name="twitter:image" content="http://7xth8v.com2.z0.glb.qiniucdn.com/image/sku.png">
     
     <title>
         SKU算法总结分享 |
@@ -21,8 +44,9 @@
         Jerry&#39;s Diary
     </title>
     <link rel="alternative" href="/atom.xml" title="Jerry&#39;s Diary" type="application/atom+xml"> 
-    <link rel="icon" href="/favicon.png"> 
+    <link rel="icon" href="http://7xth8v.com2.z0.glb.clouddn.com/icon/favicon.ico"> 
     <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="http://7xth8v.com1.z0.glb.clouddn.com/css/prism.css"/>
 </head>
 <body>
   <div id="container">
@@ -32,7 +56,7 @@
 	<header id="header" class="inner">
 		<a href="/" class="profilepic">
 			
-			<img lazy-src="https://avatars2.githubusercontent.com/u/6917388?s=150" class="js-avatar">
+			<img lazy-src="http://7xth8v.com2.z0.glb.qiniucdn.com/image/avatar_150x150.jpg" class="js-avatar">
 			
 		</a>
 
@@ -158,7 +182,7 @@
 		<header id="header" class="inner">
 			<div class="profilepic">
 			
-				<img lazy-src="https://avatars2.githubusercontent.com/u/6917388?s=150" class="js-avatar">
+				<img lazy-src="http://7xth8v.com2.z0.glb.qiniucdn.com/image/avatar_150x150.jpg" class="js-avatar">
 			
 			</div>
 			<hgroup>
@@ -233,10 +257,46 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <blockquote>
-<p>敬请期待…</p>
+        <h4 id="1-SKU简介"><a href="#1-SKU简介" class="headerlink" title="1. SKU简介"></a>1. SKU简介</h4><p>下面是SKU来自维基百科的解释：</p>
+<blockquote>
+<p><strong>最小存货单位</strong>（Stock Keeping Unit, SKU）是一个会计学名词，定义为保存库存控制的最小可用单位，例如纺织品中一个SKU通常表示规格、颜色、款式，而在连锁零售门店中有时称单品为一个SKU。</p>
 </blockquote>
-
+<p>直观一点的实际应用，可以参考淘宝的商品SKU选择界面，如下：</p>
+<p><img src="http://7xth8v.com2.z0.glb.qiniucdn.com/image/sku.png" alt=""></p>
+<h4 id="2-基础数据"><a href="#2-基础数据" class="headerlink" title="2. 基础数据"></a>2. 基础数据</h4><pre><code class="language-javascript">    //属性集
+    var keys = [
+        [&#39;10&#39;],  //iPhone7s
+        [&#39;20&#39;,&#39;21&#39;,&#39;22&#39;,&#39;23&#39;,&#39;24&#39;],  //土豪金,白色,黑色,灰色,粉色
+        [&#39;30&#39;,&#39;31&#39;,&#39;32&#39;,&#39;33&#39;,&#39;34&#39;,&#39;35&#39;,&#39;36&#39;,&#39;37&#39;,&#39;38&#39;],  //港版，大陆行货，亚太版，美版，韩版，日版，意大利版，俄罗斯版，欧版
+        [&#39;40&#39;] //4.7寸
+    ];
+</code></pre>
+<pre><code class="language-javascript">    //后台读取结果集
+    var data = {
+        &quot;10;24;31;40&quot;:{&quot;price&quot;:366,&quot;count&quot;:46},
+        &quot;10;24;33;40&quot;:{&quot;price&quot;:416,&quot;count&quot;:77},
+        &quot;10;24;34;40&quot;:{&quot;price&quot;:456,&quot;count&quot;:9},
+        &quot;10;24;35;40&quot;:{&quot;price&quot;:371,&quot;count&quot;:33},
+        &quot;10;24;36;40&quot;:{&quot;price&quot;:411,&quot;count&quot;:79},
+        &quot;10;24;37;40&quot;:{&quot;price&quot;:421,&quot;count&quot;:87},
+        &quot;10;24;38;40&quot;:{&quot;price&quot;:461,&quot;count&quot;:9},
+        &quot;10;23;32;40&quot;:{&quot;price&quot;:406,&quot;count&quot;:9},
+        &quot;10;23;33;40&quot;:{&quot;price&quot;:416,&quot;count&quot;:90},
+        &quot;10;23;36;40&quot;:{&quot;price&quot;:411,&quot;count&quot;:90},
+        &quot;10;23;37;40&quot;:{&quot;price&quot;:421,&quot;count&quot;:10},
+        &quot;10;23;38;40&quot;:{&quot;price&quot;:461,&quot;count&quot;:9},
+        &quot;10;22;35;40&quot;:{&quot;price&quot;:361,&quot;count&quot;:25},
+        &quot;10;21;33;40&quot;:{&quot;price&quot;:416,&quot;count&quot;:10},
+        &quot;10;21;38;40&quot;:{&quot;price&quot;:461,&quot;count&quot;:80},
+        &quot;10;21;30;40&quot;:{&quot;price&quot;:356,&quot;count&quot;:43},
+        &quot;10;20;31;40&quot;:{&quot;price&quot;:356,&quot;count&quot;:46},
+        &quot;10;20;32;40&quot;:{&quot;price&quot;:396,&quot;count&quot;:49},
+        &quot;10;20;35;40&quot;:{&quot;price&quot;:361,&quot;count&quot;:34},
+        &quot;10;20;36;40&quot;:{&quot;price&quot;:401,&quot;count&quot;:41},
+        &quot;10;20;30;40&quot;:{&quot;price&quot;:346,&quot;count&quot;:3}
+    };
+</code></pre>
+<h4 id="3-算法分析"><a href="#3-算法分析" class="headerlink" title="3. 算法分析"></a>3. 算法分析</h4><h4 id="4-代码实现"><a href="#4-代码实现" class="headerlink" title="4. 代码实现"></a>4. 代码实现</h4><h4 id="5-demo演示"><a href="#5-demo演示" class="headerlink" title="5. demo演示"></a>5. demo演示</h4>
       
     </div>
     
@@ -357,5 +417,6 @@ MathJax.Hub.Queue(function() {
 
 
   </div>
+  <script src="http://7xth8v.com2.z0.glb.qiniucdn.com/js/prism.js"></script>
 </body>
 </html>
