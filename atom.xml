@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://mmrxia.github.io/"/>
-  <updated>2016-05-09T07:34:05.237Z</updated>
+  <updated>2016-05-09T08:06:05.872Z</updated>
   <id>http://mmrxia.github.io/</id>
   
   <author>
@@ -14,6 +14,62 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>跨域的几种方式</title>
+    <link href="http://mmrxia.github.io/2016/05/09/%E8%B7%A8%E5%9F%9F%E7%9A%84%E5%87%A0%E7%A7%8D%E6%96%B9%E5%BC%8F/"/>
+    <id>http://mmrxia.github.io/2016/05/09/跨域的几种方式/</id>
+    <published>2016-05-09T07:37:30.000Z</published>
+    <updated>2016-05-09T08:06:05.872Z</updated>
+    
+    <content type="html">&lt;blockquote&gt;
+&lt;p&gt;跨域，怎么处理跨域问题？无论是在面试中，还是在工作当中，总是会经常被问到，所以在这里总结下跨域的几种处理方式好了。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&quot;1-jsonp方式&quot;&gt;&lt;a href=&quot;#1-jsonp方式&quot; class=&quot;headerlink&quot; title=&quot;1 . jsonp方式&quot;&gt;&lt;/a&gt;1 . jsonp方式&lt;/h3&gt;&lt;p&gt;在js中，我们直接用&lt;code&gt;XMLHttpRequest&lt;/code&gt;请求不同域上的数据是不可以的，而在html中，能够实现跨域的就几种：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;link属性（css）&lt;/li&gt;
+&lt;li&gt;href属性（a标签）&lt;/li&gt;
+&lt;li&gt;src（img标签、script标签）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;为了解决跨域的问题，结合script能够发起跨域请求的原理，产生了jsonp，即：动态的创建script标签，跨域的地址加上需要传送的数据和回调函数为script标签的src地址，执行完之后再动态的删除之前创建的script.&lt;/p&gt;
+&lt;p&gt;理解了原理之后，就很容易明白jsonp的缺点了：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;只能用get方式请求，因为是使用src来传送数据&lt;/li&gt;
+&lt;li&gt;数据中出现中文需要编码。因为通过url传参数，可以在浏览器输入地址并带上中文参数试试&lt;/li&gt;
+&lt;li&gt;src对请求的地址没有限制，会出现安全性的问题&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&quot;2-document-domain&quot;&gt;&lt;a href=&quot;#2-document-domain&quot; class=&quot;headerlink&quot; title=&quot;2 . document.domain&quot;&gt;&lt;/a&gt;2 . document.domain&lt;/h3&gt;&lt;p&gt;看到这个跨域方式，可能有些同学会觉得陌生，其实这个也很常用。&lt;br&gt;每次遇到有需要使用登录之类的项目，在开发的时候都需要将地址改成163的域名，为啥？在控制台打印一下&lt;code&gt;document.domain&lt;/code&gt;试试,这篇文章的控制台输出的是&lt;code&gt;feg.netease.com&lt;/code&gt;，而在有使用到163登录的项目中，输出的都是&lt;code&gt;163.com&lt;/code&gt;。登录组件限制在163域名下才能用，但是163的域名有很多，避免不同域名之间出现通信问题，使用&lt;code&gt;document.domain&lt;/code&gt;的方式将页面的主域名改成了&lt;code&gt;163.com&lt;/code&gt;。这种方式主要用在主域名能设置成相同的页面之间的通信。如&lt;code&gt;http://xyq.163.com/&lt;/code&gt;，它的主域名可以是&lt;code&gt;xyq.163.com&lt;/code&gt;或&lt;code&gt;163.com&lt;/code&gt;；&lt;code&gt;http://xsd.163.com&lt;/code&gt;，它的主域名可以是&lt;code&gt;xsd.163.com&lt;/code&gt;或&lt;code&gt;163.com&lt;/code&gt;，所以这两个站点下的页面能够将主域名设置成163.com。&lt;/p&gt;
+&lt;h3 id=&quot;3-使用iframe&quot;&gt;&lt;a href=&quot;#3-使用iframe&quot; class=&quot;headerlink&quot; title=&quot;3 . 使用iframe&quot;&gt;&lt;/a&gt;3 . 使用iframe&lt;/h3&gt;&lt;p&gt;这种方式利用了window对象name属性的特征：在一个窗口(window)的生命周期内,窗口载入的所有的页面都是共享一个window.name的，每个页面对window.name都有读写的权限，window.name是持久存在一个窗口载入过的所有页面中的，并不会因新页面的载入而进行重置。&lt;/p&gt;
+&lt;h3 id=&quot;4-Access-Control-Allow-Origin&quot;&gt;&lt;a href=&quot;#4-Access-Control-Allow-Origin&quot; class=&quot;headerlink&quot; title=&quot;4 . Access-Control-Allow-Origin&quot;&gt;&lt;/a&gt;4 . Access-Control-Allow-Origin&lt;/h3&gt;&lt;p&gt;正常情况下我们的接口都是jsonp的格式，可是万一遇到其它格式的接口怎么办？比如json格式，这个时候可以通过&lt;code&gt;Access-Control-Allow-Origin&lt;/code&gt;来实现跨域。这种方式主要是后台同学配置，接口使用&lt;code&gt;Access-Control-Allow-Origin&lt;/code&gt;设置对应项目的域名，前端同学这边像平常调用接口一样，不需要再做其他处理。如下面的例子：&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-javascript&quot;&gt;   $.ajax({
+       url: &amp;quot;http://api.ypw.163.com/api/app&amp;quot;,
+       type: &amp;quot;POST&amp;quot;,
+       data: JSON.stringify(postData),
+       dataType: &amp;quot;application/json&amp;quot;,
+       headers: {&amp;quot;X-Ypw-Token&amp;quot;: user_token, &amp;quot;Content-Type&amp;quot;: &amp;quot;application/json&amp;quot;},
+       success: function(result) {
+           renderPage(result);
+       }
+   });
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;data为需要传输的数据，dataType是接口的格式。比平常接口调用多了的headers部分，是这个接口考虑到安全性的问题，接口开发同学需要我添加一个key，并且把user_token用base64加密之后传输给他，并不是跨域需要设置的东西，即这种方式跟平常调用接口一样。&lt;br&gt;好像这种方式挺好用的。确实，可是最大的问题是ie7、8、9都还不支持，所以目前也就能用在移动端了。&lt;/p&gt;
+&lt;h3 id=&quot;5-Chrome-–disable-web-security-快捷方式&quot;&gt;&lt;a href=&quot;#5-Chrome-–disable-web-security-快捷方式&quot; class=&quot;headerlink&quot; title=&quot;5 . Chrome –disable-web-security 快捷方式&quot;&gt;&lt;/a&gt;5 . Chrome –disable-web-security 快捷方式&lt;/h3&gt;&lt;p&gt;这种方式适用于Chrome浏览器，使浏览器支持跨域请求。在快捷方式的属性中配置&lt;code&gt;--args --disable-web-security --user-data-dir&lt;/code&gt;参数，如图：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://7xth8v.com2.z0.glb.clouddn.com/image/n_chrome_prop.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;blockquote&gt;
+&lt;p&gt;跨域，怎么处理跨域问题？无论是在面试中，还是在工作当中，总是会经常被问到，所以在这里总结下跨域的几种处理方式好了。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&quot;1-jsonp方式&quot;&gt;&lt;a href=&quot;#1-jsonp方式&quot; class=&quot;h
+    
+    </summary>
+    
+    
+      <category term="跨域" scheme="http://mmrxia.github.io/tags/%E8%B7%A8%E5%9F%9F/"/>
+    
+  </entry>
   
   <entry>
     <title>git 常用命令速查表</title>
