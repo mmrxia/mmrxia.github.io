@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://mmrxia.github.io/"/>
-  <updated>2016-04-28T09:30:18.479Z</updated>
+  <updated>2016-05-09T07:34:05.237Z</updated>
   <id>http://mmrxia.github.io/</id>
   
   <author>
@@ -14,6 +14,29 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>git 常用命令速查表</title>
+    <link href="http://mmrxia.github.io/2016/05/09/git-%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E9%80%9F%E6%9F%A5%E8%A1%A8/"/>
+    <id>http://mmrxia.github.io/2016/05/09/git-常用命令速查表/</id>
+    <published>2016-05-09T07:17:43.000Z</published>
+    <updated>2016-05-09T07:34:05.237Z</updated>
+    
+    <content type="html">&lt;p&gt;git作为代码管理工具的好处，这里就不多说了，目前也有很多git操作的可视化工具，如：TortoiseGit、SourceTree等。&lt;br&gt;相比可视化工具，笔者还是更喜欢使用原始命令来进行操作，下面附一张git常用命令速查表，以备不时之需。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://7xth8v.com2.z0.glb.qiniucdn.com/image/git_common_order.jpg&quot; alt=&quot;git常用命令&quot;&gt;&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;git作为代码管理工具的好处，这里就不多说了，目前也有很多git操作的可视化工具，如：TortoiseGit、SourceTree等。&lt;br&gt;相比可视化工具，笔者还是更喜欢使用原始命令来进行操作，下面附一张git常用命令速查表，以备不时之需。&lt;/p&gt;
+&lt;p&gt;&lt;img src
+    
+    </summary>
+    
+    
+      <category term="git" scheme="http://mmrxia.github.io/tags/git/"/>
+    
+  </entry>
   
   <entry>
     <title>SKU算法总结分享</title>
