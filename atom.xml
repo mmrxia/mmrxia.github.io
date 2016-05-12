@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://mmrxia.github.io/"/>
-  <updated>2016-05-11T11:05:03.115Z</updated>
+  <updated>2016-05-12T01:57:30.149Z</updated>
   <id>http://mmrxia.github.io/</id>
   
   <author>
@@ -16,13 +16,14 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>js浮点数计算精度丢失问题</title>
+    <title>js浮点数计算精度丢失问题及解决方案</title>
     <link href="http://mmrxia.github.io/2016/05/11/js%E6%B5%AE%E7%82%B9%E6%95%B0%E8%AE%A1%E7%AE%97%E7%B2%BE%E5%BA%A6%E4%B8%A2%E5%A4%B1%E9%97%AE%E9%A2%98/"/>
     <id>http://mmrxia.github.io/2016/05/11/js浮点数计算精度丢失问题/</id>
     <published>2016-05-11T09:22:45.000Z</published>
-    <updated>2016-05-11T11:05:03.115Z</updated>
+    <updated>2016-05-12T01:57:30.149Z</updated>
     
-    <content type="html">&lt;p&gt; 本文主要从以下3个方面来总结：&lt;br&gt; 1 . js浮点数计算精度丢失常见现象&lt;br&gt; 2 . js浮点数计算精度丢失原因&lt;br&gt; 3 . js浮点数计算精度丢失解决办法&lt;/p&gt;
+    <content type="html">&lt;p&gt; 本文主要从以下3个方面来说明：&lt;/p&gt;
+&lt;p&gt; 1 . js浮点数计算精度丢失常见现象&lt;br&gt; 2 . js浮点数计算精度丢失原因&lt;br&gt; 3 . js浮点数计算精度丢失解决办法&lt;/p&gt;
 &lt;h3 id=&quot;一、常见现象&quot;&gt;&lt;a href=&quot;#一、常见现象&quot; class=&quot;headerlink&quot; title=&quot;一、常见现象&quot;&gt;&lt;/a&gt;一、常见现象&lt;/h3&gt;&lt;p&gt; 1 . 两个简单的浮点数相加或相乘&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt; 0.1 + 0.2 != 0.3 // true  0.30000000000000004
 &lt;/code&gt;&lt;/pre&gt;&lt;p&gt; 又如：&lt;/p&gt;
@@ -32,7 +33,7 @@
 &lt;/code&gt;&lt;/pre&gt;&lt;p&gt; 又如：&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt; var x = 9007199254740992
  x + 1 == x // true
-&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;二、原因&quot;&gt;&lt;a href=&quot;#二、原因&quot; class=&quot;headerlink&quot; title=&quot;二、原因&quot;&gt;&lt;/a&gt;二、原因&lt;/h3&gt;&lt;p&gt; 计算机的二进制实现和位数限制有些数无法有限表示。就像一些无理数不能有限表示，如 圆周率 3.1415926…，1.3333… 等。JS 遵循 &lt;a href=&quot;https://en.wikipedia.org/wiki/IEEE_floating_point&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;IEEE 754&lt;/a&gt; 规范，采用双精度存储（double precision），占用 64 bit。如图：&lt;br&gt; &lt;img src=&quot;http://7xth8v.com2.z0.glb.clouddn.com/image/n_64bit.png?imageView2/2/w/800&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;二、原因&quot;&gt;&lt;a href=&quot;#二、原因&quot; class=&quot;headerlink&quot; title=&quot;二、原因&quot;&gt;&lt;/a&gt;二、原因&lt;/h3&gt;&lt;p&gt; &lt;strong&gt;计算机的二进制实现和位数限制有些数无法有限表示。&lt;/strong&gt;&lt;br&gt; 就像一些无理数不能有限表示，如 圆周率 3.1415926…，1.3333… 等。JS 遵循 &lt;a href=&quot;https://en.wikipedia.org/wiki/IEEE_floating_point&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;IEEE 754&lt;/a&gt; 规范，采用双精度存储（double precision），占用 64 bit。如图：&lt;br&gt; &lt;img src=&quot;http://7xth8v.com2.z0.glb.clouddn.com/image/n_64bit.png?imageView2/2/w/800&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
 &lt;p&gt; 图中的意义：&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;1位用来表示符号位&lt;/li&gt;
@@ -42,7 +43,7 @@
 &lt;p&gt; 浮点数，比如&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt; 0.1 &amp;gt;&amp;gt; 0.0001 1001 1001 1001…（1001无限循环）
  0.2 &amp;gt;&amp;gt; 0.0011 0011 0011 0011…（0011无限循环）
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt; 此时只能模仿十进制进行四舍五入了，但是二进制只有 0 和 1 两个，于是变为 0 舍 1 入。这即是计算机中部分浮点数运算时出现误差，丢失精度的根本原因。&lt;br&gt; 大整数的精度丢失和浮点数本质上是一样的，尾数位最大是 52 位，因此 JS 中能精准表示的最大整数是 Math.pow(2, 53)，十进制即 9007199254740992。&lt;br&gt; 大于 9007199254740992 的可能会丢失精度。&lt;/p&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt; 此时只能模仿十进制进行四舍五入了，但是二进制只有 0 和 1 两个，于是变为 0 舍 1 入。这即是计算机中部分浮点数运算时出现误差，丢失精度的根本原因。&lt;br&gt; 大整数的精度丢失和浮点数本质上是一样的，尾数位最大是 52 位，因此 JS 中能精准表示的最大整数是 &lt;code&gt;Math.pow(2, 53)&lt;/code&gt;，十进制即 &lt;code&gt;9007199254740992&lt;/code&gt;。&lt;br&gt; 大于 &lt;code&gt;9007199254740992&lt;/code&gt; 的可能会丢失精度。&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt; 9007199254740992     &amp;gt;&amp;gt; 10000000000000...000 // 共计 53 个 0
  9007199254740992 + 1 &amp;gt;&amp;gt; 10000000000000...001 // 中间 52 个 0
  9007199254740992 + 2 &amp;gt;&amp;gt; 10000000000000...010 // 中间 51 个 0
@@ -53,8 +54,17 @@
  9007199254740992 + 4 // 未丢失
 &lt;/code&gt;&lt;/pre&gt;&lt;p&gt; 以上，可以知道看似有穷的数字, 在计算机的二进制表示里却是无穷的，由于存储位数限制因此存在“舍去”，精度丢失就发生了。&lt;/p&gt;
 &lt;p&gt; 想了解更深入的分析可以看这篇论文：&lt;a href=&quot;http://docs.oracle.com/cd/E19957-01/806-3568/ncg_goldberg.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;What Every Computer Scientist Should Know About Floating-Point Arithmetic&lt;/a&gt;&lt;/p&gt;
-&lt;h3 id=&quot;三、解决方案&quot;&gt;&lt;a href=&quot;#三、解决方案&quot; class=&quot;headerlink&quot; title=&quot;三、解决方案&quot;&gt;&lt;/a&gt;三、解决方案&lt;/h3&gt;&lt;pre&gt;&lt;code class=&quot;language-javascript&quot;&gt; var Calc = function () {
-     /*浮点数去除小数点*/
+&lt;h3 id=&quot;三、解决方案&quot;&gt;&lt;a href=&quot;#三、解决方案&quot; class=&quot;headerlink&quot; title=&quot;三、解决方案&quot;&gt;&lt;/a&gt;三、解决方案&lt;/h3&gt;&lt;p&gt; 对于整数，前端出现问题的几率可能比较低，毕竟很少有业务需要需要用到超大整数，只要运算结果不超过 &lt;code&gt;Math.pow(2, 53)&lt;/code&gt; 就不会丢失精度。&lt;br&gt; 对于小数，前端出现问题的几率还是很多的，尤其在一些电商网站涉及到金额等数据。解决方式：把小数放到位整数（乘倍数），再缩小回原来倍数（除倍数），如下所示：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt; // 0.1 + 0.2
+ (0.1*10 + 0.2*10) / 10 == 0.3 // true
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt; 代码实现如下：&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-javascript&quot;&gt; var Calc = function () {
+     /*
+      * 将浮点数去除小数点，返回整数和倍数。如 3.14 &amp;gt;&amp;gt; 314，倍数是 100
+      * @param n {number} 浮点数
+      * return {object} 
+      * {num: 314, times: 100}
+      * */
      function toInt(n) {
          var n = +n, res = {num: n, times: 1};
          if (n !== (n | 0)) { //判断浮点数，n===parseInt(n)
@@ -139,8 +149,9 @@
     
     <summary type="html">
     
-      &lt;p&gt; 本文主要从以下3个方面来总结：&lt;br&gt; 1 . js浮点数计算精度丢失常见现象&lt;br&gt; 2 . js浮点数计算精度丢失原因&lt;br&gt; 3 . js浮点数计算精度丢失解决办法&lt;/p&gt;
-&lt;h3 id=&quot;一、常见现象&quot;&gt;&lt;a href=&quot;#一、常见现象&quot; class=&quot;heade
+      &lt;p&gt; 本文主要从以下3个方面来说明：&lt;/p&gt;
+&lt;p&gt; 1 . js浮点数计算精度丢失常见现象&lt;br&gt; 2 . js浮点数计算精度丢失原因&lt;br&gt; 3 . js浮点数计算精度丢失解决办法&lt;/p&gt;
+&lt;h3 id=&quot;一、常见现象&quot;&gt;&lt;a href=&quot;#一、常见现象&quot; class=&quot;h
     
     </summary>
     
