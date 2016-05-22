@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://mmrxia.github.io/"/>
-  <updated>2016-05-22T03:42:19.739Z</updated>
+  <updated>2016-05-22T03:45:23.699Z</updated>
   <id>http://mmrxia.github.io/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http://mmrxia.github.io/2016/05/22/js-%E6%95%B0%E7%BB%84%E5%A4%8D%E5%88%B6%E6%93%8D%E4%BD%9C/"/>
     <id>http://mmrxia.github.io/2016/05/22/js-数组复制操作/</id>
     <published>2016-05-22T03:31:55.000Z</published>
-    <updated>2016-05-22T03:42:19.739Z</updated>
+    <updated>2016-05-22T03:45:23.699Z</updated>
     
     <content type="html">&lt;p&gt;js中数组和对象，使用“=”号赋值的时候，由于是引用类型，只是改变了引用对象的指针指向，改变值时会引起连锁反应。&lt;br&gt;简单效果如下：&lt;br&gt;&lt;img src=&quot;http://7xth8v.com2.z0.glb.qiniucdn.com/image/arr1.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
 &lt;p&gt;避免指针指向的方法主要有一下几种：&lt;br&gt;（1）使用slice()方法。slice() 函数可从已有的数组中返回选定的元素；语法为：arr.slice(start,end);&lt;br&gt;slice()函数将会返回一个新的数组对象，所以使用slice(0)或slice()就可以实现数组的复制。如下：&lt;br&gt;&lt;img src=&quot;http://7xth8v.com2.z0.glb.qiniucdn.com/image/arr2.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
@@ -40,6 +40,10 @@
     
     </summary>
     
+    
+      <category term="js" scheme="http://mmrxia.github.io/tags/js/"/>
+    
+      <category term="数组" scheme="http://mmrxia.github.io/tags/%E6%95%B0%E7%BB%84/"/>
     
   </entry>
   
