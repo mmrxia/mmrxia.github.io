@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://mmrxia.github.io/"/>
-  <updated>2016-05-22T03:45:23.699Z</updated>
+  <updated>2016-06-02T08:35:19.322Z</updated>
   <id>http://mmrxia.github.io/</id>
   
   <author>
@@ -14,6 +14,53 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>图片等比压缩居中显示</title>
+    <link href="http://mmrxia.github.io/2016/06/02/%E5%9B%BE%E7%89%87%E7%AD%89%E6%AF%94%E5%8E%8B%E7%BC%A9%E5%B1%85%E4%B8%AD%E6%98%BE%E7%A4%BA/"/>
+    <id>http://mmrxia.github.io/2016/06/02/图片等比压缩居中显示/</id>
+    <published>2016-06-02T08:16:21.000Z</published>
+    <updated>2016-06-02T08:35:19.322Z</updated>
+    
+    <content type="html">&lt;h3 id=&quot;需求&quot;&gt;&lt;a href=&quot;#需求&quot; class=&quot;headerlink&quot; title=&quot;需求&quot;&gt;&lt;/a&gt;需求&lt;/h3&gt;&lt;p&gt;html中的img标签元素，在元素容器中保证等比压缩居中显示。不能拉伸变形，尽量做成jQuery插件的调用方式。&lt;/p&gt;
+&lt;h3 id=&quot;调用方式：&quot;&gt;&lt;a href=&quot;#调用方式：&quot; class=&quot;headerlink&quot; title=&quot;调用方式：&quot;&gt;&lt;/a&gt;调用方式：&lt;/h3&gt;&lt;p&gt;HTML:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-html&quot;&gt;&amp;lt;div class=&amp;quot;img-wrapper&amp;quot;&amp;gt;
+    &amp;lt;img class=&amp;quot;img&amp;quot; src=&amp;quot;image/tmp_01.jpg&amp;quot; alt=&amp;quot;demo1&amp;quot;/&amp;gt;
+&amp;lt;/div&amp;gt;
+&amp;lt;div class=&amp;quot;img-wrapper&amp;quot;&amp;gt;
+    &amp;lt;img class=&amp;quot;img&amp;quot; src=&amp;quot;image/tmp_02.jpg&amp;quot; alt=&amp;quot;demo2&amp;quot;/&amp;gt;
+&amp;lt;/div&amp;gt;
+&amp;lt;div class=&amp;quot;img-wrapper&amp;quot;&amp;gt;
+    &amp;lt;img class=&amp;quot;img&amp;quot; src=&amp;quot;image/tmp_03.png&amp;quot; alt=&amp;quot;demo3&amp;quot;/&amp;gt;
+&amp;lt;/div&amp;gt;
+&amp;lt;div class=&amp;quot;img-wrapper&amp;quot;&amp;gt;
+    &amp;lt;img class=&amp;quot;img&amp;quot; src=&amp;quot;image/tmp_04.png&amp;quot; alt=&amp;quot;demo4&amp;quot;/&amp;gt;
+&amp;lt;/div&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;CSS:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-css&quot;&gt;.img-wrapper{border: 1px dashed #2F9DC2;height: 100px;overflow: hidden;}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;JS:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-javascript&quot;&gt;&amp;lt;script src=&amp;quot;../../static/js/lib/jquery.min.js&amp;quot;&amp;gt;&amp;lt;/script&amp;gt;
+&amp;lt;script src=&amp;quot;img-ratio-compress.js&amp;quot;&amp;gt;&amp;lt;/script&amp;gt;
+&amp;lt;script&amp;gt;
+    $(&amp;#39;.img&amp;#39;).ratioCompress({resize:true});
+&amp;lt;/script&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&quot;效果如下：&quot;&gt;&lt;a href=&quot;#效果如下：&quot; class=&quot;headerlink&quot; title=&quot;效果如下：&quot;&gt;&lt;/a&gt;效果如下：&lt;/h3&gt;&lt;p&gt;&lt;img src=&quot;http://7xth8v.com2.z0.glb.qiniucdn.com/image/n_img_radio_commpress.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;h3 id=&quot;示例演示：&quot;&gt;&lt;a href=&quot;#示例演示：&quot; class=&quot;headerlink&quot; title=&quot;示例演示：&quot;&gt;&lt;/a&gt;示例演示：&lt;/h3&gt;&lt;p&gt;大家可以点开页面查看图片源文件，查看图片尺寸。&lt;br&gt;demo中设置了随窗口变化图片位置自适应，可以缩放浏览器尺寸或者F12调整为移动端模式查看。&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://rawgit.com/mmrxia/lab/master/examples/img-radio-compress/index.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;点我查看示例&lt;/a&gt;&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;需求&quot;&gt;&lt;a href=&quot;#需求&quot; class=&quot;headerlink&quot; title=&quot;需求&quot;&gt;&lt;/a&gt;需求&lt;/h3&gt;&lt;p&gt;html中的img标签元素，在元素容器中保证等比压缩居中显示。不能拉伸变形，尽量做成jQuery插件的调用方式。&lt;/p&gt;
+&lt;h3 id=&quot;调
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>js 数组复制操作</title>
