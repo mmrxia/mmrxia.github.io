@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://mmrxia.github.io/"/>
-  <updated>2016-06-03T04:07:37.238Z</updated>
+  <updated>2016-06-03T05:34:04.676Z</updated>
   <id>http://mmrxia.github.io/</id>
   
   <author>
@@ -20,38 +20,39 @@
     <link href="http://mmrxia.github.io/2016/06/03/nodejs%E5%AE%9E%E8%B7%B5%E7%9F%A5%E8%AF%86%E7%82%B9%E6%B1%87%E6%80%BB/"/>
     <id>http://mmrxia.github.io/2016/06/03/nodejs实践知识点汇总/</id>
     <published>2016-06-03T02:21:03.000Z</published>
-    <updated>2016-06-03T04:07:37.238Z</updated>
+    <updated>2016-06-03T05:34:04.676Z</updated>
     
-    <content type="html">&lt;h4 id=&quot;常用命令&quot;&gt;&lt;a href=&quot;#常用命令&quot; class=&quot;headerlink&quot; title=&quot;常用命令&quot;&gt;&lt;/a&gt;常用命令&lt;/h4&gt;&lt;p&gt;1 . &lt;code&gt;npm -v&lt;/code&gt;、&lt;code&gt;node -v&lt;/code&gt; 查看npm或nodejs版本。示例：&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;bash&quot;&gt;npm -v
+    <content type="html">&lt;h3 id=&quot;常用命令&quot;&gt;&lt;a href=&quot;#常用命令&quot; class=&quot;headerlink&quot; title=&quot;常用命令&quot;&gt;&lt;/a&gt;常用命令&lt;/h3&gt;&lt;p&gt;1 . &lt;strong&gt;npm -v、node -v&lt;/strong&gt;： 查看npm或nodejs版本。示例：&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-git&quot;&gt;npm -v
 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;2 . &lt;code&gt;npm init&lt;/code&gt; 会在当前目录引导创建一个package.json文件，包括名称、版本、作者这些信息等。示例：&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;bash&quot;&gt;npm init
+&lt;p&gt;2 . &lt;strong&gt;npm init&lt;/strong&gt;： 会在当前目录引导创建一个package.json文件，包括名称、版本、作者这些信息等。示例：&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-git&quot;&gt;npm init
 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;3 . &lt;code&gt;npm install&lt;/code&gt; 根据package.json文件自动安装需要的模块。示例：&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;bash&quot;&gt;npm install
+&lt;p&gt;3 . &lt;strong&gt;npm install&lt;/strong&gt;： 根据package.json文件自动安装需要的模块。示例：&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-git&quot;&gt;npm install
 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;code&gt;--save&lt;/code&gt;命令，安装模块时，写入到package.json的依赖字段（&lt;code&gt;dependencies&lt;/code&gt;）中。示例：&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;bash&quot;&gt;npm install express --save
+&lt;p&gt;–save 命令，安装模块时，写入到package.json的依赖字段（dependencies）中。示例：&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-git&quot;&gt;npm install express --save
 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;code&gt;-g&lt;/code&gt; 将包安装到全局环境中，如：&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;bash&quot;&gt;npm install express -g
+&lt;p&gt;-g 将包安装到全局环境中，如：&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-git&quot;&gt;npm install express -g
 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;4 . &lt;code&gt;npm uninstall &amp;lt;name&amp;gt;&lt;/code&gt; 卸载node模块&lt;/p&gt;
-&lt;p&gt;5 . &lt;code&gt;npm update &amp;lt;name&amp;gt;&lt;/code&gt; 更新node模块&lt;/p&gt;
+&lt;p&gt;4 . &lt;strong&gt;npm uninstall &lt;name&gt;&lt;/name&gt;&lt;/strong&gt;： 卸载node模块&lt;/p&gt;
+&lt;p&gt;5 . &lt;strong&gt;npm update &lt;name&gt;&lt;/name&gt;&lt;/strong&gt;： 更新node模块&lt;/p&gt;
 &lt;p&gt;6 . 其他&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;code&gt;npm root&lt;/code&gt;：查看当前包的安装路径&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;npm root -g&lt;/code&gt;：查看全局的包的安装路径&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;npm outdated&lt;/code&gt;：检查包是否已经过时，此命令会列出所有已经过时的包，可以及时进行包的更新&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;npm list&lt;/code&gt;：查看当前目录下已安装的node包&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;npm help&lt;/code&gt;：查看帮助命令&lt;/li&gt;
+&lt;li&gt;npm root：查看当前包的安装路径&lt;/li&gt;
+&lt;li&gt;npm root -g：查看全局的包的安装路径&lt;/li&gt;
+&lt;li&gt;npm outdated：检查包是否已经过时，此命令会列出所有已经过时的包，可以及时进行包的更新&lt;/li&gt;
+&lt;li&gt;npm list：查看当前目录下已安装的node包&lt;/li&gt;
+&lt;li&gt;npm help：查看帮助命令&lt;/li&gt;
 &lt;/ul&gt;
 </content>
     
     <summary type="html">
     
-      &lt;h4 id=&quot;常用命令&quot;&gt;&lt;a href=&quot;#常用命令&quot; class=&quot;headerlink&quot; title=&quot;常用命令&quot;&gt;&lt;/a&gt;常用命令&lt;/h4&gt;&lt;p&gt;1 . &lt;code&gt;npm -v&lt;/code&gt;、&lt;code&gt;node -v&lt;/code&gt; 查看npm或nodejs版本。示例
+      &lt;h3 id=&quot;常用命令&quot;&gt;&lt;a href=&quot;#常用命令&quot; class=&quot;headerlink&quot; title=&quot;常用命令&quot;&gt;&lt;/a&gt;常用命令&lt;/h3&gt;&lt;p&gt;1 . &lt;strong&gt;npm -v、node -v&lt;/strong&gt;： 查看npm或nodejs版本。示例：&lt;/p&gt;
+&lt;p
     
     </summary>
     
