@@ -1,19 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-  <title>Jerry&#39;s Diary</title>
-  <subtitle>Ambitious, down to earth.</subtitle>
+  <title>芥子园</title>
+  <subtitle>须弥藏芥子，芥子纳须弥</subtitle>
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://mmrxia.github.io/"/>
-  <updated>2016-06-02T08:35:19.322Z</updated>
+  <updated>2016-06-03T02:21:03.462Z</updated>
   <id>http://mmrxia.github.io/</id>
   
   <author>
-    <name>xiaqingsong</name>
+    <name>芥子园</name>
     <email>this.xqs@gmail.com</email>
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>nodejs实践知识点汇总</title>
+    <link href="http://mmrxia.github.io/2016/06/03/nodejs%E5%AE%9E%E8%B7%B5%E7%9F%A5%E8%AF%86%E7%82%B9%E6%B1%87%E6%80%BB/"/>
+    <id>http://mmrxia.github.io/2016/06/03/nodejs实践知识点汇总/</id>
+    <published>2016-06-03T02:21:03.000Z</published>
+    <updated>2016-06-03T02:21:03.462Z</updated>
+    
+    <content type="html"></content>
+    
+    <summary type="html">
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>图片等比压缩居中显示</title>
