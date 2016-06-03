@@ -4,16 +4,43 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <meta name="description" content="前端博客 | hexo | github">
+    <meta name="description" content="常用命令1 . npm -v、node -v 查看npm或nodejs版本。示例：
+npm -v
+
+2 . npm init 会在当前目录引导创建一个package.json文件，包括名称、版本、作者这些信息等。示例：
+npm init
+
+3 . npm install 根据package.json文件自动安装需要的模块。示例：
+npm install
+
+--save命令，安装模块时，写入到pac">
 <meta property="og:type" content="article">
 <meta property="og:title" content="nodejs实践知识点汇总">
 <meta property="og:url" content="http://mmrxia.github.io/2016/06/03/nodejs实践知识点汇总/index.html">
 <meta property="og:site_name" content="芥子园 | xiaqingsong's blog">
-<meta property="og:description" content="前端博客 | hexo | github">
-<meta property="og:updated_time" content="2016-06-03T02:21:03.462Z">
+<meta property="og:description" content="常用命令1 . npm -v、node -v 查看npm或nodejs版本。示例：
+npm -v
+
+2 . npm init 会在当前目录引导创建一个package.json文件，包括名称、版本、作者这些信息等。示例：
+npm init
+
+3 . npm install 根据package.json文件自动安装需要的模块。示例：
+npm install
+
+--save命令，安装模块时，写入到pac">
+<meta property="og:updated_time" content="2016-06-03T04:07:37.238Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="nodejs实践知识点汇总">
-<meta name="twitter:description" content="前端博客 | hexo | github">
+<meta name="twitter:description" content="常用命令1 . npm -v、node -v 查看npm或nodejs版本。示例：
+npm -v
+
+2 . npm init 会在当前目录引导创建一个package.json文件，包括名称、版本、作者这些信息等。示例：
+npm init
+
+3 . npm install 根据package.json文件自动安装需要的模块。示例：
+npm install
+
+--save命令，安装模块时，写入到pac">
     
     <title>
         nodejs实践知识点汇总 |
@@ -121,7 +148,7 @@
 				
 				<section class="switch-part switch-part2">
 					<div class="widget tagcloud" id="js-tagcloud">
-						<a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/js/" style="font-size: 20px;">js</a> <a href="/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/tags/sku/" style="font-size: 10px;">sku</a> <a href="/tags/数组/" style="font-size: 10px;">数组</a> <a href="/tags/算法/" style="font-size: 10px;">算法</a> <a href="/tags/西游记/" style="font-size: 20px;">西游记</a> <a href="/tags/跨域/" style="font-size: 10px;">跨域</a> <a href="/tags/随笔/" style="font-size: 10px;">随笔</a>
+						<a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/js/" style="font-size: 20px;">js</a> <a href="/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/tags/nodejs/" style="font-size: 10px;">nodejs</a> <a href="/tags/sku/" style="font-size: 10px;">sku</a> <a href="/tags/数组/" style="font-size: 10px;">数组</a> <a href="/tags/算法/" style="font-size: 10px;">算法</a> <a href="/tags/西游记/" style="font-size: 20px;">西游记</a> <a href="/tags/跨域/" style="font-size: 10px;">跨域</a> <a href="/tags/随笔/" style="font-size: 10px;">随笔</a>
 					</div>
 				</section>
 				
@@ -226,6 +253,10 @@
       
       <div class="article-info article-info-post">
         
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/nodejs/">nodejs</a></li></ul>
+	</div>
+
         
 
         <div class="clearfix"></div>
@@ -234,7 +265,32 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        
+        <h4 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h4><p>1 . <code>npm -v</code>、<code>node -v</code> 查看npm或nodejs版本。示例：</p>
+<pre><code class="bash">npm -v
+</code></pre>
+<p>2 . <code>npm init</code> 会在当前目录引导创建一个package.json文件，包括名称、版本、作者这些信息等。示例：</p>
+<pre><code class="bash">npm init
+</code></pre>
+<p>3 . <code>npm install</code> 根据package.json文件自动安装需要的模块。示例：</p>
+<pre><code class="bash">npm install
+</code></pre>
+<p><code>--save</code>命令，安装模块时，写入到package.json的依赖字段（<code>dependencies</code>）中。示例：</p>
+<pre><code class="bash">npm install express --save
+</code></pre>
+<p><code>-g</code> 将包安装到全局环境中，如：</p>
+<pre><code class="bash">npm install express -g
+</code></pre>
+<p>4 . <code>npm uninstall &lt;name&gt;</code> 卸载node模块</p>
+<p>5 . <code>npm update &lt;name&gt;</code> 更新node模块</p>
+<p>6 . 其他</p>
+<ul>
+<li><code>npm root</code>：查看当前包的安装路径</li>
+<li><code>npm root -g</code>：查看全局的包的安装路径</li>
+<li><code>npm outdated</code>：检查包是否已经过时，此命令会列出所有已经过时的包，可以及时进行包的更新</li>
+<li><code>npm list</code>：查看当前目录下已安装的node包</li>
+<li><code>npm help</code>：查看帮助命令</li>
+</ul>
+
       
     </div>
     
