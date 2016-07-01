@@ -137,9 +137,9 @@ body,
   height: 100%;
 }
 body {
-  font-family: "微软雅黑", "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 16px;
-  background: #fff;
+  font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
+  font-size: 14px;
+  background-color: #fff;
   color: rgba(0,0,0,0.6);
   -webkit-overflow-scrolling: touch;
 }
@@ -233,7 +233,8 @@ a {
   margin: 3px;
 }
 #container .left-col {
-  background: #fff;
+  background: url("../img/bg.png") repeat;
+  background-color: #61b2a7;
   width: 300px;
   position: fixed;
   opacity: 1;
@@ -248,7 +249,6 @@ a {
   height: 180px;
   background-color: #000;
   position: absolute;
-  opacity: 0.7;
 }
 #container .left-col .intrude-less {
   width: 76%;
@@ -259,7 +259,6 @@ a {
   position: absolute;
   right: 0;
   min-height: 100%;
-  background: #eaeaea;
   left: 300px;
   width: auto;
 }
@@ -482,10 +481,10 @@ a {
   width: 100%;
 }
 #header a {
-  color: #696969;
+  color: #666;
 }
 #header a:hover {
-  color: #b0a0aa;
+  color: #555;
 }
 #header .profilepic {
   text-align: center;
@@ -521,7 +520,7 @@ a {
 }
 #header .header-subtitle {
   text-align: center;
-  color: #999;
+  color: rgba(255,255,255,0.6);
   font-size: 14px;
   line-height: 25px;
   overflow: hidden;
@@ -1472,7 +1471,6 @@ pre code {
 }
 #footer .outer {
   padding: 0 30px;
-  overflow: hidden;
 }
 .footer-left {
   float: left;
