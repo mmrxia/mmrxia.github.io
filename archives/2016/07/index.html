@@ -4,46 +4,18 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <meta name="description" content="常用命令1 . npm -v、node -v： 查看npm或nodejs版本。示例：
-npm -v
-
-2 . npm init： 会在当前目录引导创建一个package.json文件，包括名称、版本、作者这些信息等。示例：
-npm init
-
-3 . npm install： 根据package.json文件自动安装需要的模块。示例：
-npm install
-
-–save 命令，安装模块时，写入到">
-<meta property="og:type" content="article">
-<meta property="og:title" content="nodejs实践知识点汇总">
-<meta property="og:url" content="http://mmrxia.github.io/2016/06/03/nodejs实践知识点汇总/index.html">
+    <meta name="description" content="前端博客 | hexo | github">
+<meta property="og:type" content="website">
+<meta property="og:title" content="芥子园 | xiaqingsong's blog">
+<meta property="og:url" content="http://mmrxia.github.io/archives/2016/07/index.html">
 <meta property="og:site_name" content="芥子园 | xiaqingsong's blog">
-<meta property="og:description" content="常用命令1 . npm -v、node -v： 查看npm或nodejs版本。示例：
-npm -v
-
-2 . npm init： 会在当前目录引导创建一个package.json文件，包括名称、版本、作者这些信息等。示例：
-npm init
-
-3 . npm install： 根据package.json文件自动安装需要的模块。示例：
-npm install
-
-–save 命令，安装模块时，写入到">
-<meta property="og:updated_time" content="2016-06-03T05:34:04.676Z">
+<meta property="og:description" content="前端博客 | hexo | github">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="nodejs实践知识点汇总">
-<meta name="twitter:description" content="常用命令1 . npm -v、node -v： 查看npm或nodejs版本。示例：
-npm -v
-
-2 . npm init： 会在当前目录引导创建一个package.json文件，包括名称、版本、作者这些信息等。示例：
-npm init
-
-3 . npm install： 根据package.json文件自动安装需要的模块。示例：
-npm install
-
-–save 命令，安装模块时，写入到">
+<meta name="twitter:title" content="芥子园 | xiaqingsong's blog">
+<meta name="twitter:description" content="前端博客 | hexo | github">
     
     <title>
-        nodejs实践知识点汇总 |
+        Archives: 2016/7 |
         
         芥子园 | xiaqingsong&#39;s blog
     </title>
@@ -228,123 +200,53 @@ npm install
 	</div>
 </nav>
 
-      <div class="body-wrap"><article id="post-nodejs实践知识点汇总" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap">
   
-    <div class="article-meta">
-      <a href="/2016/06/03/nodejs实践知识点汇总/" class="article-date">
-  	<time datetime="2016-06-03T02:21:03.000Z" itemprop="datePublished">2016-06-03</time>
+  
+    
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/archives/2016" class="archive-year">2016</a>
+        </div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      	<div class="article-meta">
+	      	<a href="/2016/07/01/express学习笔记/" class="archive-article-date">
+  	<time datetime="2016-07-01T07:32:01.000Z" itemprop="datePublished">Jul 1</time>
 </a>
-    </div>
+        </div>
+    	 
   
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="article-title" itemprop="name">
-      nodejs实践知识点汇总
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2016/07/01/express学习笔记/">express学习笔记</a>
     </h1>
   
 
-      </header>
-      
-      <div class="article-info article-info-post">
-        
+        <div class="article-info info-on-right">
+          
 	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/nodejs/">nodejs</a></li></ul>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/express/">express</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/nodejs/">nodejs</a></li></ul>
 	</div>
 
-        
+          
 
+        </div>
         <div class="clearfix"></div>
-      </div>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h3><p>1 . <strong>npm -v、node -v</strong>： 查看npm或nodejs版本。示例：</p>
-<pre><code class="language-git">npm -v
-</code></pre>
-<p>2 . <strong>npm init</strong>： 会在当前目录引导创建一个package.json文件，包括名称、版本、作者这些信息等。示例：</p>
-<pre><code class="language-git">npm init
-</code></pre>
-<p>3 . <strong>npm install</strong>： 根据package.json文件自动安装需要的模块。示例：</p>
-<pre><code class="language-git">npm install
-</code></pre>
-<p>–save 命令，安装模块时，写入到package.json的依赖字段（dependencies）中。示例：</p>
-<pre><code class="language-git">npm install express --save
-</code></pre>
-<p>-g 将包安装到全局环境中，如：</p>
-<pre><code class="language-git">npm install express -g
-</code></pre>
-<p>4 . <strong>npm uninstall <name></name></strong>： 卸载node模块</p>
-<p>5 . <strong>npm update <name></name></strong>： 更新node模块</p>
-<p>6 . 其他</p>
-<ul>
-<li>npm root：查看当前包的安装路径</li>
-<li>npm root -g：查看全局的包的安装路径</li>
-<li>npm outdated：检查包是否已经过时，此命令会列出所有已经过时的包，可以及时进行包的更新</li>
-<li>npm list：查看当前目录下已安装的node包</li>
-<li>npm help：查看帮助命令</li>
-</ul>
-
-      
-    </div>
-    
+    </header>
   </div>
-  
-    
-<nav id="article-nav">
-  
-    <a href="/2016/06/03/git-常用命令汇总/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption"><</strong>
-      <div class="article-nav-title">
-        
-          git 常用命令汇总
-        
-      </div>
-    </a>
-  
-  
-    <a href="/2016/06/02/图片等比压缩居中显示/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">图片等比压缩居中显示</div>
-      <strong class="article-nav-caption">></strong>
-    </a>
-  
-</nav>
-
-  
 </article>
+  
+  
+    </div></section>
+  
 
-
-
-
-
-
-<div class="duoshuo">
-	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="nodejs实践知识点汇总" data-title="nodejs实践知识点汇总" data-url="http://mmrxia.github.io/2016/06/03/nodejs实践知识点汇总/"></div>
-	<!-- 多说评论框 end -->
-	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
-	<script type="text/javascript">
-	var duoshuoQuery = {short_name:"mrxia"};
-	(function() {
-		var ds = document.createElement('script');
-		ds.type = 'text/javascript';ds.async = true;
-		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-		ds.charset = 'UTF-8';
-		(document.getElementsByTagName('head')[0] 
-		 || document.getElementsByTagName('body')[0]).appendChild(ds);
-	})();
-	</script>
-	<!-- 多说公共JS代码 end -->
-</div>
-
-
-
+    
 
 </div>
       <footer id="footer">
@@ -370,8 +272,8 @@ npm install
 		mathjax: true,
 		animate: true,
 		isHome: false,
-		isPost: true,
-		isArchive: false,
+		isPost: false,
+		isArchive: true,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false

@@ -4,46 +4,34 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <meta name="description" content="常用命令1 . npm -v、node -v： 查看npm或nodejs版本。示例：
-npm -v
+    <meta name="description" content="1. app.render和res.render方法的区别？官方的api文档中是这么说的：   
 
-2 . npm init： 会在当前目录引导创建一个package.json文件，包括名称、版本、作者这些信息等。示例：
-npm init
+Think of app.render() as a utility function for generating rendered view strings. Internally res.render() uses app.render() to render views.
 
-3 . npm install： 根据package.json文件自动安装需要的模块。示例：
-npm install
-
-–save 命令，安装模块时，写入到">
+我的理解：
+把a">
 <meta property="og:type" content="article">
-<meta property="og:title" content="nodejs实践知识点汇总">
-<meta property="og:url" content="http://mmrxia.github.io/2016/06/03/nodejs实践知识点汇总/index.html">
+<meta property="og:title" content="express学习笔记">
+<meta property="og:url" content="http://mmrxia.github.io/2016/07/01/express学习笔记/index.html">
 <meta property="og:site_name" content="芥子园 | xiaqingsong's blog">
-<meta property="og:description" content="常用命令1 . npm -v、node -v： 查看npm或nodejs版本。示例：
-npm -v
+<meta property="og:description" content="1. app.render和res.render方法的区别？官方的api文档中是这么说的：   
 
-2 . npm init： 会在当前目录引导创建一个package.json文件，包括名称、版本、作者这些信息等。示例：
-npm init
+Think of app.render() as a utility function for generating rendered view strings. Internally res.render() uses app.render() to render views.
 
-3 . npm install： 根据package.json文件自动安装需要的模块。示例：
-npm install
-
-–save 命令，安装模块时，写入到">
-<meta property="og:updated_time" content="2016-06-03T05:34:04.676Z">
+我的理解：
+把a">
+<meta property="og:updated_time" content="2016-07-01T07:52:29.615Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="nodejs实践知识点汇总">
-<meta name="twitter:description" content="常用命令1 . npm -v、node -v： 查看npm或nodejs版本。示例：
-npm -v
+<meta name="twitter:title" content="express学习笔记">
+<meta name="twitter:description" content="1. app.render和res.render方法的区别？官方的api文档中是这么说的：   
 
-2 . npm init： 会在当前目录引导创建一个package.json文件，包括名称、版本、作者这些信息等。示例：
-npm init
+Think of app.render() as a utility function for generating rendered view strings. Internally res.render() uses app.render() to render views.
 
-3 . npm install： 根据package.json文件自动安装需要的模块。示例：
-npm install
-
-–save 命令，安装模块时，写入到">
+我的理解：
+把a">
     
     <title>
-        nodejs实践知识点汇总 |
+        express学习笔记 |
         
         芥子园 | xiaqingsong&#39;s blog
     </title>
@@ -228,11 +216,11 @@ npm install
 	</div>
 </nav>
 
-      <div class="body-wrap"><article id="post-nodejs实践知识点汇总" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-express学习笔记" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2016/06/03/nodejs实践知识点汇总/" class="article-date">
-  	<time datetime="2016-06-03T02:21:03.000Z" itemprop="datePublished">2016-06-03</time>
+      <a href="/2016/07/01/express学习笔记/" class="article-date">
+  	<time datetime="2016-07-01T07:32:01.000Z" itemprop="datePublished">2016-07-01</time>
 </a>
     </div>
   
@@ -245,7 +233,7 @@ npm install
         
   
     <h1 class="article-title" itemprop="name">
-      nodejs实践知识点汇总
+      express学习笔记
     </h1>
   
 
@@ -254,7 +242,7 @@ npm install
       <div class="article-info article-info-post">
         
 	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/nodejs/">nodejs</a></li></ul>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/express/">express</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/nodejs/">nodejs</a></li></ul>
 	</div>
 
         
@@ -265,31 +253,37 @@ npm install
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h3><p>1 . <strong>npm -v、node -v</strong>： 查看npm或nodejs版本。示例：</p>
-<pre><code class="language-git">npm -v
+        <h4 id="1-app-render和res-render方法的区别？"><a href="#1-app-render和res-render方法的区别？" class="headerlink" title="1. app.render和res.render方法的区别？"></a>1. app.render和res.render方法的区别？</h4><p>官方的api文档中是这么说的：   </p>
+<blockquote>
+<p>Think of app.render() as a utility function for generating rendered view strings. Internally res.render() uses app.render() to render views.</p>
+</blockquote>
+<p>我的理解：</p>
+<p>把<code>app.render</code>当成一个生成视图的工具，而且<code>res.render</code>内部也是调用了<code>app.render</code>。<br>区别是这样，<code>app.render</code>只负责生成视图，你会发现它是没能力把视图响应给客户端（浏览器）的，只有<code>res.render</code>手里有<code>response</code>对象，可以把视图响应给客户端。<br><code>res.render</code>的伪代码可以看做如下: </p>
+<pre><code class="javascript">res.render = function(view, locals, cb){
+    app.render(view, locals, function(err, html){
+        if(typeof cb !== &#39;undefined&#39;){
+            return cb(err, html);
+        }
+        res.send(html);
+    });
+};
 </code></pre>
-<p>2 . <strong>npm init</strong>： 会在当前目录引导创建一个package.json文件，包括名称、版本、作者这些信息等。示例：</p>
-<pre><code class="language-git">npm init
+<h4 id="2-res-write和res-send区别？"><a href="#2-res-write和res-send区别？" class="headerlink" title="2. res.write和res.send区别？"></a>2. res.write和res.send区别？</h4><blockquote>
+<p>The res object represents the HTTP response that an Express app sends when it gets an HTTP request.</p>
+</blockquote>
+<p><code>res.write</code>和<code>res.send</code>都是发送报文到浏览器response中，并渲染在浏览器窗口。<br><code>res.write</code>使用时需要配合<code>res.end</code>方法同时使用，否则浏览器http请求会一直处于pending状态，而<code>res.send</code>单独使用即可。    </p>
+<p>代码示例：     </p>
+<pre><code class="javascript">//res.send
+app.get(&#39;/user/:id&#39;, function(req, res){
+  res.send(&#39;user &#39; + req.params.id);
+});
+
+//res.write
+app.get(&#39;/user/:id&#39;, function(req, res){
+ res.status(200).write(&#39;user &#39; + req.params.id);
+ res.end();
+});
 </code></pre>
-<p>3 . <strong>npm install</strong>： 根据package.json文件自动安装需要的模块。示例：</p>
-<pre><code class="language-git">npm install
-</code></pre>
-<p>–save 命令，安装模块时，写入到package.json的依赖字段（dependencies）中。示例：</p>
-<pre><code class="language-git">npm install express --save
-</code></pre>
-<p>-g 将包安装到全局环境中，如：</p>
-<pre><code class="language-git">npm install express -g
-</code></pre>
-<p>4 . <strong>npm uninstall <name></name></strong>： 卸载node模块</p>
-<p>5 . <strong>npm update <name></name></strong>： 更新node模块</p>
-<p>6 . 其他</p>
-<ul>
-<li>npm root：查看当前包的安装路径</li>
-<li>npm root -g：查看全局的包的安装路径</li>
-<li>npm outdated：检查包是否已经过时，此命令会列出所有已经过时的包，可以及时进行包的更新</li>
-<li>npm list：查看当前目录下已安装的node包</li>
-<li>npm help：查看帮助命令</li>
-</ul>
 
       
     </div>
@@ -299,18 +293,9 @@ npm install
     
 <nav id="article-nav">
   
-    <a href="/2016/06/03/git-常用命令汇总/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption"><</strong>
-      <div class="article-nav-title">
-        
-          git 常用命令汇总
-        
-      </div>
-    </a>
   
-  
-    <a href="/2016/06/02/图片等比压缩居中显示/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">图片等比压缩居中显示</div>
+    <a href="/2016/06/27/16年后web开发趋势思考/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">16年后web开发趋势思考</div>
       <strong class="article-nav-caption">></strong>
     </a>
   
@@ -326,7 +311,7 @@ npm install
 
 <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="nodejs实践知识点汇总" data-title="nodejs实践知识点汇总" data-url="http://mmrxia.github.io/2016/06/03/nodejs实践知识点汇总/"></div>
+	<div class="ds-thread" data-thread-key="express学习笔记" data-title="express学习笔记" data-url="http://mmrxia.github.io/2016/07/01/express学习笔记/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">

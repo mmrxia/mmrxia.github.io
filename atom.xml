@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://mmrxia.github.io/"/>
-  <updated>2016-06-27T07:42:10.855Z</updated>
+  <updated>2016-07-01T07:52:29.615Z</updated>
   <id>http://mmrxia.github.io/</id>
   
   <author>
@@ -14,6 +14,59 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>express学习笔记</title>
+    <link href="http://mmrxia.github.io/2016/07/01/express%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
+    <id>http://mmrxia.github.io/2016/07/01/express学习笔记/</id>
+    <published>2016-07-01T07:32:01.000Z</published>
+    <updated>2016-07-01T07:52:29.615Z</updated>
+    
+    <content type="html">&lt;h4 id=&quot;1-app-render和res-render方法的区别？&quot;&gt;&lt;a href=&quot;#1-app-render和res-render方法的区别？&quot; class=&quot;headerlink&quot; title=&quot;1. app.render和res.render方法的区别？&quot;&gt;&lt;/a&gt;1. app.render和res.render方法的区别？&lt;/h4&gt;&lt;p&gt;官方的api文档中是这么说的：   &lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Think of app.render() as a utility function for generating rendered view strings. Internally res.render() uses app.render() to render views.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;我的理解：&lt;/p&gt;
+&lt;p&gt;把&lt;code&gt;app.render&lt;/code&gt;当成一个生成视图的工具，而且&lt;code&gt;res.render&lt;/code&gt;内部也是调用了&lt;code&gt;app.render&lt;/code&gt;。&lt;br&gt;区别是这样，&lt;code&gt;app.render&lt;/code&gt;只负责生成视图，你会发现它是没能力把视图响应给客户端（浏览器）的，只有&lt;code&gt;res.render&lt;/code&gt;手里有&lt;code&gt;response&lt;/code&gt;对象，可以把视图响应给客户端。&lt;br&gt;&lt;code&gt;res.render&lt;/code&gt;的伪代码可以看做如下: &lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;javascript&quot;&gt;res.render = function(view, locals, cb){
+    app.render(view, locals, function(err, html){
+        if(typeof cb !== &amp;#39;undefined&amp;#39;){
+            return cb(err, html);
+        }
+        res.send(html);
+    });
+};
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h4 id=&quot;2-res-write和res-send区别？&quot;&gt;&lt;a href=&quot;#2-res-write和res-send区别？&quot; class=&quot;headerlink&quot; title=&quot;2. res.write和res.send区别？&quot;&gt;&lt;/a&gt;2. res.write和res.send区别？&lt;/h4&gt;&lt;blockquote&gt;
+&lt;p&gt;The res object represents the HTTP response that an Express app sends when it gets an HTTP request.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;code&gt;res.write&lt;/code&gt;和&lt;code&gt;res.send&lt;/code&gt;都是发送报文到浏览器response中，并渲染在浏览器窗口。&lt;br&gt;&lt;code&gt;res.write&lt;/code&gt;使用时需要配合&lt;code&gt;res.end&lt;/code&gt;方法同时使用，否则浏览器http请求会一直处于pending状态，而&lt;code&gt;res.send&lt;/code&gt;单独使用即可。    &lt;/p&gt;
+&lt;p&gt;代码示例：     &lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;javascript&quot;&gt;//res.send
+app.get(&amp;#39;/user/:id&amp;#39;, function(req, res){
+  res.send(&amp;#39;user &amp;#39; + req.params.id);
+});
+
+//res.write
+app.get(&amp;#39;/user/:id&amp;#39;, function(req, res){
+ res.status(200).write(&amp;#39;user &amp;#39; + req.params.id);
+ res.end();
+});
+&lt;/code&gt;&lt;/pre&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;h4 id=&quot;1-app-render和res-render方法的区别？&quot;&gt;&lt;a href=&quot;#1-app-render和res-render方法的区别？&quot; class=&quot;headerlink&quot; title=&quot;1. app.render和res.render方法的区别？&quot;&gt;&lt;/
+    
+    </summary>
+    
+    
+      <category term="nodejs" scheme="http://mmrxia.github.io/tags/nodejs/"/>
+    
+      <category term="express" scheme="http://mmrxia.github.io/tags/express/"/>
+    
+  </entry>
   
   <entry>
     <title>16年后web开发趋势思考</title>

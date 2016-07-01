@@ -118,7 +118,7 @@
 				
 				<section class="switch-part switch-part2">
 					<div class="widget tagcloud" id="js-tagcloud">
-						<a href="/tags/bash/" style="font-size: 10px;">bash</a> <a href="/tags/git/" style="font-size: 20px;">git</a> <a href="/tags/js/" style="font-size: 20px;">js</a> <a href="/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/tags/nodejs/" style="font-size: 10px;">nodejs</a> <a href="/tags/sku/" style="font-size: 10px;">sku</a> <a href="/tags/前端/" style="font-size: 10px;">前端</a> <a href="/tags/数组/" style="font-size: 10px;">数组</a> <a href="/tags/算法/" style="font-size: 10px;">算法</a> <a href="/tags/西游记/" style="font-size: 20px;">西游记</a> <a href="/tags/跨域/" style="font-size: 10px;">跨域</a> <a href="/tags/随笔/" style="font-size: 10px;">随笔</a>
+						<a href="/tags/bash/" style="font-size: 10px;">bash</a> <a href="/tags/express/" style="font-size: 10px;">express</a> <a href="/tags/git/" style="font-size: 20px;">git</a> <a href="/tags/js/" style="font-size: 20px;">js</a> <a href="/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/tags/nodejs/" style="font-size: 20px;">nodejs</a> <a href="/tags/sku/" style="font-size: 10px;">sku</a> <a href="/tags/前端/" style="font-size: 10px;">前端</a> <a href="/tags/数组/" style="font-size: 10px;">数组</a> <a href="/tags/算法/" style="font-size: 10px;">算法</a> <a href="/tags/西游记/" style="font-size: 20px;">西游记</a> <a href="/tags/跨域/" style="font-size: 10px;">跨域</a> <a href="/tags/随笔/" style="font-size: 10px;">随笔</a>
 					</div>
 				</section>
 				
@@ -199,6 +199,93 @@
 </nav>
 
       <div class="body-wrap">
+  
+    <article id="post-express学习笔记" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/07/01/express学习笔记/" class="article-date">
+  	<time datetime="2016-07-01T07:32:01.000Z" itemprop="datePublished">2016-07-01</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/07/01/express学习笔记/">express学习笔记</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="1-app-render和res-render方法的区别？"><a href="#1-app-render和res-render方法的区别？" class="headerlink" title="1. app.render和res.render方法的区别？"></a>1. app.render和res.render方法的区别？</h4><p>官方的api文档中是这么说的：   </p>
+<blockquote>
+<p>Think of app.render() as a utility function for generating rendered view strings. Internally res.render() uses app.render() to render views.</p>
+</blockquote>
+<p>我的理解：</p>
+<p>把<code>app.render</code>当成一个生成视图的工具，而且<code>res.render</code>内部也是调用了<code>app.render</code>。<br>区别是这样，<code>app.render</code>只负责生成视图，你会发现它是没能力把视图响应给客户端（浏览器）的，只有<code>res.render</code>手里有<code>response</code>对象，可以把视图响应给客户端。<br><code>res.render</code>的伪代码可以看做如下: </p>
+<pre><code class="javascript">res.render = function(view, locals, cb){
+    app.render(view, locals, function(err, html){
+        if(typeof cb !== &#39;undefined&#39;){
+            return cb(err, html);
+        }
+        res.send(html);
+    });
+};
+</code></pre>
+<h4 id="2-res-write和res-send区别？"><a href="#2-res-write和res-send区别？" class="headerlink" title="2. res.write和res.send区别？"></a>2. res.write和res.send区别？</h4><blockquote>
+<p>The res object represents the HTTP response that an Express app sends when it gets an HTTP request.</p>
+</blockquote>
+<p><code>res.write</code>和<code>res.send</code>都是发送报文到浏览器response中，并渲染在浏览器窗口。<br><code>res.write</code>使用时需要配合<code>res.end</code>方法同时使用，否则浏览器http请求会一直处于pending状态，而<code>res.send</code>单独使用即可。    </p>
+<p>代码示例：     </p>
+<pre><code class="javascript">//res.send
+app.get(&#39;/user/:id&#39;, function(req, res){
+  res.send(&#39;user &#39; + req.params.id);
+});
+
+//res.write
+app.get(&#39;/user/:id&#39;, function(req, res){
+ res.status(200).write(&#39;user &#39; + req.params.id);
+ res.end();
+});
+</code></pre>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/express/">express</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/nodejs/">nodejs</a></li></ul>
+	</div>
+
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
   
     <article id="post-16年后web开发趋势思考" class="article article-type-post" itemscope itemprop="blogPost">
   
@@ -1082,64 +1169,6 @@ git config -global user.email &quot;you@example.com&quot;
       
 	<div class="article-tag tagcloud">
 		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/跨域/">跨域</a></li></ul>
-	</div>
-
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-git-常用命令速查表" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2016/05/09/git-常用命令速查表/" class="article-date">
-  	<time datetime="2016-05-09T07:17:43.000Z" itemprop="datePublished">2016-05-09</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/05/09/git-常用命令速查表/">git 常用命令速查表</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>git作为代码管理工具的好处，这里就不多说了，目前也有很多git操作的可视化工具，如：TortoiseGit、SourceTree等。<br>相比可视化工具，笔者还是更喜欢使用原始命令来进行操作，下面附一张git常用命令速查表，以备不时之需。</p>
-<p><img src="http://7xth8v.com2.z0.glb.qiniucdn.com/image/git_common_order.jpg" alt="git常用命令"></p>
-
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/git/">git</a></li></ul>
 	</div>
 
       
