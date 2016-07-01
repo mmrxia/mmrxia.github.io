@@ -205,7 +205,8 @@ a {
   height: 110px;
   position: absolute;
   width: 100%;
-  background: rgba(51,51,51,0.8);
+  background: url("../img/bg.png") repeat;
+  background-color: #333;
 }
 #container #mobile-nav .overlay.fixed {
   position: fixed;
@@ -247,7 +248,8 @@ a {
 #container .left-col .overlay {
   width: 100%;
   height: 180px;
-  background: rgba(51,51,51,0.8);
+  background: url("../img/bg.png") repeat;
+  background-color: #333;
   position: absolute;
 }
 #container .left-col .intrude-less {
