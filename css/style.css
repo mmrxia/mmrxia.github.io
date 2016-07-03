@@ -1017,11 +1017,11 @@ pre code {
   border: 1px solid #999;
   -webkit-border-radius: 10px;
   border-radius: 10px;
-  background: #aaa;
+  background: #999;
   display: inline-block;
   margin-right: 10px;
   float: left;
-  margin-top: 12px;
+  margin-top: 8px;
 }
 .article-entry ul,
 .article-entry ol {
