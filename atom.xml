@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://mmrxia.github.io/"/>
-  <updated>2016-07-01T07:52:29.615Z</updated>
+  <updated>2016-07-04T07:24:16.396Z</updated>
   <id>http://mmrxia.github.io/</id>
   
   <author>
@@ -14,6 +14,50 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>centOS下安装nodeJS</title>
+    <link href="http://mmrxia.github.io/2016/07/04/centOS%E4%B8%8B%E5%AE%89%E8%A3%85nodeJS/"/>
+    <id>http://mmrxia.github.io/2016/07/04/centOS下安装nodeJS/</id>
+    <published>2016-07-04T06:30:07.000Z</published>
+    <updated>2016-07-04T07:24:16.396Z</updated>
+    
+    <content type="html">&lt;h4 id=&quot;一、源码安装&quot;&gt;&lt;a href=&quot;#一、源码安装&quot; class=&quot;headerlink&quot; title=&quot;一、源码安装&quot;&gt;&lt;/a&gt;一、源码安装&lt;/h4&gt;&lt;p&gt;1 . 安装gcc-c编译器&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;bash&quot;&gt;[root@localhost ~]# sudo yum install gcc gcc-c++
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;2 . 现在nodejs源码并解压  &lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;bash&quot;&gt;[root@localhost ~]# wget https://nodejs.org/dist/v4.4.7/node-v4.4.7-linux-x86.tar.gz
+[root@localhost ~]# tar xvf node-v4.4.7-linux-x86
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;3 . 编译&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;bash&quot;&gt;[root@localhost ~]# ./configure
+[root@localhost ~]# make &amp;amp;&amp;amp; make install
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h4 id=&quot;二、nvm安装&quot;&gt;&lt;a href=&quot;#二、nvm安装&quot; class=&quot;headerlink&quot; title=&quot;二、nvm安装&quot;&gt;&lt;/a&gt;二、nvm安装&lt;/h4&gt;&lt;p&gt;1 . 获取nvm&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;bash&quot;&gt;wget -qO- https://raw.githubusercontent.com/creationix/nvm/v0.31.2/install.sh | bash
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;2 . 安装nodejs&lt;/p&gt;
+&lt;p&gt; 可用 &lt;code&gt;nvm ls-remote&lt;/code&gt; 列出所有可安装的node版本，然后安装需要的版本。&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;bash&quot;&gt; nvm install v4.4.7
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;安装完成后可查看node版本。&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;bash&quot;&gt;node -v
+&lt;/code&gt;&lt;/pre&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;h4 id=&quot;一、源码安装&quot;&gt;&lt;a href=&quot;#一、源码安装&quot; class=&quot;headerlink&quot; title=&quot;一、源码安装&quot;&gt;&lt;/a&gt;一、源码安装&lt;/h4&gt;&lt;p&gt;1 . 安装gcc-c编译器&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;bash&quot;&gt;[root@local
+    
+    </summary>
+    
+    
+      <category term="nodejs" scheme="http://mmrxia.github.io/tags/nodejs/"/>
+    
+      <category term="Linux" scheme="http://mmrxia.github.io/tags/Linux/"/>
+    
+  </entry>
   
   <entry>
     <title>express学习笔记</title>
