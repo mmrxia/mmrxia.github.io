@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://mmrxia.github.io/"/>
-  <updated>2016-07-04T07:24:16.396Z</updated>
+  <updated>2016-07-04T08:25:29.993Z</updated>
   <id>http://mmrxia.github.io/</id>
   
   <author>
@@ -14,6 +14,54 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>centOS下配置git</title>
+    <link href="http://mmrxia.github.io/2016/07/04/centOS%E4%B8%8B%E9%85%8D%E7%BD%AEgit/"/>
+    <id>http://mmrxia.github.io/2016/07/04/centOS下配置git/</id>
+    <published>2016-07-04T08:14:54.000Z</published>
+    <updated>2016-07-04T08:25:29.993Z</updated>
+    
+    <content type="html">&lt;h4 id=&quot;1-安装git&quot;&gt;&lt;a href=&quot;#1-安装git&quot; class=&quot;headerlink&quot; title=&quot;1. 安装git&quot;&gt;&lt;/a&gt;1. 安装git&lt;/h4&gt;&lt;pre&gt;&lt;code class=&quot;bash&quot;&gt;[root@localhost ~]# yum install git
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h4 id=&quot;2-配置git&quot;&gt;&lt;a href=&quot;#2-配置git&quot; class=&quot;headerlink&quot; title=&quot;2. 配置git&quot;&gt;&lt;/a&gt;2. 配置git&lt;/h4&gt;&lt;p&gt;1 . 进入 &lt;code&gt;.ssh&lt;/code&gt; 目录&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;bash&quot;&gt;[root@localhost ~]# cd .ssh/
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;2 . 生成ssh-keygen&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;bash&quot;&gt;[root@localhost .ssh]# ssh-keygen -t rsa -C &amp;#39;this.xqs@gmail.com&amp;#39;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;会出现以下提示：&lt;/p&gt;
+&lt;p&gt;Generating public/private rsa key pair.&lt;br&gt;Enter file in which to save the key (/root/.ssh/id_rsa): （可不填）&lt;br&gt;Enter passphrase (empty for no passphrase):  （可不填）&lt;br&gt;Enter same passphrase again:  （可不填）&lt;br&gt;Your identification has been saved in /root/.ssh/id_rsa.&lt;br&gt;Your public key has been saved in /root/.ssh/id_rsa.pub.&lt;br&gt;The key fingerprint is:&lt;br&gt;8f:8e:89:00:1a:3e:83:d1:95:fc:e8:9c:22:85:4c:a7 this.xqs@gmail.com        &lt;/p&gt;
+&lt;p&gt;3 . 复制 &lt;code&gt;id_rsa.pub&lt;/code&gt; 文件中的内容，粘贴到github新增的ssh keys中。&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;bash&quot;&gt;[root@localhost .ssh]# ls
+// id_rsa  id_rsa.pub
+
+[root@localhost .ssh]# vim id_rsa.pub
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;4 . 配置用户名和邮箱&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;bash&quot;&gt;[root@localhost .ssh]# git config --global user.name &amp;#39;bandwagonhost vps&amp;#39;
+[root@localhost .ssh]# git config --global user.email &amp;#39;this.xqs@gmail.com&amp;#39;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;ol&gt;
+&lt;li&gt;测试连接&lt;/li&gt;
+&lt;/ol&gt;
+&lt;pre&gt;&lt;code class=&quot;bash&quot;&gt;[root@localhost .ssh]# ssh -T git@github.com
+Hi mmrxia! You&amp;#39;ve successfully authenticated, but GitHub does not provide shell access.
+&lt;/code&gt;&lt;/pre&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;h4 id=&quot;1-安装git&quot;&gt;&lt;a href=&quot;#1-安装git&quot; class=&quot;headerlink&quot; title=&quot;1. 安装git&quot;&gt;&lt;/a&gt;1. 安装git&lt;/h4&gt;&lt;pre&gt;&lt;code class=&quot;bash&quot;&gt;[root@localhost ~]# yum ins
+    
+    </summary>
+    
+    
+      <category term="Linux" scheme="http://mmrxia.github.io/tags/Linux/"/>
+    
+      <category term="git" scheme="http://mmrxia.github.io/tags/git/"/>
+    
+  </entry>
   
   <entry>
     <title>centOS下安装nodeJS</title>

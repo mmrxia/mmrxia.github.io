@@ -118,7 +118,7 @@
 				
 				<section class="switch-part switch-part2">
 					<div class="widget tagcloud" id="js-tagcloud">
-						<a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/bash/" style="font-size: 10px;">bash</a> <a href="/tags/express/" style="font-size: 10px;">express</a> <a href="/tags/git/" style="font-size: 15px;">git</a> <a href="/tags/js/" style="font-size: 15px;">js</a> <a href="/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/tags/nodejs/" style="font-size: 20px;">nodejs</a> <a href="/tags/sku/" style="font-size: 10px;">sku</a> <a href="/tags/前端/" style="font-size: 10px;">前端</a> <a href="/tags/数组/" style="font-size: 10px;">数组</a> <a href="/tags/算法/" style="font-size: 10px;">算法</a> <a href="/tags/西游记/" style="font-size: 15px;">西游记</a> <a href="/tags/跨域/" style="font-size: 10px;">跨域</a> <a href="/tags/随笔/" style="font-size: 10px;">随笔</a>
+						<a href="/tags/Linux/" style="font-size: 15px;">Linux</a> <a href="/tags/bash/" style="font-size: 10px;">bash</a> <a href="/tags/express/" style="font-size: 10px;">express</a> <a href="/tags/git/" style="font-size: 20px;">git</a> <a href="/tags/js/" style="font-size: 15px;">js</a> <a href="/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/tags/nodejs/" style="font-size: 20px;">nodejs</a> <a href="/tags/sku/" style="font-size: 10px;">sku</a> <a href="/tags/前端/" style="font-size: 10px;">前端</a> <a href="/tags/数组/" style="font-size: 10px;">数组</a> <a href="/tags/算法/" style="font-size: 10px;">算法</a> <a href="/tags/西游记/" style="font-size: 15px;">西游记</a> <a href="/tags/跨域/" style="font-size: 10px;">跨域</a> <a href="/tags/随笔/" style="font-size: 10px;">随笔</a>
 					</div>
 				</section>
 				
@@ -199,6 +199,88 @@
 </nav>
 
       <div class="body-wrap">
+  
+    <article id="post-centOS下配置git" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/07/04/centOS下配置git/" class="article-date">
+  	<time datetime="2016-07-04T08:14:54.000Z" itemprop="datePublished">2016-07-04</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/07/04/centOS下配置git/">centOS下配置git</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="1-安装git"><a href="#1-安装git" class="headerlink" title="1. 安装git"></a>1. 安装git</h4><pre><code class="bash">[root@localhost ~]# yum install git
+</code></pre>
+<h4 id="2-配置git"><a href="#2-配置git" class="headerlink" title="2. 配置git"></a>2. 配置git</h4><p>1 . 进入 <code>.ssh</code> 目录</p>
+<pre><code class="bash">[root@localhost ~]# cd .ssh/
+</code></pre>
+<p>2 . 生成ssh-keygen</p>
+<pre><code class="bash">[root@localhost .ssh]# ssh-keygen -t rsa -C &#39;this.xqs@gmail.com&#39;
+</code></pre>
+<p>会出现以下提示：</p>
+<p>Generating public/private rsa key pair.<br>Enter file in which to save the key (/root/.ssh/id_rsa): （可不填）<br>Enter passphrase (empty for no passphrase):  （可不填）<br>Enter same passphrase again:  （可不填）<br>Your identification has been saved in /root/.ssh/id_rsa.<br>Your public key has been saved in /root/.ssh/id_rsa.pub.<br>The key fingerprint is:<br>8f:8e:89:00:1a:3e:83:d1:95:fc:e8:9c:22:85:4c:a7 this.xqs@gmail.com        </p>
+<p>3 . 复制 <code>id_rsa.pub</code> 文件中的内容，粘贴到github新增的ssh keys中。</p>
+<pre><code class="bash">[root@localhost .ssh]# ls
+// id_rsa  id_rsa.pub
+
+[root@localhost .ssh]# vim id_rsa.pub
+</code></pre>
+<p>4 . 配置用户名和邮箱</p>
+<pre><code class="bash">[root@localhost .ssh]# git config --global user.name &#39;bandwagonhost vps&#39;
+[root@localhost .ssh]# git config --global user.email &#39;this.xqs@gmail.com&#39;
+</code></pre>
+<ol>
+<li>测试连接</li>
+</ol>
+<pre><code class="bash">[root@localhost .ssh]# ssh -T git@github.com
+Hi mmrxia! You&#39;ve successfully authenticated, but GitHub does not provide shell access.
+</code></pre>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/">Linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/git/">git</a></li></ul>
+	</div>
+
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
   
     <article id="post-centOS下安装nodeJS" class="article article-type-post" itemscope itemprop="blogPost">
   
@@ -978,185 +1060,6 @@ git config -global user.email &quot;you@example.com&quot;
       
 	<div class="article-tag tagcloud">
 		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/西游记/">西游记</a></li></ul>
-	</div>
-
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-js浮点数计算精度丢失问题" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2016/05/11/js浮点数计算精度丢失问题/" class="article-date">
-  	<time datetime="2016-05-11T09:22:45.000Z" itemprop="datePublished">2016-05-11</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/05/11/js浮点数计算精度丢失问题/">js浮点数计算精度丢失问题及解决方案</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p> 本文主要从以下3个方面来说明：</p>
-<p> 1 . js浮点数计算精度丢失常见现象<br> 2 . js浮点数计算精度丢失原因<br> 3 . js浮点数计算精度丢失解决办法</p>
-<h3 id="一、常见现象"><a href="#一、常见现象" class="headerlink" title="一、常见现象"></a>一、常见现象</h3><p> 1 . 两个简单的浮点数相加或相乘</p>
-<pre><code> 0.1 + 0.2 != 0.3 // true  0.30000000000000004
-</code></pre><p> 又如：</p>
-<pre><code> 0.29 * 100  // 28.999999999999996
-</code></pre><p> 2 . 大整数运算</p>
-<pre><code> 9999999999999999 == 10000000000000001 // true  16位和17位数竟然相等...
-</code></pre><p> 又如：</p>
-<pre><code> var x = 9007199254740992
- x + 1 == x // true
-</code></pre><h3 id="二、原因"><a href="#二、原因" class="headerlink" title="二、原因"></a>二、原因</h3><p> <strong>计算机的二进制实现和位数限制有些数无法有限表示。</strong><br> 就像一些无理数不能有限表示，如 圆周率 3.1415926…，1.3333… 等。JS 遵循 <a href="https://en.wikipedia.org/wiki/IEEE_floating_point" target="_blank" rel="external">IEEE 754</a> 规范，采用双精度存储（double precision），占用 64 bit。如图：<br> <img src="http://7xth8v.com2.z0.glb.clouddn.com/image/n_64bit.png?imageView2/2/w/800" alt=""></p>
-<p> 图中的意义：</p>
-<ul>
-<li>1位用来表示符号位</li>
-<li>11位用来表示指数</li>
-<li>52位表示尾数</li>
-</ul>
-<p> 浮点数，比如</p>
-<pre><code> 0.1 &gt;&gt; 0.0001 1001 1001 1001…（1001无限循环）
- 0.2 &gt;&gt; 0.0011 0011 0011 0011…（0011无限循环）
-</code></pre><p> 此时只能模仿十进制进行四舍五入了，但是二进制只有 0 和 1 两个，于是变为 0 舍 1 入。这即是计算机中部分浮点数运算时出现误差，丢失精度的根本原因。<br> 大整数的精度丢失和浮点数本质上是一样的，尾数位最大是 52 位，因此 JS 中能精准表示的最大整数是 <code>Math.pow(2, 53)</code>，十进制即 <code>9007199254740992</code>。<br> 大于 <code>9007199254740992</code> 的可能会丢失精度。</p>
-<pre><code> 9007199254740992     &gt;&gt; 10000000000000...000 // 共计 53 个 0
- 9007199254740992 + 1 &gt;&gt; 10000000000000...001 // 中间 52 个 0
- 9007199254740992 + 2 &gt;&gt; 10000000000000...010 // 中间 51 个 0
-</code></pre><p> 实际上</p>
-<pre><code> 9007199254740992 + 1 // 丢失
- 9007199254740992 + 2 // 未丢失
- 9007199254740992 + 3 // 丢失
- 9007199254740992 + 4 // 未丢失
-</code></pre><p> 以上，可以知道看似有穷的数字, 在计算机的二进制表示里却是无穷的，由于存储位数限制因此存在“舍去”，精度丢失就发生了。</p>
-<p> 想了解更深入的分析可以看这篇论文：<a href="http://docs.oracle.com/cd/E19957-01/806-3568/ncg_goldberg.html" target="_blank" rel="external">What Every Computer Scientist Should Know About Floating-Point Arithmetic</a></p>
-<h3 id="三、解决方案"><a href="#三、解决方案" class="headerlink" title="三、解决方案"></a>三、解决方案</h3><p> 对于整数，前端出现问题的几率可能比较低，毕竟很少有业务需要需要用到超大整数，只要运算结果不超过 <code>Math.pow(2, 53)</code> 就不会丢失精度。<br> 对于小数，前端出现问题的几率还是很多的，尤其在一些电商网站涉及到金额等数据。解决方式：把小数放到位整数（乘倍数），再缩小回原来倍数（除倍数），如下所示：</p>
-<pre><code> // 0.1 + 0.2
- (0.1*10 + 0.2*10) / 10 == 0.3 // true
-</code></pre><p> 代码实现如下：</p>
-<pre><code class="language-javascript"> var Calc = function () {
-     /*
-      * 将浮点数去除小数点，返回整数和倍数。如 3.14 &gt;&gt; 314，倍数是 100
-      * @param n {number} 浮点数
-      * return {object} 
-      * {num: 314, times: 100}
-      * */
-     function toInt(n) {
-         var n = +n, res = {num: n, times: 1};
-         if (n !== (n | 0)) { //判断浮点数，n===parseInt(n)
-             var arr = (&#39;&#39; + n).split(&#39;.&#39;);
-             var len = arr[1].length; //小数长度
-             res.times = Math.pow(10, len); //需要乘的倍数=&gt;10的指数
-             res.num = Math.round(n * res.times); //四舍五入取整
-         }
-         return res;
-     }
-
-     function operation(a, b, op) {
-         var result; //最终计算的值
-         var o1 = toInt(a), o2 = toInt(b);
-
-         var n1 = o1.num, t1 = o1.times;
-         var n2 = o2.num, t2 = o2.times;
-
-         var max = Math.max(t1, t2);
-
-         switch (op) {
-             case &#39;add&#39;:
-                 if (t1 &gt; t2) {
-                     result = n1 + n2 * (t1 / t2);
-                 } else {
-                     result = n2 + n1 * (t2 / t1);
-                 }
-                 result = result / max;
-                 break;
-             case &#39;subtract&#39;:
-                 if (t1 &gt; t2) {
-                     result = n1 - n2 * (t1 / t2);
-                 } else {
-                     result = n2 - n1 * (t2 / t1);
-                 }
-                 result = result / max;
-                 break;
-             case &#39;multiply&#39;:
-                 result = (n1 * n2) / (t1 * t2)
-                 return result
-                 break;
-             case &#39;divide&#39;:
-                 result = (n1 / n2) * (t2 / t1)
-                 return result
-                 break;
-
-         }
-         return result;
-     }
-
-     /*加*/
-     function add(a, b) {
-         return operation(a, b, &#39;add&#39;);
-     }
-
-     /*减*/
-     function subtract(a, b) {
-         return operation(a, b, &#39;subtract&#39;);
-     }
-
-     /*乘*/
-     function multiply(a, b) {
-         return operation(a, b, &#39;multiply&#39;);
-     }
-
-     /*除*/
-     function divide(a, b) {
-         return operation(a, b, &#39;divide&#39;);
-     }
-
-     //exports
-     return {
-         add: add,
-         subtract: subtract,
-         multiply: multiply,
-         divide: divide
-     }
- }();
-</code></pre>
-<h3 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h3><p> <a href="http://0.30000000000000004.com" target="_blank" rel="external">http://0.30000000000000004.com</a><br> <a href="http://docs.oracle.com/cd/E19957-01/806-3568/ncg_goldberg.html" target="_blank" rel="external">http://docs.oracle.com/cd/E19957-01/806-3568/ncg_goldberg.html</a></p>
-
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/js/">js</a></li></ul>
 	</div>
 
       
