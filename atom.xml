@@ -246,7 +246,7 @@ app.get(&amp;#39;/user/:id&amp;#39;, function(req, res){
     <link href="http://mmrxia.github.io/2016/06/03/git-%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E6%B1%87%E6%80%BB/"/>
     <id>http://mmrxia.github.io/2016/06/03/git-常用命令汇总/</id>
     <published>2016-06-03T06:26:42.000Z</published>
-    <updated>2016-06-03T07:13:46.596Z</updated>
+    <updated>2016-07-04T07:53:36.601Z</updated>
     
     <content type="html">&lt;h3 id=&quot;常用命令&quot;&gt;&lt;a href=&quot;#常用命令&quot; class=&quot;headerlink&quot; title=&quot;常用命令&quot;&gt;&lt;/a&gt;常用命令&lt;/h3&gt;&lt;p&gt;创建账户：&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&quot;language-git&quot;&gt;git config -global user.name &amp;quot;Your name&amp;quot;
@@ -267,12 +267,12 @@ git config -global user.email &amp;quot;you@example.com&amp;quot;
 &lt;pre&gt;&lt;code class=&quot;language-git&quot;&gt;touch .gitignore
 &lt;/code&gt;&lt;/pre&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;p&gt;查看文件&lt;/p&gt;
+&lt;li&gt;查看文件&lt;/li&gt;
+&lt;/ul&gt;
 &lt;pre&gt;&lt;code class=&quot;language-git&quot;&gt;vim README.md
 &lt;/code&gt;&lt;/pre&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;查看提交历史记录&lt;/p&gt;
-&lt;/li&gt;
+&lt;ul&gt;
+&lt;li&gt;查看提交历史记录&lt;/li&gt;
 &lt;/ul&gt;
 &lt;pre&gt;&lt;code class=&quot;language-git&quot;&gt;git log
 &lt;/code&gt;&lt;/pre&gt;
