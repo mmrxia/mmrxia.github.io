@@ -28,7 +28,7 @@ Ge">
 
 会出现以下提示：
 Ge">
-<meta property="og:updated_time" content="2016-07-04T08:25:29.993Z">
+<meta property="og:updated_time" content="2016-07-07T09:35:21.102Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="centOS下配置git">
 <meta name="twitter:description" content="1. 安装git[root@localhost ~]# yum install git
@@ -265,30 +265,30 @@ Ge">
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h4 id="1-安装git"><a href="#1-安装git" class="headerlink" title="1. 安装git"></a>1. 安装git</h4><pre><code class="bash">[root@localhost ~]# yum install git
+        <h4 id="1-安装git"><a href="#1-安装git" class="headerlink" title="1. 安装git"></a>1. 安装git</h4><pre><code class="language-bash">[root@localhost ~]# yum install git
 </code></pre>
 <h4 id="2-配置git"><a href="#2-配置git" class="headerlink" title="2. 配置git"></a>2. 配置git</h4><p>1 . 进入 <code>.ssh</code> 目录</p>
-<pre><code class="bash">[root@localhost ~]# cd .ssh/
+<pre><code class="language-bash">[root@localhost ~]# cd .ssh/
 </code></pre>
 <p>2 . 生成ssh-keygen</p>
-<pre><code class="bash">[root@localhost .ssh]# ssh-keygen -t rsa -C &#39;this.xqs@gmail.com&#39;
+<pre><code class="language-bash">[root@localhost .ssh]# ssh-keygen -t rsa -C &#39;this.xqs@gmail.com&#39;
 </code></pre>
 <p>会出现以下提示：</p>
 <p>Generating public/private rsa key pair.<br>Enter file in which to save the key (/root/.ssh/id_rsa): （可不填）<br>Enter passphrase (empty for no passphrase):  （可不填）<br>Enter same passphrase again:  （可不填）<br>Your identification has been saved in /root/.ssh/id_rsa.<br>Your public key has been saved in /root/.ssh/id_rsa.pub.<br>The key fingerprint is:<br>8f:8e:89:00:1a:3e:83:d1:95:fc:e8:9c:22:85:4c:a7 this.xqs@gmail.com        </p>
 <p>3 . 复制 <code>id_rsa.pub</code> 文件中的内容，粘贴到github新增的ssh keys中。</p>
-<pre><code class="bash">[root@localhost .ssh]# ls
+<pre><code class="language-bash">[root@localhost .ssh]# ls
 // id_rsa  id_rsa.pub
 
 [root@localhost .ssh]# vim id_rsa.pub
 </code></pre>
 <p>4 . 配置用户名和邮箱</p>
-<pre><code class="bash">[root@localhost .ssh]# git config --global user.name &#39;bandwagonhost vps&#39;
+<pre><code class="language-bash">[root@localhost .ssh]# git config --global user.name &#39;bandwagonhost vps&#39;
 [root@localhost .ssh]# git config --global user.email &#39;this.xqs@gmail.com&#39;
 </code></pre>
 <ol>
 <li>测试连接</li>
 </ol>
-<pre><code class="bash">[root@localhost .ssh]# ssh -T git@github.com
+<pre><code class="language-bash">[root@localhost .ssh]# ssh -T git@github.com
 Hi mmrxia! You&#39;ve successfully authenticated, but GitHub does not provide shell access.
 </code></pre>
 

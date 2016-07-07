@@ -20,7 +20,7 @@
 2 . 现在nodejs源码并解压  
 [root@localhost ~]# wget https://nodejs.org/dist/v4.4.7/node-v4.4.7-linux-x86.tar.gz
 [root@localhost ~]# tar">
-<meta property="og:updated_time" content="2016-07-04T07:24:16.396Z">
+<meta property="og:updated_time" content="2016-07-07T09:35:21.098Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="centOS下安装nodeJS">
 <meta name="twitter:description" content="一、源码安装1 . 安装gcc-c编译器
@@ -254,25 +254,25 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h4 id="一、源码安装"><a href="#一、源码安装" class="headerlink" title="一、源码安装"></a>一、源码安装</h4><p>1 . 安装gcc-c编译器</p>
-<pre><code class="bash">[root@localhost ~]# sudo yum install gcc gcc-c++
+<pre><code class="language-bash">[root@localhost ~]# sudo yum install gcc gcc-c++
 </code></pre>
 <p>2 . 现在nodejs源码并解压  </p>
-<pre><code class="bash">[root@localhost ~]# wget https://nodejs.org/dist/v4.4.7/node-v4.4.7-linux-x86.tar.gz
+<pre><code class="language-bash">[root@localhost ~]# wget https://nodejs.org/dist/v4.4.7/node-v4.4.7-linux-x86.tar.gz
 [root@localhost ~]# tar xvf node-v4.4.7-linux-x86
 </code></pre>
 <p>3 . 编译</p>
-<pre><code class="bash">[root@localhost ~]# ./configure
+<pre><code class="language-bash">[root@localhost ~]# ./configure
 [root@localhost ~]# make &amp;&amp; make install
 </code></pre>
 <h4 id="二、nvm安装"><a href="#二、nvm安装" class="headerlink" title="二、nvm安装"></a>二、nvm安装</h4><p>1 . 获取nvm</p>
-<pre><code class="bash">wget -qO- https://raw.githubusercontent.com/creationix/nvm/v0.31.2/install.sh | bash
+<pre><code class="language-bash">wget -qO- https://raw.githubusercontent.com/creationix/nvm/v0.31.2/install.sh | bash
 </code></pre>
 <p>2 . 安装nodejs</p>
 <p> 可用 <code>nvm ls-remote</code> 列出所有可安装的node版本，然后安装需要的版本。</p>
-<pre><code class="bash"> nvm install v4.4.7
+<pre><code class="language-bash"> nvm install v4.4.7
 </code></pre>
 <p>安装完成后可查看node版本。</p>
-<pre><code class="bash">node -v
+<pre><code class="language-bash">node -v
 </code></pre>
 
       

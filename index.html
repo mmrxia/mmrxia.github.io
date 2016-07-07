@@ -226,30 +226,30 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h4 id="1-安装git"><a href="#1-安装git" class="headerlink" title="1. 安装git"></a>1. 安装git</h4><pre><code class="bash">[root@localhost ~]# yum install git
+        <h4 id="1-安装git"><a href="#1-安装git" class="headerlink" title="1. 安装git"></a>1. 安装git</h4><pre><code class="language-bash">[root@localhost ~]# yum install git
 </code></pre>
 <h4 id="2-配置git"><a href="#2-配置git" class="headerlink" title="2. 配置git"></a>2. 配置git</h4><p>1 . 进入 <code>.ssh</code> 目录</p>
-<pre><code class="bash">[root@localhost ~]# cd .ssh/
+<pre><code class="language-bash">[root@localhost ~]# cd .ssh/
 </code></pre>
 <p>2 . 生成ssh-keygen</p>
-<pre><code class="bash">[root@localhost .ssh]# ssh-keygen -t rsa -C &#39;this.xqs@gmail.com&#39;
+<pre><code class="language-bash">[root@localhost .ssh]# ssh-keygen -t rsa -C &#39;this.xqs@gmail.com&#39;
 </code></pre>
 <p>会出现以下提示：</p>
 <p>Generating public/private rsa key pair.<br>Enter file in which to save the key (/root/.ssh/id_rsa): （可不填）<br>Enter passphrase (empty for no passphrase):  （可不填）<br>Enter same passphrase again:  （可不填）<br>Your identification has been saved in /root/.ssh/id_rsa.<br>Your public key has been saved in /root/.ssh/id_rsa.pub.<br>The key fingerprint is:<br>8f:8e:89:00:1a:3e:83:d1:95:fc:e8:9c:22:85:4c:a7 this.xqs@gmail.com        </p>
 <p>3 . 复制 <code>id_rsa.pub</code> 文件中的内容，粘贴到github新增的ssh keys中。</p>
-<pre><code class="bash">[root@localhost .ssh]# ls
+<pre><code class="language-bash">[root@localhost .ssh]# ls
 // id_rsa  id_rsa.pub
 
 [root@localhost .ssh]# vim id_rsa.pub
 </code></pre>
 <p>4 . 配置用户名和邮箱</p>
-<pre><code class="bash">[root@localhost .ssh]# git config --global user.name &#39;bandwagonhost vps&#39;
+<pre><code class="language-bash">[root@localhost .ssh]# git config --global user.name &#39;bandwagonhost vps&#39;
 [root@localhost .ssh]# git config --global user.email &#39;this.xqs@gmail.com&#39;
 </code></pre>
 <ol>
 <li>测试连接</li>
 </ol>
-<pre><code class="bash">[root@localhost .ssh]# ssh -T git@github.com
+<pre><code class="language-bash">[root@localhost .ssh]# ssh -T git@github.com
 Hi mmrxia! You&#39;ve successfully authenticated, but GitHub does not provide shell access.
 </code></pre>
 
@@ -309,25 +309,25 @@ Hi mmrxia! You&#39;ve successfully authenticated, but GitHub does not provide sh
     <div class="article-entry" itemprop="articleBody">
       
         <h4 id="一、源码安装"><a href="#一、源码安装" class="headerlink" title="一、源码安装"></a>一、源码安装</h4><p>1 . 安装gcc-c编译器</p>
-<pre><code class="bash">[root@localhost ~]# sudo yum install gcc gcc-c++
+<pre><code class="language-bash">[root@localhost ~]# sudo yum install gcc gcc-c++
 </code></pre>
 <p>2 . 现在nodejs源码并解压  </p>
-<pre><code class="bash">[root@localhost ~]# wget https://nodejs.org/dist/v4.4.7/node-v4.4.7-linux-x86.tar.gz
+<pre><code class="language-bash">[root@localhost ~]# wget https://nodejs.org/dist/v4.4.7/node-v4.4.7-linux-x86.tar.gz
 [root@localhost ~]# tar xvf node-v4.4.7-linux-x86
 </code></pre>
 <p>3 . 编译</p>
-<pre><code class="bash">[root@localhost ~]# ./configure
+<pre><code class="language-bash">[root@localhost ~]# ./configure
 [root@localhost ~]# make &amp;&amp; make install
 </code></pre>
 <h4 id="二、nvm安装"><a href="#二、nvm安装" class="headerlink" title="二、nvm安装"></a>二、nvm安装</h4><p>1 . 获取nvm</p>
-<pre><code class="bash">wget -qO- https://raw.githubusercontent.com/creationix/nvm/v0.31.2/install.sh | bash
+<pre><code class="language-bash">wget -qO- https://raw.githubusercontent.com/creationix/nvm/v0.31.2/install.sh | bash
 </code></pre>
 <p>2 . 安装nodejs</p>
 <p> 可用 <code>nvm ls-remote</code> 列出所有可安装的node版本，然后安装需要的版本。</p>
-<pre><code class="bash"> nvm install v4.4.7
+<pre><code class="language-bash"> nvm install v4.4.7
 </code></pre>
 <p>安装完成后可查看node版本。</p>
-<pre><code class="bash">node -v
+<pre><code class="language-bash">node -v
 </code></pre>
 
       

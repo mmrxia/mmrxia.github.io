@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://mmrxia.github.io/"/>
-  <updated>2016-07-04T08:25:29.993Z</updated>
+  <updated>2016-07-07T09:35:21.102Z</updated>
   <id>http://mmrxia.github.io/</id>
   
   <author>
@@ -20,39 +20,39 @@
     <link href="http://mmrxia.github.io/2016/07/04/centOS%E4%B8%8B%E9%85%8D%E7%BD%AEgit/"/>
     <id>http://mmrxia.github.io/2016/07/04/centOS下配置git/</id>
     <published>2016-07-04T08:14:54.000Z</published>
-    <updated>2016-07-04T08:25:29.993Z</updated>
+    <updated>2016-07-07T09:35:21.102Z</updated>
     
-    <content type="html">&lt;h4 id=&quot;1-安装git&quot;&gt;&lt;a href=&quot;#1-安装git&quot; class=&quot;headerlink&quot; title=&quot;1. 安装git&quot;&gt;&lt;/a&gt;1. 安装git&lt;/h4&gt;&lt;pre&gt;&lt;code class=&quot;bash&quot;&gt;[root@localhost ~]# yum install git
+    <content type="html">&lt;h4 id=&quot;1-安装git&quot;&gt;&lt;a href=&quot;#1-安装git&quot; class=&quot;headerlink&quot; title=&quot;1. 安装git&quot;&gt;&lt;/a&gt;1. 安装git&lt;/h4&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;[root@localhost ~]# yum install git
 &lt;/code&gt;&lt;/pre&gt;
 &lt;h4 id=&quot;2-配置git&quot;&gt;&lt;a href=&quot;#2-配置git&quot; class=&quot;headerlink&quot; title=&quot;2. 配置git&quot;&gt;&lt;/a&gt;2. 配置git&lt;/h4&gt;&lt;p&gt;1 . 进入 &lt;code&gt;.ssh&lt;/code&gt; 目录&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;bash&quot;&gt;[root@localhost ~]# cd .ssh/
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;[root@localhost ~]# cd .ssh/
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;2 . 生成ssh-keygen&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;bash&quot;&gt;[root@localhost .ssh]# ssh-keygen -t rsa -C &amp;#39;this.xqs@gmail.com&amp;#39;
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;[root@localhost .ssh]# ssh-keygen -t rsa -C &amp;#39;this.xqs@gmail.com&amp;#39;
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;会出现以下提示：&lt;/p&gt;
 &lt;p&gt;Generating public/private rsa key pair.&lt;br&gt;Enter file in which to save the key (/root/.ssh/id_rsa): （可不填）&lt;br&gt;Enter passphrase (empty for no passphrase):  （可不填）&lt;br&gt;Enter same passphrase again:  （可不填）&lt;br&gt;Your identification has been saved in /root/.ssh/id_rsa.&lt;br&gt;Your public key has been saved in /root/.ssh/id_rsa.pub.&lt;br&gt;The key fingerprint is:&lt;br&gt;8f:8e:89:00:1a:3e:83:d1:95:fc:e8:9c:22:85:4c:a7 this.xqs@gmail.com        &lt;/p&gt;
 &lt;p&gt;3 . 复制 &lt;code&gt;id_rsa.pub&lt;/code&gt; 文件中的内容，粘贴到github新增的ssh keys中。&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;bash&quot;&gt;[root@localhost .ssh]# ls
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;[root@localhost .ssh]# ls
 // id_rsa  id_rsa.pub
 
 [root@localhost .ssh]# vim id_rsa.pub
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;4 . 配置用户名和邮箱&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;bash&quot;&gt;[root@localhost .ssh]# git config --global user.name &amp;#39;bandwagonhost vps&amp;#39;
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;[root@localhost .ssh]# git config --global user.name &amp;#39;bandwagonhost vps&amp;#39;
 [root@localhost .ssh]# git config --global user.email &amp;#39;this.xqs@gmail.com&amp;#39;
 &lt;/code&gt;&lt;/pre&gt;
 &lt;ol&gt;
 &lt;li&gt;测试连接&lt;/li&gt;
 &lt;/ol&gt;
-&lt;pre&gt;&lt;code class=&quot;bash&quot;&gt;[root@localhost .ssh]# ssh -T git@github.com
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;[root@localhost .ssh]# ssh -T git@github.com
 Hi mmrxia! You&amp;#39;ve successfully authenticated, but GitHub does not provide shell access.
 &lt;/code&gt;&lt;/pre&gt;
 </content>
     
     <summary type="html">
     
-      &lt;h4 id=&quot;1-安装git&quot;&gt;&lt;a href=&quot;#1-安装git&quot; class=&quot;headerlink&quot; title=&quot;1. 安装git&quot;&gt;&lt;/a&gt;1. 安装git&lt;/h4&gt;&lt;pre&gt;&lt;code class=&quot;bash&quot;&gt;[root@localhost ~]# yum ins
+      &lt;h4 id=&quot;1-安装git&quot;&gt;&lt;a href=&quot;#1-安装git&quot; class=&quot;headerlink&quot; title=&quot;1. 安装git&quot;&gt;&lt;/a&gt;1. 安装git&lt;/h4&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;[root@localhost ~]
     
     </summary>
     
@@ -68,35 +68,35 @@ Hi mmrxia! You&amp;#39;ve successfully authenticated, but GitHub does not provid
     <link href="http://mmrxia.github.io/2016/07/04/centOS%E4%B8%8B%E5%AE%89%E8%A3%85nodeJS/"/>
     <id>http://mmrxia.github.io/2016/07/04/centOS下安装nodeJS/</id>
     <published>2016-07-04T06:30:07.000Z</published>
-    <updated>2016-07-04T07:24:16.396Z</updated>
+    <updated>2016-07-07T09:35:21.098Z</updated>
     
     <content type="html">&lt;h4 id=&quot;一、源码安装&quot;&gt;&lt;a href=&quot;#一、源码安装&quot; class=&quot;headerlink&quot; title=&quot;一、源码安装&quot;&gt;&lt;/a&gt;一、源码安装&lt;/h4&gt;&lt;p&gt;1 . 安装gcc-c编译器&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;bash&quot;&gt;[root@localhost ~]# sudo yum install gcc gcc-c++
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;[root@localhost ~]# sudo yum install gcc gcc-c++
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;2 . 现在nodejs源码并解压  &lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;bash&quot;&gt;[root@localhost ~]# wget https://nodejs.org/dist/v4.4.7/node-v4.4.7-linux-x86.tar.gz
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;[root@localhost ~]# wget https://nodejs.org/dist/v4.4.7/node-v4.4.7-linux-x86.tar.gz
 [root@localhost ~]# tar xvf node-v4.4.7-linux-x86
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;3 . 编译&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;bash&quot;&gt;[root@localhost ~]# ./configure
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;[root@localhost ~]# ./configure
 [root@localhost ~]# make &amp;amp;&amp;amp; make install
 &lt;/code&gt;&lt;/pre&gt;
 &lt;h4 id=&quot;二、nvm安装&quot;&gt;&lt;a href=&quot;#二、nvm安装&quot; class=&quot;headerlink&quot; title=&quot;二、nvm安装&quot;&gt;&lt;/a&gt;二、nvm安装&lt;/h4&gt;&lt;p&gt;1 . 获取nvm&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;bash&quot;&gt;wget -qO- https://raw.githubusercontent.com/creationix/nvm/v0.31.2/install.sh | bash
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;wget -qO- https://raw.githubusercontent.com/creationix/nvm/v0.31.2/install.sh | bash
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;2 . 安装nodejs&lt;/p&gt;
 &lt;p&gt; 可用 &lt;code&gt;nvm ls-remote&lt;/code&gt; 列出所有可安装的node版本，然后安装需要的版本。&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;bash&quot;&gt; nvm install v4.4.7
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt; nvm install v4.4.7
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;安装完成后可查看node版本。&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;bash&quot;&gt;node -v
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;node -v
 &lt;/code&gt;&lt;/pre&gt;
 </content>
     
     <summary type="html">
     
       &lt;h4 id=&quot;一、源码安装&quot;&gt;&lt;a href=&quot;#一、源码安装&quot; class=&quot;headerlink&quot; title=&quot;一、源码安装&quot;&gt;&lt;/a&gt;一、源码安装&lt;/h4&gt;&lt;p&gt;1 . 安装gcc-c编译器&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;bash&quot;&gt;[root@local
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;[r
     
     </summary>
     
