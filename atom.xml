@@ -57,9 +57,9 @@ Hi mmrxia! You&amp;#39;ve successfully authenticated, but GitHub does not provid
     </summary>
     
     
-      <category term="Linux" scheme="http://mmrxia.github.io/tags/Linux/"/>
-    
       <category term="git" scheme="http://mmrxia.github.io/tags/git/"/>
+    
+      <category term="Linux" scheme="http://mmrxia.github.io/tags/Linux/"/>
     
   </entry>
   
@@ -112,7 +112,7 @@ Hi mmrxia! You&amp;#39;ve successfully authenticated, but GitHub does not provid
     <link href="http://mmrxia.github.io/2016/07/01/express%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
     <id>http://mmrxia.github.io/2016/07/01/express学习笔记/</id>
     <published>2016-07-01T07:32:01.000Z</published>
-    <updated>2016-07-01T07:52:29.615Z</updated>
+    <updated>2016-07-07T09:30:50.282Z</updated>
     
     <content type="html">&lt;h4 id=&quot;1-app-render和res-render方法的区别？&quot;&gt;&lt;a href=&quot;#1-app-render和res-render方法的区别？&quot; class=&quot;headerlink&quot; title=&quot;1. app.render和res.render方法的区别？&quot;&gt;&lt;/a&gt;1. app.render和res.render方法的区别？&lt;/h4&gt;&lt;p&gt;官方的api文档中是这么说的：   &lt;/p&gt;
 &lt;blockquote&gt;
@@ -120,7 +120,7 @@ Hi mmrxia! You&amp;#39;ve successfully authenticated, but GitHub does not provid
 &lt;/blockquote&gt;
 &lt;p&gt;我的理解：&lt;/p&gt;
 &lt;p&gt;把&lt;code&gt;app.render&lt;/code&gt;当成一个生成视图的工具，而且&lt;code&gt;res.render&lt;/code&gt;内部也是调用了&lt;code&gt;app.render&lt;/code&gt;。&lt;br&gt;区别是这样，&lt;code&gt;app.render&lt;/code&gt;只负责生成视图，你会发现它是没能力把视图响应给客户端（浏览器）的，只有&lt;code&gt;res.render&lt;/code&gt;手里有&lt;code&gt;response&lt;/code&gt;对象，可以把视图响应给客户端。&lt;br&gt;&lt;code&gt;res.render&lt;/code&gt;的伪代码可以看做如下: &lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;javascript&quot;&gt;res.render = function(view, locals, cb){
+&lt;pre&gt;&lt;code class=&quot;language-javascript&quot;&gt;res.render = function(view, locals, cb){
     app.render(view, locals, function(err, html){
         if(typeof cb !== &amp;#39;undefined&amp;#39;){
             return cb(err, html);
@@ -134,7 +134,7 @@ Hi mmrxia! You&amp;#39;ve successfully authenticated, but GitHub does not provid
 &lt;/blockquote&gt;
 &lt;p&gt;&lt;code&gt;res.write&lt;/code&gt;和&lt;code&gt;res.send&lt;/code&gt;都是发送报文到浏览器response中，并渲染在浏览器窗口。&lt;br&gt;&lt;code&gt;res.write&lt;/code&gt;使用时需要配合&lt;code&gt;res.end&lt;/code&gt;方法同时使用，否则浏览器http请求会一直处于pending状态，而&lt;code&gt;res.send&lt;/code&gt;单独使用即可。    &lt;/p&gt;
 &lt;p&gt;代码示例：     &lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;javascript&quot;&gt;//res.send
+&lt;pre&gt;&lt;code class=&quot;language-javascript&quot;&gt;//res.send
 app.get(&amp;#39;/user/:id&amp;#39;, function(req, res){
   res.send(&amp;#39;user &amp;#39; + req.params.id);
 });
@@ -144,6 +144,19 @@ app.get(&amp;#39;/user/:id&amp;#39;, function(req, res){
  res.status(200).write(&amp;#39;user &amp;#39; + req.params.id);
  res.end();
 });
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h4 id=&quot;3-获取request请求参数的方法？&quot;&gt;&lt;a href=&quot;#3-获取request请求参数的方法？&quot; class=&quot;headerlink&quot; title=&quot;3. 获取request请求参数的方法？&quot;&gt;&lt;/a&gt;3. 获取request请求参数的方法？&lt;/h4&gt;&lt;p&gt;express获取参数有三种方法：  &lt;/p&gt;
+&lt;p&gt;官网实例：   &lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Checks route params (req.params), ex: /user/:id&lt;br&gt;Checks query string params (req.query), ex: ?id=12&lt;br&gt;Checks urlencoded body params (req.body), ex: id=    &lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;1 . 127.0.0.1:3000/index，得到index，可以通过使用req.params得到；&lt;br&gt;2 . 127.0.0.1:3000/index?id=12，这种情况下，这种方式是获取客户端get方式传递过来的值，通过使用&lt;code&gt;req.query.id&lt;/code&gt;可以获得；&lt;br&gt;3 . 127.0.0.1：300/index，然后post了一个id=2的值，这种方式是获取客户端post过来的数据，可以通过&lt;code&gt;req.body.id&lt;/code&gt;获取； &lt;/p&gt;
+&lt;p&gt;注：post请求，第三种方式需要以下配置：&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-javascript&quot;&gt;   var express        =         require(&amp;quot;express&amp;quot;);  
+   var bodyParser     =         require(&amp;quot;body-parser&amp;quot;);  
+   var app            =         express();  
+
+   app.use(bodyParser.urlencoded({ extended: false }));   // necessary
 &lt;/code&gt;&lt;/pre&gt;
 </content>
     

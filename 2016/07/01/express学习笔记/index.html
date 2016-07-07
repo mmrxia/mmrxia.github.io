@@ -20,7 +20,7 @@ Think of app.render() as a utility function for generating rendered view strings
 
 我的理解：
 把a">
-<meta property="og:updated_time" content="2016-07-01T07:52:29.615Z">
+<meta property="og:updated_time" content="2016-07-07T09:30:50.282Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="express学习笔记">
 <meta name="twitter:description" content="1. app.render和res.render方法的区别？官方的api文档中是这么说的：   
@@ -259,7 +259,7 @@ Think of app.render() as a utility function for generating rendered view strings
 </blockquote>
 <p>我的理解：</p>
 <p>把<code>app.render</code>当成一个生成视图的工具，而且<code>res.render</code>内部也是调用了<code>app.render</code>。<br>区别是这样，<code>app.render</code>只负责生成视图，你会发现它是没能力把视图响应给客户端（浏览器）的，只有<code>res.render</code>手里有<code>response</code>对象，可以把视图响应给客户端。<br><code>res.render</code>的伪代码可以看做如下: </p>
-<pre><code class="javascript">res.render = function(view, locals, cb){
+<pre><code class="language-javascript">res.render = function(view, locals, cb){
     app.render(view, locals, function(err, html){
         if(typeof cb !== &#39;undefined&#39;){
             return cb(err, html);
@@ -273,7 +273,7 @@ Think of app.render() as a utility function for generating rendered view strings
 </blockquote>
 <p><code>res.write</code>和<code>res.send</code>都是发送报文到浏览器response中，并渲染在浏览器窗口。<br><code>res.write</code>使用时需要配合<code>res.end</code>方法同时使用，否则浏览器http请求会一直处于pending状态，而<code>res.send</code>单独使用即可。    </p>
 <p>代码示例：     </p>
-<pre><code class="javascript">//res.send
+<pre><code class="language-javascript">//res.send
 app.get(&#39;/user/:id&#39;, function(req, res){
   res.send(&#39;user &#39; + req.params.id);
 });
@@ -283,6 +283,19 @@ app.get(&#39;/user/:id&#39;, function(req, res){
  res.status(200).write(&#39;user &#39; + req.params.id);
  res.end();
 });
+</code></pre>
+<h4 id="3-获取request请求参数的方法？"><a href="#3-获取request请求参数的方法？" class="headerlink" title="3. 获取request请求参数的方法？"></a>3. 获取request请求参数的方法？</h4><p>express获取参数有三种方法：  </p>
+<p>官网实例：   </p>
+<blockquote>
+<p>Checks route params (req.params), ex: /user/:id<br>Checks query string params (req.query), ex: ?id=12<br>Checks urlencoded body params (req.body), ex: id=    </p>
+</blockquote>
+<p>1 . 127.0.0.1:3000/index，得到index，可以通过使用req.params得到；<br>2 . 127.0.0.1:3000/index?id=12，这种情况下，这种方式是获取客户端get方式传递过来的值，通过使用<code>req.query.id</code>可以获得；<br>3 . 127.0.0.1：300/index，然后post了一个id=2的值，这种方式是获取客户端post过来的数据，可以通过<code>req.body.id</code>获取； </p>
+<p>注：post请求，第三种方式需要以下配置：</p>
+<pre><code class="language-javascript">   var express        =         require(&quot;express&quot;);  
+   var bodyParser     =         require(&quot;body-parser&quot;);  
+   var app            =         express();  
+
+   app.use(bodyParser.urlencoded({ extended: false }));   // necessary
 </code></pre>
 
       
