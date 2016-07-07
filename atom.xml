@@ -57,9 +57,9 @@ Hi mmrxia! You&amp;#39;ve successfully authenticated, but GitHub does not provid
     </summary>
     
     
-      <category term="git" scheme="http://mmrxia.github.io/tags/git/"/>
-    
       <category term="Linux" scheme="http://mmrxia.github.io/tags/Linux/"/>
+    
+      <category term="git" scheme="http://mmrxia.github.io/tags/git/"/>
     
   </entry>
   
@@ -112,7 +112,7 @@ Hi mmrxia! You&amp;#39;ve successfully authenticated, but GitHub does not provid
     <link href="http://mmrxia.github.io/2016/07/01/express%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
     <id>http://mmrxia.github.io/2016/07/01/express学习笔记/</id>
     <published>2016-07-01T07:32:01.000Z</published>
-    <updated>2016-07-07T09:30:50.282Z</updated>
+    <updated>2016-07-07T09:33:08.006Z</updated>
     
     <content type="html">&lt;h4 id=&quot;1-app-render和res-render方法的区别？&quot;&gt;&lt;a href=&quot;#1-app-render和res-render方法的区别？&quot; class=&quot;headerlink&quot; title=&quot;1. app.render和res.render方法的区别？&quot;&gt;&lt;/a&gt;1. app.render和res.render方法的区别？&lt;/h4&gt;&lt;p&gt;官方的api文档中是这么说的：   &lt;/p&gt;
 &lt;blockquote&gt;
@@ -150,7 +150,11 @@ app.get(&amp;#39;/user/:id&amp;#39;, function(req, res){
 &lt;blockquote&gt;
 &lt;p&gt;Checks route params (req.params), ex: /user/:id&lt;br&gt;Checks query string params (req.query), ex: ?id=12&lt;br&gt;Checks urlencoded body params (req.body), ex: id=    &lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;p&gt;1 . 127.0.0.1:3000/index，得到index，可以通过使用req.params得到；&lt;br&gt;2 . 127.0.0.1:3000/index?id=12，这种情况下，这种方式是获取客户端get方式传递过来的值，通过使用&lt;code&gt;req.query.id&lt;/code&gt;可以获得；&lt;br&gt;3 . 127.0.0.1：300/index，然后post了一个id=2的值，这种方式是获取客户端post过来的数据，可以通过&lt;code&gt;req.body.id&lt;/code&gt;获取； &lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;例如：127.0.0.1:3000/index，得到index，可以通过使用&lt;code&gt;req.params&lt;/code&gt;得到；   &lt;/li&gt;
+&lt;li&gt;例如：127.0.0.1:3000/index?id=12，这种情况下，这种方式是获取客户端get方式传递过来的值，通过使用&lt;code&gt;req.query.id&lt;/code&gt;可以获得；     &lt;/li&gt;
+&lt;li&gt;例如：127.0.0.1：300/index，然后post了一个id=2的值，这种方式是获取客户端post过来的数据，可以通过&lt;code&gt;req.body.id&lt;/code&gt;获取； &lt;/li&gt;
+&lt;/ul&gt;
 &lt;p&gt;注：post请求，第三种方式需要以下配置：&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&quot;language-javascript&quot;&gt;   var express        =         require(&amp;quot;express&amp;quot;);  
    var bodyParser     =         require(&amp;quot;body-parser&amp;quot;);  
