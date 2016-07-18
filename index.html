@@ -118,7 +118,7 @@
 				
 				<section class="switch-part switch-part2">
 					<div class="widget tagcloud" id="js-tagcloud">
-						<a href="/tags/Linux/" style="font-size: 15px;">Linux</a> <a href="/tags/bash/" style="font-size: 10px;">bash</a> <a href="/tags/express/" style="font-size: 10px;">express</a> <a href="/tags/git/" style="font-size: 20px;">git</a> <a href="/tags/js/" style="font-size: 15px;">js</a> <a href="/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/tags/nodejs/" style="font-size: 20px;">nodejs</a> <a href="/tags/sku/" style="font-size: 10px;">sku</a> <a href="/tags/前端/" style="font-size: 10px;">前端</a> <a href="/tags/数组/" style="font-size: 10px;">数组</a> <a href="/tags/算法/" style="font-size: 10px;">算法</a> <a href="/tags/西游记/" style="font-size: 15px;">西游记</a> <a href="/tags/跨域/" style="font-size: 10px;">跨域</a> <a href="/tags/随笔/" style="font-size: 10px;">随笔</a>
+						<a href="/tags/Linux/" style="font-size: 15px;">Linux</a> <a href="/tags/bash/" style="font-size: 10px;">bash</a> <a href="/tags/express/" style="font-size: 10px;">express</a> <a href="/tags/git/" style="font-size: 20px;">git</a> <a href="/tags/js/" style="font-size: 20px;">js</a> <a href="/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/tags/nodejs/" style="font-size: 20px;">nodejs</a> <a href="/tags/sku/" style="font-size: 10px;">sku</a> <a href="/tags/前端/" style="font-size: 10px;">前端</a> <a href="/tags/数组/" style="font-size: 10px;">数组</a> <a href="/tags/移动端开发/" style="font-size: 10px;">移动端开发</a> <a href="/tags/算法/" style="font-size: 10px;">算法</a> <a href="/tags/西游记/" style="font-size: 15px;">西游记</a> <a href="/tags/跨域/" style="font-size: 10px;">跨域</a> <a href="/tags/随笔/" style="font-size: 10px;">随笔</a>
 					</div>
 				</section>
 				
@@ -199,6 +199,145 @@
 </nav>
 
       <div class="body-wrap">
+  
+    <article id="post-html5在iOS设备上传图片调整方向实践" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/07/18/html5在iOS设备上传图片调整方向实践/" class="article-date">
+  	<time datetime="2016-07-18T11:56:54.000Z" itemprop="datePublished">2016-07-18</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/07/18/html5在iOS设备上传图片调整方向实践/">html5在iOS设备上传图片调整方向实践</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>解决在iOS设备上，用H5上传图片，有时图片方向会错乱的问题。</p>
+</blockquote>
+<p>用html5编写图片裁切上传，在iphone手机上可能会遇到图片方向错误问题，在此把解决方法和大家分享一下，<br>用到了html5的 FileReader和Canvas，如果还没有接触的同学，先了解一下其方法。   </p>
+<pre><code class="language-javascript"> //此方法为file input元素的change事件
+ function change(){
+    var file = this.files[0];
+    var orientation;
+    //EXIF js 可以读取图片的元信息  https://github.com/exif-js/exif-js
+    EXIF.getData(file,function(){
+        orientation=EXIF.getTag(this,&#39;Orientation&#39;);
+    });
+    var reader = new FileReader();
+    reader.onload = function(e) {   
+        getImgData(this.result,orientation,function(data){
+            //这里可以使用校正后的图片data了 
+        }); 
+    }
+    reader.readAsDataURL(file);
+}
+</code></pre>
+<p>下面是具体的处理方式：</p>
+<pre><code class="language-javascript">// @param {string} img 图片的base64
+// @param {int} dir exif获取的方向信息
+// @param {function} next 回调方法，返回校正方向后的base64
+function getImgData(img,dir,next){
+  var image=new Image();
+  image.onload=function(){
+    var degree=0,drawWidth,drawHeight,width,height;
+    drawWidth=this.naturalWidth;
+    drawHeight=this.naturalHeight;
+    //以下改变一下图片大小
+    var maxSide = Math.max(drawWidth, drawHeight);
+    if (maxSide &gt; 1024) {
+        var minSide = Math.min(drawWidth, drawHeight);
+        minSide = minSide / maxSide * 1024;
+        maxSide = 1024;
+        if (drawWidth &gt; drawHeight) {
+            drawWidth = maxSide;
+            drawHeight = minSide;
+        } else {
+            drawWidth = minSide;
+            drawHeight = maxSide;
+        }
+    }
+    var canvas=document.createElement(&#39;canvas&#39;);
+    canvas.width=width=drawWidth;
+    canvas.height=height=drawHeight; 
+    var context=canvas.getContext(&#39;2d&#39;);
+    //判断图片方向，重置canvas大小，确定旋转角度，iphone默认的是home键在右方的横屏拍摄方式
+    switch(dir){
+       //iphone横屏拍摄，此时home键在左侧
+        case 3:
+            degree=180;
+            drawWidth=-width;
+            drawHeight=-height;
+            break;
+        //iphone竖屏拍摄，此时home键在下方(正常拿手机的方向)
+        case 6:
+            canvas.width=height;
+            canvas.height=width; 
+            degree=90;
+            drawWidth=width;
+            drawHeight=-height;
+            break;
+        //iphone竖屏拍摄，此时home键在上方
+        case 8:
+            canvas.width=height;
+            canvas.height=width; 
+            degree=270;
+            drawWidth=-width;
+            drawHeight=height;
+            break;
+    }
+    //使用canvas旋转校正
+    context.rotate(degree*Math.PI/180);
+    context.drawImage(this,0,0,drawWidth,drawHeight);
+    //返回校正图片
+    next(canvas.toDataURL(&quot;image/jpeg&quot;,.8));
+ }
+  image.src=img;
+}
+</code></pre>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/js/">js</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/移动端开发/">移动端开发</a></li></ul>
+	</div>
+
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
   
     <article id="post-centOS下配置git" class="article article-type-post" itemscope itemprop="blogPost">
   
@@ -1009,85 +1148,6 @@ git config -global user.email &quot;you@example.com&quot;
 <h3 id="一、起因"><a href="#一、起因" class="headerlink" title="一、起因"></a>一、起因</h3><p>孙悟空打死了两个强盗，唐僧念经超度强盗的亡灵：拜惟好汉，我以好话，尔等不听，却遭行者，棍下伤身。你到森罗殿下兴词，他姓孙，我姓陈，各居异姓。冤有头，债有主，切莫告我取经僧人。<br>八戒笑道：“师父推了干净，他打时却也没有我们两个。”三藏又祷告道：“好汉告状，只告行者，也不干八戒、沙僧之事。”<br>孙悟空道：“师父，你老人家忒没情义。虽是我动手打，却也只是为你。你不往西天取经，我不与你做徒弟，怎么会来这里打杀人！”然后骂道：“触恼了我的性子，将你打死了，尽你到那里去告，我老孙是不怕，玉帝认得我，天王随得我；二十八宿惧我，九曜星官怕我；十代阎君曾与我为仆从，五路猖神曾与我当后生；三界五司，十方诸宰，都与我情深面熟，随你那里去告！”<br>这绝对是在恐吓唐僧，把老子惹火了，连你也打死，你去告吧！<br>三藏见他说出这般恶话，心惊肉跳道：“徒弟呀，你怎么就认真起来？”<br>晚上，在老杨家借宿，老杨的儿子是强盗一伙，孙悟空又打死了二三十个强盗，还把老杨儿子的头割下来，拧给唐僧看。<br>唐僧大惊，念起《紧箍儿咒》，把个行者勒得耳红面赤，眼胀头昏，在地下打滚，翻筋斗，竖蜻蜓，疼痛难禁。把大圣咒倒在地，箍儿陷在肉里有一寸来深浅。并威胁道：“快走！迟了些儿，我又念真言，这番决不住口，把你脑浆都勒出来哩！”<br>这是唐僧第三次赶孙悟空滚蛋。西天路走了一大半了，眼看就要出成果了，他要他滚蛋！<br>大圣疼痛难忍，忽然省悟道：“这和尚负了我心。”<br>于是，孙悟空发怒了，终于撕破脸皮反了目：你这泼秃！没了俺老孙，连口水都没得喝，还这般刁难俺，不给点颜色看看，你就不知道俺老孙的狠气！我管你是哪个！一棒子将唐僧打晕在地，扬长而去。丢下了这样一句话：“你这个狠心的泼秃，十分贱我！”</p>
 <h3 id="二、经过"><a href="#二、经过" class="headerlink" title="二、经过"></a>二、经过</h3><p>沙僧来找他算帐，他说没有，绝对没有的事，俺老孙怎会干这样的缺德事呢，你若不信，菩萨可以作证嘛，我这几天一直都在这儿。<br>沙僧当然不信，因为你会架筋斗云，又会分身法。于是，菩萨叫沙僧与悟空同去见个真假。结果，沙僧看到了两个一模一样的孙悟空，长相、声音、本领都是一样的。这些条件是妖怪有可能具备的，可是，最重要的证据金箍棒、紧箍咒也是一样的，而这两个条件是妖怪不可能具备的。这就说明根本没有假的，这明摆着是孙悟空使的分身法嘛！<br>孙悟空上天庭借照妖镜，鉴定结果：两个都是真的。玉帝当然辨不出哪个假。“这大圣呵呵冷笑，那行者也哈哈欢喜”，就说明他正在暗自得意：嘿嘿！你们谁都想不到吧！<br>到阎罗殿去查，谛听是知道真相的，却不敢当面说破，否则，孙悟空不打死他才怪，发起恶来，把阎罗殿都拆了！<br>孙悟空走到哪儿都问的理直气壮：“你们看我两个谁是假的！”都辨不出，因为根本没有假的。他的目的就是要闹得让天、地、神、人、鬼尽知，不是俺老孙打的你这泼秃，而是你这泼秃缺了俺老孙就会碰到妖怪。</p>
 <h3 id="三、结果"><a href="#三、结果" class="headerlink" title="三、结果"></a>三、结果</h3><p>最后闹到雷音寺，孙悟空与如来佛说的话，和在前面别处说的是有区别的，他先说这一路上我这般辛苦，不知费了多少精神，师父却把我赶出来。现在，请佛祖与<em>**</em>辨明邪正，我才好保唐僧过来把佛经取回东土，帮你永传大教。<br>注意：他说的是辨明邪正，不是辨明真假，而在前面别处他都是说的辨个真假。这个区别是相当大的，真假，是指两个人谁真谁假，邪正，是问我的行为对不对，请如来公断。<br>孙悟空这点分身术的小把戏，又岂能瞒得过如来佛？！在他还没来之前，如来佛就已经对大众说了：“汝等俱是一心，且看他二心斗来。”你们这些人呀，一心要看他谁真谁假，又岂能识破他的二心呢？根本就不是两个人，是二心也，孙猴子生了二心，把老师都打了！你们却以为是妖怪。<br>但是，这能说吗？一说破，就无法收场了，这个经就彻底的取不成了！如来的计划就破产了！所以，大局为重，如来佛也不能说破，不但不能说，反而还要很默契地配合他假戏真做！所以如来才杜撰出一个谁也没听说、没见过、根本就不存在的六耳猕猴来。<br>原著中这样写道：如来正欲道破，忽见…，如来笑道：我观假悟空乃六耳猕猴也。<br>孙悟空没想到如来佛会瞎扯，很是震惊，不知道如来要干什么，如来也没有辨真假，而是直接吓唬猴子：“悟空休动，待我与你擒住他。”悟空生怕被抓住把柄，急变蜂儿飞跑。大众不知，以为走了。如来笑云：“汝等休要再言，妖精未走，在我钵盂之下。”将钵盂揭起，果见一六耳猕猴。<br>孙大圣忍不住，将其打死。“忍不住”这三字用的好啊，悟空的心理素质到底比不上如来佛祖。佛法无边的如来总算帮神通广大的悟空把这个弥天大谎撒团圆了，皆大欢喜。<br>大圣叩头谢道：“上告如来：那师父若不要我，却不又枉劳一番神思！还是放我还俗去罢。”如来道：“你休乱想，切莫放刁，我教观音送你，不怕他不收。好生保护他去，那时功成归极乐，汝亦坐莲台。”<br>经过这一场闹剧，孙悟空明确的被如来内定为预备佛员，这是对他敢打师父的一种肯定，一种奖励！唐僧呢，这个刁酸无能的泼秃领导吃了哑巴亏，白挨了一顿揍。这种人欠揍，揍他一顿，他自然就老实了。</p>
-
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/西游记/">西游记</a></li></ul>
-	</div>
-
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-西天取经路上只有一个妖怪" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2016/05/14/西天取经路上只有一个妖怪/" class="article-date">
-  	<time datetime="2016-05-14T01:26:48.000Z" itemprop="datePublished">2016-05-14</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/05/14/西天取经路上只有一个妖怪/">西天取经路上只有一个妖怪</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="白骨精是谁？"><a href="#白骨精是谁？" class="headerlink" title="白骨精是谁？"></a><strong>白骨精是谁？</strong></h3><p>白骨精是白虎岭上一具女尸的骨架，受天地精华后，变成的妖精。西游记里并没有记载这具女尸到底是什么来历。在明末清初的一些民间小说和故事书中零星有些记载，大致是，白骨精原本是白虎岭上一户普通人家的女儿。长到十七八岁的时候，被当地富户强行掠走。遭到淫虐后，被遗弃荒山，冻饿而死。</p>
-<p>她死的时候恰好是农历七月十五，是天地阴阳相合的日子，所以冤魂没能上天入地，而是在人间游荡。虽是游荡，但一直不肯离开自己的尸体，直至尸体化为白骨。姑娘的游魂吸取天地精华，围绕白骨，化为人形，从此对人恨之入骨，以吸人血为生。由于修炼的年岁太少，她只有一般的变化法力，属于妖界微不足道的小角色。</p>
-<p>妖是什么？其实是天上神仙的奴隶。所有修炼到一定果位的神仙，都会到妖界选一个坐骑，能成为神仙坐骑，是所有妖精最快的上升通道。修炼很苦，只有成为神仙才能上升到贵族阶层，从此不再遭受妖界的痛苦与磨砺。白骨精之所以会选择唐僧下手，是因为她无论如何修炼，都没有机会做神仙。</p>
-<p>你想，哪位神仙会选一堆白骨作坐骑啊？每次神仙来妖界选坐骑，她都会去应聘，但每次都失败。她已经放弃了通过当坐骑上升的门道，而是选择走捷径。当听说吃了唐僧肉便可长生不老，成为神仙时，她毫不犹豫地盯上了唐僧师徒。尽管她知道自己不是孙悟空的对手，但还是选择下手。因为，她已经无路可走。</p>
-<h3 id="唐僧是谁？"><a href="#唐僧是谁？" class="headerlink" title="唐僧是谁？"></a><strong>唐僧是谁？</strong></h3><p>为什么白骨精遇到唐僧师徒会有那么强烈的戏剧性？我们先来看下这帮取经人是什么身份。先看唐僧，其实他是如来二弟子金蝉长老转世。他去人间转世投胎的理由很简单——轻慢佛法，被如来打入凡尘。如来真的对他很失望吗？其实没有。他刚被打入凡尘后，如来就后悔了。但是，作为佛界的一把手，他也不能出尔反尔啊。</p>
-<p>如来心里的小九九早被观音菩萨看到了。喜欢察言观色的观音菩萨以宣传佛法为理由，启动了取经工程。这么大的机会，无论给谁都能成佛，获得果位。观音菩萨去人间辛苦选角回来，告诉如来，除了如来朝思暮想的金蝉长老转世的陈玄奘外，没有人能完成这项工程。如来一听很高兴，就让观音菩萨操办去了。</p>
-<p>作为取经形象工程的总策划，观音菩萨办事非常周密。她先找来各路菩萨和神仙，希望大家都能为这项工程出点力。尤其是应该让自家的坐骑妖怪都出来捣捣乱，也显示下取经的难度，同时也在关键时刻露露脸，让如来知道，大家都一心向着中央，一直在帮助金蝉长老过关。各路菩萨走后，观音菩萨找到陈玄奘，告诉他，妖怪都是自家人放出来的，为了显示取经的难度，让如来重用他，也算是好有个台阶下。</p>
-<p>唐僧很聪明，一心想回灵山，所以当然愿意了。不过，所有的事情都没那么简单。天上也有人事关系，天上也有潜规则。观音菩萨张罗了一个这么好的取经工程，谁参与谁都会功成名就，那肯定一帮人惦记着。同时，观音菩萨自己也不会放过这次机会啊。所以他选择的第一个参与项目的人就是孙悟空。</p>
-<h3 id="孙悟空那些事"><a href="#孙悟空那些事" class="headerlink" title="孙悟空那些事"></a><strong>孙悟空那些事</strong></h3><p>不要以为观音菩萨选孙悟空是因为他能打能杀，可以保唐僧去取经。其实与这些一点毛关系都没有。孙悟空是谁？其实他是菩提老祖的私生子。小时候，他只可以看到菩提老祖，却看不到妈妈，就很好奇问老祖，他是哪儿来的。菩提老祖告诉他，他是石头缝里变出来的。一向傻乐呵的孙悟空快1千岁的时候才知道自己的真实身世。</p>
-<p>菩提老祖的这个秘密只有观音菩萨知道。观音菩萨为什么会帮菩提老祖保守秘密呢？是因为菩提老祖太牛逼了。他是谁？他是成佛比如来还早的佛陀。由于如来的佛法更高深，年龄与佛龄都高于如来的菩提老祖，甘愿成为如来的追随者。如来让菩提老祖三分，一直另眼相看。菩提老祖在佛教中是须菩提，他与佛祖的对话便是《金刚经》。</p>
-<p>实际上，菩提老祖是儒释道精通的神仙，法力高于如来，但又遵从如来。菩提老祖就孙悟空一个儿子，所以一直很娇惯他。他私下教会了孙悟空很多法力，并禁止孙悟空叫他师傅，也不允许他在任何场合提到自己。孙悟空与菩提老祖闹翻，跑了出去。菩提老祖怕他惹事，便把孙悟空托付给观音菩萨管教。</p>
-<p>观音菩萨哪管得了他，他兴风作浪，干了很多坏事。尤其是把玉皇大帝都给揍了。如来本来要灭了他，结果观音菩萨暗示他不要这样做，如来领会，就把孙悟空压到五行山下五百年。菩提老祖与如来都是大牛，观音菩萨谁都不敢得罪，所以她一直等待机会救出孙悟空，给菩提老祖一个交代。</p>
-<p>这不，唐僧取经的工程资金都批下来了，没什么比随唐僧取经更合适的项目了。一来让如来有台阶下，二来也是给菩提老祖一个面子，算是完成了托付的重任。一开始，唐僧非常讨厌孙悟空，绝对不想和他合作。唐僧心里清楚，所有的妖怪都是观音菩萨阿姨找来的托儿，一旦孙猴子胡乱打，岂不是全给得罪了。</p>
-<h3 id="其他的关系户"><a href="#其他的关系户" class="headerlink" title="其他的关系户"></a><strong>其他的关系户</strong></h3><p>不要以为唐僧、悟空外的几个人就清白了。猪八戒是天蓬元帅，掌管天河，所谓天河不过是银河罢了。也就是说，猪八戒是银河系的一把手。实际上他是紫薇大帝手上最亮的一颗星——北斗七星中最亮的一颗。紫薇大帝的坐骑是北斗七星，而猪八戒是最亮的一颗。他被贬下界是因为他把嫦娥给睡了。很多人不知道，玉帝把嫦娥带到天庭原本想娶他为妃，无奈王母娘娘很不高兴，发动自家亲戚的力量，差点毁了玉帝的统治。</p>
-<p>让嫦娥当舞女是玉帝与王母相互妥协的结果。玉帝每天看嫦娥跳舞，却睡不得，这让他很扫兴。嫦娥在广寒宫整天思春，郁闷不乐。猪八戒跑过去陪她聊天，并成功把嫦娥给睡了。这件事让玉帝火冒三丈，于是把猪八戒贬入凡尘。自己最喜欢的坐骑没了，紫薇大帝很不高兴，猪八戒是他最喜欢的坐骑。然而，如来扫平魔界，建立佛国世界时，紫薇大帝一直是所有光明的提供者，照亮如来的路，如来一直无以为报。观音菩萨于是找到凡间流浪的猪八戒，将他编入了取经队伍，算是对紫薇大帝一个交代。</p>
-<p>沙和尚是谁？他是卷帘大将，但真实的身份是玉皇大帝四女儿四仙女的相好。玉帝知道他与女儿相好后，便以打碎了某某东东为由，将他打入凡尘。王母支持四女儿，反抗玉帝，让玉帝很后悔自己的决定。当观音菩萨刚宣布要组织取经工程时，王母娘娘就知道了这件事。为了自己女儿的幸福，她拿一箩筐蟠桃，让观音菩萨把沙悟净也编入了取经队伍。</p>
-<p>小白龙更不用说了。他是西海龙王的三太子，因为纵火烧了玉帝赏赐的明珠而被判斩首。结果观音菩萨求情，免于一死，被压在了山涧里。你可能会奇怪，观音菩萨为什么会为小白龙说情。其实是这样的，观音菩萨又叫南海观音，她常驻的地方在南海。南海是南海龙王的地盘，也就是小白龙叔叔的地盘。</p>
-<p>三太子很小时的时候经常去观音菩萨那里玩，观音菩萨很喜欢他，视若己出。他犯事后，把他压在山涧里加以保护也是观音菩萨的主意。取经工程刚出来消息，西海龙王、南海龙王、东海龙王、北海龙王全都齐聚南海，求观音帮忙。把小白龙安排进来也是顺理成章的事情。</p>
-<h3 id="为什么不能降妖？"><a href="#为什么不能降妖？" class="headerlink" title="为什么不能降妖？"></a><strong>为什么不能降妖？</strong></h3><p>唐僧师徒几个，唯有唐僧心里最清楚，路上根本没有什么妖怪，都是自己人当托的。所以吗，见到妖怪不要随便打，一不小心就打到自己的亲戚了。再说，观音菩萨一直背后跟着，真实遇到了妖怪猛兽，观音会保证安全的。</p>
-<p>孙悟空等四个却不知道妖怪的真实身份，再加上他们本来就很暴烈，一上路就烧杀抢掠。为了限制孙悟空，唐僧再三要求观音菩萨要驯服他。菩萨选了折衷的办法，给他戴上了紧箍。尽管如此，孙悟空依然野性不改。打白骨精是唐僧与孙悟空矛盾的最高点。</p>
-<p>白骨精是唐僧取经路上唯一一个真妖怪，她目标明确，就是要吃唐僧肉，成为神仙，逃离魔界的痛苦。白骨精被打死后，唐僧吓死了。如果这个白骨精是某个菩萨手上的人或坐骑，那他的取经工程就有可能被叫停。所以他第一时间念了紧箍咒，把孙猴子赶走了。</p>
-<p>观音菩萨去请孙猴子回来，没跟他说实话，但点拨了他，告诉他，只要发现妖怪，去菩萨们那里问问就好了。孙悟空得到点拨后学精了，一旦遇到妖怪，并不好好打，而是先跑到天上打听一番，是谁家的，谁来管管。结果，一路上很顺利，几乎没遇到任何真正的危险便到了灵山，取了真经。</p>
-<h3 id="结尾"><a href="#结尾" class="headerlink" title="结尾"></a><strong>结尾</strong></h3><p>看了上面的分析你是否有种无奈的感觉？<br>白骨精的故事是中国流传数百年的悲剧——屌丝向上爬的道路永远是不通的；没有背景和身份是没法做大事的；一切形象工程都有同样的逻辑。</p>
 
       
     </div>

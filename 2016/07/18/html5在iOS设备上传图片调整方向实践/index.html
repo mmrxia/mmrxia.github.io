@@ -4,34 +4,34 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <meta name="description" content="一、源码安装1 . 安装gcc-c编译器
-[root@localhost ~]# sudo yum install gcc gcc-c++
+    <meta name="description" content="解决在iOS设备上，用H5上传图片，有时图片方向会错乱的问题。
 
-2 . 现在nodejs源码并解压  
-[root@localhost ~]# wget https://nodejs.org/dist/v4.4.7/node-v4.4.7-linux-x86.tar.gz
-[root@localhost ~]# tar">
+用html5编写图片裁切上传，在iphone手机上可能会遇到图片方向错误问题，在此把解决方法和大家分享一下，用到了html5的 FileReader和Canvas，如果还没有接触的同学，先了解一下其方法。   
+ //此方法为file input元素的change事件
+ function change(){
+    var fil">
 <meta property="og:type" content="article">
-<meta property="og:title" content="centOS下安装nodeJS">
-<meta property="og:url" content="http://mmrxia.github.io/2016/07/04/centOS下安装nodeJS/index.html">
+<meta property="og:title" content="html5在iOS设备上传图片调整方向实践">
+<meta property="og:url" content="http://mmrxia.github.io/2016/07/18/html5在iOS设备上传图片调整方向实践/index.html">
 <meta property="og:site_name" content="芥子园 | xiaqingsong's blog">
-<meta property="og:description" content="一、源码安装1 . 安装gcc-c编译器
-[root@localhost ~]# sudo yum install gcc gcc-c++
+<meta property="og:description" content="解决在iOS设备上，用H5上传图片，有时图片方向会错乱的问题。
 
-2 . 现在nodejs源码并解压  
-[root@localhost ~]# wget https://nodejs.org/dist/v4.4.7/node-v4.4.7-linux-x86.tar.gz
-[root@localhost ~]# tar">
-<meta property="og:updated_time" content="2016-07-07T09:35:21.098Z">
+用html5编写图片裁切上传，在iphone手机上可能会遇到图片方向错误问题，在此把解决方法和大家分享一下，用到了html5的 FileReader和Canvas，如果还没有接触的同学，先了解一下其方法。   
+ //此方法为file input元素的change事件
+ function change(){
+    var fil">
+<meta property="og:updated_time" content="2016-07-18T11:59:19.353Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="centOS下安装nodeJS">
-<meta name="twitter:description" content="一、源码安装1 . 安装gcc-c编译器
-[root@localhost ~]# sudo yum install gcc gcc-c++
+<meta name="twitter:title" content="html5在iOS设备上传图片调整方向实践">
+<meta name="twitter:description" content="解决在iOS设备上，用H5上传图片，有时图片方向会错乱的问题。
 
-2 . 现在nodejs源码并解压  
-[root@localhost ~]# wget https://nodejs.org/dist/v4.4.7/node-v4.4.7-linux-x86.tar.gz
-[root@localhost ~]# tar">
+用html5编写图片裁切上传，在iphone手机上可能会遇到图片方向错误问题，在此把解决方法和大家分享一下，用到了html5的 FileReader和Canvas，如果还没有接触的同学，先了解一下其方法。   
+ //此方法为file input元素的change事件
+ function change(){
+    var fil">
     
     <title>
-        centOS下安装nodeJS |
+        html5在iOS设备上传图片调整方向实践 |
         
         芥子园 | xiaqingsong&#39;s blog
     </title>
@@ -216,11 +216,11 @@
 	</div>
 </nav>
 
-      <div class="body-wrap"><article id="post-centOS下安装nodeJS" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-html5在iOS设备上传图片调整方向实践" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2016/07/04/centOS下安装nodeJS/" class="article-date">
-  	<time datetime="2016-07-04T06:30:07.000Z" itemprop="datePublished">2016-07-04</time>
+      <a href="/2016/07/18/html5在iOS设备上传图片调整方向实践/" class="article-date">
+  	<time datetime="2016-07-18T11:56:54.000Z" itemprop="datePublished">2016-07-18</time>
 </a>
     </div>
   
@@ -233,7 +233,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      centOS下安装nodeJS
+      html5在iOS设备上传图片调整方向实践
     </h1>
   
 
@@ -242,7 +242,7 @@
       <div class="article-info article-info-post">
         
 	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/">Linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/nodejs/">nodejs</a></li></ul>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/js/">js</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/移动端开发/">移动端开发</a></li></ul>
 	</div>
 
         
@@ -253,26 +253,88 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h4 id="一、源码安装"><a href="#一、源码安装" class="headerlink" title="一、源码安装"></a>一、源码安装</h4><p>1 . 安装gcc-c编译器</p>
-<pre><code class="language-bash">[root@localhost ~]# sudo yum install gcc gcc-c++
+        <blockquote>
+<p>解决在iOS设备上，用H5上传图片，有时图片方向会错乱的问题。</p>
+</blockquote>
+<p>用html5编写图片裁切上传，在iphone手机上可能会遇到图片方向错误问题，在此把解决方法和大家分享一下，<br>用到了html5的 FileReader和Canvas，如果还没有接触的同学，先了解一下其方法。   </p>
+<pre><code class="language-javascript"> //此方法为file input元素的change事件
+ function change(){
+    var file = this.files[0];
+    var orientation;
+    //EXIF js 可以读取图片的元信息  https://github.com/exif-js/exif-js
+    EXIF.getData(file,function(){
+        orientation=EXIF.getTag(this,&#39;Orientation&#39;);
+    });
+    var reader = new FileReader();
+    reader.onload = function(e) {   
+        getImgData(this.result,orientation,function(data){
+            //这里可以使用校正后的图片data了 
+        }); 
+    }
+    reader.readAsDataURL(file);
+}
 </code></pre>
-<p>2 . 现在nodejs源码并解压  </p>
-<pre><code class="language-bash">[root@localhost ~]# wget https://nodejs.org/dist/v4.4.7/node-v4.4.7-linux-x86.tar.gz
-[root@localhost ~]# tar xvf node-v4.4.7-linux-x86
-</code></pre>
-<p>3 . 编译</p>
-<pre><code class="language-bash">[root@localhost ~]# ./configure
-[root@localhost ~]# make &amp;&amp; make install
-</code></pre>
-<h4 id="二、nvm安装"><a href="#二、nvm安装" class="headerlink" title="二、nvm安装"></a>二、nvm安装</h4><p>1 . 获取nvm</p>
-<pre><code class="language-bash">wget -qO- https://raw.githubusercontent.com/creationix/nvm/v0.31.2/install.sh | bash
-</code></pre>
-<p>2 . 安装nodejs</p>
-<p> 可用 <code>nvm ls-remote</code> 列出所有可安装的node版本，然后安装需要的版本。</p>
-<pre><code class="language-bash"> nvm install v4.4.7
-</code></pre>
-<p>安装完成后可查看node版本。</p>
-<pre><code class="language-bash">node -v
+<p>下面是具体的处理方式：</p>
+<pre><code class="language-javascript">// @param {string} img 图片的base64
+// @param {int} dir exif获取的方向信息
+// @param {function} next 回调方法，返回校正方向后的base64
+function getImgData(img,dir,next){
+  var image=new Image();
+  image.onload=function(){
+    var degree=0,drawWidth,drawHeight,width,height;
+    drawWidth=this.naturalWidth;
+    drawHeight=this.naturalHeight;
+    //以下改变一下图片大小
+    var maxSide = Math.max(drawWidth, drawHeight);
+    if (maxSide &gt; 1024) {
+        var minSide = Math.min(drawWidth, drawHeight);
+        minSide = minSide / maxSide * 1024;
+        maxSide = 1024;
+        if (drawWidth &gt; drawHeight) {
+            drawWidth = maxSide;
+            drawHeight = minSide;
+        } else {
+            drawWidth = minSide;
+            drawHeight = maxSide;
+        }
+    }
+    var canvas=document.createElement(&#39;canvas&#39;);
+    canvas.width=width=drawWidth;
+    canvas.height=height=drawHeight; 
+    var context=canvas.getContext(&#39;2d&#39;);
+    //判断图片方向，重置canvas大小，确定旋转角度，iphone默认的是home键在右方的横屏拍摄方式
+    switch(dir){
+       //iphone横屏拍摄，此时home键在左侧
+        case 3:
+            degree=180;
+            drawWidth=-width;
+            drawHeight=-height;
+            break;
+        //iphone竖屏拍摄，此时home键在下方(正常拿手机的方向)
+        case 6:
+            canvas.width=height;
+            canvas.height=width; 
+            degree=90;
+            drawWidth=width;
+            drawHeight=-height;
+            break;
+        //iphone竖屏拍摄，此时home键在上方
+        case 8:
+            canvas.width=height;
+            canvas.height=width; 
+            degree=270;
+            drawWidth=-width;
+            drawHeight=height;
+            break;
+    }
+    //使用canvas旋转校正
+    context.rotate(degree*Math.PI/180);
+    context.drawImage(this,0,0,drawWidth,drawHeight);
+    //返回校正图片
+    next(canvas.toDataURL(&quot;image/jpeg&quot;,.8));
+ }
+  image.src=img;
+}
 </code></pre>
 
       
@@ -283,18 +345,9 @@
     
 <nav id="article-nav">
   
-    <a href="/2016/07/04/centOS下配置git/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption"><</strong>
-      <div class="article-nav-title">
-        
-          centOS下配置git
-        
-      </div>
-    </a>
   
-  
-    <a href="/2016/07/01/express学习笔记/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">express学习笔记</div>
+    <a href="/2016/07/04/centOS下配置git/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">centOS下配置git</div>
       <strong class="article-nav-caption">></strong>
     </a>
   
@@ -310,7 +363,7 @@
 
 <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="centOS下安装nodeJS" data-title="centOS下安装nodeJS" data-url="http://mmrxia.github.io/2016/07/04/centOS下安装nodeJS/"></div>
+	<div class="ds-thread" data-thread-key="html5在iOS设备上传图片调整方向实践" data-title="html5在iOS设备上传图片调整方向实践" data-url="http://mmrxia.github.io/2016/07/18/html5在iOS设备上传图片调整方向实践/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">
