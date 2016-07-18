@@ -4,31 +4,31 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <meta name="description" content="1. app.render和res.render方法的区别？官方的api文档中是这么说的：   
+    <meta name="description" content="1 . app.render和res.render方法的区别？官方的api文档中是这么说的：   
 
 Think of app.render() as a utility function for generating rendered view strings. Internally res.render() uses app.render() to render views.
 
 我的理解：
-把a">
+把">
 <meta property="og:type" content="article">
 <meta property="og:title" content="express学习笔记">
 <meta property="og:url" content="http://mmrxia.github.io/2016/07/01/express学习笔记/index.html">
 <meta property="og:site_name" content="芥子园 | xiaqingsong's blog">
-<meta property="og:description" content="1. app.render和res.render方法的区别？官方的api文档中是这么说的：   
+<meta property="og:description" content="1 . app.render和res.render方法的区别？官方的api文档中是这么说的：   
 
 Think of app.render() as a utility function for generating rendered view strings. Internally res.render() uses app.render() to render views.
 
 我的理解：
-把a">
-<meta property="og:updated_time" content="2016-07-07T09:33:08.006Z">
+把">
+<meta property="og:updated_time" content="2016-07-18T11:44:35.814Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="express学习笔记">
-<meta name="twitter:description" content="1. app.render和res.render方法的区别？官方的api文档中是这么说的：   
+<meta name="twitter:description" content="1 . app.render和res.render方法的区别？官方的api文档中是这么说的：   
 
 Think of app.render() as a utility function for generating rendered view strings. Internally res.render() uses app.render() to render views.
 
 我的理解：
-把a">
+把">
     
     <title>
         express学习笔记 |
@@ -253,7 +253,7 @@ Think of app.render() as a utility function for generating rendered view strings
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h4 id="1-app-render和res-render方法的区别？"><a href="#1-app-render和res-render方法的区别？" class="headerlink" title="1. app.render和res.render方法的区别？"></a>1. app.render和res.render方法的区别？</h4><p>官方的api文档中是这么说的：   </p>
+        <h4 id="1-app-render和res-render方法的区别？"><a href="#1-app-render和res-render方法的区别？" class="headerlink" title="1 . app.render和res.render方法的区别？"></a>1 . app.render和res.render方法的区别？</h4><p>官方的api文档中是这么说的：   </p>
 <blockquote>
 <p>Think of app.render() as a utility function for generating rendered view strings. Internally res.render() uses app.render() to render views.</p>
 </blockquote>
@@ -268,7 +268,7 @@ Think of app.render() as a utility function for generating rendered view strings
     });
 };
 </code></pre>
-<h4 id="2-res-write和res-send区别？"><a href="#2-res-write和res-send区别？" class="headerlink" title="2. res.write和res.send区别？"></a>2. res.write和res.send区别？</h4><blockquote>
+<h4 id="2-res-write和res-send区别？"><a href="#2-res-write和res-send区别？" class="headerlink" title="2 . res.write和res.send区别？"></a>2 . res.write和res.send区别？</h4><blockquote>
 <p>The res object represents the HTTP response that an Express app sends when it gets an HTTP request.</p>
 </blockquote>
 <p><code>res.write</code>和<code>res.send</code>都是发送报文到浏览器response中，并渲染在浏览器窗口。<br><code>res.write</code>使用时需要配合<code>res.end</code>方法同时使用，否则浏览器http请求会一直处于pending状态，而<code>res.send</code>单独使用即可。    </p>
@@ -284,7 +284,7 @@ app.get(&#39;/user/:id&#39;, function(req, res){
  res.end();
 });
 </code></pre>
-<h4 id="3-获取request请求参数的方法？"><a href="#3-获取request请求参数的方法？" class="headerlink" title="3. 获取request请求参数的方法？"></a>3. 获取request请求参数的方法？</h4><p>express获取参数有三种方法：  </p>
+<h4 id="3-获取request请求参数的方法？"><a href="#3-获取request请求参数的方法？" class="headerlink" title="3 . 获取request请求参数的方法？"></a>3 . 获取request请求参数的方法？</h4><p>express获取参数有三种方法：  </p>
 <p>官网实例：   </p>
 <blockquote>
 <p>Checks route params (req.params), ex: /user/:id<br>Checks query string params (req.query), ex: ?id=12<br>Checks urlencoded body params (req.body), ex: id=    </p>
@@ -300,6 +300,28 @@ app.get(&#39;/user/:id&#39;, function(req, res){
    var app            =         express();  
 
    app.use(bodyParser.urlencoded({ extended: false }));   // necessary
+</code></pre>
+<h4 id="4-session使用入门"><a href="#4-session使用入门" class="headerlink" title="4 . session使用入门"></a>4 . session使用入门</h4><p><code>express-session</code>是express中比较常用的处理session的中间件,使用npm安装：</p>
+<pre><code class="language-git">$ npm install express-session save
+</code></pre>
+<p>session的认证机制必须依赖cookie，所以还应该同时安装一个<code>cookie-parser</code>，安装方法同上。然后再app.js中导入这两个中间件：</p>
+<pre><code class="language-javascript">var cookieParser = require(&#39;cookie-parser&#39;);
+var session = require(&#39;express-session&#39;);
+</code></pre>
+<p>之后定义cookie解析器，注意，该定义必须写在路由分配之前：</p>
+<pre><code class="language-javascript">app.use(cookieParser());
+app.use(session({
+  secret: &#39;secret_string&#39;,
+  name: &#39;name&#39;,
+  cookie: {maxAge: 60000},
+  resave: false,
+  saveUninitialized: true,
+}));
+</code></pre>
+<p>各参数意义：<br><code>secret</code>：用来对session数据进行加密的字符串.这个属性值为必须指定的属性。<br><code>name</code>：表示cookie的name，默认cookie的name是：connect.sid。<br><code>maxAge</code>：cookie过期时间，毫秒。<br><code>resave</code>：是指每次请求都重新设置session cookie，假设你的cookie是6000毫秒过期，每次请求都会再设置6000毫秒。<br><code>saveUninitialized</code>： 是指无论有没有session cookie，每次请求都设置个session cookie ，默认给个标示为 connect.sid。     </p>
+<p>之后在处理请求时直接通过以下方式对session进行读写：        </p>
+<pre><code class="language-javascript">req.session.userinfo = userinfo;  //写入至session
+res.redirect(req.session.userinfo); //从session中读取
 </code></pre>
 
       

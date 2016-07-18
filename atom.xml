@@ -99,9 +99,9 @@ Hi mmrxia! You&amp;#39;ve successfully authenticated, but GitHub does not provid
     </summary>
     
     
-      <category term="Linux" scheme="http://mmrxia.github.io/tags/Linux/"/>
-    
       <category term="nodejs" scheme="http://mmrxia.github.io/tags/nodejs/"/>
+    
+      <category term="Linux" scheme="http://mmrxia.github.io/tags/Linux/"/>
     
   </entry>
   
@@ -110,9 +110,9 @@ Hi mmrxia! You&amp;#39;ve successfully authenticated, but GitHub does not provid
     <link href="http://mmrxia.github.io/2016/07/01/express%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
     <id>http://mmrxia.github.io/2016/07/01/express学习笔记/</id>
     <published>2016-07-01T07:32:01.000Z</published>
-    <updated>2016-07-07T09:33:08.006Z</updated>
+    <updated>2016-07-18T11:44:35.814Z</updated>
     
-    <content type="html">&lt;h4 id=&quot;1-app-render和res-render方法的区别？&quot;&gt;&lt;a href=&quot;#1-app-render和res-render方法的区别？&quot; class=&quot;headerlink&quot; title=&quot;1. app.render和res.render方法的区别？&quot;&gt;&lt;/a&gt;1. app.render和res.render方法的区别？&lt;/h4&gt;&lt;p&gt;官方的api文档中是这么说的：   &lt;/p&gt;
+    <content type="html">&lt;h4 id=&quot;1-app-render和res-render方法的区别？&quot;&gt;&lt;a href=&quot;#1-app-render和res-render方法的区别？&quot; class=&quot;headerlink&quot; title=&quot;1 . app.render和res.render方法的区别？&quot;&gt;&lt;/a&gt;1 . app.render和res.render方法的区别？&lt;/h4&gt;&lt;p&gt;官方的api文档中是这么说的：   &lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;Think of app.render() as a utility function for generating rendered view strings. Internally res.render() uses app.render() to render views.&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -127,7 +127,7 @@ Hi mmrxia! You&amp;#39;ve successfully authenticated, but GitHub does not provid
     });
 };
 &lt;/code&gt;&lt;/pre&gt;
-&lt;h4 id=&quot;2-res-write和res-send区别？&quot;&gt;&lt;a href=&quot;#2-res-write和res-send区别？&quot; class=&quot;headerlink&quot; title=&quot;2. res.write和res.send区别？&quot;&gt;&lt;/a&gt;2. res.write和res.send区别？&lt;/h4&gt;&lt;blockquote&gt;
+&lt;h4 id=&quot;2-res-write和res-send区别？&quot;&gt;&lt;a href=&quot;#2-res-write和res-send区别？&quot; class=&quot;headerlink&quot; title=&quot;2 . res.write和res.send区别？&quot;&gt;&lt;/a&gt;2 . res.write和res.send区别？&lt;/h4&gt;&lt;blockquote&gt;
 &lt;p&gt;The res object represents the HTTP response that an Express app sends when it gets an HTTP request.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;&lt;code&gt;res.write&lt;/code&gt;和&lt;code&gt;res.send&lt;/code&gt;都是发送报文到浏览器response中，并渲染在浏览器窗口。&lt;br&gt;&lt;code&gt;res.write&lt;/code&gt;使用时需要配合&lt;code&gt;res.end&lt;/code&gt;方法同时使用，否则浏览器http请求会一直处于pending状态，而&lt;code&gt;res.send&lt;/code&gt;单独使用即可。    &lt;/p&gt;
@@ -143,7 +143,7 @@ app.get(&amp;#39;/user/:id&amp;#39;, function(req, res){
  res.end();
 });
 &lt;/code&gt;&lt;/pre&gt;
-&lt;h4 id=&quot;3-获取request请求参数的方法？&quot;&gt;&lt;a href=&quot;#3-获取request请求参数的方法？&quot; class=&quot;headerlink&quot; title=&quot;3. 获取request请求参数的方法？&quot;&gt;&lt;/a&gt;3. 获取request请求参数的方法？&lt;/h4&gt;&lt;p&gt;express获取参数有三种方法：  &lt;/p&gt;
+&lt;h4 id=&quot;3-获取request请求参数的方法？&quot;&gt;&lt;a href=&quot;#3-获取request请求参数的方法？&quot; class=&quot;headerlink&quot; title=&quot;3 . 获取request请求参数的方法？&quot;&gt;&lt;/a&gt;3 . 获取request请求参数的方法？&lt;/h4&gt;&lt;p&gt;express获取参数有三种方法：  &lt;/p&gt;
 &lt;p&gt;官网实例：   &lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;Checks route params (req.params), ex: /user/:id&lt;br&gt;Checks query string params (req.query), ex: ?id=12&lt;br&gt;Checks urlencoded body params (req.body), ex: id=    &lt;/p&gt;
@@ -160,11 +160,33 @@ app.get(&amp;#39;/user/:id&amp;#39;, function(req, res){
 
    app.use(bodyParser.urlencoded({ extended: false }));   // necessary
 &lt;/code&gt;&lt;/pre&gt;
+&lt;h4 id=&quot;4-session使用入门&quot;&gt;&lt;a href=&quot;#4-session使用入门&quot; class=&quot;headerlink&quot; title=&quot;4 . session使用入门&quot;&gt;&lt;/a&gt;4 . session使用入门&lt;/h4&gt;&lt;p&gt;&lt;code&gt;express-session&lt;/code&gt;是express中比较常用的处理session的中间件,使用npm安装：&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-git&quot;&gt;$ npm install express-session save
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;session的认证机制必须依赖cookie，所以还应该同时安装一个&lt;code&gt;cookie-parser&lt;/code&gt;，安装方法同上。然后再app.js中导入这两个中间件：&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-javascript&quot;&gt;var cookieParser = require(&amp;#39;cookie-parser&amp;#39;);
+var session = require(&amp;#39;express-session&amp;#39;);
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;之后定义cookie解析器，注意，该定义必须写在路由分配之前：&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-javascript&quot;&gt;app.use(cookieParser());
+app.use(session({
+  secret: &amp;#39;secret_string&amp;#39;,
+  name: &amp;#39;name&amp;#39;,
+  cookie: {maxAge: 60000},
+  resave: false,
+  saveUninitialized: true,
+}));
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;各参数意义：&lt;br&gt;&lt;code&gt;secret&lt;/code&gt;：用来对session数据进行加密的字符串.这个属性值为必须指定的属性。&lt;br&gt;&lt;code&gt;name&lt;/code&gt;：表示cookie的name，默认cookie的name是：connect.sid。&lt;br&gt;&lt;code&gt;maxAge&lt;/code&gt;：cookie过期时间，毫秒。&lt;br&gt;&lt;code&gt;resave&lt;/code&gt;：是指每次请求都重新设置session cookie，假设你的cookie是6000毫秒过期，每次请求都会再设置6000毫秒。&lt;br&gt;&lt;code&gt;saveUninitialized&lt;/code&gt;： 是指无论有没有session cookie，每次请求都设置个session cookie ，默认给个标示为 connect.sid。     &lt;/p&gt;
+&lt;p&gt;之后在处理请求时直接通过以下方式对session进行读写：        &lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-javascript&quot;&gt;req.session.userinfo = userinfo;  //写入至session
+res.redirect(req.session.userinfo); //从session中读取
+&lt;/code&gt;&lt;/pre&gt;
 </content>
     
     <summary type="html">
     
-      &lt;h4 id=&quot;1-app-render和res-render方法的区别？&quot;&gt;&lt;a href=&quot;#1-app-render和res-render方法的区别？&quot; class=&quot;headerlink&quot; title=&quot;1. app.render和res.render方法的区别？&quot;&gt;&lt;/
+      &lt;h4 id=&quot;1-app-render和res-render方法的区别？&quot;&gt;&lt;a href=&quot;#1-app-render和res-render方法的区别？&quot; class=&quot;headerlink&quot; title=&quot;1 . app.render和res.render方法的区别？&quot;&gt;&lt;
     
     </summary>
     
