@@ -230,8 +230,7 @@
 <p>在使用 node 模块时可以使用 npm install 查找 package.json 中的声明的依赖模块并安装。  </p>
 </blockquote>
 <p>但因为国内网络原因，使用 npm 安装某些模块会非常慢，甚至无法安装所有的包。<br>幸运的是,国内有几个镜像站点可以供我们使用,比如 <code>https://registry.cnpmjs.org</code>、<code>https://registry.npm.taobao.org</code>,速度非常快,镜像站会实时更新,为我们节省了好多时间.    </p>
-<p>那么,如何给本机换源呢?</p>
-<p>(1)[临时]通过 <code>config</code> 配置指向国内镜像源</p>
+<h5 id="那么-如何给本机换源呢"><a href="#那么-如何给本机换源呢" class="headerlink" title="那么,如何给本机换源呢?"></a>那么,如何给本机换源呢?</h5><p>(1)[临时]通过 <code>config</code> 配置指向国内镜像源</p>
 <pre><code># 配置指向源
 npm config set registry http://registry.cnpmjs.org
 </code></pre><p>(2)[临时]通过 <code>npm</code> 命令指定下载源</p>
@@ -242,7 +241,7 @@ nano ~/.npmrc
 //写入配置文件
 registry =https://registry.npm.taobao.org
 </code></pre><p>推荐使用最后一种方法,一劳永逸,前面2钟方法都是临时改变包下载源.<br>如果你不想使用国内镜像站点,只需要将 写入 <code>~/.npmrc</code> 的配置内容删除即可.   </p>
-<p>或者可以直接安装<code>cnpm</code>包：</p>
+<h5 id="使用cnpm"><a href="#使用cnpm" class="headerlink" title="使用cnpm"></a>使用cnpm</h5><p>或者你也可以安装<code>cnpm</code>包，使用<code>cnpm</code>替代<code>npm</code>：</p>
 <pre><code>npm install -g cnpm --registry=https://registry.npm.taobao.org
 </code></pre><p>然后使用 <code>cnpm</code> 安装模块：</p>
 <pre><code>cnpm install [module-name]
