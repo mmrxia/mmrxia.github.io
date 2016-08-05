@@ -240,8 +240,12 @@ npm config set registry http://registry.cnpmjs.org
 nano ~/.npmrc
 //写入配置文件
 registry =https://registry.npm.taobao.org
-</code></pre><p>推荐使用最后一种方法,一劳永逸,前面2钟方法都是临时改变包下载源.<br>如果你不想使用国内镜像站点,只需要将 写入 <code>~/.npmrc</code> 的配置内容删除即可.   </p>
-<h5 id="使用cnpm"><a href="#使用cnpm" class="headerlink" title="使用cnpm"></a>使用cnpm</h5><p>或者你也可以安装<code>cnpm</code>包，使用<code>cnpm</code>替代<code>npm</code>：</p>
+</code></pre><p>推荐使用最后一种方法,一劳永逸,前面2钟方法都是临时改变包下载源.<br>如果你不想使用国内镜像站点,只需要将 写入 <code>~/.npmrc</code> 的配置内容删除即可.  </p>
+<p>配置后可通过下面方式来验证是否成功</p>
+<pre><code>npm config get registry
+// 或
+npm info express
+</code></pre><h5 id="使用cnpm"><a href="#使用cnpm" class="headerlink" title="使用cnpm"></a>使用cnpm</h5><p>或者你也可以安装<code>cnpm</code>包，使用<code>cnpm</code>替代<code>npm</code>：</p>
 <pre><code>npm install -g cnpm --registry=https://registry.npm.taobao.org
 </code></pre><p>然后使用 <code>cnpm</code> 安装模块：</p>
 <pre><code>cnpm install [module-name]
