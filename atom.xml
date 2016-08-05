@@ -171,9 +171,9 @@ function getImgData(img,dir,next){
     </summary>
     
     
-      <category term="js" scheme="http://mmrxia.github.io/tags/js/"/>
-    
       <category term="移动端开发" scheme="http://mmrxia.github.io/tags/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E5%BC%80%E5%8F%91/"/>
+    
+      <category term="js" scheme="http://mmrxia.github.io/tags/js/"/>
     
   </entry>
   
@@ -217,9 +217,9 @@ Hi mmrxia! You&amp;#39;ve successfully authenticated, but GitHub does not provid
     </summary>
     
     
-      <category term="Linux" scheme="http://mmrxia.github.io/tags/Linux/"/>
-    
       <category term="git" scheme="http://mmrxia.github.io/tags/git/"/>
+    
+      <category term="Linux" scheme="http://mmrxia.github.io/tags/Linux/"/>
     
   </entry>
   
@@ -261,9 +261,9 @@ Hi mmrxia! You&amp;#39;ve successfully authenticated, but GitHub does not provid
     </summary>
     
     
-      <category term="nodejs" scheme="http://mmrxia.github.io/tags/nodejs/"/>
-    
       <category term="Linux" scheme="http://mmrxia.github.io/tags/Linux/"/>
+    
+      <category term="nodejs" scheme="http://mmrxia.github.io/tags/nodejs/"/>
     
   </entry>
   
