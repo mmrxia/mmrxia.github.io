@@ -1,0 +1,468 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="description" content="原问题：How to create a GUID / UUID in Javascript?
+Introuction
+UUID = Universally Unique IDentifier, 全球唯一标识符。
+
+本来我觉得UUID不是什么事，只是一个唯一性的ID字符串而已。在Stack Overflow上看到这个问题之后，倒开始觉得，也许UUID里也有一些值得去发掘的东西。
+于是我想到了这几个问">
+<meta property="og:type" content="article">
+<meta property="og:title" content="怎样使用js生成uuid">
+<meta property="og:url" content="http://mmrxia.github.io/2016/09/01/怎样使用js生成uuid/index.html">
+<meta property="og:site_name" content="芥子园 | xiaqingsong's blog">
+<meta property="og:description" content="原问题：How to create a GUID / UUID in Javascript?
+Introuction
+UUID = Universally Unique IDentifier, 全球唯一标识符。
+
+本来我觉得UUID不是什么事，只是一个唯一性的ID字符串而已。在Stack Overflow上看到这个问题之后，倒开始觉得，也许UUID里也有一些值得去发掘的东西。
+于是我想到了这几个问">
+<meta property="og:updated_time" content="2016-09-01T07:10:53.536Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="怎样使用js生成uuid">
+<meta name="twitter:description" content="原问题：How to create a GUID / UUID in Javascript?
+Introuction
+UUID = Universally Unique IDentifier, 全球唯一标识符。
+
+本来我觉得UUID不是什么事，只是一个唯一性的ID字符串而已。在Stack Overflow上看到这个问题之后，倒开始觉得，也许UUID里也有一些值得去发掘的东西。
+于是我想到了这几个问">
+    
+    <title>
+        怎样使用js生成uuid |
+        
+        芥子园 | xiaqingsong&#39;s blog
+    </title>
+    <link rel="alternative" href="/atom.xml" title="芥子园 | xiaqingsong&#39;s blog" type="application/atom+xml"> 
+    <link rel="icon" href="http://7xth8v.com2.z0.glb.clouddn.com/icon/favicon.ico"> 
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/prism.css">
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img lazy-src="http://7xth8v.com2.z0.glb.qiniucdn.com/image/avatar_150x150.jpg" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">芥子园</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">须弥藏芥子，芥子纳须弥</p>
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						<div class="icon-wrap icon-link hide" data-idx="2">
+							<div class="loopback_l"></div>
+							<div class="loopback_r"></div>
+						</div>
+						
+						
+						<div class="icon-wrap icon-me hide" data-idx="3">
+							<div class="user"></div>
+							<div class="shoulder"></div>
+						</div>
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						
+						<li>友情链接</li>
+						
+						
+						<li>关于我</li>
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+							<li><a href="/tags/随笔">随笔</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/mmrxia" title="github">github</a>
+					        
+								<a class="weibo" target="_blank" href="http://weibo.com/u/1984883035" title="weibo">weibo</a>
+					        
+								<a class="twitter" target="_blank" href="https://twitter.com/xiaqingsong" title="twitter">twitter</a>
+					        
+								<a class="linkedin" target="_blank" href="http://www.linkedin.com/in/mrxia" title="linkedin">linkedin</a>
+					        
+								<a class="rss" target="_blank" href="/atom.xml" title="rss">rss</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/Linux/" style="font-size: 15px;">Linux</a> <a href="/tags/bash/" style="font-size: 10px;">bash</a> <a href="/tags/cnpm/" style="font-size: 10px;">cnpm</a> <a href="/tags/express/" style="font-size: 10px;">express</a> <a href="/tags/git/" style="font-size: 20px;">git</a> <a href="/tags/javascript/" style="font-size: 10px;">javascript</a> <a href="/tags/js/" style="font-size: 20px;">js</a> <a href="/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/tags/nodejs/" style="font-size: 20px;">nodejs</a> <a href="/tags/npm/" style="font-size: 10px;">npm</a> <a href="/tags/sku/" style="font-size: 10px;">sku</a> <a href="/tags/uuid/" style="font-size: 10px;">uuid</a> <a href="/tags/前端/" style="font-size: 10px;">前端</a> <a href="/tags/数组/" style="font-size: 10px;">数组</a> <a href="/tags/移动端开发/" style="font-size: 10px;">移动端开发</a> <a href="/tags/算法/" style="font-size: 10px;">算法</a> <a href="/tags/西游记/" style="font-size: 15px;">西游记</a> <a href="/tags/跨域/" style="font-size: 10px;">跨域</a> <a href="/tags/随笔/" style="font-size: 10px;">随笔</a>
+					</div>
+				</section>
+				
+				
+				
+				<section class="switch-part switch-part3">
+					<div id="js-friends">
+					
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://www.xiaqingsong.com">XQS</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://www.morg.cn">MORG</a>
+			        
+			        </div>
+				</section>
+				
+
+				
+				
+				<section class="switch-part switch-part4">
+				
+					<div id="js-aboutme">夏青松，2013年毕业于江西农大软件学院软件工程专业。<br/> <b>2012.10-2015.2</b> [北京] 锐捷网络<br/> <b>2015.2-至今</b> [杭州] 妈妈好网络<br/><br/> Mail：this.xqs@gmail.com </div>
+				</section>
+				
+			</div>
+		</div>
+	</header>				
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">芥子园</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+			
+				<img lazy-src="http://7xth8v.com2.z0.glb.qiniucdn.com/image/avatar_150x150.jpg" class="js-avatar">
+			
+			</div>
+			<hgroup>
+			  <h1 class="header-author">芥子园</h1>
+			</hgroup>
+			
+			<p class="header-subtitle">须弥藏芥子，芥子纳须弥</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+					<li><a href="/tags/随笔">随笔</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/mmrxia" title="github">github</a>
+			        
+						<a class="weibo" target="_blank" href="http://weibo.com/u/1984883035" title="weibo">weibo</a>
+			        
+						<a class="twitter" target="_blank" href="https://twitter.com/xiaqingsong" title="twitter">twitter</a>
+			        
+						<a class="linkedin" target="_blank" href="http://www.linkedin.com/in/mrxia" title="linkedin">linkedin</a>
+			        
+						<a class="rss" target="_blank" href="/atom.xml" title="rss">rss</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+
+      <div class="body-wrap"><article id="post-怎样使用js生成uuid" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/09/01/怎样使用js生成uuid/" class="article-date">
+  	<time datetime="2016-09-01T06:57:55.000Z" itemprop="datePublished">2016-09-01</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      怎样使用js生成uuid
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/uuid/">uuid</a></li></ul>
+	</div>
+
+        
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>原问题：<a href="http://stackoverflow.com/questions/105034/how-to-create-a-guid-uuid-in-javascript" target="_blank" rel="external">How to create a GUID / UUID in Javascript?</a></p>
+<h2 id="Introuction"><a href="#Introuction" class="headerlink" title="Introuction"></a>Introuction</h2><blockquote>
+<p>UUID = Universally Unique IDentifier, 全球唯一标识符。</p>
+</blockquote>
+<p>本来我觉得UUID不是什么事，只是一个唯一性的ID字符串而已。在Stack Overflow上看到这个问题之后，倒开始觉得，也许UUID里也有一些值得去发掘的东西。</p>
+<p>于是我想到了这几个问题：</p>
+<ul>
+<li><a href="#UUID-and-GUID">为什么有UUID和GUID这两个东西</a></li>
+<li><a href="#Specification">有什么规范吗</a></li>
+<li>好像我曾多次看到过有人讨论某种系统或变成语言下UUID的生成问题，<a href="#UUID-and-implementation">UUID跟系统或者编程语言有关系吗</a></li>
+</ul>
+<p>带着这些问题，我查找并学习了一番。现在做个整理。</p>
+<h2 id="UUID-and-GUID"><a href="#UUID-and-GUID" class="headerlink" title="UUID and GUID"></a>UUID and GUID</h2><h4 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h4><p>UUID来自于IETF发布的一个规范：<a href="http://www.ietf.org/rfc/rfc4122.txt" target="_blank" rel="external">A Universally Unique IDentifier (UUID) URN Namespace</a>。</p>
+<blockquote>
+<p>This specification defines a Uniform Resource Name namespace for UUIDs (Universally Unique IDentifier), also known as GUIDs (Globally Unique IDentifier).  A UUID is 128 bits long, and can guarantee uniqueness across space and time.  UUIDs were originally used in the Apollo Network Computing System and later in the Open Software Foundation’s (OSF) Distributed Computing Environment (DCE), and then in Microsoft Windows platforms.<br>This specification is derived from the DCE specification with the kind permission of the OSF (now known as The Open Group).</p>
+</blockquote>
+<p>UUID和GUID是同一个东西的两个名字。这两个名字的来源不同。</p>
+<ul>
+<li>UUID来源于OSF的DCE规范，也就是RFC4122的前身</li>
+<li>GUID来源于微软，注意RFC4122的作者之一是微软员工</li>
+</ul>
+<h4 id="用途"><a href="#用途" class="headerlink" title="用途"></a>用途</h4><p>UUID的出现，是为了在一个复杂的系统中，唯一的标识每个信息实体，同时不需要有一个集中的id管理。也就是说，根据某种规则来为一个信息实体分配一个唯一的id，而且不需要一个id管理器来保证这个id的唯一性。</p>
+<p>它可以用来标识任何东西，Microsoft用它来表示Windows中的软件（GUID），Linux用它来表示系统中的文件。</p>
+<h2 id="Specification"><a href="#Specification" class="headerlink" title="Specification"></a>Specification</h2><h4 id="UUID格式规范"><a href="#UUID格式规范" class="headerlink" title="UUID格式规范"></a>UUID格式规范</h4><p>这128bits的结构如下所示：</p>
+<pre><code>   0                   1                   2                   3
+    0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+   |                          time_low                             |
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+   |       time_mid                |         time_hi_and_version   |
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+   |clk_seq_hi_res |  clk_seq_low  |         node (0-1)            |
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+   |                         node (2-5)                            |
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+      time-low               = 4hexOctet
+      time-mid               = 2hexOctet
+      time-high-and-version  = 2hexOctet    // MOST IMPORTANT !
+      clock-seq-and-reserved = hexOctet
+      clock-seq-low          = hexOctet
+      node                   = 6hexOctet
+      hexOctet               = hexDigit hexDigit
+      hexDigit =
+            &quot;0&quot; / &quot;1&quot; / &quot;2&quot; / &quot;3&quot; / &quot;4&quot; / &quot;5&quot; / &quot;6&quot; / &quot;7&quot; / &quot;8&quot; / &quot;9&quot; /
+            &quot;a&quot; / &quot;b&quot; / &quot;c&quot; / &quot;d&quot; / &quot;e&quot; / &quot;f&quot; /
+            &quot;A&quot; / &quot;B&quot; / &quot;C&quot; / &quot;D&quot; / &quot;E&quot; / &quot;F&quot;
+</code></pre><p>示例：</p>
+<pre><code>uuid:f81d4fae-7dec-11d0-a765-00a0c91e6bf6
+</code></pre><h4 id="UUID生成算法"><a href="#UUID生成算法" class="headerlink" title="UUID生成算法"></a>UUID生成算法</h4><p>UUID本身也经过了<a href="http://en.wikipedia.org/wiki/Universally_unique_identifier#Variants_and_versions" target="_blank" rel="external">多个版本的演化</a>。比如node字段的定义，最开始定义为来自IEEE 802 address，演化到后来的<em>a randomly or pseudo-randomly generated 48-bit value</em>。</p>
+<p>最新的UUID生成算法是这样的：</p>
+<ul>
+<li>Set the two most significant bits (bits 6 and 7) of the clock_seq_hi_and_reserved to zero and one, respectively.</li>
+<li>Set the four most significant bits (bits 12 through 15) of the time_hi_and_version field to the 4-bit version number.</li>
+<li>Set all the other bits to randomly (or pseudo-randomly) chosen values.</li>
+</ul>
+<h2 id="UUID-and-implementation"><a href="#UUID-and-implementation" class="headerlink" title="UUID and implementation"></a>UUID and implementation</h2><p>越来越多的系统中使用着UUID，各自使用目的并不一样。而且由于限定在128bits，UUID规范本身并没有保证UUID真的是在全球唯一的。因此现在对UUID的使用，一般都是限定在一个范围内有唯一性保证，比如一个操作系统内。</p>
+<p>因此我们可以看到：</p>
+<ul>
+<li>微软有一个GUID生成lib：<a href="http://msdn.microsoft.com/en-us/library/system.guid(v=vs.110).aspx" target="_blank" rel="external">http://msdn.microsoft.com/en-us/library/system.guid(v=vs.110).aspx</a></li>
+<li>Linux也同样有UUID生成lib：<a href="http://en.wikipedia.org/wiki/Util-linux" target="_blank" rel="external">http://en.wikipedia.org/wiki/Util-linux</a></li>
+<li>Android的UUID生成lib：<a href="http://developer.android.com/reference/java/util/UUID.html" target="_blank" rel="external">http://developer.android.com/reference/java/util/UUID.html</a></li>
+</ul>
+<p>用以上系统对应的UUID生成lib可以确保产生的UUID在系统范围内是唯一的。因此可以用来标识系统资源，比如文件、软件、设备等。</p>
+<p>而对于某种具体的编程语言，UUID的使用并没有必要。因为使用UUID的目的是给某个资源分配一个在当前环境下唯一的标识符。而一个程序只有在运行的时候才谈得上有一个<strong>环境</strong>，进程之间又互不影响。因此，一般在编程语言规范中并没有对UUID生成方法进行规定。</p>
+<p>但<em>unique id</em>还是很常用的，比如：</p>
+<ul>
+<li>PHP - uniqid() <a href="http://php.net/manual/en/function.uniqid.php#94959" target="_blank" rel="external">http://php.net/manual/en/function.uniqid.php#94959</a></li>
+<li>Mysql - UUID() <a href="http://dev.mysql.com/doc/refman/5.1/en/miscellaneous-functions.html#function_uuid" target="_blank" rel="external">http://dev.mysql.com/doc/refman/5.1/en/miscellaneous-functions.html#function_uuid</a></li>
+<li>Java - UUID <a href="http://docs.oracle.com/javase/7/docs/api/java/util/UUID.html" target="_blank" rel="external">http://docs.oracle.com/javase/7/docs/api/java/util/UUID.html</a></li>
+</ul>
+<p>但这些UUID方法只是借用了<em>唯一性</em>的概念，并不是必须。而且uuid规定128bits，很多情况下有点浪费。</p>
+<p>你可以用任何方法来生成一个程序内唯一的字符串，比如mysql中的incremental id，它就比uuid实用。</p>
+<p>##UUID in Javascript<br>既然要生成UUID，那么得符合规范。</p>
+<ul>
+<li>Javascript function</li>
+</ul>
+<pre><code class="language-javascript">function generateUUID(){
+    var d = new Date().getTime();
+    var uuid = &#39;xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx&#39;.replace(/[xy]/g, function(c) {
+        var r = (d + Math.random()*16)%16 | 0;
+        d = Math.floor(d/16);
+        return (c==&#39;x&#39; ? r : (r&amp;0x7|0x8)).toString(16);
+    });
+    return uuid;
+};
+</code></pre>
+<ul>
+<li>Node module<br><a href="https://github.com/broofa/node-uuid" target="_blank" rel="external">https://github.com/broofa/node-uuid</a></li>
+</ul>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2016/08/05/使用淘宝npm镜像cnpm/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">使用淘宝npm镜像cnpm</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="怎样使用js生成uuid" data-title="怎样使用js生成uuid" data-url="http://mmrxia.github.io/2016/09/01/怎样使用js生成uuid/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"mrxia"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2016 芥子园
+    	</div>
+      	<div class="footer-right">
+      		Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
+	}
+</script>
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-76943829-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  </div>
+  <script src="http://7xth8v.com2.z0.glb.qiniucdn.com/js/prism.js"></script>
+</body>
+</html>

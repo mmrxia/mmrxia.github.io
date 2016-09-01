@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://mmrxia.github.io/"/>
-  <updated>2016-08-05T03:57:36.984Z</updated>
+  <updated>2016-09-01T07:10:53.536Z</updated>
   <id>http://mmrxia.github.io/</id>
   
   <author>
@@ -14,6 +14,117 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>怎样使用js生成uuid</title>
+    <link href="http://mmrxia.github.io/2016/09/01/%E6%80%8E%E6%A0%B7%E4%BD%BF%E7%94%A8js%E7%94%9F%E6%88%90uuid/"/>
+    <id>http://mmrxia.github.io/2016/09/01/怎样使用js生成uuid/</id>
+    <published>2016-09-01T06:57:55.000Z</published>
+    <updated>2016-09-01T07:10:53.536Z</updated>
+    
+    <content type="html">&lt;p&gt;原问题：&lt;a href=&quot;http://stackoverflow.com/questions/105034/how-to-create-a-guid-uuid-in-javascript&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;How to create a GUID / UUID in Javascript?&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&quot;Introuction&quot;&gt;&lt;a href=&quot;#Introuction&quot; class=&quot;headerlink&quot; title=&quot;Introuction&quot;&gt;&lt;/a&gt;Introuction&lt;/h2&gt;&lt;blockquote&gt;
+&lt;p&gt;UUID = Universally Unique IDentifier, 全球唯一标识符。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;本来我觉得UUID不是什么事，只是一个唯一性的ID字符串而已。在Stack Overflow上看到这个问题之后，倒开始觉得，也许UUID里也有一些值得去发掘的东西。&lt;/p&gt;
+&lt;p&gt;于是我想到了这几个问题：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;#UUID-and-GUID&quot;&gt;为什么有UUID和GUID这两个东西&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#Specification&quot;&gt;有什么规范吗&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;好像我曾多次看到过有人讨论某种系统或变成语言下UUID的生成问题，&lt;a href=&quot;#UUID-and-implementation&quot;&gt;UUID跟系统或者编程语言有关系吗&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;带着这些问题，我查找并学习了一番。现在做个整理。&lt;/p&gt;
+&lt;h2 id=&quot;UUID-and-GUID&quot;&gt;&lt;a href=&quot;#UUID-and-GUID&quot; class=&quot;headerlink&quot; title=&quot;UUID and GUID&quot;&gt;&lt;/a&gt;UUID and GUID&lt;/h2&gt;&lt;h4 id=&quot;定义&quot;&gt;&lt;a href=&quot;#定义&quot; class=&quot;headerlink&quot; title=&quot;定义&quot;&gt;&lt;/a&gt;定义&lt;/h4&gt;&lt;p&gt;UUID来自于IETF发布的一个规范：&lt;a href=&quot;http://www.ietf.org/rfc/rfc4122.txt&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;A Universally Unique IDentifier (UUID) URN Namespace&lt;/a&gt;。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;This specification defines a Uniform Resource Name namespace for UUIDs (Universally Unique IDentifier), also known as GUIDs (Globally Unique IDentifier).  A UUID is 128 bits long, and can guarantee uniqueness across space and time.  UUIDs were originally used in the Apollo Network Computing System and later in the Open Software Foundation’s (OSF) Distributed Computing Environment (DCE), and then in Microsoft Windows platforms.&lt;br&gt;This specification is derived from the DCE specification with the kind permission of the OSF (now known as The Open Group).&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;UUID和GUID是同一个东西的两个名字。这两个名字的来源不同。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;UUID来源于OSF的DCE规范，也就是RFC4122的前身&lt;/li&gt;
+&lt;li&gt;GUID来源于微软，注意RFC4122的作者之一是微软员工&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&quot;用途&quot;&gt;&lt;a href=&quot;#用途&quot; class=&quot;headerlink&quot; title=&quot;用途&quot;&gt;&lt;/a&gt;用途&lt;/h4&gt;&lt;p&gt;UUID的出现，是为了在一个复杂的系统中，唯一的标识每个信息实体，同时不需要有一个集中的id管理。也就是说，根据某种规则来为一个信息实体分配一个唯一的id，而且不需要一个id管理器来保证这个id的唯一性。&lt;/p&gt;
+&lt;p&gt;它可以用来标识任何东西，Microsoft用它来表示Windows中的软件（GUID），Linux用它来表示系统中的文件。&lt;/p&gt;
+&lt;h2 id=&quot;Specification&quot;&gt;&lt;a href=&quot;#Specification&quot; class=&quot;headerlink&quot; title=&quot;Specification&quot;&gt;&lt;/a&gt;Specification&lt;/h2&gt;&lt;h4 id=&quot;UUID格式规范&quot;&gt;&lt;a href=&quot;#UUID格式规范&quot; class=&quot;headerlink&quot; title=&quot;UUID格式规范&quot;&gt;&lt;/a&gt;UUID格式规范&lt;/h4&gt;&lt;p&gt;这128bits的结构如下所示：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;   0                   1                   2                   3
+    0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+   |                          time_low                             |
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+   |       time_mid                |         time_hi_and_version   |
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+   |clk_seq_hi_res |  clk_seq_low  |         node (0-1)            |
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+   |                         node (2-5)                            |
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+      time-low               = 4hexOctet
+      time-mid               = 2hexOctet
+      time-high-and-version  = 2hexOctet    // MOST IMPORTANT !
+      clock-seq-and-reserved = hexOctet
+      clock-seq-low          = hexOctet
+      node                   = 6hexOctet
+      hexOctet               = hexDigit hexDigit
+      hexDigit =
+            &amp;quot;0&amp;quot; / &amp;quot;1&amp;quot; / &amp;quot;2&amp;quot; / &amp;quot;3&amp;quot; / &amp;quot;4&amp;quot; / &amp;quot;5&amp;quot; / &amp;quot;6&amp;quot; / &amp;quot;7&amp;quot; / &amp;quot;8&amp;quot; / &amp;quot;9&amp;quot; /
+            &amp;quot;a&amp;quot; / &amp;quot;b&amp;quot; / &amp;quot;c&amp;quot; / &amp;quot;d&amp;quot; / &amp;quot;e&amp;quot; / &amp;quot;f&amp;quot; /
+            &amp;quot;A&amp;quot; / &amp;quot;B&amp;quot; / &amp;quot;C&amp;quot; / &amp;quot;D&amp;quot; / &amp;quot;E&amp;quot; / &amp;quot;F&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;示例：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;uuid:f81d4fae-7dec-11d0-a765-00a0c91e6bf6
+&lt;/code&gt;&lt;/pre&gt;&lt;h4 id=&quot;UUID生成算法&quot;&gt;&lt;a href=&quot;#UUID生成算法&quot; class=&quot;headerlink&quot; title=&quot;UUID生成算法&quot;&gt;&lt;/a&gt;UUID生成算法&lt;/h4&gt;&lt;p&gt;UUID本身也经过了&lt;a href=&quot;http://en.wikipedia.org/wiki/Universally_unique_identifier#Variants_and_versions&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;多个版本的演化&lt;/a&gt;。比如node字段的定义，最开始定义为来自IEEE 802 address，演化到后来的&lt;em&gt;a randomly or pseudo-randomly generated 48-bit value&lt;/em&gt;。&lt;/p&gt;
+&lt;p&gt;最新的UUID生成算法是这样的：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Set the two most significant bits (bits 6 and 7) of the clock_seq_hi_and_reserved to zero and one, respectively.&lt;/li&gt;
+&lt;li&gt;Set the four most significant bits (bits 12 through 15) of the time_hi_and_version field to the 4-bit version number.&lt;/li&gt;
+&lt;li&gt;Set all the other bits to randomly (or pseudo-randomly) chosen values.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;UUID-and-implementation&quot;&gt;&lt;a href=&quot;#UUID-and-implementation&quot; class=&quot;headerlink&quot; title=&quot;UUID and implementation&quot;&gt;&lt;/a&gt;UUID and implementation&lt;/h2&gt;&lt;p&gt;越来越多的系统中使用着UUID，各自使用目的并不一样。而且由于限定在128bits，UUID规范本身并没有保证UUID真的是在全球唯一的。因此现在对UUID的使用，一般都是限定在一个范围内有唯一性保证，比如一个操作系统内。&lt;/p&gt;
+&lt;p&gt;因此我们可以看到：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;微软有一个GUID生成lib：&lt;a href=&quot;http://msdn.microsoft.com/en-us/library/system.guid(v=vs.110).aspx&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://msdn.microsoft.com/en-us/library/system.guid(v=vs.110).aspx&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Linux也同样有UUID生成lib：&lt;a href=&quot;http://en.wikipedia.org/wiki/Util-linux&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://en.wikipedia.org/wiki/Util-linux&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Android的UUID生成lib：&lt;a href=&quot;http://developer.android.com/reference/java/util/UUID.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://developer.android.com/reference/java/util/UUID.html&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;用以上系统对应的UUID生成lib可以确保产生的UUID在系统范围内是唯一的。因此可以用来标识系统资源，比如文件、软件、设备等。&lt;/p&gt;
+&lt;p&gt;而对于某种具体的编程语言，UUID的使用并没有必要。因为使用UUID的目的是给某个资源分配一个在当前环境下唯一的标识符。而一个程序只有在运行的时候才谈得上有一个&lt;strong&gt;环境&lt;/strong&gt;，进程之间又互不影响。因此，一般在编程语言规范中并没有对UUID生成方法进行规定。&lt;/p&gt;
+&lt;p&gt;但&lt;em&gt;unique id&lt;/em&gt;还是很常用的，比如：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;PHP - uniqid() &lt;a href=&quot;http://php.net/manual/en/function.uniqid.php#94959&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://php.net/manual/en/function.uniqid.php#94959&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Mysql - UUID() &lt;a href=&quot;http://dev.mysql.com/doc/refman/5.1/en/miscellaneous-functions.html#function_uuid&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://dev.mysql.com/doc/refman/5.1/en/miscellaneous-functions.html#function_uuid&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Java - UUID &lt;a href=&quot;http://docs.oracle.com/javase/7/docs/api/java/util/UUID.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://docs.oracle.com/javase/7/docs/api/java/util/UUID.html&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;但这些UUID方法只是借用了&lt;em&gt;唯一性&lt;/em&gt;的概念，并不是必须。而且uuid规定128bits，很多情况下有点浪费。&lt;/p&gt;
+&lt;p&gt;你可以用任何方法来生成一个程序内唯一的字符串，比如mysql中的incremental id，它就比uuid实用。&lt;/p&gt;
+&lt;p&gt;##UUID in Javascript&lt;br&gt;既然要生成UUID，那么得符合规范。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Javascript function&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code class=&quot;language-javascript&quot;&gt;function generateUUID(){
+    var d = new Date().getTime();
+    var uuid = &amp;#39;xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx&amp;#39;.replace(/[xy]/g, function(c) {
+        var r = (d + Math.random()*16)%16 | 0;
+        d = Math.floor(d/16);
+        return (c==&amp;#39;x&amp;#39; ? r : (r&amp;amp;0x7|0x8)).toString(16);
+    });
+    return uuid;
+};
+&lt;/code&gt;&lt;/pre&gt;
+&lt;ul&gt;
+&lt;li&gt;Node module&lt;br&gt;&lt;a href=&quot;https://github.com/broofa/node-uuid&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://github.com/broofa/node-uuid&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;原问题：&lt;a href=&quot;http://stackoverflow.com/questions/105034/how-to-create-a-guid-uuid-in-javascript&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;How to cre
+    
+    </summary>
+    
+    
+      <category term="javascript" scheme="http://mmrxia.github.io/tags/javascript/"/>
+    
+      <category term="uuid" scheme="http://mmrxia.github.io/tags/uuid/"/>
+    
+  </entry>
   
   <entry>
     <title>使用淘宝npm镜像cnpm</title>
