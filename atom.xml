@@ -328,9 +328,9 @@ Hi mmrxia! You&amp;#39;ve successfully authenticated, but GitHub does not provid
     </summary>
     
     
-      <category term="git" scheme="http://mmrxia.github.io/tags/git/"/>
-    
       <category term="Linux" scheme="http://mmrxia.github.io/tags/Linux/"/>
+    
+      <category term="git" scheme="http://mmrxia.github.io/tags/git/"/>
     
   </entry>
   
@@ -372,9 +372,9 @@ Hi mmrxia! You&amp;#39;ve successfully authenticated, but GitHub does not provid
     </summary>
     
     
-      <category term="Linux" scheme="http://mmrxia.github.io/tags/Linux/"/>
-    
       <category term="nodejs" scheme="http://mmrxia.github.io/tags/nodejs/"/>
+    
+      <category term="Linux" scheme="http://mmrxia.github.io/tags/Linux/"/>
     
   </entry>
   
@@ -870,7 +870,7 @@ git config -global user.email &amp;quot;you@example.com&amp;quot;
     <link href="http://mmrxia.github.io/2016/05/11/js%E6%B5%AE%E7%82%B9%E6%95%B0%E8%AE%A1%E7%AE%97%E7%B2%BE%E5%BA%A6%E4%B8%A2%E5%A4%B1%E9%97%AE%E9%A2%98/"/>
     <id>http://mmrxia.github.io/2016/05/11/js浮点数计算精度丢失问题/</id>
     <published>2016-05-11T09:22:45.000Z</published>
-    <updated>2016-05-12T01:57:30.149Z</updated>
+    <updated>2016-09-09T02:30:29.348Z</updated>
     
     <content type="html">&lt;p&gt; 本文主要从以下3个方面来说明：&lt;/p&gt;
 &lt;p&gt; 1 . js浮点数计算精度丢失常见现象&lt;br&gt; 2 . js浮点数计算精度丢失原因&lt;br&gt; 3 . js浮点数计算精度丢失解决办法&lt;/p&gt;
@@ -912,7 +912,7 @@ git config -global user.email &amp;quot;you@example.com&amp;quot;
      /*
       * 将浮点数去除小数点，返回整数和倍数。如 3.14 &amp;gt;&amp;gt; 314，倍数是 100
       * @param n {number} 浮点数
-      * return {object} 
+      * return {object}
       * {num: 314, times: 100}
       * */
      function toInt(n) {
@@ -948,17 +948,17 @@ git config -global user.email &amp;quot;you@example.com&amp;quot;
                  if (t1 &amp;gt; t2) {
                      result = n1 - n2 * (t1 / t2);
                  } else {
-                     result = n2 - n1 * (t2 / t1);
+                     result = n1 * (t2 / t1) - n2;
                  }
                  result = result / max;
                  break;
              case &amp;#39;multiply&amp;#39;:
-                 result = (n1 * n2) / (t1 * t2)
-                 return result
+                 result = (n1 * n2) / (t1 * t2);
+                 return result;
                  break;
              case &amp;#39;divide&amp;#39;:
-                 result = (n1 / n2) * (t2 / t1)
-                 return result
+                 result = (n1 / n2) * (t2 / t1);
+                 return result;
                  break;
 
          }

@@ -493,7 +493,7 @@
      /*
       * 将浮点数去除小数点，返回整数和倍数。如 3.14 &gt;&gt; 314，倍数是 100
       * @param n {number} 浮点数
-      * return {object} 
+      * return {object}
       * {num: 314, times: 100}
       * */
      function toInt(n) {
@@ -529,17 +529,17 @@
                  if (t1 &gt; t2) {
                      result = n1 - n2 * (t1 / t2);
                  } else {
-                     result = n2 - n1 * (t2 / t1);
+                     result = n1 * (t2 / t1) - n2;
                  }
                  result = result / max;
                  break;
              case &#39;multiply&#39;:
-                 result = (n1 * n2) / (t1 * t2)
-                 return result
+                 result = (n1 * n2) / (t1 * t2);
+                 return result;
                  break;
              case &#39;divide&#39;:
-                 result = (n1 / n2) * (t2 / t1)
-                 return result
+                 result = (n1 / n2) * (t2 / t1);
+                 return result;
                  break;
 
          }
