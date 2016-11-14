@@ -9,9 +9,9 @@
 最小存货单位（Stock Keeping Unit, SKU）是一个会计学名词，定义为保存库存控制的最小可用单位，例如纺织品中一个SKU通常表示规格、颜色、款式，而在连锁零售门店中有时称单品为一个SKU。
 
 直观一点的实际应用，可以参考淘宝的商品SKU选择界面，如下：
-
+              
 2. 基础数据    //属性集
-    var keys = [">
+    var">
 <meta property="og:type" content="article">
 <meta property="og:title" content="SKU算法总结分享">
 <meta property="og:url" content="http://mmrxia.github.io/2016/04/26/SKU算法总结分享/index.html">
@@ -21,11 +21,12 @@
 最小存货单位（Stock Keeping Unit, SKU）是一个会计学名词，定义为保存库存控制的最小可用单位，例如纺织品中一个SKU通常表示规格、颜色、款式，而在连锁零售门店中有时称单品为一个SKU。
 
 直观一点的实际应用，可以参考淘宝的商品SKU选择界面，如下：
-
+              
 2. 基础数据    //属性集
-    var keys = [">
+    var">
 <meta property="og:image" content="http://7xth8v.com2.z0.glb.qiniucdn.com/image/sku.png">
-<meta property="og:updated_time" content="2016-04-28T09:30:18.479Z">
+<meta property="og:image" content="http://7xth8v.com2.z0.glb.qiniucdn.com/image/sku_02.png">
+<meta property="og:updated_time" content="2016-11-14T08:20:34.486Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="SKU算法总结分享">
 <meta name="twitter:description" content="1. SKU简介下面是SKU来自维基百科的解释：
@@ -33,9 +34,9 @@
 最小存货单位（Stock Keeping Unit, SKU）是一个会计学名词，定义为保存库存控制的最小可用单位，例如纺织品中一个SKU通常表示规格、颜色、款式，而在连锁零售门店中有时称单品为一个SKU。
 
 直观一点的实际应用，可以参考淘宝的商品SKU选择界面，如下：
-
+              
 2. 基础数据    //属性集
-    var keys = [">
+    var">
 <meta name="twitter:image" content="http://7xth8v.com2.z0.glb.qiniucdn.com/image/sku.png">
     
     <title>
@@ -268,7 +269,7 @@
 <p><strong>最小存货单位</strong>（Stock Keeping Unit, SKU）是一个会计学名词，定义为保存库存控制的最小可用单位，例如纺织品中一个SKU通常表示规格、颜色、款式，而在连锁零售门店中有时称单品为一个SKU。</p>
 </blockquote>
 <p>直观一点的实际应用，可以参考淘宝的商品SKU选择界面，如下：</p>
-<p><img src="http://7xth8v.com2.z0.glb.qiniucdn.com/image/sku.png" alt=""></p>
+<p><img src="http://7xth8v.com2.z0.glb.qiniucdn.com/image/sku.png" alt="">              </p>
 <h4 id="2-基础数据"><a href="#2-基础数据" class="headerlink" title="2. 基础数据"></a>2. 基础数据</h4><pre><code class="language-javascript">    //属性集
     var keys = [
         [&#39;10&#39;],  //iPhone7s
@@ -302,7 +303,250 @@
         &quot;10;20;30;40&quot;:{&quot;price&quot;:346,&quot;count&quot;:3}
     };
 </code></pre>
-<h4 id="3-算法分析"><a href="#3-算法分析" class="headerlink" title="3. 算法分析"></a>3. 算法分析</h4><h4 id="4-代码实现"><a href="#4-代码实现" class="headerlink" title="4. 代码实现"></a>4. 代码实现</h4><h4 id="5-demo演示"><a href="#5-demo演示" class="headerlink" title="5. demo演示"></a>5. demo演示</h4>
+<h4 id="3-算法分析"><a href="#3-算法分析" class="headerlink" title="3. 算法分析"></a>3. 算法分析</h4><pre><code>重点在于排列组合出所有的属性集，和后台读取的结果集进行比对；
+</code></pre><h4 id="4-代码实现"><a href="#4-代码实现" class="headerlink" title="4. 代码实现"></a>4. 代码实现</h4><pre><code class="language-javascript">/*
+ * sku算法
+ * by xqs 16.08.11
+ * */
+
+define(function (require, exports, module) {
+
+    &#39;use strict&#39;;
+
+    //按钮样式class
+    var className = {
+        sku: &#39;sku-key&#39;,
+        active: &#39;active&#39;,
+        disabled: &#39;ban&#39;
+    };
+
+    //sku对象
+    var sku = {
+        delimiter: &#39;b&#39;      //分隔符
+    };
+
+
+    //初始化，组合新的结果集
+    sku.init = function (container) {
+
+        console.time(&#39;skuInit time&#39;);
+
+        sku.container = $(container);  //存储skuData的外容器
+
+        var data = $(container).data(&#39;sku-map&#39;);
+        if (!data || sku.container.data(&#39;initialized&#39;)) return;
+        //console.log(JSON.stringify(data))
+
+        var skuMap = sku.skuMap = {};  //sku结果集
+
+        //拿到已有skuMap中所有的sku组合key
+        var skuKeys = $.map(data, function (val, key) {
+            if (!val.count) val.count = 0;
+            return key;
+        });
+        //console.log(skuKeys, skuMap)
+
+        //转换成数组后，排列组合计算出所有的可能，存储在skuMap中
+        $.each(skuKeys, function (i, v) {
+            var keyArr = v.split(sku.delimiter).sort(function (a, b) {
+                    return parseInt(a) - parseInt(b);
+                }),
+                combArr = sku.combineArr(keyArr);
+            //console.log(JSON.stringify(combArr))
+
+            var skuInfo = data[v];
+            $.each(combArr, function (j, k) {
+                if (skuMap[k]) {
+                    skuMap[k].count += skuInfo.count;
+                    skuMap[k].prices.push(skuInfo.price);
+                    $.unique(skuMap[k].prices);  //数组去重
+                } else {
+                    skuMap[k] = {
+                        count: skuInfo.count,
+                        prices: [skuInfo.price]
+                    }
+                }
+            });
+
+            //已有的skuMap中的信息存储到skuMap中,替换原有的key
+            skuMap[keyArr.join(sku.delimiter)] = $.extend(null, {
+                count: skuInfo.count,
+                prices: [skuInfo.price]
+            }, skuInfo);
+
+        });
+
+        sku.container.data(&#39;initialized&#39;, true);
+
+        //打印一下sku字典拼装花费的时间
+        console.timeEnd(&#39;skuInit time&#39;);
+
+        console.info(JSON.stringify(skuMap));
+
+
+        //点击sku选项
+        var showPrice, showPic, skuDesc,
+            defaultPrice = $(&#39;.sku-price&#39;).text(),
+            defaultPic = $(&#39;.sku-pic&#39;).attr(&#39;src&#39;),
+            defaultDesc = &#39;请选择&#39; + $.map(sku.container.find(&#39;dl dt&#39;), function (item) {
+                    return $(item).text();
+                }).join(&#39;,&#39;);
+
+        //初始化渲染
+        $(&#39;.sku-desc&#39;).html(defaultDesc);
+
+        //未选择之前，先检查一下状态
+        sku.container.find(&#39;.&#39; + className.sku).each(function () {
+            //先初始化一下，看看是否所有的按钮都可选
+            var $this = $(this);
+            if (!skuMap[$this.data(&#39;value&#39;)]) {
+                $this.addClass(className.disabled).removeClass(className.active);
+            } else {
+                $this.removeClass(className.disabled);
+            }
+        }).end().off(&#39;click&#39;).on(&#39;click&#39;, &#39;.&#39; + className.sku, function () {
+            //添加click事件
+            var $this = $(this);
+
+            if ($this.hasClass(className.disabled)) return false;
+
+            //选中自己，取消兄弟元素选中状态
+            $this.toggleClass(className.active).siblings().removeClass(className.active);
+
+            //已选择的sku按钮信息
+            var skuSelected = sku.selected();
+            if (skuSelected.keys.length) {
+                var skuSelectedKey = skuSelected.keys.join(sku.delimiter);
+                //console.info(&#39;skuKey==&#39;, skuSelectedKey);
+
+                //显示价格区间及sku描述等信息
+                var minPrice = Math.min.apply(null, skuMap[skuSelectedKey].prices),
+                    maxPrice = Math.max.apply(null, skuMap[skuSelectedKey].prices);
+
+                showPrice = minPrice === maxPrice ? [&#39;￥&#39;, maxPrice].join(&#39;&#39;) : [&#39;￥&#39;, minPrice, &#39;-&#39;, maxPrice].join(&#39;&#39;);
+                skuMap[skuSelectedKey].itemPic &amp;&amp; (showPic = skuMap[skuSelectedKey].itemPic);
+                skuDesc = $.map(skuSelected.desc, function (v, i) {
+                    return &#39;&lt;span&gt;&#39; + v + &#39;&lt;/span&gt;&#39;;
+                }).join(&#39;&#39;);
+
+                //限购数量
+                var limitCount = skuSelected.detail &amp;&amp; skuSelected.detail.limit ? skuSelected.detail.limit : null;
+                sku.container.siblings(&#39;.quantity&#39;).find(&#39;.number&#39;).data(&#39;max&#39;, limitCount).spinner();  //改变数量控制;
+
+                //验证其他sku按钮
+                var $skuOthers = $(&#39;.&#39; + className.sku).not(&#39;.&#39; + className.active).not($this);
+                $.each($skuOthers, function () {
+                    var $that = $(this), $sibSelected = $that.siblings(&#39;.&#39; + className.active);
+                    var othersArr = [];
+                    if ($sibSelected[0]) {
+                        //同级别的sku已有选择，则在新数组中取出
+                        othersArr = $.grep(skuSelected.keys, function (v, i) {
+                            return v != $sibSelected.data(&#39;value&#39;);
+                        });
+                    } else {
+                        othersArr = skuSelected.keys.concat();
+                    }
+                    othersArr = othersArr.concat($that.data(&#39;value&#39;)).sort(function (a, b) {
+                        return parseInt(a) - parseInt(b);
+                    });
+
+                    //console.info(&#39;othersArr==&#39;, othersArr.join(sku.delimiter));
+
+                    if (!skuMap[othersArr.join(sku.delimiter)]) {
+                        $that.addClass(className.disabled);
+                    } else {
+                        $that.removeClass(className.disabled);
+                    }
+
+                });
+
+            } else {
+                //设置默认价格、描述
+                showPrice = defaultPrice;
+                showPic = defaultPic;
+                skuDesc = defaultDesc;
+                $.each($(&#39;.&#39; + className.sku), function () {
+                    var $this = $(this);
+                    if (!skuMap[$this.data(&#39;value&#39;)]) {
+                        $this.addClass(className.disabled).removeClass(className.active);
+                    } else {
+                        $this.removeClass(className.disabled);
+                    }
+                })
+            }
+
+            //显示价格和图片等信息
+            $(&#39;.sku-price&#39;).text(showPrice);
+            $(&#39;.sku-pic&#39;).attr(&#39;src&#39;, showPic);
+            $(&#39;.sku-desc&#39;).html(skuDesc);
+
+        });
+
+        //只有一组sku的话，直接选中
+        if ($.map(data, function (v, k) {
+                return k;
+            }).length === 1) {
+            sku.container.find(&#39;.&#39; + className.sku).trigger(&#39;click&#39;);
+        }
+
+    };
+
+    //数组排列组合算法
+    sku.combineArr = function (arr) {
+        //console.log(&#39;arr&#39;, arr)
+        var len = arr.length, result = [];
+        combine();
+        function combine(item, index) {
+            item = item || &#39;&#39;;
+            index = index || 0;
+            if (index == len)return;
+            for (var i = index; i &lt; len; i++) {
+                var newItem = (item ? [item, sku.delimiter, arr[i]] : [item, arr[i]]).join(&#39;&#39;);
+                result.push(newItem);
+                combine(newItem, ++index);
+            }
+        }
+
+        return result;
+    };
+
+
+    //获取已选中的sku信息
+    sku.selected = function () {
+        var skuMap = sku.skuMap;
+        var $skuSelected = $(&#39;.&#39; + className.sku + &#39;.&#39; + className.active);
+        var result = {
+            keys: []
+        };
+        if ($skuSelected[0]) {
+            result.keys = $.map($skuSelected, function (v, i) {
+                return $(v).data(&#39;value&#39;);
+            }).sort(function (a, b) {
+                return parseInt(a) - parseInt(b);
+            });
+
+            result.desc = $.map($skuSelected, function (v, i) {
+                return $(v).text();
+            });
+
+            if (skuMap[result.keys.join(sku.delimiter)].itemId) {
+                result.detail = skuMap[result.keys.join(sku.delimiter)];
+                result.itemId = result.detail.itemId;
+            }
+
+        }
+
+        return result;
+    };
+
+
+    module.exports = sku;
+
+
+});
+</code></pre>
+<h4 id="5-demo演示"><a href="#5-demo演示" class="headerlink" title="5. demo演示"></a>5. demo演示</h4><p><img src="http://7xth8v.com2.z0.glb.qiniucdn.com/image/sku_02.png" alt=""></p>
+
       
     </div>
     
