@@ -282,9 +282,9 @@ function getImgData(img,dir,next){
     </summary>
     
     
-      <category term="js" scheme="http://mmrxia.github.io/tags/js/"/>
-    
       <category term="移动端开发" scheme="http://mmrxia.github.io/tags/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E5%BC%80%E5%8F%91/"/>
+    
+      <category term="js" scheme="http://mmrxia.github.io/tags/js/"/>
     
   </entry>
   
@@ -328,9 +328,9 @@ Hi mmrxia! You&amp;#39;ve successfully authenticated, but GitHub does not provid
     </summary>
     
     
-      <category term="git" scheme="http://mmrxia.github.io/tags/git/"/>
-    
       <category term="Linux" scheme="http://mmrxia.github.io/tags/Linux/"/>
+    
+      <category term="git" scheme="http://mmrxia.github.io/tags/git/"/>
     
   </entry>
   
@@ -1094,7 +1094,7 @@ git config -global user.email &amp;quot;you@example.com&amp;quot;
     <link href="http://mmrxia.github.io/2016/04/26/SKU%E7%AE%97%E6%B3%95%E6%80%BB%E7%BB%93%E5%88%86%E4%BA%AB/"/>
     <id>http://mmrxia.github.io/2016/04/26/SKU算法总结分享/</id>
     <published>2016-04-26T08:28:49.000Z</published>
-    <updated>2016-11-14T08:20:34.486Z</updated>
+    <updated>2016-11-14T08:22:29.646Z</updated>
     
     <content type="html">&lt;h4 id=&quot;1-SKU简介&quot;&gt;&lt;a href=&quot;#1-SKU简介&quot; class=&quot;headerlink&quot; title=&quot;1. SKU简介&quot;&gt;&lt;/a&gt;1. SKU简介&lt;/h4&gt;&lt;p&gt;下面是SKU来自维基百科的解释：&lt;/p&gt;
 &lt;blockquote&gt;
@@ -1135,8 +1135,8 @@ git config -global user.email &amp;quot;you@example.com&amp;quot;
         &amp;quot;10;20;30;40&amp;quot;:{&amp;quot;price&amp;quot;:346,&amp;quot;count&amp;quot;:3}
     };
 &lt;/code&gt;&lt;/pre&gt;
-&lt;h4 id=&quot;3-算法分析&quot;&gt;&lt;a href=&quot;#3-算法分析&quot; class=&quot;headerlink&quot; title=&quot;3. 算法分析&quot;&gt;&lt;/a&gt;3. 算法分析&lt;/h4&gt;&lt;pre&gt;&lt;code&gt;重点在于排列组合出所有的属性集，和后台读取的结果集进行比对；
-&lt;/code&gt;&lt;/pre&gt;&lt;h4 id=&quot;4-代码实现&quot;&gt;&lt;a href=&quot;#4-代码实现&quot; class=&quot;headerlink&quot; title=&quot;4. 代码实现&quot;&gt;&lt;/a&gt;4. 代码实现&lt;/h4&gt;&lt;pre&gt;&lt;code class=&quot;language-javascript&quot;&gt;/*
+&lt;h4 id=&quot;3-算法分析&quot;&gt;&lt;a href=&quot;#3-算法分析&quot; class=&quot;headerlink&quot; title=&quot;3. 算法分析&quot;&gt;&lt;/a&gt;3. 算法分析&lt;/h4&gt;&lt;p&gt;重点在于排列组合出所有的属性集，和后台读取的结果集进行比对；&lt;/p&gt;
+&lt;h4 id=&quot;4-代码实现&quot;&gt;&lt;a href=&quot;#4-代码实现&quot; class=&quot;headerlink&quot; title=&quot;4. 代码实现&quot;&gt;&lt;/a&gt;4. 代码实现&lt;/h4&gt;&lt;pre&gt;&lt;code class=&quot;language-javascript&quot;&gt;/*
  * sku算法
  * by xqs 16.08.11
  * */
