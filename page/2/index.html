@@ -118,7 +118,7 @@
 				
 				<section class="switch-part switch-part2">
 					<div class="widget tagcloud" id="js-tagcloud">
-						<a href="/tags/Linux/" style="font-size: 15px;">Linux</a> <a href="/tags/bash/" style="font-size: 10px;">bash</a> <a href="/tags/cnpm/" style="font-size: 10px;">cnpm</a> <a href="/tags/express/" style="font-size: 10px;">express</a> <a href="/tags/git/" style="font-size: 20px;">git</a> <a href="/tags/javascript/" style="font-size: 10px;">javascript</a> <a href="/tags/js/" style="font-size: 20px;">js</a> <a href="/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/tags/nodejs/" style="font-size: 20px;">nodejs</a> <a href="/tags/npm/" style="font-size: 10px;">npm</a> <a href="/tags/sku/" style="font-size: 10px;">sku</a> <a href="/tags/uuid/" style="font-size: 10px;">uuid</a> <a href="/tags/前端/" style="font-size: 10px;">前端</a> <a href="/tags/数组/" style="font-size: 10px;">数组</a> <a href="/tags/移动端开发/" style="font-size: 10px;">移动端开发</a> <a href="/tags/算法/" style="font-size: 10px;">算法</a> <a href="/tags/西游记/" style="font-size: 15px;">西游记</a> <a href="/tags/跨域/" style="font-size: 10px;">跨域</a> <a href="/tags/随笔/" style="font-size: 10px;">随笔</a>
+						<a href="/tags/Linux/" style="font-size: 15px;">Linux</a> <a href="/tags/base64/" style="font-size: 10px;">base64</a> <a href="/tags/bash/" style="font-size: 10px;">bash</a> <a href="/tags/cnpm/" style="font-size: 10px;">cnpm</a> <a href="/tags/express/" style="font-size: 10px;">express</a> <a href="/tags/git/" style="font-size: 20px;">git</a> <a href="/tags/javascript/" style="font-size: 15px;">javascript</a> <a href="/tags/js/" style="font-size: 20px;">js</a> <a href="/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/tags/nodejs/" style="font-size: 20px;">nodejs</a> <a href="/tags/npm/" style="font-size: 10px;">npm</a> <a href="/tags/sku/" style="font-size: 10px;">sku</a> <a href="/tags/uuid/" style="font-size: 10px;">uuid</a> <a href="/tags/前端/" style="font-size: 10px;">前端</a> <a href="/tags/数组/" style="font-size: 10px;">数组</a> <a href="/tags/移动端开发/" style="font-size: 10px;">移动端开发</a> <a href="/tags/算法/" style="font-size: 10px;">算法</a> <a href="/tags/西游记/" style="font-size: 15px;">西游记</a> <a href="/tags/跨域/" style="font-size: 10px;">跨域</a> <a href="/tags/随笔/" style="font-size: 10px;">随笔</a>
 					</div>
 				</section>
 				
@@ -201,6 +201,86 @@
 </nav>
 
       <div class="body-wrap">
+  
+    <article id="post-图片等比压缩居中显示" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/06/02/图片等比压缩居中显示/" class="article-date">
+  	<time datetime="2016-06-02T08:16:21.000Z" itemprop="datePublished">2016-06-02</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/06/02/图片等比压缩居中显示/">图片等比压缩居中显示</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="需求"><a href="#需求" class="headerlink" title="需求"></a>需求</h3><p>html中的img标签元素，在元素容器中保证等比压缩居中显示。不能拉伸变形，尽量做成jQuery插件的调用方式。</p>
+<h3 id="调用方式："><a href="#调用方式：" class="headerlink" title="调用方式："></a>调用方式：</h3><p>HTML:</p>
+<pre><code class="language-html">&lt;div class=&quot;img-wrapper&quot;&gt;
+    &lt;img class=&quot;img&quot; src=&quot;image/tmp_01.jpg&quot; alt=&quot;demo1&quot;/&gt;
+&lt;/div&gt;
+&lt;div class=&quot;img-wrapper&quot;&gt;
+    &lt;img class=&quot;img&quot; src=&quot;image/tmp_02.jpg&quot; alt=&quot;demo2&quot;/&gt;
+&lt;/div&gt;
+&lt;div class=&quot;img-wrapper&quot;&gt;
+    &lt;img class=&quot;img&quot; src=&quot;image/tmp_03.png&quot; alt=&quot;demo3&quot;/&gt;
+&lt;/div&gt;
+&lt;div class=&quot;img-wrapper&quot;&gt;
+    &lt;img class=&quot;img&quot; src=&quot;image/tmp_04.png&quot; alt=&quot;demo4&quot;/&gt;
+&lt;/div&gt;
+</code></pre>
+<p>CSS:</p>
+<pre><code class="language-css">.img-wrapper{border: 1px dashed #2F9DC2;height: 100px;overflow: hidden;}
+</code></pre>
+<p>JS:</p>
+<pre><code class="language-javascript">&lt;script src=&quot;../../static/js/lib/jquery.min.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;img-ratio-compress.js&quot;&gt;&lt;/script&gt;
+&lt;script&gt;
+    $(&#39;.img&#39;).ratioCompress({resize:true});
+&lt;/script&gt;
+</code></pre>
+<h3 id="效果如下："><a href="#效果如下：" class="headerlink" title="效果如下："></a>效果如下：</h3><p><img src="http://7xth8v.com2.z0.glb.qiniucdn.com/image/n_img_radio_commpress.png" alt=""></p>
+<h3 id="示例演示："><a href="#示例演示：" class="headerlink" title="示例演示："></a>示例演示：</h3><p>大家可以点开页面查看图片源文件，查看图片尺寸。<br>demo中设置了随窗口变化图片位置自适应，可以缩放浏览器尺寸或者F12调整为移动端模式查看。</p>
+<p><a href="https://rawgit.com/mmrxia/lab/master/examples/img-radio-compress/index.html" target="_blank" rel="external">点我查看示例</a></p>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
   
     <article id="post-js-数组复制操作" class="article article-type-post" itemscope itemprop="blogPost">
   

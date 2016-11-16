@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://mmrxia.github.io/"/>
-  <updated>2016-09-01T07:10:53.536Z</updated>
+  <updated>2016-11-16T09:13:35.557Z</updated>
   <id>http://mmrxia.github.io/</id>
   
   <author>
@@ -14,6 +14,53 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>js encode或decode base64格式的字符串</title>
+    <link href="http://mmrxia.github.io/2016/11/16/js-encode%E6%88%96decode-base64%E6%A0%BC%E5%BC%8F%E7%9A%84%E5%AD%97%E7%AC%A6%E4%B8%B2/"/>
+    <id>http://mmrxia.github.io/2016/11/16/js-encode或decode-base64格式的字符串/</id>
+    <published>2016-11-16T08:50:07.000Z</published>
+    <updated>2016-11-16T09:13:35.557Z</updated>
+    
+    <content type="html">&lt;h4 id=&quot;方式一：Chrome、FireFox等现代主流浏览器或IE10及以上版本。&quot;&gt;&lt;a href=&quot;#方式一：Chrome、FireFox等现代主流浏览器或IE10及以上版本。&quot; class=&quot;headerlink&quot; title=&quot;方式一：Chrome、FireFox等现代主流浏览器或IE10及以上版本。&quot;&gt;&lt;/a&gt;方式一：Chrome、FireFox等现代主流浏览器或IE10及以上版本。&lt;/h4&gt;&lt;pre&gt;&lt;code class=&quot;language-javascript&quot;&gt;// 测试字符
+var string = &amp;#39;Hello World!&amp;#39;;
+
+// 加密
+var encodedString = btoa(string);
+console.log(encodedString); // 输出: &amp;quot;SGVsbG8gV29ybGQh&amp;quot;
+
+// 解密
+var decodedString = atob(encodedString);
+console.log(decodedString); // 输出: &amp;quot;Hello World!&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h4 id=&quot;方式二：跨浏览器的方法（压缩版本）&quot;&gt;&lt;a href=&quot;#方式二：跨浏览器的方法（压缩版本）&quot; class=&quot;headerlink&quot; title=&quot;方式二：跨浏览器的方法（压缩版本）&quot;&gt;&lt;/a&gt;方式二：跨浏览器的方法（压缩版本）&lt;/h4&gt;&lt;pre&gt;&lt;code class=&quot;language-javascript&quot;&gt;// 定义Base64对象
+var Base64={_keyStr:&amp;quot;ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=&amp;quot;,encode:function(e){var t=&amp;quot;&amp;quot;;var n,r,i,s,o,u,a;var f=0;e=Base64._utf8_encode(e);while(f&amp;lt;e.length){n=e.charCodeAt(f++);r=e.charCodeAt(f++);i=e.charCodeAt(f++);s=n&amp;gt;&amp;gt;2;o=(n&amp;amp;3)&amp;lt;&amp;lt;4|r&amp;gt;&amp;gt;4;u=(r&amp;amp;15)&amp;lt;&amp;lt;2|i&amp;gt;&amp;gt;6;a=i&amp;amp;63;if(isNaN(r)){u=a=64}else if(isNaN(i)){a=64}t=t+this._keyStr.charAt(s)+this._keyStr.charAt(o)+this._keyStr.charAt(u)+this._keyStr.charAt(a)}return t},decode:function(e){var t=&amp;quot;&amp;quot;;var n,r,i;var s,o,u,a;var f=0;e=e.replace(/[^A-Za-z0-9+/=]/g,&amp;quot;&amp;quot;);while(f&amp;lt;e.length){s=this._keyStr.indexOf(e.charAt(f++));o=this._keyStr.indexOf(e.charAt(f++));u=this._keyStr.indexOf(e.charAt(f++));a=this._keyStr.indexOf(e.charAt(f++));n=s&amp;lt;&amp;lt;2|o&amp;gt;&amp;gt;4;r=(o&amp;amp;15)&amp;lt;&amp;lt;4|u&amp;gt;&amp;gt;2;i=(u&amp;amp;3)&amp;lt;&amp;lt;6|a;t=t+String.fromCharCode(n);if(u!=64){t=t+String.fromCharCode(r)}if(a!=64){t=t+String.fromCharCode(i)}}t=Base64._utf8_decode(t);return t},_utf8_encode:function(e){e=e.replace(/rn/g,&amp;quot;n&amp;quot;);var t=&amp;quot;&amp;quot;;for(var n=0;n&amp;lt;e.length;n++){var r=e.charCodeAt(n);if(r&amp;lt;128){t+=String.fromCharCode(r)}else if(r&amp;gt;127&amp;amp;&amp;amp;r&amp;lt;2048){t+=String.fromCharCode(r&amp;gt;&amp;gt;6|192);t+=String.fromCharCode(r&amp;amp;63|128)}else{t+=String.fromCharCode(r&amp;gt;&amp;gt;12|224);t+=String.fromCharCode(r&amp;gt;&amp;gt;6&amp;amp;63|128);t+=String.fromCharCode(r&amp;amp;63|128)}}return t},_utf8_decode:function(e){var t=&amp;quot;&amp;quot;;var n=0;var r=c1=c2=0;while(n&amp;lt;e.length){r=e.charCodeAt(n);if(r&amp;lt;128){t+=String.fromCharCode(r);n++}else if(r&amp;gt;191&amp;amp;&amp;amp;r&amp;lt;224){c2=e.charCodeAt(n+1);t+=String.fromCharCode((r&amp;amp;31)&amp;lt;&amp;lt;6|c2&amp;amp;63);n+=2}else{c2=e.charCodeAt(n+1);c3=e.charCodeAt(n+2);t+=String.fromCharCode((r&amp;amp;15)&amp;lt;&amp;lt;12|(c2&amp;amp;63)&amp;lt;&amp;lt;6|c3&amp;amp;63);n+=3}}return t}}
+
+// 测试字符
+var string = &amp;#39;Hello World!&amp;#39;;
+
+// 加密
+var encodedString = Base64.encode(string);
+console.log(encodedString); // 输出: &amp;quot;SGVsbG8gV29ybGQh&amp;quot;
+
+// 解密
+var decodedString = Base64.decode(encodedString);
+console.log(decodedString); // 输出: &amp;quot;Hello World!&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;h4 id=&quot;方式一：Chrome、FireFox等现代主流浏览器或IE10及以上版本。&quot;&gt;&lt;a href=&quot;#方式一：Chrome、FireFox等现代主流浏览器或IE10及以上版本。&quot; class=&quot;headerlink&quot; title=&quot;方式一：Chrome、FireFox
+    
+    </summary>
+    
+    
+      <category term="javascript" scheme="http://mmrxia.github.io/tags/javascript/"/>
+    
+      <category term="base64" scheme="http://mmrxia.github.io/tags/base64/"/>
+    
+  </entry>
   
   <entry>
     <title>怎样使用js生成uuid</title>
