@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://mmrxia.github.io/"/>
-  <updated>2016-11-16T09:34:59.116Z</updated>
+  <updated>2016-12-16T07:42:25.843Z</updated>
   <id>http://mmrxia.github.io/</id>
   
   <author>
@@ -16,11 +16,66 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>windows下安装配置mongodb</title>
+    <link href="http://mmrxia.github.io/2016/12/16/windows%E4%B8%8B%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AEmongodb/"/>
+    <id>http://mmrxia.github.io/2016/12/16/windows下安装配置mongodb/</id>
+    <published>2016-12-16T06:36:29.000Z</published>
+    <updated>2016-12-16T07:42:25.843Z</updated>
+    
+    <content type="html">&lt;p&gt;安装文件：官方网站 &lt;a href=&quot;http://www.mongodb.org/downloads&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://www.mongodb.org/downloads&lt;/a&gt;&lt;br&gt;选择对应系统的文件下载。&lt;/p&gt;
+&lt;p&gt;一、解压缩文件。&lt;br&gt;  将压缩包解压，在D盘创建文件夹&lt;code&gt;mongodb&lt;/code&gt;,将压缩包解压到&lt;code&gt;mongodb&lt;/code&gt;文件夹中。&lt;/p&gt;
+&lt;p&gt;二、建立工作目录。&lt;br&gt;  1、建立数据存放目录  &lt;code&gt;D:\mongodb\data\db&lt;/code&gt;&lt;br&gt;  2、建立日志文件  &lt;code&gt;D:\mongodb\db\log\mongodb.log&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;三、建立配置文件。&lt;br&gt;  &lt;code&gt;mongodb&lt;/code&gt;文件夹下建立&lt;code&gt;mongodb.cfg&lt;/code&gt;文件，输入以下内容：&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-git&quot;&gt;  dbpath=D:\MongoDB\data #数据库路径
+  logpath=D:\MongoDB\logs\mongodb.log #日志输出文件路径
+  logappend=true #错误日志采用追加模式，配置这个选项后mongodb的日志会追加到现有的日志文件，而不是从新创建一个新文件
+  journal=true #启用日志文件，默认启用
+  quiet=true #这个选项可以过滤掉一些无用的日志信息，若需要调试使用请设置为false
+  port=27017 #端口号 默认为27017
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;  这里仅指定了几个常用项，更多详细配置请参考官方文档 &lt;a href=&quot;http://docs.mongodb.org/manual/reference/configuration-options/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://docs.mongodb.org/manual/reference/configuration-options/&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;四、启动mongdb服务。&lt;/p&gt;
+&lt;p&gt;  至此&lt;code&gt;mongodb&lt;/code&gt;文件夹下有文件夹及文件：&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-git&quot;&gt;  D:\ mongodb\bin
+  D:\ mongodb\data\db
+  D:\ mongodb\data\log
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;  配置文件和相关目录建好后使用如下方式启动mongodb：&lt;/p&gt;
+&lt;p&gt;  控制台进入&lt;code&gt;D:\ mongodb\bin&lt;/code&gt;目录，执行以下命令:&lt;/p&gt;
+&lt;p&gt;  1 . 普通启动 &lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-git&quot;&gt;  mongod --config D:\mongodb\mongodb.cfg
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;  2 . 安装为Windows服务&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-git&quot;&gt;  mongod --config D:\mongodb\mongodb.cfg --install
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;  注：2.6版 这种方式在win7、win8 64位版无法安装成功，其他系统未测试&lt;br&gt;  BUG链接 &lt;a href=&quot;https://jira.mongodb.org/browse/SERVER-13515&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://jira.mongodb.org/browse/SERVER-13515&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;  3 . 使用SC命令安装为Windows服务&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-git&quot;&gt;  sc create MongoDB binPath= &amp;quot;D:\mongodb\bin\mongod.exe --service --config=D:\mongodb\mongodb.cfg&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;五、系统服务启动与删除。&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-git&quot;&gt;net start MongoDB  //启动MongoDB服务  
+net stop MongoDB  //停止MongoDB服务   
+mongod --remove //移除MongoDB服务
+&lt;/code&gt;&lt;/pre&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;安装文件：官方网站 &lt;a href=&quot;http://www.mongodb.org/downloads&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://www.mongodb.org/downloads&lt;/a&gt;&lt;br&gt;选择对应系统的文件下载。&lt;
+    
+    </summary>
+    
+    
+      <category term="mongodb" scheme="http://mmrxia.github.io/tags/mongodb/"/>
+    
+  </entry>
+  
+  <entry>
     <title>bigPipe方案实现及剖析</title>
     <link href="http://mmrxia.github.io/2016/11/16/bigPipe%E6%96%B9%E6%A1%88%E5%AE%9E%E7%8E%B0%E5%8F%8A%E5%89%96%E6%9E%90/"/>
     <id>http://mmrxia.github.io/2016/11/16/bigPipe方案实现及剖析/</id>
     <published>2016-11-16T09:24:43.000Z</published>
-    <updated>2016-11-16T09:34:59.116Z</updated>
+    <updated>2016-11-16T09:38:16.234Z</updated>
     
     <content type="html">&lt;h2 id=&quot;背景&quot;&gt;&lt;a href=&quot;#背景&quot; class=&quot;headerlink&quot; title=&quot;背景&quot;&gt;&lt;/a&gt;背景&lt;/h2&gt;&lt;p&gt;2010 年初的时候，Facebook 的前端性能研究小组开始了他们的优化项目，经过了六个月的努力，成功的将个人空间主页面加载耗时由原来的5 秒减少为现在的2.5 秒。&lt;br&gt;这是一个非常了不起的成就，也给用户来带来了很好的体验。在优化项目中，工程师提出了一种新的页面加载技术，称之为Bigpipe。&lt;br&gt;目前淘宝和Facebook面临的问题非常相似：海量数据和页面过大，如果可以在详情页、列表页中使用bigpipe，将会带来明显的页面加载速度提升。&lt;/p&gt;
 &lt;h2 id=&quot;相关介绍&quot;&gt;&lt;a href=&quot;#相关介绍&quot; class=&quot;headerlink&quot; title=&quot;相关介绍&quot;&gt;&lt;/a&gt;相关介绍&lt;/h2&gt;&lt;p&gt;一、BigPipe与AJAX&lt;/p&gt;
@@ -31,6 +86,7 @@
 &lt;p&gt;3 . 减少浏览器发送到请求。对一个5亿用户的网站来说，减少了使用AJAX额外带来的请求，会减少服务器的负载，同样会带来很大的性能提升。&lt;/p&gt;
 &lt;p&gt;基于以上三点，Facebook 在进行页面优化时采用了BigPipe 技术。目前淘宝主搜索结果页中，需要加载类目，相关搜索，宝贝列表，广告等内容，前端这里使用php 的curl 的批处理来并发的访问引擎获取相应的数据，并进行分步输出。这种模式还是与bigpipe有些不同，这点后面会讲到。一般来讲，在页面比较大，而且比较复杂，样式表和脚本比较多的情况下，使用BigPipe 来优化输出页面是比较合适的。另外非常重要的一点，BigPipe 并不改变浏览器的结构与网络协议，仅使用JS就可以实现，用户不需要做任何的设置，就会看到明显的访问时间缩短。&lt;/p&gt;
 &lt;p&gt;&lt;a href=&quot;http://www.searchtb.com/2011/04/an-introduction-to-bigpipe.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://www.searchtb.com/2011/04/an-introduction-to-bigpipe.html&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;待续…&lt;/p&gt;
 </content>
     
     <summary type="html">
@@ -360,9 +416,9 @@ function getImgData(img,dir,next){
     </summary>
     
     
-      <category term="移动端开发" scheme="http://mmrxia.github.io/tags/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E5%BC%80%E5%8F%91/"/>
-    
       <category term="js" scheme="http://mmrxia.github.io/tags/js/"/>
+    
+      <category term="移动端开发" scheme="http://mmrxia.github.io/tags/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E5%BC%80%E5%8F%91/"/>
     
   </entry>
   
@@ -406,9 +462,9 @@ Hi mmrxia! You&amp;#39;ve successfully authenticated, but GitHub does not provid
     </summary>
     
     
-      <category term="Linux" scheme="http://mmrxia.github.io/tags/Linux/"/>
-    
       <category term="git" scheme="http://mmrxia.github.io/tags/git/"/>
+    
+      <category term="Linux" scheme="http://mmrxia.github.io/tags/Linux/"/>
     
   </entry>
   
@@ -1472,190 +1528,6 @@ define(function (require, exports, module) {
       <category term="算法" scheme="http://mmrxia.github.io/tags/%E7%AE%97%E6%B3%95/"/>
     
       <category term="随笔" scheme="http://mmrxia.github.io/tags/%E9%9A%8F%E7%AC%94/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>markdown基本语法</title>
-    <link href="http://mmrxia.github.io/2016/04/22/markdown%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95/"/>
-    <id>http://mmrxia.github.io/2016/04/22/markdown基本语法/</id>
-    <published>2016-04-22T08:47:01.000Z</published>
-    <updated>2016-04-26T08:32:19.056Z</updated>
-    
-    <content type="html">&lt;h2 id=&quot;主要内容&quot;&gt;&lt;a href=&quot;#主要内容&quot; class=&quot;headerlink&quot; title=&quot;主要内容&quot;&gt;&lt;/a&gt;主要内容&lt;/h2&gt;&lt;blockquote&gt;
-&lt;h4 id=&quot;Markdown是什么？&quot;&gt;&lt;a href=&quot;#Markdown是什么？&quot; class=&quot;headerlink&quot; title=&quot;Markdown是什么？&quot;&gt;&lt;/a&gt;Markdown是&lt;em&gt;什么&lt;/em&gt;？&lt;/h4&gt;&lt;h4 id=&quot;谁发明了这么个东西？&quot;&gt;&lt;a href=&quot;#谁发明了这么个东西？&quot; class=&quot;headerlink&quot; title=&quot;谁发明了这么个东西？&quot;&gt;&lt;/a&gt;&lt;em&gt;谁&lt;/em&gt;发明了这么个东西？&lt;/h4&gt;&lt;h4 id=&quot;为什么要使用它？&quot;&gt;&lt;a href=&quot;#为什么要使用它？&quot; class=&quot;headerlink&quot; title=&quot;为什么要使用它？&quot;&gt;&lt;/a&gt;&lt;em&gt;为什么&lt;/em&gt;要使用它？&lt;/h4&gt;&lt;h4 id=&quot;怎么使用？&quot;&gt;&lt;a href=&quot;#怎么使用？&quot; class=&quot;headerlink&quot; title=&quot;怎么使用？&quot;&gt;&lt;/a&gt;&lt;em&gt;怎么&lt;/em&gt;使用？&lt;/h4&gt;&lt;h4 id=&quot;都谁在用？&quot;&gt;&lt;a href=&quot;#都谁在用？&quot; class=&quot;headerlink&quot; title=&quot;都谁在用？&quot;&gt;&lt;/a&gt;都&lt;em&gt;谁&lt;/em&gt;在用？&lt;/h4&gt;&lt;h4 id=&quot;感觉有意思？不怕你看见，就怕你试试&quot;&gt;&lt;a href=&quot;#感觉有意思？不怕你看见，就怕你试试&quot; class=&quot;headerlink&quot; title=&quot;感觉有意思？不怕你看见，就怕你试试&quot;&gt;&lt;/a&gt;感觉有意思？&lt;em&gt;不怕你看见，就怕你试试&lt;/em&gt;&lt;/h4&gt;&lt;/blockquote&gt;
-&lt;h2 id=&quot;正文&quot;&gt;&lt;a href=&quot;#正文&quot; class=&quot;headerlink&quot; title=&quot;正文&quot;&gt;&lt;/a&gt;正文&lt;/h2&gt;&lt;h3 id=&quot;1-Markdown是什么？&quot;&gt;&lt;a href=&quot;#1-Markdown是什么？&quot; class=&quot;headerlink&quot; title=&quot;1. Markdown是什么？&quot;&gt;&lt;/a&gt;1. Markdown是&lt;em&gt;什么&lt;/em&gt;？&lt;/h3&gt;&lt;p&gt;&lt;strong&gt;Markdown&lt;/strong&gt;是一种轻量级&lt;strong&gt;标记语言&lt;/strong&gt;，它以纯文本形式(&lt;em&gt;易读、易写、易更改&lt;/em&gt;)编写文档，并最终以HTML格式发布。&lt;br&gt;&lt;strong&gt;Markdown&lt;/strong&gt;也可以理解为将以MARKDOWN语言编写的语言转换成HTML内容的工具，最初是一个perl脚本&lt;em&gt;Markdown.pl&lt;/em&gt;。    &lt;/p&gt;
-&lt;h3 id=&quot;2-谁发明了这么个东西？&quot;&gt;&lt;a href=&quot;#2-谁发明了这么个东西？&quot; class=&quot;headerlink&quot; title=&quot;2. 谁发明了这么个东西？&quot;&gt;&lt;/a&gt;2. &lt;em&gt;谁&lt;/em&gt;发明了这么个东西？&lt;/h3&gt;&lt;p&gt;它由&lt;a href=&quot;http://www.aaronsw.com/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;&lt;strong&gt;Aaron Swartz&lt;/strong&gt;&lt;/a&gt;和&lt;strong&gt;John Gruber&lt;/strong&gt;共同设计，&lt;strong&gt;Aaron Swartz&lt;/strong&gt;就是那位于去年（&lt;em&gt;2013年1月11日&lt;/em&gt;）自杀,有着&lt;strong&gt;开挂&lt;/strong&gt;一般人生经历的程序员。维基百科对他的&lt;a href=&quot;http://zh.wikipedia.org/wiki/%E4%BA%9A%E4%BC%A6%C2%B7%E6%96%AF%E6%B2%83%E8%8C%A8&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;介绍&lt;/a&gt;是：&lt;strong&gt;软件工程师、作家、政治组织者、互联网活动家、维基百科人&lt;/strong&gt;。    &lt;/p&gt;
-&lt;p&gt;他有着足以让你跪拜的人生经历：    &lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;14岁&lt;/strong&gt;参与RSS 1.0规格标准的制订。     &lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;2004&lt;/strong&gt;年入读&lt;strong&gt;斯坦福&lt;/strong&gt;，之后退学。   &lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;2005&lt;/strong&gt;年创建&lt;a href=&quot;http://infogami.org/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Infogami&lt;/a&gt;，之后与&lt;a href=&quot;http://www.reddit.com/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Reddit&lt;/a&gt;合并成为其合伙人。   &lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;2010&lt;/strong&gt;年创立求进会（Demand Progress），积极参与禁止网络盗版法案（SOPA）活动，最终该提案&lt;strong&gt;居然&lt;/strong&gt;被撤回。   &lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;2011&lt;/strong&gt;年7月19日，因被控从MIT和JSTOR下载480万篇学术论文并以免费形式上传于网络被捕。     &lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;2013&lt;/strong&gt;年1月自杀身亡。    &lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;天才都有早逝的归途（又是一位&lt;strong&gt;犹太人&lt;/strong&gt;）。&lt;/p&gt;
-&lt;h3 id=&quot;3-为什么要使用它？&quot;&gt;&lt;a href=&quot;#3-为什么要使用它？&quot; class=&quot;headerlink&quot; title=&quot;3. 为什么要使用它？&quot;&gt;&lt;/a&gt;3. &lt;em&gt;为什么&lt;/em&gt;要使用它？&lt;/h3&gt;&lt;ul&gt;
-&lt;li&gt;它是易读（&lt;em&gt;看起开舒服&lt;/em&gt;）、易写（&lt;em&gt;语法简单&lt;/em&gt;）、易更改&lt;strong&gt;纯文本&lt;/strong&gt;。处处体现着&lt;strong&gt;极简主义&lt;/strong&gt;的影子。&lt;/li&gt;
-&lt;li&gt;兼容HTML，可以转换为HTML格式发布。&lt;/li&gt;
-&lt;li&gt;跨平台使用。&lt;/li&gt;
-&lt;li&gt;越来越多的网站支持Markdown。&lt;/li&gt;
-&lt;li&gt;更方便清晰的组织你的电子邮件。（Markdown-here, Airmail）&lt;/li&gt;
-&lt;li&gt;摆脱Word（我不是认真的）。&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3 id=&quot;4-怎么使用？&quot;&gt;&lt;a href=&quot;#4-怎么使用？&quot; class=&quot;headerlink&quot; title=&quot;4. 怎么使用？&quot;&gt;&lt;/a&gt;4. &lt;em&gt;怎么&lt;/em&gt;使用？&lt;/h3&gt;&lt;p&gt;如果不算&lt;strong&gt;扩展&lt;/strong&gt;，Markdown的语法绝对&lt;strong&gt;简单&lt;/strong&gt;到让你爱不释手。&lt;/p&gt;
-&lt;p&gt;废话太多，下面正文，Markdown语法主要分为如下几大部分：&lt;br&gt;&lt;strong&gt;标题&lt;/strong&gt;，&lt;strong&gt;段落&lt;/strong&gt;，&lt;strong&gt;区块引用&lt;/strong&gt;，&lt;strong&gt;代码区块&lt;/strong&gt;，&lt;strong&gt;强调&lt;/strong&gt;，&lt;strong&gt;列表&lt;/strong&gt;，&lt;strong&gt;分割线&lt;/strong&gt;，&lt;strong&gt;链接&lt;/strong&gt;，&lt;strong&gt;图片&lt;/strong&gt;，&lt;strong&gt;反斜杠 &lt;code&gt;\&lt;/code&gt;&lt;/strong&gt;，&lt;strong&gt;符号’`’&lt;/strong&gt;。&lt;/p&gt;
-&lt;h4 id=&quot;4-1-标题&quot;&gt;&lt;a href=&quot;#4-1-标题&quot; class=&quot;headerlink&quot; title=&quot;4.1 标题&quot;&gt;&lt;/a&gt;4.1 标题&lt;/h4&gt;&lt;p&gt;两种形式：&lt;br&gt;1）使用&lt;code&gt;=&lt;/code&gt;和&lt;code&gt;-&lt;/code&gt;标记一级和二级标题。&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;一级标题&lt;br&gt;&lt;code&gt;=========&lt;/code&gt;&lt;br&gt;二级标题&lt;br&gt;&lt;code&gt;---------&lt;/code&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;效果：&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;h1 id=&quot;一级标题&quot;&gt;&lt;a href=&quot;#一级标题&quot; class=&quot;headerlink&quot; title=&quot;一级标题   &quot;&gt;&lt;/a&gt;一级标题   &lt;/h1&gt;&lt;h2 id=&quot;二级标题&quot;&gt;&lt;a href=&quot;#二级标题&quot; class=&quot;headerlink&quot; title=&quot;二级标题&quot;&gt;&lt;/a&gt;二级标题&lt;/h2&gt;&lt;/blockquote&gt;
-&lt;p&gt;2）使用&lt;code&gt;#&lt;/code&gt;，可表示1-6级标题。&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;# 一级标题&lt;br&gt;## 二级标题&lt;br&gt;### 三级标题&lt;br&gt;#### 四级标题&lt;br&gt;##### 五级标题&lt;br&gt;###### 六级标题    &lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;效果：&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;h1 id=&quot;一级标题-1&quot;&gt;&lt;a href=&quot;#一级标题-1&quot; class=&quot;headerlink&quot; title=&quot;一级标题&quot;&gt;&lt;/a&gt;一级标题&lt;/h1&gt;&lt;h2 id=&quot;二级标题-1&quot;&gt;&lt;a href=&quot;#二级标题-1&quot; class=&quot;headerlink&quot; title=&quot;二级标题&quot;&gt;&lt;/a&gt;二级标题&lt;/h2&gt;&lt;h3 id=&quot;三级标题&quot;&gt;&lt;a href=&quot;#三级标题&quot; class=&quot;headerlink&quot; title=&quot;三级标题&quot;&gt;&lt;/a&gt;三级标题&lt;/h3&gt;&lt;h4 id=&quot;四级标题&quot;&gt;&lt;a href=&quot;#四级标题&quot; class=&quot;headerlink&quot; title=&quot;四级标题&quot;&gt;&lt;/a&gt;四级标题&lt;/h4&gt;&lt;h5 id=&quot;五级标题&quot;&gt;&lt;a href=&quot;#五级标题&quot; class=&quot;headerlink&quot; title=&quot;五级标题&quot;&gt;&lt;/a&gt;五级标题&lt;/h5&gt;&lt;h6 id=&quot;六级标题&quot;&gt;&lt;a href=&quot;#六级标题&quot; class=&quot;headerlink&quot; title=&quot;六级标题&quot;&gt;&lt;/a&gt;六级标题&lt;/h6&gt;&lt;/blockquote&gt;
-&lt;h4 id=&quot;4-2-段落&quot;&gt;&lt;a href=&quot;#4-2-段落&quot; class=&quot;headerlink&quot; title=&quot;4.2 段落&quot;&gt;&lt;/a&gt;4.2 段落&lt;/h4&gt;&lt;p&gt;段落的前后要有空行，所谓的空行是指没有文字内容。若想在段内强制换行的方式是使用&lt;strong&gt;两个以上&lt;/strong&gt;空格加上回车（引用中换行省略回车）。&lt;/p&gt;
-&lt;h4 id=&quot;4-3-区块引用&quot;&gt;&lt;a href=&quot;#4-3-区块引用&quot; class=&quot;headerlink&quot; title=&quot;4.3 区块引用&quot;&gt;&lt;/a&gt;4.3 区块引用&lt;/h4&gt;&lt;p&gt;在段落的每行或者只在第一行使用符号&lt;code&gt;&amp;gt;&lt;/code&gt;,还可使用多个嵌套引用，如：&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;&gt; 区块引用&lt;br&gt;&gt;&amp;gt; 嵌套引用  &lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;效果：&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;区块引用  &lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;嵌套引用 &lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;/blockquote&gt;
-&lt;h4 id=&quot;4-4-代码区块&quot;&gt;&lt;a href=&quot;#4-4-代码区块&quot; class=&quot;headerlink&quot; title=&quot;4.4 代码区块&quot;&gt;&lt;/a&gt;4.4 代码区块&lt;/h4&gt;&lt;p&gt;代码区块的建立是在每行加上4个空格或者一个制表符（如同写代码一样）。如&lt;br&gt;普通段落：&lt;/p&gt;
-&lt;p&gt;void main()&lt;br&gt;{&lt;br&gt;    printf(“Hello, Markdown.”);&lt;br&gt;}    &lt;/p&gt;
-&lt;p&gt;代码区块：&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;void main()
-{
-    printf(&amp;quot;Hello, Markdown.&amp;quot;);
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;strong&gt;注意&lt;/strong&gt;:需要和普通段落之间存在空行。&lt;/p&gt;
-&lt;h4 id=&quot;4-5-强调&quot;&gt;&lt;a href=&quot;#4-5-强调&quot; class=&quot;headerlink&quot; title=&quot;4.5 强调&quot;&gt;&lt;/a&gt;4.5 强调&lt;/h4&gt;&lt;p&gt;在强调内容两侧分别加上&lt;code&gt;*&lt;/code&gt;或者&lt;code&gt;_&lt;/code&gt;，如：&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;*斜体*，_斜体_&lt;br&gt;**粗体**，__粗体__&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;效果：&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;&lt;em&gt;斜体&lt;/em&gt;，&lt;em&gt;斜体&lt;/em&gt;&lt;br&gt;&lt;strong&gt;粗体&lt;/strong&gt;，&lt;strong&gt;粗体&lt;/strong&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h4 id=&quot;4-6-列表&quot;&gt;&lt;a href=&quot;#4-6-列表&quot; class=&quot;headerlink&quot; title=&quot;4.6 列表&quot;&gt;&lt;/a&gt;4.6 列表&lt;/h4&gt;&lt;p&gt;使用&lt;code&gt;·&lt;/code&gt;、&lt;code&gt;+&lt;/code&gt;、或&lt;code&gt;-&lt;/code&gt;标记无序列表，如：&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;-（+*） 第一项&lt;br&gt;-（+*） 第二项&lt;br&gt;- （+*）第三项&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;&lt;strong&gt;注意&lt;/strong&gt;：标记后面最少有一个&lt;em&gt;空格&lt;/em&gt;或&lt;em&gt;制表符&lt;/em&gt;。若不在引用区块中，必须和前方段落之间存在空行。&lt;/p&gt;
-&lt;p&gt;效果：&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;ul&gt;
-&lt;li&gt;第一项&lt;/li&gt;
-&lt;li&gt;第二项&lt;/li&gt;
-&lt;li&gt;第三项&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;有序列表的标记方式是将上述的符号换成数字,并辅以&lt;code&gt;.&lt;/code&gt;，如：&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;1 . 第一项&lt;br&gt;2 . 第二项&lt;br&gt;3 . 第三项    &lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;效果：&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;ol&gt;
-&lt;li&gt;第一项&lt;/li&gt;
-&lt;li&gt;第二项&lt;/li&gt;
-&lt;li&gt;第三项&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/blockquote&gt;
-&lt;h4 id=&quot;4-7-分割线&quot;&gt;&lt;a href=&quot;#4-7-分割线&quot; class=&quot;headerlink&quot; title=&quot;4.7 分割线&quot;&gt;&lt;/a&gt;4.7 分割线&lt;/h4&gt;&lt;p&gt;分割线最常使用就是三个或以上&lt;code&gt;*&lt;/code&gt;，还可以使用&lt;code&gt;-&lt;/code&gt;和&lt;code&gt;_&lt;/code&gt;。&lt;/p&gt;
-&lt;h4 id=&quot;4-8-链接&quot;&gt;&lt;a href=&quot;#4-8-链接&quot; class=&quot;headerlink&quot; title=&quot;4.8 链接&quot;&gt;&lt;/a&gt;4.8 链接&lt;/h4&gt;&lt;p&gt;链接可以由两种形式生成：&lt;strong&gt;行内式&lt;/strong&gt;和&lt;strong&gt;参考式&lt;/strong&gt;。&lt;br&gt;&lt;strong&gt;行内式&lt;/strong&gt;：&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;[younghz的Markdown库](https:://github.com/younghz/Markdown “Markdown”)。&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;效果：&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;&lt;a href=&quot;https:://github.com/younghz/Markdown&quot; title=&quot;Markdown&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;younghz的Markdown库&lt;/a&gt;。&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;&lt;strong&gt;参考式&lt;/strong&gt;：&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;[younghz的Markdown库1][1]&lt;br&gt;[younghz的Markdown库2][2]&lt;br&gt;[1]:https:://github.com/younghz/Markdown “Markdown”&lt;br&gt;[2]:https:://github.com/younghz/Markdown “Markdown”    &lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;效果：&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;&lt;a href=&quot;https:://github.com/younghz/Markdown&quot; title=&quot;Markdown&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;younghz的Markdown库1&lt;/a&gt;&lt;br&gt;&lt;a href=&quot;https:://github.com/younghz/Markdown&quot; title=&quot;Markdown&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;younghz的Markdown库2&lt;/a&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;&lt;strong&gt;注意&lt;/strong&gt;：上述的&lt;code&gt;[1]:https:://github.com/younghz/Markdown &amp;quot;Markdown&amp;quot;&lt;/code&gt;不出现在区块中。&lt;/p&gt;
-&lt;h4 id=&quot;4-9-图片&quot;&gt;&lt;a href=&quot;#4-9-图片&quot; class=&quot;headerlink&quot; title=&quot;4.9 图片&quot;&gt;&lt;/a&gt;4.9 图片&lt;/h4&gt;&lt;p&gt;添加图片的形式和链接相似，只需在链接的基础上前方加一个&lt;code&gt;！&lt;/code&gt;。&lt;/p&gt;
-&lt;h4 id=&quot;4-10-反斜杠&quot;&gt;&lt;a href=&quot;#4-10-反斜杠&quot; class=&quot;headerlink&quot; title=&quot;4.10 反斜杠\&quot;&gt;&lt;/a&gt;4.10 反斜杠&lt;code&gt;\&lt;/code&gt;&lt;/h4&gt;&lt;p&gt;相当于&lt;strong&gt;反转义&lt;/strong&gt;作用。使符号成为普通符号。&lt;/p&gt;
-&lt;h4 id=&quot;4-11-符号’-’&quot;&gt;&lt;a href=&quot;#4-11-符号’-’&quot; class=&quot;headerlink&quot; title=&quot;4.11 符号’`’&quot;&gt;&lt;/a&gt;4.11 符号’`’&lt;/h4&gt;&lt;p&gt;起到标记作用。如：&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;`ctrl+a`&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;效果：&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;&lt;code&gt;ctrl+a&lt;/code&gt;    &lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h4 id=&quot;5-都谁在用？&quot;&gt;&lt;a href=&quot;#5-都谁在用？&quot; class=&quot;headerlink&quot; title=&quot;5. 都谁在用？&quot;&gt;&lt;/a&gt;5. 都&lt;em&gt;谁&lt;/em&gt;在用？&lt;/h4&gt;&lt;p&gt;Markdown的使用者：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;GitHub&lt;/li&gt;
-&lt;li&gt;简书&lt;/li&gt;
-&lt;li&gt;Stack Overflow&lt;/li&gt;
-&lt;li&gt;Apollo&lt;/li&gt;
-&lt;li&gt;Moodle&lt;/li&gt;
-&lt;li&gt;Reddit&lt;/li&gt;
-&lt;li&gt;等等&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h4 id=&quot;6-感觉有意思？趁热打铁，推荐几个工具。&quot;&gt;&lt;a href=&quot;#6-感觉有意思？趁热打铁，推荐几个工具。&quot; class=&quot;headerlink&quot; title=&quot;6. 感觉有意思？趁热打铁，推荐几个工具。&quot;&gt;&lt;/a&gt;6. 感觉有意思？趁热打铁，推荐几个&lt;em&gt;工具&lt;/em&gt;。&lt;/h4&gt;&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;Chrome&lt;/strong&gt;下的stackedit插件可以离线使用，很爽。也不用担心平台受限。&lt;br&gt;在线的dillinger.io算是评价好的了，可是不能离线使用。    &lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Windowns&lt;/strong&gt;下的MarkdownPad也用过，不过免费版的体验不是很好。    &lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Mac&lt;/strong&gt;下的Mou是国人贡献的，口碑很好。推荐。    &lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Linux&lt;/strong&gt;下的ReText不错。    &lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;strong&gt;其实在对语法了如于心的话，直接用编辑器就可以了，脑子里满满的都是格式化好的文本啊。&lt;/strong&gt;&lt;br&gt;我现在使用&lt;code&gt;马克飞象&lt;/code&gt; + &lt;code&gt;Markdown-here&lt;/code&gt;，先编辑好，然后一键格式化，挺方便。&lt;/p&gt;
-&lt;hr&gt;
-&lt;p&gt;&lt;strong&gt;注意&lt;/strong&gt;：不同的Markdown解释器或工具对相应语法（扩展语法）的解释效果不尽相同，具体可参见工具的使用说明。&lt;br&gt;虽然有人想出面搞一个所谓的标准化的Markdown，[没想到还惹怒了健在的创始人John Gruber]&lt;br&gt;(&lt;a href=&quot;http://blog.codinghorror.com/standard-markdown-is-now-common-markdown/)。&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://blog.codinghorror.com/standard-markdown-is-now-common-markdown/)。&lt;/a&gt;&lt;/p&gt;
-&lt;hr&gt;
-&lt;p&gt;以上基本是所有traditonal markdown的语法。&lt;/p&gt;
-&lt;h3 id=&quot;其它：&quot;&gt;&lt;a href=&quot;#其它：&quot; class=&quot;headerlink&quot; title=&quot;其它：&quot;&gt;&lt;/a&gt;其它：&lt;/h3&gt;&lt;p&gt;列表的使用(非traditonal markdown)：&lt;/p&gt;
-&lt;p&gt;用&lt;code&gt;|&lt;/code&gt;表示表格纵向边界，表头和表内容用&lt;code&gt;-&lt;/code&gt;隔开，并可用&lt;code&gt;:&lt;/code&gt;进行对齐设置，两边都有&lt;code&gt;:&lt;/code&gt;则表示居中，若不加&lt;code&gt;:&lt;/code&gt;则默认左对齐。&lt;/p&gt;
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th style=&quot;text-align:center&quot;&gt;网站名称&lt;/th&gt;
-&lt;th&gt;链接&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td style=&quot;text-align:center&quot;&gt;stackedit&lt;/td&gt;
-&lt;td&gt;&lt;a href=&quot;https://stackedit.io/editor&quot; title=&quot;stackedit&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://stackedit.io/editor&lt;/a&gt;&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&quot;text-align:center&quot;&gt;github&lt;/td&gt;
-&lt;td&gt;&lt;a href=&quot;https://github.com/mmrxia&quot; title=&quot;xqs&amp;#39;s github&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://github.com/mmrxia&lt;/a&gt;&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-&lt;p&gt;关于其它扩展语法可参见具体工具的使用说明。&lt;/p&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;主要内容&quot;&gt;&lt;a href=&quot;#主要内容&quot; class=&quot;headerlink&quot; title=&quot;主要内容&quot;&gt;&lt;/a&gt;主要内容&lt;/h2&gt;&lt;blockquote&gt;
-&lt;h4 id=&quot;Markdown是什么？&quot;&gt;&lt;a href=&quot;#Markdown是什么？&quot; class=
-    
-    </summary>
-    
-      <category term="参考资料" scheme="http://mmrxia.github.io/categories/%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99/"/>
-    
-    
-      <category term="markdown" scheme="http://mmrxia.github.io/tags/markdown/"/>
     
   </entry>
   
