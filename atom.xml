@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://mmrxia.github.io/"/>
-  <updated>2016-12-16T07:42:25.843Z</updated>
+  <updated>2016-12-16T09:27:04.173Z</updated>
   <id>http://mmrxia.github.io/</id>
   
   <author>
@@ -16,46 +16,124 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>mongoose学习笔记</title>
+    <link href="http://mmrxia.github.io/2016/12/16/mongoose%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
+    <id>http://mmrxia.github.io/2016/12/16/mongoose学习笔记/</id>
+    <published>2016-12-16T08:54:48.000Z</published>
+    <updated>2016-12-16T09:27:04.173Z</updated>
+    
+    <content type="html">&lt;h2 id=&quot;一、快速通道&quot;&gt;&lt;a href=&quot;#一、快速通道&quot; class=&quot;headerlink&quot; title=&quot;一、快速通道&quot;&gt;&lt;/a&gt;一、快速通道&lt;/h2&gt;&lt;h3 id=&quot;1-名词解释&quot;&gt;&lt;a href=&quot;#1-名词解释&quot; class=&quot;headerlink&quot; title=&quot;1. 名词解释&quot;&gt;&lt;/a&gt;1. 名词解释&lt;/h3&gt;&lt;p&gt;Schema（模式）: 一种以文件形式存储的数据库模型骨架，不具备数据库的操作能力。&lt;br&gt;Model（模型）: 源于Schema生成的模型，具有抽象属性和行为的数据库操作对。&lt;br&gt;Entity（实体）: 源于Model创建的实体，操作可影响数据库。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;注意：&lt;br&gt;  1 . 本学习文档采用严格命名方式来区别不同对象，例如：&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-javascript&quot;&gt;  var PersonSchema;   //Person的文本属性
+  var PersonModel;    //Person的数据库模型
+  var PersonEntity;   //Person实体
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;  2 . Schema –&amp;gt; Model，Model –&amp;gt; Entity。Model和Entity都可对数据库操作造成影响，但Model比Entity更具操作性。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&quot;2-准备工作&quot;&gt;&lt;a href=&quot;#2-准备工作&quot; class=&quot;headerlink&quot; title=&quot;2. 准备工作&quot;&gt;&lt;/a&gt;2. 准备工作&lt;/h3&gt;&lt;p&gt;1 . 首先你必须安装MongoDB和NodeJS&lt;br&gt;  mongodb安装可参考： &lt;a href=&quot;http://blog.xiaqingsong.com/2016/12/16/windows%E4%B8%8B%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AEmongodb/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;windows下安装配置mongodb&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;2 . 在项目只能够创建一个数据库连接，如下:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-javascript&quot;&gt;var mongoose = require(&amp;#39;mongoose&amp;#39;);    //引用mongoose模块
+var db = mongoose.createConnection(&amp;#39;localhost&amp;#39;,&amp;#39;test&amp;#39;); //创建一个数据库连接
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;3 . 打开本机localhost的test数据库时，我们可以监测是否有异常&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-javascript&quot;&gt;db.on(&amp;#39;error&amp;#39;,console.error.bind(console,&amp;#39;连接错误:&amp;#39;));
+db.once(&amp;#39;open&amp;#39;,function(){
+  //mongodb connected!
+});
+&lt;/code&gt;&lt;/pre&gt;
+&lt;blockquote&gt;
+&lt;p&gt;注意：&lt;br&gt;  成功开启数据库后，就可以执行数据库相应操作，假设以下代码都在回调中处理&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;4 . 定义一个Schema&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-javascript&quot;&gt;var PersonSchema = new mongoose.Schema({
+  name:String   //定义一个属性name，类型为String
+});
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;5 . 将该Schema发布为Model&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-javascript&quot;&gt;var PersonModel = db.model(&amp;#39;Person&amp;#39;,PersonSchema);
+//如果该Model已经发布，则可以直接通过名字索引到，如下：
+//var PersonModel = db.model(&amp;#39;Person&amp;#39;);
+//如果没有发布，上一段代码将会异常
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;6 . 用Model创建Entity&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-javascript&quot;&gt;var personEntity = new PersonModel({name:&amp;#39;Krouky&amp;#39;});
+//打印这个实体的名字看看
+console.log(personEntity.name); //Krouky
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;7 . 我们甚至可以为此Schema创建方法&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-javascript&quot;&gt;//为Schema模型追加speak方法
+PersonSchema.methos.speak = function(){
+  console.log(&amp;#39;我的名字叫&amp;#39;+this.name);
+}
+var PersonModel = db.model(&amp;#39;Person&amp;#39;,PersonSchema);
+var personEntity = new PersonModel({name:&amp;#39;Krouky&amp;#39;});
+personEntity.speak();//我的名字叫Krouky
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;8 . Entity是具有具体的数据库操作CRUD的&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-javascript&quot;&gt;personEntity.save();  //执行完成后，数据库就有该数据了
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;9 . 如果要执行查询，需要依赖Model，当然Entity也是可以做到的&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-javascript&quot;&gt;PersonModel.find(function(err,persons){
+  //查询到的所有person
+});
+&lt;/code&gt;&lt;/pre&gt;
+&lt;blockquote&gt;
+&lt;p&gt;注意：&lt;br&gt;  1 . 具体的如何配置Schema、Model以及Model和Entity的相关操作，我们会在后面进行&lt;br&gt;  2 . Model和Entity都有能影响数据库的操作，但仍有区别，后面我们也会做解释&lt;/p&gt;
+&lt;/blockquote&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;一、快速通道&quot;&gt;&lt;a href=&quot;#一、快速通道&quot; class=&quot;headerlink&quot; title=&quot;一、快速通道&quot;&gt;&lt;/a&gt;一、快速通道&lt;/h2&gt;&lt;h3 id=&quot;1-名词解释&quot;&gt;&lt;a href=&quot;#1-名词解释&quot; class=&quot;headerlink&quot; titl
+    
+    </summary>
+    
+    
+      <category term="mongodb" scheme="http://mmrxia.github.io/tags/mongodb/"/>
+    
+  </entry>
+  
+  <entry>
     <title>windows下安装配置mongodb</title>
     <link href="http://mmrxia.github.io/2016/12/16/windows%E4%B8%8B%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AEmongodb/"/>
     <id>http://mmrxia.github.io/2016/12/16/windows下安装配置mongodb/</id>
     <published>2016-12-16T06:36:29.000Z</published>
-    <updated>2016-12-16T07:42:25.843Z</updated>
+    <updated>2016-12-16T09:25:29.582Z</updated>
     
     <content type="html">&lt;p&gt;安装文件：官方网站 &lt;a href=&quot;http://www.mongodb.org/downloads&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://www.mongodb.org/downloads&lt;/a&gt;&lt;br&gt;选择对应系统的文件下载。&lt;/p&gt;
-&lt;p&gt;一、解压缩文件。&lt;br&gt;  将压缩包解压，在D盘创建文件夹&lt;code&gt;mongodb&lt;/code&gt;,将压缩包解压到&lt;code&gt;mongodb&lt;/code&gt;文件夹中。&lt;/p&gt;
-&lt;p&gt;二、建立工作目录。&lt;br&gt;  1、建立数据存放目录  &lt;code&gt;D:\mongodb\data\db&lt;/code&gt;&lt;br&gt;  2、建立日志文件  &lt;code&gt;D:\mongodb\db\log\mongodb.log&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;三、建立配置文件。&lt;br&gt;  &lt;code&gt;mongodb&lt;/code&gt;文件夹下建立&lt;code&gt;mongodb.cfg&lt;/code&gt;文件，输入以下内容：&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-git&quot;&gt;  dbpath=D:\MongoDB\data #数据库路径
-  logpath=D:\MongoDB\logs\mongodb.log #日志输出文件路径
-  logappend=true #错误日志采用追加模式，配置这个选项后mongodb的日志会追加到现有的日志文件，而不是从新创建一个新文件
-  journal=true #启用日志文件，默认启用
-  quiet=true #这个选项可以过滤掉一些无用的日志信息，若需要调试使用请设置为false
-  port=27017 #端口号 默认为27017
+&lt;h3 id=&quot;一、解压缩文件。&quot;&gt;&lt;a href=&quot;#一、解压缩文件。&quot; class=&quot;headerlink&quot; title=&quot;一、解压缩文件。&quot;&gt;&lt;/a&gt;一、解压缩文件。&lt;/h3&gt;&lt;p&gt;  将压缩包解压，在D盘创建文件夹&lt;code&gt;mongodb&lt;/code&gt;,将压缩包解压到&lt;code&gt;mongodb&lt;/code&gt;文件夹中。&lt;/p&gt;
+&lt;h3 id=&quot;二、建立工作目录。&quot;&gt;&lt;a href=&quot;#二、建立工作目录。&quot; class=&quot;headerlink&quot; title=&quot;二、建立工作目录。&quot;&gt;&lt;/a&gt;二、建立工作目录。&lt;/h3&gt;&lt;p&gt;  1、建立数据存放目录  &lt;code&gt;D:\mongodb\data\db&lt;/code&gt;&lt;br&gt;  2、建立日志文件  &lt;code&gt;D:\mongodb\db\log\mongodb.log&lt;/code&gt;&lt;/p&gt;
+&lt;h3 id=&quot;三、建立配置文件。&quot;&gt;&lt;a href=&quot;#三、建立配置文件。&quot; class=&quot;headerlink&quot; title=&quot;三、建立配置文件。&quot;&gt;&lt;/a&gt;三、建立配置文件。&lt;/h3&gt;&lt;p&gt;&lt;code&gt;mongodb&lt;/code&gt;文件夹下建立&lt;code&gt;mongodb.cfg&lt;/code&gt;文件，输入以下内容：&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-git&quot;&gt;dbpath=D:\MongoDB\data #数据库路径
+logpath=D:\MongoDB\logs\mongodb.log #日志输出文件路径
+logappend=true #错误日志采用追加模式，配置这个选项后mongodb的日志会追加到现有的日志文件，而不是从新创建一个新文件
+journal=true #启用日志文件，默认启用
+quiet=true #这个选项可以过滤掉一些无用的日志信息，若需要调试使用请设置为false
+port=27017 #端口号 默认为27017
 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;  这里仅指定了几个常用项，更多详细配置请参考官方文档 &lt;a href=&quot;http://docs.mongodb.org/manual/reference/configuration-options/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://docs.mongodb.org/manual/reference/configuration-options/&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;四、启动mongdb服务。&lt;/p&gt;
-&lt;p&gt;  至此&lt;code&gt;mongodb&lt;/code&gt;文件夹下有文件夹及文件：&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-git&quot;&gt;  D:\ mongodb\bin
-  D:\ mongodb\data\db
-  D:\ mongodb\data\log
+&lt;p&gt;这里仅指定了几个常用项，更多详细配置请参考官方文档 &lt;a href=&quot;http://docs.mongodb.org/manual/reference/configuration-options/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://docs.mongodb.org/manual/reference/configuration-options/&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&quot;四、启动mongdb服务。&quot;&gt;&lt;a href=&quot;#四、启动mongdb服务。&quot; class=&quot;headerlink&quot; title=&quot;四、启动mongdb服务。&quot;&gt;&lt;/a&gt;四、启动mongdb服务。&lt;/h3&gt;&lt;p&gt;至此&lt;code&gt;mongodb&lt;/code&gt;文件夹下有文件夹及文件：&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-git&quot;&gt;D:\ mongodb\bin
+D:\ mongodb\data\db
+D:\ mongodb\data\log
 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;  配置文件和相关目录建好后使用如下方式启动mongodb：&lt;/p&gt;
-&lt;p&gt;  控制台进入&lt;code&gt;D:\ mongodb\bin&lt;/code&gt;目录，执行以下命令:&lt;/p&gt;
-&lt;p&gt;  1 . 普通启动 &lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-git&quot;&gt;  mongod --config D:\mongodb\mongodb.cfg
+&lt;p&gt;配置文件和相关目录建好后使用如下方式启动mongodb：&lt;/p&gt;
+&lt;p&gt;控制台进入&lt;code&gt;D:\ mongodb\bin&lt;/code&gt;目录，执行以下命令:&lt;/p&gt;
+&lt;p&gt;1 . 普通启动 &lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-git&quot;&gt;mongod --config D:\mongodb\mongodb.cfg
 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;  2 . 安装为Windows服务&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-git&quot;&gt;  mongod --config D:\mongodb\mongodb.cfg --install
+&lt;p&gt;2 . 安装为Windows服务&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-git&quot;&gt;mongod --config D:\mongodb\mongodb.cfg --install
 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;  注：2.6版 这种方式在win7、win8 64位版无法安装成功，其他系统未测试&lt;br&gt;  BUG链接 &lt;a href=&quot;https://jira.mongodb.org/browse/SERVER-13515&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://jira.mongodb.org/browse/SERVER-13515&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;  3 . 使用SC命令安装为Windows服务&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-git&quot;&gt;  sc create MongoDB binPath= &amp;quot;D:\mongodb\bin\mongod.exe --service --config=D:\mongodb\mongodb.cfg&amp;quot;
+&lt;p&gt;注：2.6版 这种方式在win7、win8 64位版无法安装成功，其他系统未测试&lt;br&gt;BUG链接 &lt;a href=&quot;https://jira.mongodb.org/browse/SERVER-13515&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://jira.mongodb.org/browse/SERVER-13515&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;3 . 使用SC命令安装为Windows服务&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-git&quot;&gt;sc create MongoDB binPath= &amp;quot;D:\mongodb\bin\mongod.exe --service --config=D:\mongodb\mongodb.cfg&amp;quot;
 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;五、系统服务启动与删除。&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-git&quot;&gt;net start MongoDB  //启动MongoDB服务  
+&lt;h3 id=&quot;五、系统服务启动与删除。&quot;&gt;&lt;a href=&quot;#五、系统服务启动与删除。&quot; class=&quot;headerlink&quot; title=&quot;五、系统服务启动与删除。&quot;&gt;&lt;/a&gt;五、系统服务启动与删除。&lt;/h3&gt;&lt;pre&gt;&lt;code class=&quot;language-git&quot;&gt;net start MongoDB  //启动MongoDB服务  
 net stop MongoDB  //停止MongoDB服务   
-mongod --remove //移除MongoDB服务
+mongod --remove  //移除MongoDB服务 
+sc delete MongoDB   //通过该方式删除的话，服务中的 mongod仍会存在，注册表中不存在了，再重启之后服务的mongodb才会消失
 &lt;/code&gt;&lt;/pre&gt;
 </content>
     
@@ -416,9 +494,9 @@ function getImgData(img,dir,next){
     </summary>
     
     
-      <category term="js" scheme="http://mmrxia.github.io/tags/js/"/>
-    
       <category term="移动端开发" scheme="http://mmrxia.github.io/tags/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E5%BC%80%E5%8F%91/"/>
+    
+      <category term="js" scheme="http://mmrxia.github.io/tags/js/"/>
     
   </entry>
   
@@ -462,9 +540,9 @@ Hi mmrxia! You&amp;#39;ve successfully authenticated, but GitHub does not provid
     </summary>
     
     
-      <category term="git" scheme="http://mmrxia.github.io/tags/git/"/>
-    
       <category term="Linux" scheme="http://mmrxia.github.io/tags/Linux/"/>
+    
+      <category term="git" scheme="http://mmrxia.github.io/tags/git/"/>
     
   </entry>
   
@@ -1220,314 +1298,6 @@ git config -global user.email &amp;quot;you@example.com&amp;quot;
     
     
       <category term="git" scheme="http://mmrxia.github.io/tags/git/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>SKU算法总结分享</title>
-    <link href="http://mmrxia.github.io/2016/04/26/SKU%E7%AE%97%E6%B3%95%E6%80%BB%E7%BB%93%E5%88%86%E4%BA%AB/"/>
-    <id>http://mmrxia.github.io/2016/04/26/SKU算法总结分享/</id>
-    <published>2016-04-26T08:28:49.000Z</published>
-    <updated>2016-11-14T08:22:29.646Z</updated>
-    
-    <content type="html">&lt;h4 id=&quot;1-SKU简介&quot;&gt;&lt;a href=&quot;#1-SKU简介&quot; class=&quot;headerlink&quot; title=&quot;1. SKU简介&quot;&gt;&lt;/a&gt;1. SKU简介&lt;/h4&gt;&lt;p&gt;下面是SKU来自维基百科的解释：&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;&lt;strong&gt;最小存货单位&lt;/strong&gt;（Stock Keeping Unit, SKU）是一个会计学名词，定义为保存库存控制的最小可用单位，例如纺织品中一个SKU通常表示规格、颜色、款式，而在连锁零售门店中有时称单品为一个SKU。&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;直观一点的实际应用，可以参考淘宝的商品SKU选择界面，如下：&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;http://7xth8v.com2.z0.glb.qiniucdn.com/image/sku.png&quot; alt=&quot;&quot;&gt;              &lt;/p&gt;
-&lt;h4 id=&quot;2-基础数据&quot;&gt;&lt;a href=&quot;#2-基础数据&quot; class=&quot;headerlink&quot; title=&quot;2. 基础数据&quot;&gt;&lt;/a&gt;2. 基础数据&lt;/h4&gt;&lt;pre&gt;&lt;code class=&quot;language-javascript&quot;&gt;    //属性集
-    var keys = [
-        [&amp;#39;10&amp;#39;],  //iPhone7s
-        [&amp;#39;20&amp;#39;,&amp;#39;21&amp;#39;,&amp;#39;22&amp;#39;,&amp;#39;23&amp;#39;,&amp;#39;24&amp;#39;],  //土豪金,白色,黑色,灰色,粉色
-        [&amp;#39;30&amp;#39;,&amp;#39;31&amp;#39;,&amp;#39;32&amp;#39;,&amp;#39;33&amp;#39;,&amp;#39;34&amp;#39;,&amp;#39;35&amp;#39;,&amp;#39;36&amp;#39;,&amp;#39;37&amp;#39;,&amp;#39;38&amp;#39;],  //港版，大陆行货，亚太版，美版，韩版，日版，意大利版，俄罗斯版，欧版
-        [&amp;#39;40&amp;#39;] //4.7寸
-    ];
-&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code class=&quot;language-javascript&quot;&gt;    //后台读取结果集
-    var data = {
-        &amp;quot;10;24;31;40&amp;quot;:{&amp;quot;price&amp;quot;:366,&amp;quot;count&amp;quot;:46},
-        &amp;quot;10;24;33;40&amp;quot;:{&amp;quot;price&amp;quot;:416,&amp;quot;count&amp;quot;:77},
-        &amp;quot;10;24;34;40&amp;quot;:{&amp;quot;price&amp;quot;:456,&amp;quot;count&amp;quot;:9},
-        &amp;quot;10;24;35;40&amp;quot;:{&amp;quot;price&amp;quot;:371,&amp;quot;count&amp;quot;:33},
-        &amp;quot;10;24;36;40&amp;quot;:{&amp;quot;price&amp;quot;:411,&amp;quot;count&amp;quot;:79},
-        &amp;quot;10;24;37;40&amp;quot;:{&amp;quot;price&amp;quot;:421,&amp;quot;count&amp;quot;:87},
-        &amp;quot;10;24;38;40&amp;quot;:{&amp;quot;price&amp;quot;:461,&amp;quot;count&amp;quot;:9},
-        &amp;quot;10;23;32;40&amp;quot;:{&amp;quot;price&amp;quot;:406,&amp;quot;count&amp;quot;:9},
-        &amp;quot;10;23;33;40&amp;quot;:{&amp;quot;price&amp;quot;:416,&amp;quot;count&amp;quot;:90},
-        &amp;quot;10;23;36;40&amp;quot;:{&amp;quot;price&amp;quot;:411,&amp;quot;count&amp;quot;:90},
-        &amp;quot;10;23;37;40&amp;quot;:{&amp;quot;price&amp;quot;:421,&amp;quot;count&amp;quot;:10},
-        &amp;quot;10;23;38;40&amp;quot;:{&amp;quot;price&amp;quot;:461,&amp;quot;count&amp;quot;:9},
-        &amp;quot;10;22;35;40&amp;quot;:{&amp;quot;price&amp;quot;:361,&amp;quot;count&amp;quot;:25},
-        &amp;quot;10;21;33;40&amp;quot;:{&amp;quot;price&amp;quot;:416,&amp;quot;count&amp;quot;:10},
-        &amp;quot;10;21;38;40&amp;quot;:{&amp;quot;price&amp;quot;:461,&amp;quot;count&amp;quot;:80},
-        &amp;quot;10;21;30;40&amp;quot;:{&amp;quot;price&amp;quot;:356,&amp;quot;count&amp;quot;:43},
-        &amp;quot;10;20;31;40&amp;quot;:{&amp;quot;price&amp;quot;:356,&amp;quot;count&amp;quot;:46},
-        &amp;quot;10;20;32;40&amp;quot;:{&amp;quot;price&amp;quot;:396,&amp;quot;count&amp;quot;:49},
-        &amp;quot;10;20;35;40&amp;quot;:{&amp;quot;price&amp;quot;:361,&amp;quot;count&amp;quot;:34},
-        &amp;quot;10;20;36;40&amp;quot;:{&amp;quot;price&amp;quot;:401,&amp;quot;count&amp;quot;:41},
-        &amp;quot;10;20;30;40&amp;quot;:{&amp;quot;price&amp;quot;:346,&amp;quot;count&amp;quot;:3}
-    };
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h4 id=&quot;3-算法分析&quot;&gt;&lt;a href=&quot;#3-算法分析&quot; class=&quot;headerlink&quot; title=&quot;3. 算法分析&quot;&gt;&lt;/a&gt;3. 算法分析&lt;/h4&gt;&lt;p&gt;重点在于排列组合出所有的属性集，和后台读取的结果集进行比对；&lt;/p&gt;
-&lt;h4 id=&quot;4-代码实现&quot;&gt;&lt;a href=&quot;#4-代码实现&quot; class=&quot;headerlink&quot; title=&quot;4. 代码实现&quot;&gt;&lt;/a&gt;4. 代码实现&lt;/h4&gt;&lt;pre&gt;&lt;code class=&quot;language-javascript&quot;&gt;/*
- * sku算法
- * by xqs 16.08.11
- * */
-
-define(function (require, exports, module) {
-
-    &amp;#39;use strict&amp;#39;;
-
-    //按钮样式class
-    var className = {
-        sku: &amp;#39;sku-key&amp;#39;,
-        active: &amp;#39;active&amp;#39;,
-        disabled: &amp;#39;ban&amp;#39;
-    };
-
-    //sku对象
-    var sku = {
-        delimiter: &amp;#39;b&amp;#39;      //分隔符
-    };
-
-
-    //初始化，组合新的结果集
-    sku.init = function (container) {
-
-        console.time(&amp;#39;skuInit time&amp;#39;);
-
-        sku.container = $(container);  //存储skuData的外容器
-
-        var data = $(container).data(&amp;#39;sku-map&amp;#39;);
-        if (!data || sku.container.data(&amp;#39;initialized&amp;#39;)) return;
-        //console.log(JSON.stringify(data))
-
-        var skuMap = sku.skuMap = {};  //sku结果集
-
-        //拿到已有skuMap中所有的sku组合key
-        var skuKeys = $.map(data, function (val, key) {
-            if (!val.count) val.count = 0;
-            return key;
-        });
-        //console.log(skuKeys, skuMap)
-
-        //转换成数组后，排列组合计算出所有的可能，存储在skuMap中
-        $.each(skuKeys, function (i, v) {
-            var keyArr = v.split(sku.delimiter).sort(function (a, b) {
-                    return parseInt(a) - parseInt(b);
-                }),
-                combArr = sku.combineArr(keyArr);
-            //console.log(JSON.stringify(combArr))
-
-            var skuInfo = data[v];
-            $.each(combArr, function (j, k) {
-                if (skuMap[k]) {
-                    skuMap[k].count += skuInfo.count;
-                    skuMap[k].prices.push(skuInfo.price);
-                    $.unique(skuMap[k].prices);  //数组去重
-                } else {
-                    skuMap[k] = {
-                        count: skuInfo.count,
-                        prices: [skuInfo.price]
-                    }
-                }
-            });
-
-            //已有的skuMap中的信息存储到skuMap中,替换原有的key
-            skuMap[keyArr.join(sku.delimiter)] = $.extend(null, {
-                count: skuInfo.count,
-                prices: [skuInfo.price]
-            }, skuInfo);
-
-        });
-
-        sku.container.data(&amp;#39;initialized&amp;#39;, true);
-
-        //打印一下sku字典拼装花费的时间
-        console.timeEnd(&amp;#39;skuInit time&amp;#39;);
-
-        console.info(JSON.stringify(skuMap));
-
-
-        //点击sku选项
-        var showPrice, showPic, skuDesc,
-            defaultPrice = $(&amp;#39;.sku-price&amp;#39;).text(),
-            defaultPic = $(&amp;#39;.sku-pic&amp;#39;).attr(&amp;#39;src&amp;#39;),
-            defaultDesc = &amp;#39;请选择&amp;#39; + $.map(sku.container.find(&amp;#39;dl dt&amp;#39;), function (item) {
-                    return $(item).text();
-                }).join(&amp;#39;,&amp;#39;);
-
-        //初始化渲染
-        $(&amp;#39;.sku-desc&amp;#39;).html(defaultDesc);
-
-        //未选择之前，先检查一下状态
-        sku.container.find(&amp;#39;.&amp;#39; + className.sku).each(function () {
-            //先初始化一下，看看是否所有的按钮都可选
-            var $this = $(this);
-            if (!skuMap[$this.data(&amp;#39;value&amp;#39;)]) {
-                $this.addClass(className.disabled).removeClass(className.active);
-            } else {
-                $this.removeClass(className.disabled);
-            }
-        }).end().off(&amp;#39;click&amp;#39;).on(&amp;#39;click&amp;#39;, &amp;#39;.&amp;#39; + className.sku, function () {
-            //添加click事件
-            var $this = $(this);
-
-            if ($this.hasClass(className.disabled)) return false;
-
-            //选中自己，取消兄弟元素选中状态
-            $this.toggleClass(className.active).siblings().removeClass(className.active);
-
-            //已选择的sku按钮信息
-            var skuSelected = sku.selected();
-            if (skuSelected.keys.length) {
-                var skuSelectedKey = skuSelected.keys.join(sku.delimiter);
-                //console.info(&amp;#39;skuKey==&amp;#39;, skuSelectedKey);
-
-                //显示价格区间及sku描述等信息
-                var minPrice = Math.min.apply(null, skuMap[skuSelectedKey].prices),
-                    maxPrice = Math.max.apply(null, skuMap[skuSelectedKey].prices);
-
-                showPrice = minPrice === maxPrice ? [&amp;#39;￥&amp;#39;, maxPrice].join(&amp;#39;&amp;#39;) : [&amp;#39;￥&amp;#39;, minPrice, &amp;#39;-&amp;#39;, maxPrice].join(&amp;#39;&amp;#39;);
-                skuMap[skuSelectedKey].itemPic &amp;amp;&amp;amp; (showPic = skuMap[skuSelectedKey].itemPic);
-                skuDesc = $.map(skuSelected.desc, function (v, i) {
-                    return &amp;#39;&amp;lt;span&amp;gt;&amp;#39; + v + &amp;#39;&amp;lt;/span&amp;gt;&amp;#39;;
-                }).join(&amp;#39;&amp;#39;);
-
-                //限购数量
-                var limitCount = skuSelected.detail &amp;amp;&amp;amp; skuSelected.detail.limit ? skuSelected.detail.limit : null;
-                sku.container.siblings(&amp;#39;.quantity&amp;#39;).find(&amp;#39;.number&amp;#39;).data(&amp;#39;max&amp;#39;, limitCount).spinner();  //改变数量控制;
-
-                //验证其他sku按钮
-                var $skuOthers = $(&amp;#39;.&amp;#39; + className.sku).not(&amp;#39;.&amp;#39; + className.active).not($this);
-                $.each($skuOthers, function () {
-                    var $that = $(this), $sibSelected = $that.siblings(&amp;#39;.&amp;#39; + className.active);
-                    var othersArr = [];
-                    if ($sibSelected[0]) {
-                        //同级别的sku已有选择，则在新数组中取出
-                        othersArr = $.grep(skuSelected.keys, function (v, i) {
-                            return v != $sibSelected.data(&amp;#39;value&amp;#39;);
-                        });
-                    } else {
-                        othersArr = skuSelected.keys.concat();
-                    }
-                    othersArr = othersArr.concat($that.data(&amp;#39;value&amp;#39;)).sort(function (a, b) {
-                        return parseInt(a) - parseInt(b);
-                    });
-
-                    //console.info(&amp;#39;othersArr==&amp;#39;, othersArr.join(sku.delimiter));
-
-                    if (!skuMap[othersArr.join(sku.delimiter)]) {
-                        $that.addClass(className.disabled);
-                    } else {
-                        $that.removeClass(className.disabled);
-                    }
-
-                });
-
-            } else {
-                //设置默认价格、描述
-                showPrice = defaultPrice;
-                showPic = defaultPic;
-                skuDesc = defaultDesc;
-                $.each($(&amp;#39;.&amp;#39; + className.sku), function () {
-                    var $this = $(this);
-                    if (!skuMap[$this.data(&amp;#39;value&amp;#39;)]) {
-                        $this.addClass(className.disabled).removeClass(className.active);
-                    } else {
-                        $this.removeClass(className.disabled);
-                    }
-                })
-            }
-
-            //显示价格和图片等信息
-            $(&amp;#39;.sku-price&amp;#39;).text(showPrice);
-            $(&amp;#39;.sku-pic&amp;#39;).attr(&amp;#39;src&amp;#39;, showPic);
-            $(&amp;#39;.sku-desc&amp;#39;).html(skuDesc);
-
-        });
-
-        //只有一组sku的话，直接选中
-        if ($.map(data, function (v, k) {
-                return k;
-            }).length === 1) {
-            sku.container.find(&amp;#39;.&amp;#39; + className.sku).trigger(&amp;#39;click&amp;#39;);
-        }
-
-    };
-
-    //数组排列组合算法
-    sku.combineArr = function (arr) {
-        //console.log(&amp;#39;arr&amp;#39;, arr)
-        var len = arr.length, result = [];
-        combine();
-        function combine(item, index) {
-            item = item || &amp;#39;&amp;#39;;
-            index = index || 0;
-            if (index == len)return;
-            for (var i = index; i &amp;lt; len; i++) {
-                var newItem = (item ? [item, sku.delimiter, arr[i]] : [item, arr[i]]).join(&amp;#39;&amp;#39;);
-                result.push(newItem);
-                combine(newItem, ++index);
-            }
-        }
-
-        return result;
-    };
-
-
-    //获取已选中的sku信息
-    sku.selected = function () {
-        var skuMap = sku.skuMap;
-        var $skuSelected = $(&amp;#39;.&amp;#39; + className.sku + &amp;#39;.&amp;#39; + className.active);
-        var result = {
-            keys: []
-        };
-        if ($skuSelected[0]) {
-            result.keys = $.map($skuSelected, function (v, i) {
-                return $(v).data(&amp;#39;value&amp;#39;);
-            }).sort(function (a, b) {
-                return parseInt(a) - parseInt(b);
-            });
-
-            result.desc = $.map($skuSelected, function (v, i) {
-                return $(v).text();
-            });
-
-            if (skuMap[result.keys.join(sku.delimiter)].itemId) {
-                result.detail = skuMap[result.keys.join(sku.delimiter)];
-                result.itemId = result.detail.itemId;
-            }
-
-        }
-
-        return result;
-    };
-
-
-    module.exports = sku;
-
-
-});
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h4 id=&quot;5-demo演示&quot;&gt;&lt;a href=&quot;#5-demo演示&quot; class=&quot;headerlink&quot; title=&quot;5. demo演示&quot;&gt;&lt;/a&gt;5. demo演示&lt;/h4&gt;&lt;p&gt;&lt;img src=&quot;http://7xth8v.com2.z0.glb.qiniucdn.com/image/sku_02.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;h4 id=&quot;1-SKU简介&quot;&gt;&lt;a href=&quot;#1-SKU简介&quot; class=&quot;headerlink&quot; title=&quot;1. SKU简介&quot;&gt;&lt;/a&gt;1. SKU简介&lt;/h4&gt;&lt;p&gt;下面是SKU来自维基百科的解释：&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;&lt;strong&gt;最小存
-    
-    </summary>
-    
-    
-      <category term="sku" scheme="http://mmrxia.github.io/tags/sku/"/>
-    
-      <category term="算法" scheme="http://mmrxia.github.io/tags/%E7%AE%97%E6%B3%95/"/>
-    
-      <category term="随笔" scheme="http://mmrxia.github.io/tags/%E9%9A%8F%E7%AC%94/"/>
     
   </entry>
   

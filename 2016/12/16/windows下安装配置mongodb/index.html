@@ -16,7 +16,7 @@
 一、解压缩文件。  将压缩包解压，在D盘创建文件夹mongodb,将压缩包解压到mongodb文件夹中。
 二、建立工作目录。  1、建立数据存放目录  D:\mongodb\data\db  2、建立日志文件  D:\mongodb\db\log\mongodb.log
 三、建立配置文件。">
-<meta property="og:updated_time" content="2016-12-16T07:42:25.843Z">
+<meta property="og:updated_time" content="2016-12-16T09:25:29.582Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="windows下安装配置mongodb">
 <meta name="twitter:description" content="安装文件：官方网站 http://www.mongodb.org/downloads选择对应系统的文件下载。
@@ -130,7 +130,7 @@
 				
 				<section class="switch-part switch-part2">
 					<div class="widget tagcloud" id="js-tagcloud">
-						<a href="/tags/Linux/" style="font-size: 13.33px;">Linux</a> <a href="/tags/base64/" style="font-size: 10px;">base64</a> <a href="/tags/bash/" style="font-size: 10px;">bash</a> <a href="/tags/bigPipe/" style="font-size: 10px;">bigPipe</a> <a href="/tags/cnpm/" style="font-size: 10px;">cnpm</a> <a href="/tags/express/" style="font-size: 10px;">express</a> <a href="/tags/git/" style="font-size: 16.67px;">git</a> <a href="/tags/javascript/" style="font-size: 13.33px;">javascript</a> <a href="/tags/js/" style="font-size: 16.67px;">js</a> <a href="/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/tags/mongodb/" style="font-size: 10px;">mongodb</a> <a href="/tags/nodejs/" style="font-size: 20px;">nodejs</a> <a href="/tags/npm/" style="font-size: 10px;">npm</a> <a href="/tags/sku/" style="font-size: 10px;">sku</a> <a href="/tags/uuid/" style="font-size: 10px;">uuid</a> <a href="/tags/前端/" style="font-size: 10px;">前端</a> <a href="/tags/数组/" style="font-size: 10px;">数组</a> <a href="/tags/移动端开发/" style="font-size: 10px;">移动端开发</a> <a href="/tags/算法/" style="font-size: 10px;">算法</a> <a href="/tags/西游记/" style="font-size: 13.33px;">西游记</a> <a href="/tags/跨域/" style="font-size: 10px;">跨域</a> <a href="/tags/随笔/" style="font-size: 10px;">随笔</a>
+						<a href="/tags/Linux/" style="font-size: 13.33px;">Linux</a> <a href="/tags/base64/" style="font-size: 10px;">base64</a> <a href="/tags/bash/" style="font-size: 10px;">bash</a> <a href="/tags/bigPipe/" style="font-size: 10px;">bigPipe</a> <a href="/tags/cnpm/" style="font-size: 10px;">cnpm</a> <a href="/tags/express/" style="font-size: 10px;">express</a> <a href="/tags/git/" style="font-size: 16.67px;">git</a> <a href="/tags/javascript/" style="font-size: 13.33px;">javascript</a> <a href="/tags/js/" style="font-size: 16.67px;">js</a> <a href="/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/tags/mongodb/" style="font-size: 13.33px;">mongodb</a> <a href="/tags/nodejs/" style="font-size: 20px;">nodejs</a> <a href="/tags/npm/" style="font-size: 10px;">npm</a> <a href="/tags/sku/" style="font-size: 10px;">sku</a> <a href="/tags/uuid/" style="font-size: 10px;">uuid</a> <a href="/tags/前端/" style="font-size: 10px;">前端</a> <a href="/tags/数组/" style="font-size: 10px;">数组</a> <a href="/tags/移动端开发/" style="font-size: 10px;">移动端开发</a> <a href="/tags/算法/" style="font-size: 10px;">算法</a> <a href="/tags/西游记/" style="font-size: 13.33px;">西游记</a> <a href="/tags/跨域/" style="font-size: 10px;">跨域</a> <a href="/tags/随笔/" style="font-size: 10px;">随笔</a>
 					</div>
 				</section>
 				
@@ -250,39 +250,38 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>安装文件：官方网站 <a href="http://www.mongodb.org/downloads" target="_blank" rel="external">http://www.mongodb.org/downloads</a><br>选择对应系统的文件下载。</p>
-<p>一、解压缩文件。<br>  将压缩包解压，在D盘创建文件夹<code>mongodb</code>,将压缩包解压到<code>mongodb</code>文件夹中。</p>
-<p>二、建立工作目录。<br>  1、建立数据存放目录  <code>D:\mongodb\data\db</code><br>  2、建立日志文件  <code>D:\mongodb\db\log\mongodb.log</code></p>
-<p>三、建立配置文件。<br>  <code>mongodb</code>文件夹下建立<code>mongodb.cfg</code>文件，输入以下内容：</p>
-<pre><code class="language-git">  dbpath=D:\MongoDB\data #数据库路径
-  logpath=D:\MongoDB\logs\mongodb.log #日志输出文件路径
-  logappend=true #错误日志采用追加模式，配置这个选项后mongodb的日志会追加到现有的日志文件，而不是从新创建一个新文件
-  journal=true #启用日志文件，默认启用
-  quiet=true #这个选项可以过滤掉一些无用的日志信息，若需要调试使用请设置为false
-  port=27017 #端口号 默认为27017
+<h3 id="一、解压缩文件。"><a href="#一、解压缩文件。" class="headerlink" title="一、解压缩文件。"></a>一、解压缩文件。</h3><p>  将压缩包解压，在D盘创建文件夹<code>mongodb</code>,将压缩包解压到<code>mongodb</code>文件夹中。</p>
+<h3 id="二、建立工作目录。"><a href="#二、建立工作目录。" class="headerlink" title="二、建立工作目录。"></a>二、建立工作目录。</h3><p>  1、建立数据存放目录  <code>D:\mongodb\data\db</code><br>  2、建立日志文件  <code>D:\mongodb\db\log\mongodb.log</code></p>
+<h3 id="三、建立配置文件。"><a href="#三、建立配置文件。" class="headerlink" title="三、建立配置文件。"></a>三、建立配置文件。</h3><p><code>mongodb</code>文件夹下建立<code>mongodb.cfg</code>文件，输入以下内容：</p>
+<pre><code class="language-git">dbpath=D:\MongoDB\data #数据库路径
+logpath=D:\MongoDB\logs\mongodb.log #日志输出文件路径
+logappend=true #错误日志采用追加模式，配置这个选项后mongodb的日志会追加到现有的日志文件，而不是从新创建一个新文件
+journal=true #启用日志文件，默认启用
+quiet=true #这个选项可以过滤掉一些无用的日志信息，若需要调试使用请设置为false
+port=27017 #端口号 默认为27017
 </code></pre>
-<p>  这里仅指定了几个常用项，更多详细配置请参考官方文档 <a href="http://docs.mongodb.org/manual/reference/configuration-options/" target="_blank" rel="external">http://docs.mongodb.org/manual/reference/configuration-options/</a></p>
-<p>四、启动mongdb服务。</p>
-<p>  至此<code>mongodb</code>文件夹下有文件夹及文件：</p>
-<pre><code class="language-git">  D:\ mongodb\bin
-  D:\ mongodb\data\db
-  D:\ mongodb\data\log
+<p>这里仅指定了几个常用项，更多详细配置请参考官方文档 <a href="http://docs.mongodb.org/manual/reference/configuration-options/" target="_blank" rel="external">http://docs.mongodb.org/manual/reference/configuration-options/</a></p>
+<h3 id="四、启动mongdb服务。"><a href="#四、启动mongdb服务。" class="headerlink" title="四、启动mongdb服务。"></a>四、启动mongdb服务。</h3><p>至此<code>mongodb</code>文件夹下有文件夹及文件：</p>
+<pre><code class="language-git">D:\ mongodb\bin
+D:\ mongodb\data\db
+D:\ mongodb\data\log
 </code></pre>
-<p>  配置文件和相关目录建好后使用如下方式启动mongodb：</p>
-<p>  控制台进入<code>D:\ mongodb\bin</code>目录，执行以下命令:</p>
-<p>  1 . 普通启动 </p>
-<pre><code class="language-git">  mongod --config D:\mongodb\mongodb.cfg
+<p>配置文件和相关目录建好后使用如下方式启动mongodb：</p>
+<p>控制台进入<code>D:\ mongodb\bin</code>目录，执行以下命令:</p>
+<p>1 . 普通启动 </p>
+<pre><code class="language-git">mongod --config D:\mongodb\mongodb.cfg
 </code></pre>
-<p>  2 . 安装为Windows服务</p>
-<pre><code class="language-git">  mongod --config D:\mongodb\mongodb.cfg --install
+<p>2 . 安装为Windows服务</p>
+<pre><code class="language-git">mongod --config D:\mongodb\mongodb.cfg --install
 </code></pre>
-<p>  注：2.6版 这种方式在win7、win8 64位版无法安装成功，其他系统未测试<br>  BUG链接 <a href="https://jira.mongodb.org/browse/SERVER-13515" target="_blank" rel="external">https://jira.mongodb.org/browse/SERVER-13515</a></p>
-<p>  3 . 使用SC命令安装为Windows服务</p>
-<pre><code class="language-git">  sc create MongoDB binPath= &quot;D:\mongodb\bin\mongod.exe --service --config=D:\mongodb\mongodb.cfg&quot;
+<p>注：2.6版 这种方式在win7、win8 64位版无法安装成功，其他系统未测试<br>BUG链接 <a href="https://jira.mongodb.org/browse/SERVER-13515" target="_blank" rel="external">https://jira.mongodb.org/browse/SERVER-13515</a></p>
+<p>3 . 使用SC命令安装为Windows服务</p>
+<pre><code class="language-git">sc create MongoDB binPath= &quot;D:\mongodb\bin\mongod.exe --service --config=D:\mongodb\mongodb.cfg&quot;
 </code></pre>
-<p>五、系统服务启动与删除。</p>
-<pre><code class="language-git">net start MongoDB  //启动MongoDB服务  
+<h3 id="五、系统服务启动与删除。"><a href="#五、系统服务启动与删除。" class="headerlink" title="五、系统服务启动与删除。"></a>五、系统服务启动与删除。</h3><pre><code class="language-git">net start MongoDB  //启动MongoDB服务  
 net stop MongoDB  //停止MongoDB服务   
-mongod --remove //移除MongoDB服务
+mongod --remove  //移除MongoDB服务 
+sc delete MongoDB   //通过该方式删除的话，服务中的 mongod仍会存在，注册表中不存在了，再重启之后服务的mongodb才会消失
 </code></pre>
 
       
@@ -292,6 +291,15 @@ mongod --remove //移除MongoDB服务
   
     
 <nav id="article-nav">
+  
+    <a href="/2016/12/16/mongoose学习笔记/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          mongoose学习笔记
+        
+      </div>
+    </a>
   
   
     <a href="/2016/11/16/bigPipe方案实现及剖析/" id="article-nav-older" class="article-nav-link-wrap">
