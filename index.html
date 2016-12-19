@@ -202,6 +202,70 @@
 
       <div class="body-wrap">
   
+    <article id="post-nodejs中间件connect" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/12/19/nodejs中间件connect/" class="article-date">
+  	<time datetime="2016-12-19T03:19:21.000Z" itemprop="datePublished">2016-12-19</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/12/19/nodejs中间件connect/">nodejs中间件connect</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="什么是connect？"><a href="#什么是connect？" class="headerlink" title="什么是connect？"></a>什么是connect？</h4><p>Connect 是Node.js中的一个模块，可以用来创建中间件的一个框架，它自身已经包装了Node的HTTP模块的Server以及Server的req和res的对象。<br>它干的活其实就是处理请求，然后响应客户端或是让下一个中间件继续处理，它的原型是这个样子的:</p>
+<pre><code class="language-javascript">function (req, res, next) {
+  // 中间件
+}
+</code></pre>
+<p>当next回调函数被调用，中间件就完成工作并传递到下一个中间件，如果没其他中间件则进入到应用逻辑继续执行。</p>
+<p><code>logger</code>: 用户请求日志中间件<br><code>csrf</code>: 跨域请求伪造保护中间件<br><code>compress</code>: gzip压缩中间件<br><code>basicAuth</code>: basic认证中间件<br><code>bodyParser</code>: 请求内容解析中间件<br><code>json</code>: JSON解析中间件<br><code>urlencoded</code>: application/x-www-form-urlencode请求解析中间件<br><code>multipart</code>: multipart/form-data请求解析中间件<br><code>timeout</code>: 请求超时中间件<br><code>cookieParser</code>: cookie解析中间件<br><code>session</code>: 会话管理中间件<br><code>cookieSession</code>: 基于cookies的会话中间件<br><code>methodOverride</code>: HTTP伪造中间件<br><code>reponseTime</code>: 计算响应时间中间件<br><code>staticCache</code>: 缓存中间件<br><code>static</code>: 静态文件处理中间件<br><code>directory</code>: 目录列表中间件<br><code>vhost</code>: 虚拟二级域名映射中间件<br><code>favicon</code>: 网页图标中间件<br><code>limit</code>: 请求内容大小限制中间件<br><code>query</code>: URL解析中间件<br><code>errorHadnler</code>: 错误处理中间件</p>
+<p>参考: <a href="http://blog.fens.me/nodejs-connect/" target="_blank" rel="external">http://blog.fens.me/nodejs-connect/</a></p>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/nodejs/">nodejs</a></li></ul>
+	</div>
+
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
     <article id="post-mongoose学习笔记" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
@@ -1059,132 +1123,6 @@ Hi mmrxia! You&#39;ve successfully authenticated, but GitHub does not provide sh
       
 	<div class="article-tag tagcloud">
 		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/">Linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/nodejs/">nodejs</a></li></ul>
-	</div>
-
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-express学习笔记" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2016/07/01/express学习笔记/" class="article-date">
-  	<time datetime="2016-07-01T07:32:01.000Z" itemprop="datePublished">2016-07-01</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/07/01/express学习笔记/">express学习笔记</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h4 id="1-app-render和res-render方法的区别？"><a href="#1-app-render和res-render方法的区别？" class="headerlink" title="1 . app.render和res.render方法的区别？"></a>1 . app.render和res.render方法的区别？</h4><p>官方的api文档中是这么说的：   </p>
-<blockquote>
-<p>Think of app.render() as a utility function for generating rendered view strings. Internally res.render() uses app.render() to render views.</p>
-</blockquote>
-<p>我的理解：</p>
-<p>把<code>app.render</code>当成一个生成视图的工具，而且<code>res.render</code>内部也是调用了<code>app.render</code>。<br>区别是这样，<code>app.render</code>只负责生成视图，你会发现它是没能力把视图响应给客户端（浏览器）的，只有<code>res.render</code>手里有<code>response</code>对象，可以把视图响应给客户端。<br><code>res.render</code>的伪代码可以看做如下: </p>
-<pre><code class="language-javascript">res.render = function(view, locals, cb){
-    app.render(view, locals, function(err, html){
-        if(typeof cb !== &#39;undefined&#39;){
-            return cb(err, html);
-        }
-        res.send(html);
-    });
-};
-</code></pre>
-<h4 id="2-res-write和res-send区别？"><a href="#2-res-write和res-send区别？" class="headerlink" title="2 . res.write和res.send区别？"></a>2 . res.write和res.send区别？</h4><blockquote>
-<p>The res object represents the HTTP response that an Express app sends when it gets an HTTP request.</p>
-</blockquote>
-<p><code>res.write</code>和<code>res.send</code>都是发送报文到浏览器response中，并渲染在浏览器窗口。<br><code>res.write</code>使用时需要配合<code>res.end</code>方法同时使用，否则浏览器http请求会一直处于pending状态，而<code>res.send</code>单独使用即可。    </p>
-<p>代码示例：     </p>
-<pre><code class="language-javascript">//res.send
-app.get(&#39;/user/:id&#39;, function(req, res){
-  res.send(&#39;user &#39; + req.params.id);
-});
-
-//res.write
-app.get(&#39;/user/:id&#39;, function(req, res){
- res.status(200).write(&#39;user &#39; + req.params.id);
- res.end();
-});
-</code></pre>
-<h4 id="3-获取request请求参数的方法？"><a href="#3-获取request请求参数的方法？" class="headerlink" title="3 . 获取request请求参数的方法？"></a>3 . 获取request请求参数的方法？</h4><p>express获取参数有三种方法：  </p>
-<p>官网实例：   </p>
-<blockquote>
-<p>Checks route params (req.params), ex: /user/:id<br>Checks query string params (req.query), ex: ?id=12<br>Checks urlencoded body params (req.body), ex: id=    </p>
-</blockquote>
-<ul>
-<li>例如：127.0.0.1:3000/index，得到index，可以通过使用<code>req.params</code>得到；   </li>
-<li>例如：127.0.0.1:3000/index?id=12，这种情况下，这种方式是获取客户端get方式传递过来的值，通过使用<code>req.query.id</code>可以获得；     </li>
-<li>例如：127.0.0.1：300/index，然后post了一个id=2的值，这种方式是获取客户端post过来的数据，可以通过<code>req.body.id</code>获取； </li>
-</ul>
-<p>注：post请求，第三种方式需要以下配置：</p>
-<pre><code class="language-javascript">   var express        =         require(&quot;express&quot;);  
-   var bodyParser     =         require(&quot;body-parser&quot;);  
-   var app            =         express();  
-
-   app.use(bodyParser.urlencoded({ extended: false }));   // necessary
-</code></pre>
-<h4 id="4-session使用入门"><a href="#4-session使用入门" class="headerlink" title="4 . session使用入门"></a>4 . session使用入门</h4><p><code>express-session</code>是express中比较常用的处理session的中间件,使用npm安装：</p>
-<pre><code class="language-git">$ npm install express-session save
-</code></pre>
-<p>session的认证机制必须依赖cookie，所以还应该同时安装一个<code>cookie-parser</code>，安装方法同上。然后再app.js中导入这两个中间件：</p>
-<pre><code class="language-javascript">var cookieParser = require(&#39;cookie-parser&#39;);
-var session = require(&#39;express-session&#39;);
-</code></pre>
-<p>之后定义cookie解析器，注意，该定义必须写在路由分配之前：</p>
-<pre><code class="language-javascript">app.use(cookieParser());
-app.use(session({
-  secret: &#39;secret_string&#39;,
-  name: &#39;name&#39;,
-  cookie: {maxAge: 60000},
-  resave: false,
-  saveUninitialized: true,
-}));
-</code></pre>
-<p>各参数意义：<br><code>secret</code>：用来对session数据进行加密的字符串.这个属性值为必须指定的属性。<br><code>name</code>：表示cookie的name，默认cookie的name是：connect.sid。<br><code>maxAge</code>：cookie过期时间，毫秒。<br><code>resave</code>：是指每次请求都重新设置session cookie，假设你的cookie是6000毫秒过期，每次请求都会再设置6000毫秒。<br><code>saveUninitialized</code>： 是指无论有没有session cookie，每次请求都设置个session cookie ，默认给个标示为 connect.sid。     </p>
-<p>之后在处理请求时直接通过以下方式对session进行读写：        </p>
-<pre><code class="language-javascript">req.session.userinfo = userinfo;  //写入至session
-res.redirect(req.session.userinfo); //从session中读取
-</code></pre>
-
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/express/">express</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/nodejs/">nodejs</a></li></ul>
 	</div>
 
       

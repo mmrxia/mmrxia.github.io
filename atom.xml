@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://mmrxia.github.io/"/>
-  <updated>2016-12-16T09:27:04.173Z</updated>
+  <updated>2016-12-19T03:28:04.497Z</updated>
   <id>http://mmrxia.github.io/</id>
   
   <author>
@@ -14,6 +14,34 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>nodejs中间件connect</title>
+    <link href="http://mmrxia.github.io/2016/12/19/nodejs%E4%B8%AD%E9%97%B4%E4%BB%B6connect/"/>
+    <id>http://mmrxia.github.io/2016/12/19/nodejs中间件connect/</id>
+    <published>2016-12-19T03:19:21.000Z</published>
+    <updated>2016-12-19T03:28:04.497Z</updated>
+    
+    <content type="html">&lt;h4 id=&quot;什么是connect？&quot;&gt;&lt;a href=&quot;#什么是connect？&quot; class=&quot;headerlink&quot; title=&quot;什么是connect？&quot;&gt;&lt;/a&gt;什么是connect？&lt;/h4&gt;&lt;p&gt;Connect 是Node.js中的一个模块，可以用来创建中间件的一个框架，它自身已经包装了Node的HTTP模块的Server以及Server的req和res的对象。&lt;br&gt;它干的活其实就是处理请求，然后响应客户端或是让下一个中间件继续处理，它的原型是这个样子的:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-javascript&quot;&gt;function (req, res, next) {
+  // 中间件
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;当next回调函数被调用，中间件就完成工作并传递到下一个中间件，如果没其他中间件则进入到应用逻辑继续执行。&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;logger&lt;/code&gt;: 用户请求日志中间件&lt;br&gt;&lt;code&gt;csrf&lt;/code&gt;: 跨域请求伪造保护中间件&lt;br&gt;&lt;code&gt;compress&lt;/code&gt;: gzip压缩中间件&lt;br&gt;&lt;code&gt;basicAuth&lt;/code&gt;: basic认证中间件&lt;br&gt;&lt;code&gt;bodyParser&lt;/code&gt;: 请求内容解析中间件&lt;br&gt;&lt;code&gt;json&lt;/code&gt;: JSON解析中间件&lt;br&gt;&lt;code&gt;urlencoded&lt;/code&gt;: application/x-www-form-urlencode请求解析中间件&lt;br&gt;&lt;code&gt;multipart&lt;/code&gt;: multipart/form-data请求解析中间件&lt;br&gt;&lt;code&gt;timeout&lt;/code&gt;: 请求超时中间件&lt;br&gt;&lt;code&gt;cookieParser&lt;/code&gt;: cookie解析中间件&lt;br&gt;&lt;code&gt;session&lt;/code&gt;: 会话管理中间件&lt;br&gt;&lt;code&gt;cookieSession&lt;/code&gt;: 基于cookies的会话中间件&lt;br&gt;&lt;code&gt;methodOverride&lt;/code&gt;: HTTP伪造中间件&lt;br&gt;&lt;code&gt;reponseTime&lt;/code&gt;: 计算响应时间中间件&lt;br&gt;&lt;code&gt;staticCache&lt;/code&gt;: 缓存中间件&lt;br&gt;&lt;code&gt;static&lt;/code&gt;: 静态文件处理中间件&lt;br&gt;&lt;code&gt;directory&lt;/code&gt;: 目录列表中间件&lt;br&gt;&lt;code&gt;vhost&lt;/code&gt;: 虚拟二级域名映射中间件&lt;br&gt;&lt;code&gt;favicon&lt;/code&gt;: 网页图标中间件&lt;br&gt;&lt;code&gt;limit&lt;/code&gt;: 请求内容大小限制中间件&lt;br&gt;&lt;code&gt;query&lt;/code&gt;: URL解析中间件&lt;br&gt;&lt;code&gt;errorHadnler&lt;/code&gt;: 错误处理中间件&lt;/p&gt;
+&lt;p&gt;参考: &lt;a href=&quot;http://blog.fens.me/nodejs-connect/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://blog.fens.me/nodejs-connect/&lt;/a&gt;&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;h4 id=&quot;什么是connect？&quot;&gt;&lt;a href=&quot;#什么是connect？&quot; class=&quot;headerlink&quot; title=&quot;什么是connect？&quot;&gt;&lt;/a&gt;什么是connect？&lt;/h4&gt;&lt;p&gt;Connect 是Node.js中的一个模块，可以用来创建中间件的一
+    
+    </summary>
+    
+    
+      <category term="nodejs" scheme="http://mmrxia.github.io/tags/nodejs/"/>
+    
+  </entry>
   
   <entry>
     <title>mongoose学习笔记</title>
@@ -1275,29 +1303,6 @@ git config -global user.email &amp;quot;you@example.com&amp;quot;
     
     
       <category term="跨域" scheme="http://mmrxia.github.io/tags/%E8%B7%A8%E5%9F%9F/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>git 常用命令速查表</title>
-    <link href="http://mmrxia.github.io/2016/05/09/git-%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E9%80%9F%E6%9F%A5%E8%A1%A8/"/>
-    <id>http://mmrxia.github.io/2016/05/09/git-常用命令速查表/</id>
-    <published>2016-05-09T07:17:43.000Z</published>
-    <updated>2016-05-09T07:34:05.237Z</updated>
-    
-    <content type="html">&lt;p&gt;git作为代码管理工具的好处，这里就不多说了，目前也有很多git操作的可视化工具，如：TortoiseGit、SourceTree等。&lt;br&gt;相比可视化工具，笔者还是更喜欢使用原始命令来进行操作，下面附一张git常用命令速查表，以备不时之需。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;http://7xth8v.com2.z0.glb.qiniucdn.com/image/git_common_order.jpg&quot; alt=&quot;git常用命令&quot;&gt;&lt;/p&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;git作为代码管理工具的好处，这里就不多说了，目前也有很多git操作的可视化工具，如：TortoiseGit、SourceTree等。&lt;br&gt;相比可视化工具，笔者还是更喜欢使用原始命令来进行操作，下面附一张git常用命令速查表，以备不时之需。&lt;/p&gt;
-&lt;p&gt;&lt;img src
-    
-    </summary>
-    
-    
-      <category term="git" scheme="http://mmrxia.github.io/tags/git/"/>
     
   </entry>
   
