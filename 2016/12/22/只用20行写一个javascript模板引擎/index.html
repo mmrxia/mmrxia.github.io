@@ -1,0 +1,607 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="description" content="译文链接：JavaScript template engine in just 20 lines
+
+最初我的想法是这样子的：
+var TemplateEngine = function(tpl, data) {
+    // magic here ...
+}
+var template = &amp;#39;&amp;lt;p&amp;gt;Hello, my name is &amp;lt;%name%&amp;gt;. I\&amp;#39">
+<meta property="og:type" content="article">
+<meta property="og:title" content="只用20行写一个javascript模板引擎">
+<meta property="og:url" content="http://mmrxia.github.io/2016/12/22/只用20行写一个javascript模板引擎/index.html">
+<meta property="og:site_name" content="芥子园 | xiaqingsong's blog">
+<meta property="og:description" content="译文链接：JavaScript template engine in just 20 lines
+
+最初我的想法是这样子的：
+var TemplateEngine = function(tpl, data) {
+    // magic here ...
+}
+var template = &amp;#39;&amp;lt;p&amp;gt;Hello, my name is &amp;lt;%name%&amp;gt;. I\&amp;#39">
+<meta property="og:updated_time" content="2016-12-22T07:41:18.727Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="只用20行写一个javascript模板引擎">
+<meta name="twitter:description" content="译文链接：JavaScript template engine in just 20 lines
+
+最初我的想法是这样子的：
+var TemplateEngine = function(tpl, data) {
+    // magic here ...
+}
+var template = &amp;#39;&amp;lt;p&amp;gt;Hello, my name is &amp;lt;%name%&amp;gt;. I\&amp;#39">
+    
+    <title>
+        只用20行写一个javascript模板引擎 |
+        
+        芥子园 | xiaqingsong&#39;s blog
+    </title>
+    <link rel="alternative" href="/atom.xml" title="芥子园 | xiaqingsong&#39;s blog" type="application/atom+xml"> 
+    <link rel="icon" href="http://7xth8v.com2.z0.glb.clouddn.com/icon/favicon.ico"> 
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/prism.css">
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img lazy-src="http://7xth8v.com2.z0.glb.qiniucdn.com/image/avatar_150x150.jpg" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">芥子园</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">须弥藏芥子，芥子纳须弥</p>
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						<div class="icon-wrap icon-link hide" data-idx="2">
+							<div class="loopback_l"></div>
+							<div class="loopback_r"></div>
+						</div>
+						
+						
+						<div class="icon-wrap icon-me hide" data-idx="3">
+							<div class="user"></div>
+							<div class="shoulder"></div>
+						</div>
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						
+						<li>友情链接</li>
+						
+						
+						<li>关于我</li>
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+							<li><a href="/tags/随笔">随笔</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/mmrxia" title="github">github</a>
+					        
+								<a class="weibo" target="_blank" href="http://weibo.com/u/1984883035" title="weibo">weibo</a>
+					        
+								<a class="twitter" target="_blank" href="https://twitter.com/xiaqingsong" title="twitter">twitter</a>
+					        
+								<a class="linkedin" target="_blank" href="http://www.linkedin.com/in/mrxia" title="linkedin">linkedin</a>
+					        
+								<a class="rss" target="_blank" href="/atom.xml" title="rss">rss</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/Linux/" style="font-size: 13.33px;">Linux</a> <a href="/tags/base64/" style="font-size: 10px;">base64</a> <a href="/tags/bash/" style="font-size: 10px;">bash</a> <a href="/tags/bigPipe/" style="font-size: 10px;">bigPipe</a> <a href="/tags/cnpm/" style="font-size: 10px;">cnpm</a> <a href="/tags/express/" style="font-size: 10px;">express</a> <a href="/tags/git/" style="font-size: 16.67px;">git</a> <a href="/tags/javascript/" style="font-size: 16.67px;">javascript</a> <a href="/tags/js/" style="font-size: 16.67px;">js</a> <a href="/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/tags/mongodb/" style="font-size: 13.33px;">mongodb</a> <a href="/tags/nodejs/" style="font-size: 20px;">nodejs</a> <a href="/tags/npm/" style="font-size: 10px;">npm</a> <a href="/tags/sku/" style="font-size: 10px;">sku</a> <a href="/tags/uuid/" style="font-size: 10px;">uuid</a> <a href="/tags/前端/" style="font-size: 10px;">前端</a> <a href="/tags/数组/" style="font-size: 10px;">数组</a> <a href="/tags/移动端开发/" style="font-size: 10px;">移动端开发</a> <a href="/tags/算法/" style="font-size: 10px;">算法</a> <a href="/tags/西游记/" style="font-size: 13.33px;">西游记</a> <a href="/tags/跨域/" style="font-size: 10px;">跨域</a> <a href="/tags/随笔/" style="font-size: 10px;">随笔</a>
+					</div>
+				</section>
+				
+				
+				
+				<section class="switch-part switch-part3">
+					<div id="js-friends">
+					
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://www.xiaqingsong.com">XQS</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://www.morg.cn">MORG</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://www.iamaddy.net/">Addy的网络日志</a>
+			        
+			        </div>
+				</section>
+				
+
+				
+				
+				<section class="switch-part switch-part4">
+				
+					<div id="js-aboutme">夏青松，2013年毕业于江西农大软件学院软件工程专业。<br/> <b>2012.10-2015.2</b> [北京] 锐捷网络<br/> <b>2015.2-至今</b> [杭州] 妈妈好网络<br/><br/> Mail：this.xqs@gmail.com </div>
+				</section>
+				
+			</div>
+		</div>
+	</header>				
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">芥子园</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+			
+				<img lazy-src="http://7xth8v.com2.z0.glb.qiniucdn.com/image/avatar_150x150.jpg" class="js-avatar">
+			
+			</div>
+			<hgroup>
+			  <h1 class="header-author">芥子园</h1>
+			</hgroup>
+			
+			<p class="header-subtitle">须弥藏芥子，芥子纳须弥</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+					<li><a href="/tags/随笔">随笔</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/mmrxia" title="github">github</a>
+			        
+						<a class="weibo" target="_blank" href="http://weibo.com/u/1984883035" title="weibo">weibo</a>
+			        
+						<a class="twitter" target="_blank" href="https://twitter.com/xiaqingsong" title="twitter">twitter</a>
+			        
+						<a class="linkedin" target="_blank" href="http://www.linkedin.com/in/mrxia" title="linkedin">linkedin</a>
+			        
+						<a class="rss" target="_blank" href="/atom.xml" title="rss">rss</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+
+      <div class="body-wrap"><article id="post-只用20行写一个javascript模板引擎" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/12/22/只用20行写一个javascript模板引擎/" class="article-date">
+  	<time datetime="2016-12-22T07:18:12.000Z" itemprop="datePublished">2016-12-22</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      只用20行写一个javascript模板引擎
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li></ul>
+	</div>
+
+        
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>译文链接：<a href="原文链接：JavaScript template engine in just 20 lines">JavaScript template engine in just 20 lines</a></p>
+</blockquote>
+<p>最初我的想法是这样子的：</p>
+<pre><code class="language-javascript">var TemplateEngine = function(tpl, data) {
+    // magic here ...
+}
+var template = &#39;&lt;p&gt;Hello, my name is &lt;%name%&gt;. I\&#39;m &lt;%age%&gt; years old.&lt;/p&gt;&#39;;
+console.log(TemplateEngine(template, {
+    name: &quot;Krasimir&quot;,
+    age: 29
+}));
+</code></pre>
+<p>一个简单的函数，输入是我们的模板以及数据对象，输出么估计你也很容易想到，像下面这样子：</p>
+<pre><code class="language-javascript">&lt;p&gt;Hello, my name is Krasimir. I&#39;m 29 years old.&lt;/p&gt;
+</code></pre>
+<p>其中第一步要做的是寻找里面的模板参数，然后替换成传给引擎的具体数据。我决定使用正则表达式来完成这一步。不过正则不是我的强项，所以大家将就一下，如果有更好的正则也欢迎向我提出。</p>
+<pre><code class="language-javascript">var re = /&lt;%([^%&gt;]+)?%&gt;/g;
+</code></pre>
+<p>这句正则表达式会捕获所有以<code>&lt;%</code>开头，以<code>%&gt;</code>结尾的片段。末尾的参数<code>g</code>（global）表示不只匹配一个，而是匹配所有符合的片段。<br>Javascript里面有很多种使用正则表达式的方法，我们需要的是根据正则表达式输出一个数组，包含所有的字符串，这正是<code>exec</code>所做的。</p>
+<pre><code class="language-javascript">var re = /&lt;%([^%&gt;]+)?%&gt;/g;
+var match = re.exec(tpl);
+</code></pre>
+<p>如果我们用<code>console.log</code>把变量<code>match</code>打印出来，我们会看见：</p>
+<pre><code class="language-javascript">[
+    &quot;&lt;%name%&gt;&quot;,
+    &quot; name &quot;, 
+    index: 21,
+    input: 
+    &quot;&lt;p&gt;Hello, my name is &lt;%name%&gt;. I\&#39;m &lt;%age%&gt; years old.&lt;/p&gt;&quot;
+]
+</code></pre>
+<p>不过我们可以看见，返回的数组仅仅包含第一个匹配项。我们需要用<code>while</code>循环把上述逻辑包起来，这样才能得到所有的匹配项。</p>
+<pre><code class="language-javascript">var re = /&lt;%([^%&gt;]+)?%&gt;/g;
+while(match = re.exec(tpl)) {
+    console.log(match);
+}
+</code></pre>
+<p>如果把上面的代码跑一遍，你就会看见<code>&lt;%name%&gt;</code> 和 <code>&lt;%age%&gt;</code>都被打印出来了。</p>
+<p>下面，有意思的部分来了。识别出模板中的匹配项后，我们要把他们替换成传递给函数的实际数据。最简单的办法就是使用<code>replace</code>函数。我们可以像这样来写：</p>
+<pre><code class="language-javascript">var TemplateEngine = function(tpl, data) {
+    var re = /&lt;%([^%&gt;]+)?%&gt;/g;
+    while(match = re.exec(tpl)) {
+        tpl = tpl.replace(match[0], data[match[1]])
+    }
+    return tpl;
+}
+</code></pre>
+<p>好了，这样就能跑了，但是还不够好。这里我们以<code>data[&quot;property&quot;]</code>的方式使用了一个简单对象来传递数据，但是实际情况下我们很可能需要更复杂的嵌套对象。所以我们稍微修改了一下<code>data</code>对象：</p>
+<pre><code class="language-javascript">{
+    name: &quot;Krasimir Tsonev&quot;,
+    profile: { age: 29 }
+}
+</code></pre>
+<p>不过直接这样子写的话还不能跑，因为在模板中使用<code>&lt;%profile.age%&gt;</code>的话，代码会被替换成<code>data[&#39;profile.age&#39;]</code>，结果是<code>undefined</code>。<br>这样我们就不能简单地用<code>replace</code>函数，而是要用别的方法。如果能够在<code>&lt;%</code>和<code>%&gt;</code>之间直接使用Javascript代码就最好了，这样就能对传入的数据直接求值，像下面这样：</p>
+<pre><code class="language-javascript">var template = &#39;&lt;p&gt;Hello, my name is &lt;%this.name%&gt;. I\&#39;m &lt;%this.profile.age%&gt; years old.&lt;/p&gt;&#39;;
+</code></pre>
+<p>你可能会好奇，这是怎么实现的？这里<a href="http://ejohn.org/blog/javascript-micro-templating/" target="_blank" rel="external">John</a>使用了<code>new Function</code>的语法，根据字符串创建一个函数。我们不妨来看个例子：</p>
+<pre><code class="language-javascript">var fn = new Function(&quot;arg&quot;, &quot;console.log(arg + 1);&quot;);
+fn(2); // outputs 3
+</code></pre>
+<p><code>fn</code>可是一个货真价实的函数。它接受一个参数，函数体是<code>console.log(arg + 1)</code>;。上述代码等价于下面的代码：</p>
+<pre><code class="language-javascript">var fn = function(arg) {
+    console.log(arg + 1);
+}
+fn(2); // outputs 3
+</code></pre>
+<p>通过这种方法，我们可以根据字符串构造函数，包括它的参数和函数体。这不正是我们想要的嘛！不过先别急，在构造函数之前，我们先来看看函数体是什么样子的。<br>按照之前的想法，这个模板引擎最终返回的应该是一个编译好的模板。还是用之前的模板字符串作为例子，那么返回的内容应该类似于：</p>
+<pre><code class="language-javascript">return 
+&quot;&lt;p&gt;Hello, my name is &quot; + 
+this.name + 
+&quot;. I\&#39;m &quot; + 
+this.profile.age + 
+&quot; years old.&lt;/p&gt;&quot;;
+</code></pre>
+<p>当然啦，实际的模板引擎中，我们会把模板切分为小段的文本和有意义的Javascript代码。前面你可能看见我使用简单的字符串拼接来达到想要的效果，不过这并不是100%符合我们要求的做法。<br>由于使用者很可能会传递更加复杂的Javascript代码，所以我们这儿需要再来一个循环，如下：</p>
+<pre><code class="language-javascript">var template = 
+&#39;My skills:&#39; + 
+&#39;&lt;%for(var index in this.skills) {%>' + 
+'<a href=""><%this.skills[index]%></%this.skills[index]%></a>' +
+'<%}%&gt;&#39;; <="" code=""></%}%&gt;&#39;;></code></pre>
+<p>如果使用字符串拼接的话，代码就应该是下面的样子：</p>
+<pre><code class="language-javascript">return
+&#39;My skills:&#39; + 
+for(var index in this.skills) { +
+&#39;&lt;a href=&quot;&quot;&gt;&#39; + 
+this.skills[index] +
+&#39;&lt;/a&gt;&#39; +
+}
+</code></pre>
+<p>当然，这个代码不能直接跑，跑了会出错。于是我用了<a href="http://ejohn.org/blog/javascript-micro-templating/" target="_blank" rel="external">John的文章</a>里写的逻辑，把所有的字符串放在一个数组里，在程序的最后把它们拼接起来。</p>
+<pre><code class="language-javascript">var r = [];
+r.push(&#39;My skills:&#39;); 
+for(var index in this.skills) {
+r.push(&#39;&lt;a href=&quot;&quot;&gt;&#39;);
+r.push(this.skills[index]);
+r.push(&#39;&lt;/a&gt;&#39;);
+}
+return r.join(&#39;&#39;);
+</code></pre>
+<p>下一步就是收集模板里面不同的代码行，用于生成函数。通过前面介绍的方法，我们可以知道模板中有哪些占位符（译者注：或者说正则表达式的匹配项）以及它们的位置。<br>所以，依靠一个辅助变量（cursor，游标），我们就能得到想要的结果。</p>
+<pre><code class="language-javascript">var TemplateEngine = function(tpl, data) {
+    var re = /&lt;%([^%&gt;]+)?%&gt;/g,
+        code = &#39;var r=[];\n&#39;,
+        cursor = 0;
+    var add = function(line) {
+        code += &#39;r.push(&quot;&#39; + line.replace(/&quot;/g, &#39;\\&quot;&#39;) + &#39;&quot;);\n&#39;;
+    }
+    while(match = re.exec(tpl)) {
+        add(tpl.slice(cursor, match.index));
+        add(match[1]);
+        cursor = match.index + match[0].length;
+    }
+    add(tpl.substr(cursor, tpl.length - cursor));
+    code += &#39;return r.join(&quot;&quot;);&#39;; // &lt;-- return the result
+    console.log(code);
+    return tpl;
+}
+var template = &#39;&lt;p&gt;Hello, my name is &lt;%this.name%&gt;. I\&#39;m &lt;%this.profile.age%&gt; years old.&lt;/p&gt;&#39;;
+console.log(TemplateEngine(template, {
+    name: &quot;Krasimir Tsonev&quot;,
+    profile: { age: 29 }
+}));
+</code></pre>
+<p>上述代码中的变量code保存了函数体。开头的部分定义了一个数组。游标<code>cursor</code>告诉我们当前解析到了模板中的哪个位置。我们需要依靠它来遍历整个模板字符串。<br>此外还有个函数<code>add</code>，它负责把解析出来的代码行添加到变量<code>code</code>中去。有一个地方需要特别注意，那就是需要把<code>code</code>包含的双引号字符进行转义（escape）。否则生成的函数代码会出错。<br>如果我们运行上面的代码，我们会在控制台里面看见如下的内容：</p>
+<pre><code class="language-javascript">var r=[];
+r.push(&quot;&lt;p&gt;Hello, my name is &quot;);
+r.push(&quot;this.name&quot;);
+r.push(&quot;. I&#39;m &quot;);
+r.push(&quot;this.profile.age&quot;);
+return r.join(&quot;&quot;);
+</code></pre>
+<p>等等，貌似不太对啊，<code>this.name</code>和<code>this.profile.age</code>不应该有引号啊，再来改改。</p>
+<pre><code class="language-javascript">var add = function(line, js) {
+    js? code += &#39;r.push(&#39; + line + &#39;);\n&#39; :
+        code += &#39;r.push(&quot;&#39; + line.replace(/&quot;/g, &#39;\\&quot;&#39;) + &#39;&quot;);\n&#39;;
+}
+while(match = re.exec(tpl)) {
+    add(tpl.slice(cursor, match.index));
+    add(match[1], true); // &lt;-- say that this is actually valid js
+    cursor = match.index + match[0].length;
+}
+</code></pre>
+<p>占位符的内容和一个布尔值一起作为参数传给<code>add</code>函数，用作区分。这样就能生成我们想要的函数体了。</p>
+<pre><code class="language-javascript">var r=[];
+r.push(&quot;&lt;p&gt;Hello, my name is &quot;);
+r.push(this.name);
+r.push(&quot;. I&#39;m &quot;);
+r.push(this.profile.age);
+return r.join(&quot;&quot;);
+</code></pre>
+<p>剩下来要做的就是创建函数并且执行它。因此，在模板引擎的最后，把原本返回模板字符串的语句替换成如下的内容：</p>
+<pre><code class="language-javascript">return new Function(code.replace(/[\r\t\n]/g, &#39;&#39;)).apply(data);
+</code></pre>
+<p>我们甚至不需要显式地传参数给这个函数。我们使用<code>apply</code>方法来调用它。它会自动设定函数执行的上下文。这就是为什么我们能在函数里面使用<code>this.name</code>。这里<code>this</code>指向<code>data</code>对象。</p>
+<p>模板引擎接近完成了，不过还有一点，我们需要支持更多复杂的语句，比如条件判断和循环。我们接着上面的例子继续写。</p>
+<pre><code class="language-javascript">var template = 
+&#39;My skills:&#39; + 
+&#39;&lt;%for(var index in this.skills) {%>' + 
+'<a href="#"><%this.skills[index]%></%this.skills[index]%></a>' +
+'<%}%&gt;&#39;; console.log(templateengine(template,="" {="" skills:="" [&quot;js&quot;,="" &quot;html&quot;,="" &quot;css&quot;]="" }));="" <="" code=""></%}%&gt;&#39;;></code></pre>
+<p>这里会产生一个异常，<code>Uncaught SyntaxError: Unexpected token for</code>。如果我们调试一下，把<code>code</code>变量打印出来，我们就能发现问题所在。</p>
+<pre><code class="language-javascript">var r=[];
+r.push(&quot;My skills:&quot;);
+r.push(for(var index in this.skills) {);
+r.push(&quot;&lt;a href=\&quot;\&quot;&gt;&quot;);
+r.push(this.skills[index]);
+r.push(&quot;&lt;/a&gt;&quot;);
+r.push(});
+r.push(&quot;&quot;);
+return r.join(&quot;&quot;);
+</code></pre>
+<p>带有<code>for</code>循环的那一行不应该被直接放到数组里面，而是应该作为脚本的一部分直接运行。所以我们在把内容添加到<code>code</code>变量之前还要多做一个判断。</p>
+<pre><code class="language-javascript">var re = /&lt;%([^%&gt;]+)?%&gt;/g,
+    reExp = /(^( )?(if|for|else|switch|case|break|{|}))(.*)?/g,
+    code = &#39;var r=[];\n&#39;,
+    cursor = 0;
+var add = function(line, js) {
+    js? code += line.match(reExp) ? line + &#39;\n&#39; : &#39;r.push(&#39; + line + &#39;);\n&#39; :
+        code += &#39;r.push(&quot;&#39; + line.replace(/&quot;/g, &#39;\\&quot;&#39;) + &#39;&quot;);\n&#39;;
+}
+</code></pre>
+<p>这里我们新增加了一个正则表达式。它会判断代码中是否包含<code>if</code>、<code>for</code>、<code>else</code>等等关键字。如果有的话就直接添加到脚本代码中去，否则就添加到数组中去。运行结果如下：</p>
+<pre><code class="language-javascript">var r=[];
+r.push(&quot;My skills:&quot;);
+for(var index in this.skills) {
+r.push(&quot;&lt;a href=\&quot;#\&quot;&gt;&quot;);
+r.push(this.skills[index]);
+r.push(&quot;&lt;/a&gt;&quot;);
+}
+r.push(&quot;&quot;);
+return r.join(&quot;&quot;);
+</code></pre>
+<p>当然，编译出来的结果也是对的。</p>
+<pre><code class="language-javascript">My skills:&lt;a href=&quot;#&quot;&gt;js&lt;/a&gt;&lt;a href=&quot;#&quot;&gt;html&lt;/a&gt;&lt;a href=&quot;#&quot;&gt;css&lt;/a&gt;
+</code></pre>
+<p>最后一个改进可以使我们的模板引擎更为强大。我们可以直接在模板中使用复杂逻辑，例如：</p>
+<pre><code class="language-javascript">var template = 
+&#39;My skills:&#39; + 
+&#39;&lt;%if(this.showSkills) {%>' +
+    '<%for(var index="" in="" this.skills)="" {%="">' + 
+    '<a href="#"><%this.skills[index]%></%this.skills[index]%></a>' +
+    '<%}%&gt;&#39; +="" &#39;&lt;%}="" else="" {%="">' +
+    '<p>none</p>' +
+'<%}%&gt;&#39;; console.log(templateengine(template,="" {="" skills:="" [&quot;js&quot;,="" &quot;html&quot;,="" &quot;css&quot;],="" showskills:="" true="" }));="" <="" code=""></%}%&gt;&#39;;></%}%&gt;&#39;></%for(var></code></pre>
+<p>除了上面说的改进，我还对代码本身做了些优化，最终版本如下：</p>
+<pre><code class="language-javascript">var TemplateEngine = function(html, options) {
+    var re = /&lt;%([^%&gt;]+)?%&gt;/g, reExp = /(^( )?(if|for|else|switch|case|break|{|}))(.*)?/g, code = &#39;var r=[];\n&#39;, cursor = 0;
+    var add = function(line, js) {
+        js? (code += line.match(reExp) ? line + &#39;\n&#39; : &#39;r.push(&#39; + line + &#39;);\n&#39;) :
+            (code += line != &#39;&#39; ? &#39;r.push(&quot;&#39; + line.replace(/&quot;/g, &#39;\\&quot;&#39;) + &#39;&quot;);\n&#39; : &#39;&#39;);
+        return add;
+    }
+    while(match = re.exec(html)) {
+        add(html.slice(cursor, match.index))(match[1], true);
+        cursor = match.index + match[0].length;
+    }
+    add(html.substr(cursor, html.length - cursor));
+    code += &#39;return r.join(&quot;&quot;);&#39;;
+    return new Function(code.replace(/[\r\t\n]/g, &#39;&#39;)).apply(options);
+}
+</code></pre>
+<p>代码比我预想的还要少，只有区区15行！</p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2016/12/19/nodejs中间件connect/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">nodejs中间件connect</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="只用20行写一个javascript模板引擎" data-title="只用20行写一个javascript模板引擎" data-url="http://mmrxia.github.io/2016/12/22/只用20行写一个javascript模板引擎/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"mrxia"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2016 芥子园
+    	</div>
+      	<div class="footer-right">
+      		Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
+	}
+</script>
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-76943829-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  </div>
+  <script src="http://7xth8v.com2.z0.glb.qiniucdn.com/js/prism.js"></script>
+</body>
+</html>

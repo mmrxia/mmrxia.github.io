@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://mmrxia.github.io/"/>
-  <updated>2016-12-19T03:28:04.497Z</updated>
+  <updated>2016-12-22T07:41:18.727Z</updated>
   <id>http://mmrxia.github.io/</id>
   
   <author>
@@ -14,6 +14,251 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>只用20行写一个javascript模板引擎</title>
+    <link href="http://mmrxia.github.io/2016/12/22/%E5%8F%AA%E7%94%A820%E8%A1%8C%E5%86%99%E4%B8%80%E4%B8%AAjavascript%E6%A8%A1%E6%9D%BF%E5%BC%95%E6%93%8E/"/>
+    <id>http://mmrxia.github.io/2016/12/22/只用20行写一个javascript模板引擎/</id>
+    <published>2016-12-22T07:18:12.000Z</published>
+    <updated>2016-12-22T07:41:18.727Z</updated>
+    
+    <content type="html">&lt;blockquote&gt;
+&lt;p&gt;译文链接：&lt;a href=&quot;原文链接：JavaScript template engine in just 20 lines&quot;&gt;JavaScript template engine in just 20 lines&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;最初我的想法是这样子的：&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-javascript&quot;&gt;var TemplateEngine = function(tpl, data) {
+    // magic here ...
+}
+var template = &amp;#39;&amp;lt;p&amp;gt;Hello, my name is &amp;lt;%name%&amp;gt;. I\&amp;#39;m &amp;lt;%age%&amp;gt; years old.&amp;lt;/p&amp;gt;&amp;#39;;
+console.log(TemplateEngine(template, {
+    name: &amp;quot;Krasimir&amp;quot;,
+    age: 29
+}));
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;一个简单的函数，输入是我们的模板以及数据对象，输出么估计你也很容易想到，像下面这样子：&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-javascript&quot;&gt;&amp;lt;p&amp;gt;Hello, my name is Krasimir. I&amp;#39;m 29 years old.&amp;lt;/p&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;其中第一步要做的是寻找里面的模板参数，然后替换成传给引擎的具体数据。我决定使用正则表达式来完成这一步。不过正则不是我的强项，所以大家将就一下，如果有更好的正则也欢迎向我提出。&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-javascript&quot;&gt;var re = /&amp;lt;%([^%&amp;gt;]+)?%&amp;gt;/g;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;这句正则表达式会捕获所有以&lt;code&gt;&amp;lt;%&lt;/code&gt;开头，以&lt;code&gt;%&amp;gt;&lt;/code&gt;结尾的片段。末尾的参数&lt;code&gt;g&lt;/code&gt;（global）表示不只匹配一个，而是匹配所有符合的片段。&lt;br&gt;Javascript里面有很多种使用正则表达式的方法，我们需要的是根据正则表达式输出一个数组，包含所有的字符串，这正是&lt;code&gt;exec&lt;/code&gt;所做的。&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-javascript&quot;&gt;var re = /&amp;lt;%([^%&amp;gt;]+)?%&amp;gt;/g;
+var match = re.exec(tpl);
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;如果我们用&lt;code&gt;console.log&lt;/code&gt;把变量&lt;code&gt;match&lt;/code&gt;打印出来，我们会看见：&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-javascript&quot;&gt;[
+    &amp;quot;&amp;lt;%name%&amp;gt;&amp;quot;,
+    &amp;quot; name &amp;quot;, 
+    index: 21,
+    input: 
+    &amp;quot;&amp;lt;p&amp;gt;Hello, my name is &amp;lt;%name%&amp;gt;. I\&amp;#39;m &amp;lt;%age%&amp;gt; years old.&amp;lt;/p&amp;gt;&amp;quot;
+]
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;不过我们可以看见，返回的数组仅仅包含第一个匹配项。我们需要用&lt;code&gt;while&lt;/code&gt;循环把上述逻辑包起来，这样才能得到所有的匹配项。&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-javascript&quot;&gt;var re = /&amp;lt;%([^%&amp;gt;]+)?%&amp;gt;/g;
+while(match = re.exec(tpl)) {
+    console.log(match);
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;如果把上面的代码跑一遍，你就会看见&lt;code&gt;&amp;lt;%name%&amp;gt;&lt;/code&gt; 和 &lt;code&gt;&amp;lt;%age%&amp;gt;&lt;/code&gt;都被打印出来了。&lt;/p&gt;
+&lt;p&gt;下面，有意思的部分来了。识别出模板中的匹配项后，我们要把他们替换成传递给函数的实际数据。最简单的办法就是使用&lt;code&gt;replace&lt;/code&gt;函数。我们可以像这样来写：&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-javascript&quot;&gt;var TemplateEngine = function(tpl, data) {
+    var re = /&amp;lt;%([^%&amp;gt;]+)?%&amp;gt;/g;
+    while(match = re.exec(tpl)) {
+        tpl = tpl.replace(match[0], data[match[1]])
+    }
+    return tpl;
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;好了，这样就能跑了，但是还不够好。这里我们以&lt;code&gt;data[&amp;quot;property&amp;quot;]&lt;/code&gt;的方式使用了一个简单对象来传递数据，但是实际情况下我们很可能需要更复杂的嵌套对象。所以我们稍微修改了一下&lt;code&gt;data&lt;/code&gt;对象：&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-javascript&quot;&gt;{
+    name: &amp;quot;Krasimir Tsonev&amp;quot;,
+    profile: { age: 29 }
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;不过直接这样子写的话还不能跑，因为在模板中使用&lt;code&gt;&amp;lt;%profile.age%&amp;gt;&lt;/code&gt;的话，代码会被替换成&lt;code&gt;data[&amp;#39;profile.age&amp;#39;]&lt;/code&gt;，结果是&lt;code&gt;undefined&lt;/code&gt;。&lt;br&gt;这样我们就不能简单地用&lt;code&gt;replace&lt;/code&gt;函数，而是要用别的方法。如果能够在&lt;code&gt;&amp;lt;%&lt;/code&gt;和&lt;code&gt;%&amp;gt;&lt;/code&gt;之间直接使用Javascript代码就最好了，这样就能对传入的数据直接求值，像下面这样：&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-javascript&quot;&gt;var template = &amp;#39;&amp;lt;p&amp;gt;Hello, my name is &amp;lt;%this.name%&amp;gt;. I\&amp;#39;m &amp;lt;%this.profile.age%&amp;gt; years old.&amp;lt;/p&amp;gt;&amp;#39;;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;你可能会好奇，这是怎么实现的？这里&lt;a href=&quot;http://ejohn.org/blog/javascript-micro-templating/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;John&lt;/a&gt;使用了&lt;code&gt;new Function&lt;/code&gt;的语法，根据字符串创建一个函数。我们不妨来看个例子：&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-javascript&quot;&gt;var fn = new Function(&amp;quot;arg&amp;quot;, &amp;quot;console.log(arg + 1);&amp;quot;);
+fn(2); // outputs 3
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;code&gt;fn&lt;/code&gt;可是一个货真价实的函数。它接受一个参数，函数体是&lt;code&gt;console.log(arg + 1)&lt;/code&gt;;。上述代码等价于下面的代码：&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-javascript&quot;&gt;var fn = function(arg) {
+    console.log(arg + 1);
+}
+fn(2); // outputs 3
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;通过这种方法，我们可以根据字符串构造函数，包括它的参数和函数体。这不正是我们想要的嘛！不过先别急，在构造函数之前，我们先来看看函数体是什么样子的。&lt;br&gt;按照之前的想法，这个模板引擎最终返回的应该是一个编译好的模板。还是用之前的模板字符串作为例子，那么返回的内容应该类似于：&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-javascript&quot;&gt;return 
+&amp;quot;&amp;lt;p&amp;gt;Hello, my name is &amp;quot; + 
+this.name + 
+&amp;quot;. I\&amp;#39;m &amp;quot; + 
+this.profile.age + 
+&amp;quot; years old.&amp;lt;/p&amp;gt;&amp;quot;;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;当然啦，实际的模板引擎中，我们会把模板切分为小段的文本和有意义的Javascript代码。前面你可能看见我使用简单的字符串拼接来达到想要的效果，不过这并不是100%符合我们要求的做法。&lt;br&gt;由于使用者很可能会传递更加复杂的Javascript代码，所以我们这儿需要再来一个循环，如下：&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-javascript&quot;&gt;var template = 
+&amp;#39;My skills:&amp;#39; + 
+&amp;#39;&amp;lt;%for(var index in this.skills) {%&gt;&#39; + 
+&#39;&lt;a href=&quot;&quot;&gt;&lt;%this.skills[index]%&gt;&lt;/%this.skills[index]%&gt;&lt;/a&gt;&#39; +
+&#39;&lt;%}%&amp;gt;&amp;#39;; &lt;=&quot;&quot; code=&quot;&quot;&gt;&lt;/%}%&amp;gt;&amp;#39;;&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;如果使用字符串拼接的话，代码就应该是下面的样子：&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-javascript&quot;&gt;return
+&amp;#39;My skills:&amp;#39; + 
+for(var index in this.skills) { +
+&amp;#39;&amp;lt;a href=&amp;quot;&amp;quot;&amp;gt;&amp;#39; + 
+this.skills[index] +
+&amp;#39;&amp;lt;/a&amp;gt;&amp;#39; +
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;当然，这个代码不能直接跑，跑了会出错。于是我用了&lt;a href=&quot;http://ejohn.org/blog/javascript-micro-templating/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;John的文章&lt;/a&gt;里写的逻辑，把所有的字符串放在一个数组里，在程序的最后把它们拼接起来。&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-javascript&quot;&gt;var r = [];
+r.push(&amp;#39;My skills:&amp;#39;); 
+for(var index in this.skills) {
+r.push(&amp;#39;&amp;lt;a href=&amp;quot;&amp;quot;&amp;gt;&amp;#39;);
+r.push(this.skills[index]);
+r.push(&amp;#39;&amp;lt;/a&amp;gt;&amp;#39;);
+}
+return r.join(&amp;#39;&amp;#39;);
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;下一步就是收集模板里面不同的代码行，用于生成函数。通过前面介绍的方法，我们可以知道模板中有哪些占位符（译者注：或者说正则表达式的匹配项）以及它们的位置。&lt;br&gt;所以，依靠一个辅助变量（cursor，游标），我们就能得到想要的结果。&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-javascript&quot;&gt;var TemplateEngine = function(tpl, data) {
+    var re = /&amp;lt;%([^%&amp;gt;]+)?%&amp;gt;/g,
+        code = &amp;#39;var r=[];\n&amp;#39;,
+        cursor = 0;
+    var add = function(line) {
+        code += &amp;#39;r.push(&amp;quot;&amp;#39; + line.replace(/&amp;quot;/g, &amp;#39;\\&amp;quot;&amp;#39;) + &amp;#39;&amp;quot;);\n&amp;#39;;
+    }
+    while(match = re.exec(tpl)) {
+        add(tpl.slice(cursor, match.index));
+        add(match[1]);
+        cursor = match.index + match[0].length;
+    }
+    add(tpl.substr(cursor, tpl.length - cursor));
+    code += &amp;#39;return r.join(&amp;quot;&amp;quot;);&amp;#39;; // &amp;lt;-- return the result
+    console.log(code);
+    return tpl;
+}
+var template = &amp;#39;&amp;lt;p&amp;gt;Hello, my name is &amp;lt;%this.name%&amp;gt;. I\&amp;#39;m &amp;lt;%this.profile.age%&amp;gt; years old.&amp;lt;/p&amp;gt;&amp;#39;;
+console.log(TemplateEngine(template, {
+    name: &amp;quot;Krasimir Tsonev&amp;quot;,
+    profile: { age: 29 }
+}));
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;上述代码中的变量code保存了函数体。开头的部分定义了一个数组。游标&lt;code&gt;cursor&lt;/code&gt;告诉我们当前解析到了模板中的哪个位置。我们需要依靠它来遍历整个模板字符串。&lt;br&gt;此外还有个函数&lt;code&gt;add&lt;/code&gt;，它负责把解析出来的代码行添加到变量&lt;code&gt;code&lt;/code&gt;中去。有一个地方需要特别注意，那就是需要把&lt;code&gt;code&lt;/code&gt;包含的双引号字符进行转义（escape）。否则生成的函数代码会出错。&lt;br&gt;如果我们运行上面的代码，我们会在控制台里面看见如下的内容：&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-javascript&quot;&gt;var r=[];
+r.push(&amp;quot;&amp;lt;p&amp;gt;Hello, my name is &amp;quot;);
+r.push(&amp;quot;this.name&amp;quot;);
+r.push(&amp;quot;. I&amp;#39;m &amp;quot;);
+r.push(&amp;quot;this.profile.age&amp;quot;);
+return r.join(&amp;quot;&amp;quot;);
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;等等，貌似不太对啊，&lt;code&gt;this.name&lt;/code&gt;和&lt;code&gt;this.profile.age&lt;/code&gt;不应该有引号啊，再来改改。&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-javascript&quot;&gt;var add = function(line, js) {
+    js? code += &amp;#39;r.push(&amp;#39; + line + &amp;#39;);\n&amp;#39; :
+        code += &amp;#39;r.push(&amp;quot;&amp;#39; + line.replace(/&amp;quot;/g, &amp;#39;\\&amp;quot;&amp;#39;) + &amp;#39;&amp;quot;);\n&amp;#39;;
+}
+while(match = re.exec(tpl)) {
+    add(tpl.slice(cursor, match.index));
+    add(match[1], true); // &amp;lt;-- say that this is actually valid js
+    cursor = match.index + match[0].length;
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;占位符的内容和一个布尔值一起作为参数传给&lt;code&gt;add&lt;/code&gt;函数，用作区分。这样就能生成我们想要的函数体了。&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-javascript&quot;&gt;var r=[];
+r.push(&amp;quot;&amp;lt;p&amp;gt;Hello, my name is &amp;quot;);
+r.push(this.name);
+r.push(&amp;quot;. I&amp;#39;m &amp;quot;);
+r.push(this.profile.age);
+return r.join(&amp;quot;&amp;quot;);
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;剩下来要做的就是创建函数并且执行它。因此，在模板引擎的最后，把原本返回模板字符串的语句替换成如下的内容：&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-javascript&quot;&gt;return new Function(code.replace(/[\r\t\n]/g, &amp;#39;&amp;#39;)).apply(data);
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;我们甚至不需要显式地传参数给这个函数。我们使用&lt;code&gt;apply&lt;/code&gt;方法来调用它。它会自动设定函数执行的上下文。这就是为什么我们能在函数里面使用&lt;code&gt;this.name&lt;/code&gt;。这里&lt;code&gt;this&lt;/code&gt;指向&lt;code&gt;data&lt;/code&gt;对象。&lt;/p&gt;
+&lt;p&gt;模板引擎接近完成了，不过还有一点，我们需要支持更多复杂的语句，比如条件判断和循环。我们接着上面的例子继续写。&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-javascript&quot;&gt;var template = 
+&amp;#39;My skills:&amp;#39; + 
+&amp;#39;&amp;lt;%for(var index in this.skills) {%&gt;&#39; + 
+&#39;&lt;a href=&quot;#&quot;&gt;&lt;%this.skills[index]%&gt;&lt;/%this.skills[index]%&gt;&lt;/a&gt;&#39; +
+&#39;&lt;%}%&amp;gt;&amp;#39;; console.log(templateengine(template,=&quot;&quot; {=&quot;&quot; skills:=&quot;&quot; [&amp;quot;js&amp;quot;,=&quot;&quot; &amp;quot;html&amp;quot;,=&quot;&quot; &amp;quot;css&amp;quot;]=&quot;&quot; }));=&quot;&quot; &lt;=&quot;&quot; code=&quot;&quot;&gt;&lt;/%}%&amp;gt;&amp;#39;;&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;这里会产生一个异常，&lt;code&gt;Uncaught SyntaxError: Unexpected token for&lt;/code&gt;。如果我们调试一下，把&lt;code&gt;code&lt;/code&gt;变量打印出来，我们就能发现问题所在。&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-javascript&quot;&gt;var r=[];
+r.push(&amp;quot;My skills:&amp;quot;);
+r.push(for(var index in this.skills) {);
+r.push(&amp;quot;&amp;lt;a href=\&amp;quot;\&amp;quot;&amp;gt;&amp;quot;);
+r.push(this.skills[index]);
+r.push(&amp;quot;&amp;lt;/a&amp;gt;&amp;quot;);
+r.push(});
+r.push(&amp;quot;&amp;quot;);
+return r.join(&amp;quot;&amp;quot;);
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;带有&lt;code&gt;for&lt;/code&gt;循环的那一行不应该被直接放到数组里面，而是应该作为脚本的一部分直接运行。所以我们在把内容添加到&lt;code&gt;code&lt;/code&gt;变量之前还要多做一个判断。&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-javascript&quot;&gt;var re = /&amp;lt;%([^%&amp;gt;]+)?%&amp;gt;/g,
+    reExp = /(^( )?(if|for|else|switch|case|break|{|}))(.*)?/g,
+    code = &amp;#39;var r=[];\n&amp;#39;,
+    cursor = 0;
+var add = function(line, js) {
+    js? code += line.match(reExp) ? line + &amp;#39;\n&amp;#39; : &amp;#39;r.push(&amp;#39; + line + &amp;#39;);\n&amp;#39; :
+        code += &amp;#39;r.push(&amp;quot;&amp;#39; + line.replace(/&amp;quot;/g, &amp;#39;\\&amp;quot;&amp;#39;) + &amp;#39;&amp;quot;);\n&amp;#39;;
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;这里我们新增加了一个正则表达式。它会判断代码中是否包含&lt;code&gt;if&lt;/code&gt;、&lt;code&gt;for&lt;/code&gt;、&lt;code&gt;else&lt;/code&gt;等等关键字。如果有的话就直接添加到脚本代码中去，否则就添加到数组中去。运行结果如下：&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-javascript&quot;&gt;var r=[];
+r.push(&amp;quot;My skills:&amp;quot;);
+for(var index in this.skills) {
+r.push(&amp;quot;&amp;lt;a href=\&amp;quot;#\&amp;quot;&amp;gt;&amp;quot;);
+r.push(this.skills[index]);
+r.push(&amp;quot;&amp;lt;/a&amp;gt;&amp;quot;);
+}
+r.push(&amp;quot;&amp;quot;);
+return r.join(&amp;quot;&amp;quot;);
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;当然，编译出来的结果也是对的。&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-javascript&quot;&gt;My skills:&amp;lt;a href=&amp;quot;#&amp;quot;&amp;gt;js&amp;lt;/a&amp;gt;&amp;lt;a href=&amp;quot;#&amp;quot;&amp;gt;html&amp;lt;/a&amp;gt;&amp;lt;a href=&amp;quot;#&amp;quot;&amp;gt;css&amp;lt;/a&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;最后一个改进可以使我们的模板引擎更为强大。我们可以直接在模板中使用复杂逻辑，例如：&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-javascript&quot;&gt;var template = 
+&amp;#39;My skills:&amp;#39; + 
+&amp;#39;&amp;lt;%if(this.showSkills) {%&gt;&#39; +
+    &#39;&lt;%for(var index=&quot;&quot; in=&quot;&quot; this.skills)=&quot;&quot; {%=&quot;&quot;&gt;&#39; + 
+    &#39;&lt;a href=&quot;#&quot;&gt;&lt;%this.skills[index]%&gt;&lt;/%this.skills[index]%&gt;&lt;/a&gt;&#39; +
+    &#39;&lt;%}%&amp;gt;&amp;#39; +=&quot;&quot; &amp;#39;&amp;lt;%}=&quot;&quot; else=&quot;&quot; {%=&quot;&quot;&gt;&#39; +
+    &#39;&lt;p&gt;none&lt;/p&gt;&#39; +
+&#39;&lt;%}%&amp;gt;&amp;#39;; console.log(templateengine(template,=&quot;&quot; {=&quot;&quot; skills:=&quot;&quot; [&amp;quot;js&amp;quot;,=&quot;&quot; &amp;quot;html&amp;quot;,=&quot;&quot; &amp;quot;css&amp;quot;],=&quot;&quot; showskills:=&quot;&quot; true=&quot;&quot; }));=&quot;&quot; &lt;=&quot;&quot; code=&quot;&quot;&gt;&lt;/%}%&amp;gt;&amp;#39;;&gt;&lt;/%}%&amp;gt;&amp;#39;&gt;&lt;/%for(var&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;除了上面说的改进，我还对代码本身做了些优化，最终版本如下：&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-javascript&quot;&gt;var TemplateEngine = function(html, options) {
+    var re = /&amp;lt;%([^%&amp;gt;]+)?%&amp;gt;/g, reExp = /(^( )?(if|for|else|switch|case|break|{|}))(.*)?/g, code = &amp;#39;var r=[];\n&amp;#39;, cursor = 0;
+    var add = function(line, js) {
+        js? (code += line.match(reExp) ? line + &amp;#39;\n&amp;#39; : &amp;#39;r.push(&amp;#39; + line + &amp;#39;);\n&amp;#39;) :
+            (code += line != &amp;#39;&amp;#39; ? &amp;#39;r.push(&amp;quot;&amp;#39; + line.replace(/&amp;quot;/g, &amp;#39;\\&amp;quot;&amp;#39;) + &amp;#39;&amp;quot;);\n&amp;#39; : &amp;#39;&amp;#39;);
+        return add;
+    }
+    while(match = re.exec(html)) {
+        add(html.slice(cursor, match.index))(match[1], true);
+        cursor = match.index + match[0].length;
+    }
+    add(html.substr(cursor, html.length - cursor));
+    code += &amp;#39;return r.join(&amp;quot;&amp;quot;);&amp;#39;;
+    return new Function(code.replace(/[\r\t\n]/g, &amp;#39;&amp;#39;)).apply(options);
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;代码比我预想的还要少，只有区区15行！&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;blockquote&gt;
+&lt;p&gt;译文链接：&lt;a href=&quot;原文链接：JavaScript template engine in just 20 lines&quot;&gt;JavaScript template engine in just 20 lines&lt;/a&gt;&lt;/p&gt;
+&lt;/blockq
+    
+    </summary>
+    
+    
+      <category term="javascript" scheme="http://mmrxia.github.io/tags/javascript/"/>
+    
+  </entry>
   
   <entry>
     <title>nodejs中间件connect</title>
@@ -522,9 +767,9 @@ function getImgData(img,dir,next){
     </summary>
     
     
-      <category term="移动端开发" scheme="http://mmrxia.github.io/tags/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E5%BC%80%E5%8F%91/"/>
-    
       <category term="js" scheme="http://mmrxia.github.io/tags/js/"/>
+    
+      <category term="移动端开发" scheme="http://mmrxia.github.io/tags/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E5%BC%80%E5%8F%91/"/>
     
   </entry>
   
@@ -568,9 +813,9 @@ Hi mmrxia! You&amp;#39;ve successfully authenticated, but GitHub does not provid
     </summary>
     
     
-      <category term="Linux" scheme="http://mmrxia.github.io/tags/Linux/"/>
-    
       <category term="git" scheme="http://mmrxia.github.io/tags/git/"/>
+    
+      <category term="Linux" scheme="http://mmrxia.github.io/tags/Linux/"/>
     
   </entry>
   
@@ -1247,62 +1492,6 @@ git config -global user.email &amp;quot;you@example.com&amp;quot;
     
     
       <category term="js" scheme="http://mmrxia.github.io/tags/js/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>跨域的几种方式</title>
-    <link href="http://mmrxia.github.io/2016/05/09/%E8%B7%A8%E5%9F%9F%E7%9A%84%E5%87%A0%E7%A7%8D%E6%96%B9%E5%BC%8F/"/>
-    <id>http://mmrxia.github.io/2016/05/09/跨域的几种方式/</id>
-    <published>2016-05-09T07:37:30.000Z</published>
-    <updated>2016-05-09T08:06:05.872Z</updated>
-    
-    <content type="html">&lt;blockquote&gt;
-&lt;p&gt;跨域，怎么处理跨域问题？无论是在面试中，还是在工作当中，总是会经常被问到，所以在这里总结下跨域的几种处理方式好了。&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h3 id=&quot;1-jsonp方式&quot;&gt;&lt;a href=&quot;#1-jsonp方式&quot; class=&quot;headerlink&quot; title=&quot;1 . jsonp方式&quot;&gt;&lt;/a&gt;1 . jsonp方式&lt;/h3&gt;&lt;p&gt;在js中，我们直接用&lt;code&gt;XMLHttpRequest&lt;/code&gt;请求不同域上的数据是不可以的，而在html中，能够实现跨域的就几种：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;link属性（css）&lt;/li&gt;
-&lt;li&gt;href属性（a标签）&lt;/li&gt;
-&lt;li&gt;src（img标签、script标签）&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;为了解决跨域的问题，结合script能够发起跨域请求的原理，产生了jsonp，即：动态的创建script标签，跨域的地址加上需要传送的数据和回调函数为script标签的src地址，执行完之后再动态的删除之前创建的script.&lt;/p&gt;
-&lt;p&gt;理解了原理之后，就很容易明白jsonp的缺点了：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;只能用get方式请求，因为是使用src来传送数据&lt;/li&gt;
-&lt;li&gt;数据中出现中文需要编码。因为通过url传参数，可以在浏览器输入地址并带上中文参数试试&lt;/li&gt;
-&lt;li&gt;src对请求的地址没有限制，会出现安全性的问题&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3 id=&quot;2-document-domain&quot;&gt;&lt;a href=&quot;#2-document-domain&quot; class=&quot;headerlink&quot; title=&quot;2 . document.domain&quot;&gt;&lt;/a&gt;2 . document.domain&lt;/h3&gt;&lt;p&gt;看到这个跨域方式，可能有些同学会觉得陌生，其实这个也很常用。&lt;br&gt;每次遇到有需要使用登录之类的项目，在开发的时候都需要将地址改成163的域名，为啥？在控制台打印一下&lt;code&gt;document.domain&lt;/code&gt;试试,这篇文章的控制台输出的是&lt;code&gt;feg.netease.com&lt;/code&gt;，而在有使用到163登录的项目中，输出的都是&lt;code&gt;163.com&lt;/code&gt;。登录组件限制在163域名下才能用，但是163的域名有很多，避免不同域名之间出现通信问题，使用&lt;code&gt;document.domain&lt;/code&gt;的方式将页面的主域名改成了&lt;code&gt;163.com&lt;/code&gt;。这种方式主要用在主域名能设置成相同的页面之间的通信。如&lt;code&gt;http://xyq.163.com/&lt;/code&gt;，它的主域名可以是&lt;code&gt;xyq.163.com&lt;/code&gt;或&lt;code&gt;163.com&lt;/code&gt;；&lt;code&gt;http://xsd.163.com&lt;/code&gt;，它的主域名可以是&lt;code&gt;xsd.163.com&lt;/code&gt;或&lt;code&gt;163.com&lt;/code&gt;，所以这两个站点下的页面能够将主域名设置成163.com。&lt;/p&gt;
-&lt;h3 id=&quot;3-使用iframe&quot;&gt;&lt;a href=&quot;#3-使用iframe&quot; class=&quot;headerlink&quot; title=&quot;3 . 使用iframe&quot;&gt;&lt;/a&gt;3 . 使用iframe&lt;/h3&gt;&lt;p&gt;这种方式利用了window对象name属性的特征：在一个窗口(window)的生命周期内,窗口载入的所有的页面都是共享一个window.name的，每个页面对window.name都有读写的权限，window.name是持久存在一个窗口载入过的所有页面中的，并不会因新页面的载入而进行重置。&lt;/p&gt;
-&lt;h3 id=&quot;4-Access-Control-Allow-Origin&quot;&gt;&lt;a href=&quot;#4-Access-Control-Allow-Origin&quot; class=&quot;headerlink&quot; title=&quot;4 . Access-Control-Allow-Origin&quot;&gt;&lt;/a&gt;4 . Access-Control-Allow-Origin&lt;/h3&gt;&lt;p&gt;正常情况下我们的接口都是jsonp的格式，可是万一遇到其它格式的接口怎么办？比如json格式，这个时候可以通过&lt;code&gt;Access-Control-Allow-Origin&lt;/code&gt;来实现跨域。这种方式主要是后台同学配置，接口使用&lt;code&gt;Access-Control-Allow-Origin&lt;/code&gt;设置对应项目的域名，前端同学这边像平常调用接口一样，不需要再做其他处理。如下面的例子：&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-javascript&quot;&gt;   $.ajax({
-       url: &amp;quot;http://api.ypw.163.com/api/app&amp;quot;,
-       type: &amp;quot;POST&amp;quot;,
-       data: JSON.stringify(postData),
-       dataType: &amp;quot;application/json&amp;quot;,
-       headers: {&amp;quot;X-Ypw-Token&amp;quot;: user_token, &amp;quot;Content-Type&amp;quot;: &amp;quot;application/json&amp;quot;},
-       success: function(result) {
-           renderPage(result);
-       }
-   });
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;data为需要传输的数据，dataType是接口的格式。比平常接口调用多了的headers部分，是这个接口考虑到安全性的问题，接口开发同学需要我添加一个key，并且把user_token用base64加密之后传输给他，并不是跨域需要设置的东西，即这种方式跟平常调用接口一样。&lt;br&gt;好像这种方式挺好用的。确实，可是最大的问题是ie7、8、9都还不支持，所以目前也就能用在移动端了。&lt;/p&gt;
-&lt;h3 id=&quot;5-Chrome-–disable-web-security-快捷方式&quot;&gt;&lt;a href=&quot;#5-Chrome-–disable-web-security-快捷方式&quot; class=&quot;headerlink&quot; title=&quot;5 . Chrome –disable-web-security 快捷方式&quot;&gt;&lt;/a&gt;5 . Chrome –disable-web-security 快捷方式&lt;/h3&gt;&lt;p&gt;这种方式适用于Chrome浏览器，使浏览器支持跨域请求。在快捷方式的属性中配置&lt;code&gt;--args --disable-web-security --user-data-dir&lt;/code&gt;参数，如图：&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;http://7xth8v.com2.z0.glb.clouddn.com/image/n_chrome_prop.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;blockquote&gt;
-&lt;p&gt;跨域，怎么处理跨域问题？无论是在面试中，还是在工作当中，总是会经常被问到，所以在这里总结下跨域的几种处理方式好了。&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h3 id=&quot;1-jsonp方式&quot;&gt;&lt;a href=&quot;#1-jsonp方式&quot; class=&quot;h
-    
-    </summary>
-    
-    
-      <category term="跨域" scheme="http://mmrxia.github.io/tags/%E8%B7%A8%E5%9F%9F/"/>
     
   </entry>
   
