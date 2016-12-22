@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://mmrxia.github.io/"/>
-  <updated>2016-12-22T09:57:43.417Z</updated>
+  <updated>2016-12-22T10:03:06.841Z</updated>
   <id>http://mmrxia.github.io/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http://mmrxia.github.io/2016/12/22/javascript%E7%B1%BB%E5%9E%8B%E5%88%A4%E6%96%AD/"/>
     <id>http://mmrxia.github.io/2016/12/22/javascript类型判断/</id>
     <published>2016-12-22T09:50:03.000Z</published>
-    <updated>2016-12-22T09:57:43.417Z</updated>
+    <updated>2016-12-22T10:03:06.841Z</updated>
     
     <content type="html">&lt;blockquote&gt;
 &lt;p&gt;JavaScript 中所有变量都是对象，除了两个例外 null 和 undefined。&lt;/p&gt;
@@ -30,7 +30,7 @@
 [1, 2, 3].toString(); // &amp;#39;1,2,3&amp;#39;
 (2).toString(); // &amp;#39;2&amp;#39;
 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;通过上面的代码，可以看出布尔、数组、数字都具有toString()这一方法，其实除了null和undefined外的数据类型都继承自Object对象都具Object的方法和属性，这些看似非对象的类型使用起来却很像对象，所以也可以说它们都是对象。可是Javascript依然具有类型，我想大致可以分成下面几类：&lt;/p&gt;
+&lt;p&gt;通过上面的代码，可以看出布尔、数组、数字都具有&lt;code&gt;toString()&lt;/code&gt;这一方法，其实除了&lt;code&gt;null&lt;/code&gt;和&lt;code&gt;undefined&lt;/code&gt;外的数据类型都继承自&lt;code&gt;Object&lt;/code&gt;对象都具&lt;code&gt;Object&lt;/code&gt;的方法和属性，这些看似非对象的类型使用起来却很像对象，所以也可以说它们都是对象。&lt;br&gt;可是Javascript依然具有类型，大致可以分成下面几类：&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;Number&lt;/li&gt;
 &lt;li&gt;String&lt;/li&gt;
@@ -39,15 +39,15 @@
 &lt;li&gt;Null&lt;/li&gt;
 &lt;li&gt;Undefined&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;Number、String、Boolean、Null、Undefined都是是基本数据类型，只有Object属于复杂数据类型。&lt;br&gt;Null和Undefined都表示空，它们的区别在于：Null表示无值，一般是人为的将变量的值设置为null；Undefined表示未知值，一般在使用var声明变量但未对其加以初始化时，这个变量值为undefined。&lt;/p&gt;
-&lt;p&gt;Object又分为以下几种类型：&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;Number&lt;/code&gt;、&lt;code&gt;String&lt;/code&gt;、&lt;code&gt;Boolean&lt;/code&gt;、&lt;code&gt;Null&lt;/code&gt;、&lt;code&gt;Undefined&lt;/code&gt;都是是基本数据类型，只有&lt;code&gt;Object&lt;/code&gt;属于复杂数据类型。&lt;br&gt;&lt;code&gt;Null&lt;/code&gt;和&lt;code&gt;Undefined&lt;/code&gt;都表示空，它们的区别在于：&lt;code&gt;Null&lt;/code&gt;表示无值，一般是人为的将变量的值设置为&lt;code&gt;null&lt;/code&gt;；&lt;code&gt;Undefined&lt;/code&gt;表示未知值，一般在使用&lt;code&gt;var&lt;/code&gt;声明变量但未对其加以初始化时，这个变量值为&lt;code&gt;undefined&lt;/code&gt;。&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;Object&lt;/code&gt;又分为以下几种类型：&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;Function&lt;/li&gt;
 &lt;li&gt;Array&lt;/li&gt;
 &lt;li&gt;Date&lt;/li&gt;
 &lt;li&gt;RegExp&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h4 id=&quot;typeof操作符&quot;&gt;&lt;a href=&quot;#typeof操作符&quot; class=&quot;headerlink&quot; title=&quot;typeof操作符&quot;&gt;&lt;/a&gt;typeof操作符&lt;/h4&gt;&lt;p&gt;typeof操作符（和instanceof一起）或许是 JavaScript 中最大的设计缺陷， 因为几乎不可能从它们那里得到想要的结果。&lt;/p&gt;
+&lt;h4 id=&quot;typeof操作符&quot;&gt;&lt;a href=&quot;#typeof操作符&quot; class=&quot;headerlink&quot; title=&quot;typeof操作符&quot;&gt;&lt;/a&gt;typeof操作符&lt;/h4&gt;&lt;p&gt;&lt;code&gt;typeof&lt;/code&gt;操作符（和&lt;code&gt;instanceof&lt;/code&gt;一起）或许是 JavaScript 中最大的设计缺陷， 因为几乎不可能从它们那里得到想要的结果。&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&quot;language-javascript&quot;&gt;typeof []; // object
 typeof {}; // object
 typeof &amp;#39;&amp;#39;; // string
@@ -59,7 +59,7 @@ typeof true; // boolean
 typeof null; // object
 typeof undefined; // undefined
 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;为什么？function明明是Object类型，却显示function；null明明是Null类型，却显示’object’。所以typeof操作符对类型的判断是不靠谱的，除非类型在给定的范围且typeof确实能够区分这些类型。&lt;/p&gt;
+&lt;p&gt;为什么？&lt;code&gt;function&lt;/code&gt;明明是&lt;code&gt;Object&lt;/code&gt;类型，却显示&lt;code&gt;function&lt;/code&gt;；&lt;code&gt;null&lt;/code&gt;明明是&lt;code&gt;Null&lt;/code&gt;类型，却显示&lt;code&gt;object&lt;/code&gt;。所以&lt;code&gt;typeof&lt;/code&gt;操作符对类型的判断是不靠谱的，除非类型在给定的范围且&lt;code&gt;typeof&lt;/code&gt;确实能够区分这些类型。&lt;/p&gt;
 &lt;h4 id=&quot;类型的区分&quot;&gt;&lt;a href=&quot;#类型的区分&quot; class=&quot;headerlink&quot; title=&quot;类型的区分&quot;&gt;&lt;/a&gt;类型的区分&lt;/h4&gt;&lt;p&gt;Javascript标准标准文档给出了区分类型的办法：&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&quot;language-javascript&quot;&gt;Object.prototype.toString.call();
 &lt;/code&gt;&lt;/pre&gt;
@@ -75,7 +75,7 @@ Object.prototype.toString.call(true); // [object Boolean]
 Object.prototype.toString.call(null); // [object Null]
 Object.prototype.toString.call(); // [object Undefined]
 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;利用上面判断类型的方法可以写个类库，此类库来自(Axis.js)[//github.com/toddmotto/axis]:&lt;/p&gt;
+&lt;p&gt;利用上面判断类型的方法可以写个类库，此类库来自&lt;a href=&quot;//github.com/toddmotto/axis&quot;&gt;Axis.js&lt;/a&gt;:&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&quot;language-javascript&quot;&gt;(function (root, factory) {
   // 判断是否使用了模块
   if (typeof define === &amp;#39;function&amp;#39; &amp;amp;&amp;amp; define.amd) {

@@ -236,7 +236,7 @@
 [1, 2, 3].toString(); // &#39;1,2,3&#39;
 (2).toString(); // &#39;2&#39;
 </code></pre>
-<p>通过上面的代码，可以看出布尔、数组、数字都具有toString()这一方法，其实除了null和undefined外的数据类型都继承自Object对象都具Object的方法和属性，这些看似非对象的类型使用起来却很像对象，所以也可以说它们都是对象。可是Javascript依然具有类型，我想大致可以分成下面几类：</p>
+<p>通过上面的代码，可以看出布尔、数组、数字都具有<code>toString()</code>这一方法，其实除了<code>null</code>和<code>undefined</code>外的数据类型都继承自<code>Object</code>对象都具<code>Object</code>的方法和属性，这些看似非对象的类型使用起来却很像对象，所以也可以说它们都是对象。<br>可是Javascript依然具有类型，大致可以分成下面几类：</p>
 <ul>
 <li>Number</li>
 <li>String</li>
@@ -245,15 +245,15 @@
 <li>Null</li>
 <li>Undefined</li>
 </ul>
-<p>Number、String、Boolean、Null、Undefined都是是基本数据类型，只有Object属于复杂数据类型。<br>Null和Undefined都表示空，它们的区别在于：Null表示无值，一般是人为的将变量的值设置为null；Undefined表示未知值，一般在使用var声明变量但未对其加以初始化时，这个变量值为undefined。</p>
-<p>Object又分为以下几种类型：</p>
+<p><code>Number</code>、<code>String</code>、<code>Boolean</code>、<code>Null</code>、<code>Undefined</code>都是是基本数据类型，只有<code>Object</code>属于复杂数据类型。<br><code>Null</code>和<code>Undefined</code>都表示空，它们的区别在于：<code>Null</code>表示无值，一般是人为的将变量的值设置为<code>null</code>；<code>Undefined</code>表示未知值，一般在使用<code>var</code>声明变量但未对其加以初始化时，这个变量值为<code>undefined</code>。</p>
+<p><code>Object</code>又分为以下几种类型：</p>
 <ul>
 <li>Function</li>
 <li>Array</li>
 <li>Date</li>
 <li>RegExp</li>
 </ul>
-<h4 id="typeof操作符"><a href="#typeof操作符" class="headerlink" title="typeof操作符"></a>typeof操作符</h4><p>typeof操作符（和instanceof一起）或许是 JavaScript 中最大的设计缺陷， 因为几乎不可能从它们那里得到想要的结果。</p>
+<h4 id="typeof操作符"><a href="#typeof操作符" class="headerlink" title="typeof操作符"></a>typeof操作符</h4><p><code>typeof</code>操作符（和<code>instanceof</code>一起）或许是 JavaScript 中最大的设计缺陷， 因为几乎不可能从它们那里得到想要的结果。</p>
 <pre><code class="language-javascript">typeof []; // object
 typeof {}; // object
 typeof &#39;&#39;; // string
@@ -265,7 +265,7 @@ typeof true; // boolean
 typeof null; // object
 typeof undefined; // undefined
 </code></pre>
-<p>为什么？function明明是Object类型，却显示function；null明明是Null类型，却显示’object’。所以typeof操作符对类型的判断是不靠谱的，除非类型在给定的范围且typeof确实能够区分这些类型。</p>
+<p>为什么？<code>function</code>明明是<code>Object</code>类型，却显示<code>function</code>；<code>null</code>明明是<code>Null</code>类型，却显示<code>object</code>。所以<code>typeof</code>操作符对类型的判断是不靠谱的，除非类型在给定的范围且<code>typeof</code>确实能够区分这些类型。</p>
 <h4 id="类型的区分"><a href="#类型的区分" class="headerlink" title="类型的区分"></a>类型的区分</h4><p>Javascript标准标准文档给出了区分类型的办法：</p>
 <pre><code class="language-javascript">Object.prototype.toString.call();
 </code></pre>
@@ -281,7 +281,7 @@ Object.prototype.toString.call(true); // [object Boolean]
 Object.prototype.toString.call(null); // [object Null]
 Object.prototype.toString.call(); // [object Undefined]
 </code></pre>
-<p>利用上面判断类型的方法可以写个类库，此类库来自(Axis.js)[//github.com/toddmotto/axis]:</p>
+<p>利用上面判断类型的方法可以写个类库，此类库来自<a href="//github.com/toddmotto/axis">Axis.js</a>:</p>
 <pre><code class="language-javascript">(function (root, factory) {
   // 判断是否使用了模块
   if (typeof define === &#39;function&#39; &amp;&amp; define.amd) {
