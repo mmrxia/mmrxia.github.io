@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://mmrxia.github.io/"/>
-  <updated>2016-12-22T07:41:18.727Z</updated>
+  <updated>2016-12-22T09:57:43.417Z</updated>
   <id>http://mmrxia.github.io/</id>
   
   <author>
@@ -14,6 +14,134 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>javascript类型判断</title>
+    <link href="http://mmrxia.github.io/2016/12/22/javascript%E7%B1%BB%E5%9E%8B%E5%88%A4%E6%96%AD/"/>
+    <id>http://mmrxia.github.io/2016/12/22/javascript类型判断/</id>
+    <published>2016-12-22T09:50:03.000Z</published>
+    <updated>2016-12-22T09:57:43.417Z</updated>
+    
+    <content type="html">&lt;blockquote&gt;
+&lt;p&gt;JavaScript 中所有变量都是对象，除了两个例外 null 和 undefined。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;理解Javascript的类型是学习Javascript的基础，但是作为新手很容易在判断Javascript上容易混淆。很容易被上面这句话误导，首先解释下上面这句话。&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-javascript&quot;&gt;false.toString(); // &amp;#39;false&amp;#39;
+[1, 2, 3].toString(); // &amp;#39;1,2,3&amp;#39;
+(2).toString(); // &amp;#39;2&amp;#39;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;通过上面的代码，可以看出布尔、数组、数字都具有toString()这一方法，其实除了null和undefined外的数据类型都继承自Object对象都具Object的方法和属性，这些看似非对象的类型使用起来却很像对象，所以也可以说它们都是对象。可是Javascript依然具有类型，我想大致可以分成下面几类：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Number&lt;/li&gt;
+&lt;li&gt;String&lt;/li&gt;
+&lt;li&gt;Boolean&lt;/li&gt;
+&lt;li&gt;Object&lt;/li&gt;
+&lt;li&gt;Null&lt;/li&gt;
+&lt;li&gt;Undefined&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Number、String、Boolean、Null、Undefined都是是基本数据类型，只有Object属于复杂数据类型。&lt;br&gt;Null和Undefined都表示空，它们的区别在于：Null表示无值，一般是人为的将变量的值设置为null；Undefined表示未知值，一般在使用var声明变量但未对其加以初始化时，这个变量值为undefined。&lt;/p&gt;
+&lt;p&gt;Object又分为以下几种类型：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Function&lt;/li&gt;
+&lt;li&gt;Array&lt;/li&gt;
+&lt;li&gt;Date&lt;/li&gt;
+&lt;li&gt;RegExp&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&quot;typeof操作符&quot;&gt;&lt;a href=&quot;#typeof操作符&quot; class=&quot;headerlink&quot; title=&quot;typeof操作符&quot;&gt;&lt;/a&gt;typeof操作符&lt;/h4&gt;&lt;p&gt;typeof操作符（和instanceof一起）或许是 JavaScript 中最大的设计缺陷， 因为几乎不可能从它们那里得到想要的结果。&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-javascript&quot;&gt;typeof []; // object
+typeof {}; // object
+typeof &amp;#39;&amp;#39;; // string
+typeof new Date() // object
+typeof 1; // number
+typeof function () {}; // function
+typeof /test/i; // object
+typeof true; // boolean
+typeof null; // object
+typeof undefined; // undefined
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;为什么？function明明是Object类型，却显示function；null明明是Null类型，却显示’object’。所以typeof操作符对类型的判断是不靠谱的，除非类型在给定的范围且typeof确实能够区分这些类型。&lt;/p&gt;
+&lt;h4 id=&quot;类型的区分&quot;&gt;&lt;a href=&quot;#类型的区分&quot; class=&quot;headerlink&quot; title=&quot;类型的区分&quot;&gt;&lt;/a&gt;类型的区分&lt;/h4&gt;&lt;p&gt;Javascript标准标准文档给出了区分类型的办法：&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-javascript&quot;&gt;Object.prototype.toString.call();
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;我们来看看上面的方法输出结果：&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-javascript&quot;&gt;Object.prototype.toString.call([]); // [object Array]
+Object.prototype.toString.call({}); // [object Object]
+Object.prototype.toString.call(&amp;#39;&amp;#39;); // [object String]
+Object.prototype.toString.call(new Date()); // [object Date]
+Object.prototype.toString.call(1); // [object Number]
+Object.prototype.toString.call(function () {}); // [object Function]
+Object.prototype.toString.call(/test/i); // [object RegExp]
+Object.prototype.toString.call(true); // [object Boolean]
+Object.prototype.toString.call(null); // [object Null]
+Object.prototype.toString.call(); // [object Undefined]
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;利用上面判断类型的方法可以写个类库，此类库来自(Axis.js)[//github.com/toddmotto/axis]:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-javascript&quot;&gt;(function (root, factory) {
+  // 判断是否使用了模块
+  if (typeof define === &amp;#39;function&amp;#39; &amp;amp;&amp;amp; define.amd) {
+    // 使用AMD模块
+    define(factory);
+  } else if (typeof exports === &amp;#39;object&amp;#39;) {
+    // 使用CMD模块
+    module.exports = factory;
+  } else {
+    // 没有使用模块，放在全局下
+    root.axis = factory();
+  }
+})(this, function () {
+  // 严格模式
+  &amp;#39;use strict&amp;#39;;
+  var exports = {};
+  // 将字符串转为数组
+  var types = &amp;#39;Array Object String Date RegExp Function Boolean Number Null Undefined&amp;#39;.split(&amp;#39; &amp;#39;);
+  // 判断类型
+  var type = function () {
+    return Object.prototype.toString.call(this).slice(8, -1);
+  };
+  // 遍历types，为exports对象添加isArray、isObject...等方法
+  for (var i = types.length; i--;) {
+    exports[&amp;#39;is&amp;#39; + types[i]] = (function (self) {
+      return function (elem) {
+        // type.call(elem)将type方法里的this指针指向elem
+        return type.call(elem) === self;
+      };
+    })(types[i]);
+  }
+  return exports;
+});
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;使用方法也很简单：&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-javascript&quot;&gt;axis.isArray([]); // true
+axis.isObject({}); // true
+axis.isString(&amp;#39;&amp;#39;); // true
+axis.isDate(new Date()); // true
+axis.isRegExp(/test/i); // true
+axis.isFunction(function () {}); // true
+axis.isBoolean(true); // true
+axis.isNumber(1); // true
+axis.isNull(null); // true
+axis.isUndefined(); // true
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;参考链接：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;http://toddmotto.com/understanding-javascript-types-and-reliable-type-checking/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://toddmotto.com/understanding-javascript-types-and-reliable-type-checking/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://bonsaiden.github.io/JavaScript-Garden/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://bonsaiden.github.io/JavaScript-Garden/&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;blockquote&gt;
+&lt;p&gt;JavaScript 中所有变量都是对象，除了两个例外 null 和 undefined。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;理解Javascript的类型是学习Javascript的基础，但是作为新手很容易在判断Javascript上容易
+    
+    </summary>
+    
+    
+      <category term="javascript" scheme="http://mmrxia.github.io/tags/javascript/"/>
+    
+  </entry>
   
   <entry>
     <title>只用20行写一个javascript模板引擎</title>
@@ -767,9 +895,9 @@ function getImgData(img,dir,next){
     </summary>
     
     
-      <category term="js" scheme="http://mmrxia.github.io/tags/js/"/>
-    
       <category term="移动端开发" scheme="http://mmrxia.github.io/tags/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E5%BC%80%E5%8F%91/"/>
+    
+      <category term="js" scheme="http://mmrxia.github.io/tags/js/"/>
     
   </entry>
   
@@ -813,9 +941,9 @@ Hi mmrxia! You&amp;#39;ve successfully authenticated, but GitHub does not provid
     </summary>
     
     
-      <category term="git" scheme="http://mmrxia.github.io/tags/git/"/>
-    
       <category term="Linux" scheme="http://mmrxia.github.io/tags/Linux/"/>
+    
+      <category term="git" scheme="http://mmrxia.github.io/tags/git/"/>
     
   </entry>
   
@@ -1347,151 +1475,6 @@ git config -global user.email &amp;quot;you@example.com&amp;quot;
     
     
       <category term="西游记" scheme="http://mmrxia.github.io/tags/%E8%A5%BF%E6%B8%B8%E8%AE%B0/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>js浮点数计算精度丢失问题及解决方案</title>
-    <link href="http://mmrxia.github.io/2016/05/11/js%E6%B5%AE%E7%82%B9%E6%95%B0%E8%AE%A1%E7%AE%97%E7%B2%BE%E5%BA%A6%E4%B8%A2%E5%A4%B1%E9%97%AE%E9%A2%98/"/>
-    <id>http://mmrxia.github.io/2016/05/11/js浮点数计算精度丢失问题/</id>
-    <published>2016-05-11T09:22:45.000Z</published>
-    <updated>2016-09-09T02:30:29.348Z</updated>
-    
-    <content type="html">&lt;p&gt; 本文主要从以下3个方面来说明：&lt;/p&gt;
-&lt;p&gt; 1 . js浮点数计算精度丢失常见现象&lt;br&gt; 2 . js浮点数计算精度丢失原因&lt;br&gt; 3 . js浮点数计算精度丢失解决办法&lt;/p&gt;
-&lt;h3 id=&quot;一、常见现象&quot;&gt;&lt;a href=&quot;#一、常见现象&quot; class=&quot;headerlink&quot; title=&quot;一、常见现象&quot;&gt;&lt;/a&gt;一、常见现象&lt;/h3&gt;&lt;p&gt; 1 . 两个简单的浮点数相加或相乘&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt; 0.1 + 0.2 != 0.3 // true  0.30000000000000004
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt; 又如：&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt; 0.29 * 100  // 28.999999999999996
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt; 2 . 大整数运算&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt; 9999999999999999 == 10000000000000001 // true  16位和17位数竟然相等...
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt; 又如：&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt; var x = 9007199254740992
- x + 1 == x // true
-&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;二、原因&quot;&gt;&lt;a href=&quot;#二、原因&quot; class=&quot;headerlink&quot; title=&quot;二、原因&quot;&gt;&lt;/a&gt;二、原因&lt;/h3&gt;&lt;p&gt; &lt;strong&gt;计算机的二进制实现和位数限制有些数无法有限表示。&lt;/strong&gt;&lt;br&gt; 就像一些无理数不能有限表示，如 圆周率 3.1415926…，1.3333… 等。JS 遵循 &lt;a href=&quot;https://en.wikipedia.org/wiki/IEEE_floating_point&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;IEEE 754&lt;/a&gt; 规范，采用双精度存储（double precision），占用 64 bit。如图：&lt;br&gt; &lt;img src=&quot;http://7xth8v.com2.z0.glb.clouddn.com/image/n_64bit.png?imageView2/2/w/800&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;p&gt; 图中的意义：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;1位用来表示符号位&lt;/li&gt;
-&lt;li&gt;11位用来表示指数&lt;/li&gt;
-&lt;li&gt;52位表示尾数&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt; 浮点数，比如&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt; 0.1 &amp;gt;&amp;gt; 0.0001 1001 1001 1001…（1001无限循环）
- 0.2 &amp;gt;&amp;gt; 0.0011 0011 0011 0011…（0011无限循环）
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt; 此时只能模仿十进制进行四舍五入了，但是二进制只有 0 和 1 两个，于是变为 0 舍 1 入。这即是计算机中部分浮点数运算时出现误差，丢失精度的根本原因。&lt;br&gt; 大整数的精度丢失和浮点数本质上是一样的，尾数位最大是 52 位，因此 JS 中能精准表示的最大整数是 &lt;code&gt;Math.pow(2, 53)&lt;/code&gt;，十进制即 &lt;code&gt;9007199254740992&lt;/code&gt;。&lt;br&gt; 大于 &lt;code&gt;9007199254740992&lt;/code&gt; 的可能会丢失精度。&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt; 9007199254740992     &amp;gt;&amp;gt; 10000000000000...000 // 共计 53 个 0
- 9007199254740992 + 1 &amp;gt;&amp;gt; 10000000000000...001 // 中间 52 个 0
- 9007199254740992 + 2 &amp;gt;&amp;gt; 10000000000000...010 // 中间 51 个 0
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt; 实际上&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt; 9007199254740992 + 1 // 丢失
- 9007199254740992 + 2 // 未丢失
- 9007199254740992 + 3 // 丢失
- 9007199254740992 + 4 // 未丢失
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt; 以上，可以知道看似有穷的数字, 在计算机的二进制表示里却是无穷的，由于存储位数限制因此存在“舍去”，精度丢失就发生了。&lt;/p&gt;
-&lt;p&gt; 想了解更深入的分析可以看这篇论文：&lt;a href=&quot;http://docs.oracle.com/cd/E19957-01/806-3568/ncg_goldberg.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;What Every Computer Scientist Should Know About Floating-Point Arithmetic&lt;/a&gt;&lt;/p&gt;
-&lt;h3 id=&quot;三、解决方案&quot;&gt;&lt;a href=&quot;#三、解决方案&quot; class=&quot;headerlink&quot; title=&quot;三、解决方案&quot;&gt;&lt;/a&gt;三、解决方案&lt;/h3&gt;&lt;p&gt; 对于整数，前端出现问题的几率可能比较低，毕竟很少有业务需要需要用到超大整数，只要运算结果不超过 &lt;code&gt;Math.pow(2, 53)&lt;/code&gt; 就不会丢失精度。&lt;br&gt; 对于小数，前端出现问题的几率还是很多的，尤其在一些电商网站涉及到金额等数据。解决方式：把小数放到位整数（乘倍数），再缩小回原来倍数（除倍数），如下所示：&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt; // 0.1 + 0.2
- (0.1*10 + 0.2*10) / 10 == 0.3 // true
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt; 代码实现如下：&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-javascript&quot;&gt; var Calc = function () {
-     /*
-      * 将浮点数去除小数点，返回整数和倍数。如 3.14 &amp;gt;&amp;gt; 314，倍数是 100
-      * @param n {number} 浮点数
-      * return {object}
-      * {num: 314, times: 100}
-      * */
-     function toInt(n) {
-         var n = +n, res = {num: n, times: 1};
-         if (n !== (n | 0)) { //判断浮点数，n===parseInt(n)
-             var arr = (&amp;#39;&amp;#39; + n).split(&amp;#39;.&amp;#39;);
-             var len = arr[1].length; //小数长度
-             res.times = Math.pow(10, len); //需要乘的倍数=&amp;gt;10的指数
-             res.num = Math.round(n * res.times); //四舍五入取整
-         }
-         return res;
-     }
-
-     function operation(a, b, op) {
-         var result; //最终计算的值
-         var o1 = toInt(a), o2 = toInt(b);
-
-         var n1 = o1.num, t1 = o1.times;
-         var n2 = o2.num, t2 = o2.times;
-
-         var max = Math.max(t1, t2);
-
-         switch (op) {
-             case &amp;#39;add&amp;#39;:
-                 if (t1 &amp;gt; t2) {
-                     result = n1 + n2 * (t1 / t2);
-                 } else {
-                     result = n2 + n1 * (t2 / t1);
-                 }
-                 result = result / max;
-                 break;
-             case &amp;#39;subtract&amp;#39;:
-                 if (t1 &amp;gt; t2) {
-                     result = n1 - n2 * (t1 / t2);
-                 } else {
-                     result = n1 * (t2 / t1) - n2;
-                 }
-                 result = result / max;
-                 break;
-             case &amp;#39;multiply&amp;#39;:
-                 result = (n1 * n2) / (t1 * t2);
-                 return result;
-                 break;
-             case &amp;#39;divide&amp;#39;:
-                 result = (n1 / n2) * (t2 / t1);
-                 return result;
-                 break;
-
-         }
-         return result;
-     }
-
-     /*加*/
-     function add(a, b) {
-         return operation(a, b, &amp;#39;add&amp;#39;);
-     }
-
-     /*减*/
-     function subtract(a, b) {
-         return operation(a, b, &amp;#39;subtract&amp;#39;);
-     }
-
-     /*乘*/
-     function multiply(a, b) {
-         return operation(a, b, &amp;#39;multiply&amp;#39;);
-     }
-
-     /*除*/
-     function divide(a, b) {
-         return operation(a, b, &amp;#39;divide&amp;#39;);
-     }
-
-     //exports
-     return {
-         add: add,
-         subtract: subtract,
-         multiply: multiply,
-         divide: divide
-     }
- }();
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h3 id=&quot;参考资料&quot;&gt;&lt;a href=&quot;#参考资料&quot; class=&quot;headerlink&quot; title=&quot;参考资料&quot;&gt;&lt;/a&gt;参考资料&lt;/h3&gt;&lt;p&gt; &lt;a href=&quot;http://0.30000000000000004.com&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://0.30000000000000004.com&lt;/a&gt;&lt;br&gt; &lt;a href=&quot;http://docs.oracle.com/cd/E19957-01/806-3568/ncg_goldberg.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://docs.oracle.com/cd/E19957-01/806-3568/ncg_goldberg.html&lt;/a&gt;&lt;/p&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;p&gt; 本文主要从以下3个方面来说明：&lt;/p&gt;
-&lt;p&gt; 1 . js浮点数计算精度丢失常见现象&lt;br&gt; 2 . js浮点数计算精度丢失原因&lt;br&gt; 3 . js浮点数计算精度丢失解决办法&lt;/p&gt;
-&lt;h3 id=&quot;一、常见现象&quot;&gt;&lt;a href=&quot;#一、常见现象&quot; class=&quot;h
-    
-    </summary>
-    
-    
-      <category term="js" scheme="http://mmrxia.github.io/tags/js/"/>
     
   </entry>
   
