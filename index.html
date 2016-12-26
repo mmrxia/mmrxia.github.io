@@ -118,7 +118,7 @@
 				
 				<section class="switch-part switch-part2">
 					<div class="widget tagcloud" id="js-tagcloud">
-						<a href="/tags/Linux/" style="font-size: 12.5px;">Linux</a> <a href="/tags/base64/" style="font-size: 10px;">base64</a> <a href="/tags/bash/" style="font-size: 10px;">bash</a> <a href="/tags/bigPipe/" style="font-size: 10px;">bigPipe</a> <a href="/tags/cnpm/" style="font-size: 10px;">cnpm</a> <a href="/tags/express/" style="font-size: 10px;">express</a> <a href="/tags/git/" style="font-size: 15px;">git</a> <a href="/tags/javascript/" style="font-size: 17.5px;">javascript</a> <a href="/tags/js/" style="font-size: 15px;">js</a> <a href="/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/tags/mongodb/" style="font-size: 12.5px;">mongodb</a> <a href="/tags/nodejs/" style="font-size: 20px;">nodejs</a> <a href="/tags/npm/" style="font-size: 10px;">npm</a> <a href="/tags/sku/" style="font-size: 10px;">sku</a> <a href="/tags/uuid/" style="font-size: 10px;">uuid</a> <a href="/tags/前端/" style="font-size: 10px;">前端</a> <a href="/tags/数组/" style="font-size: 10px;">数组</a> <a href="/tags/移动端开发/" style="font-size: 10px;">移动端开发</a> <a href="/tags/算法/" style="font-size: 10px;">算法</a> <a href="/tags/西游记/" style="font-size: 12.5px;">西游记</a> <a href="/tags/跨域/" style="font-size: 10px;">跨域</a> <a href="/tags/随笔/" style="font-size: 10px;">随笔</a>
+						<a href="/tags/Linux/" style="font-size: 12.5px;">Linux</a> <a href="/tags/base64/" style="font-size: 10px;">base64</a> <a href="/tags/bash/" style="font-size: 10px;">bash</a> <a href="/tags/bigPipe/" style="font-size: 10px;">bigPipe</a> <a href="/tags/cnpm/" style="font-size: 10px;">cnpm</a> <a href="/tags/express/" style="font-size: 10px;">express</a> <a href="/tags/git/" style="font-size: 15px;">git</a> <a href="/tags/javascript/" style="font-size: 17.5px;">javascript</a> <a href="/tags/js/" style="font-size: 15px;">js</a> <a href="/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/tags/mongodb/" style="font-size: 12.5px;">mongodb</a> <a href="/tags/nodejs/" style="font-size: 20px;">nodejs</a> <a href="/tags/npm/" style="font-size: 10px;">npm</a> <a href="/tags/sku/" style="font-size: 10px;">sku</a> <a href="/tags/uuid/" style="font-size: 10px;">uuid</a> <a href="/tags/vue/" style="font-size: 10px;">vue</a> <a href="/tags/前端/" style="font-size: 10px;">前端</a> <a href="/tags/数组/" style="font-size: 10px;">数组</a> <a href="/tags/移动端开发/" style="font-size: 10px;">移动端开发</a> <a href="/tags/算法/" style="font-size: 10px;">算法</a> <a href="/tags/西游记/" style="font-size: 12.5px;">西游记</a> <a href="/tags/跨域/" style="font-size: 10px;">跨域</a> <a href="/tags/随笔/" style="font-size: 10px;">随笔</a>
 					</div>
 				</section>
 				
@@ -201,6 +201,331 @@
 </nav>
 
       <div class="body-wrap">
+  
+    <article id="w-vue学习笔记" class="article article-type-w" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/12/26/vue学习笔记/" class="article-date">
+  	<time datetime="2016-12-26T11:57:33.000Z" itemprop="datePublished">2016-12-26</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/12/26/vue学习笔记/">vue学习笔记</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <ul>
+<li>来自vue官方示例：<a href="https://github.com/vuejs/vue-loader-example" target="_blank" rel="external">https://github.com/vuejs/vue-loader-example</a></li>
+<li>使用vuejs和webpack，以及一系列webpack加载器，如vue-loader</li>
+<li>简单记录下具体的做法，供新手参考。</li>
+</ul>
+<h2 id="目录结构"><a href="#目录结构" class="headerlink" title="目录结构"></a>目录结构</h2><pre><code>- demo/
+  + package.json //npm配置文件
+  + webpack.config.js //webpack配置
+  + index.html //页面
+  - node_modules //npm加载的模块
+  - src //开发资源目录
+    - assets //一些资源
+      + logo.png  //图片资源
+    - components //vue组件
+      + a.vue 
+      + b.vue
+      + counter.vue
+    + app.vue //布局文件
+    + main.js  //入口文件
+</code></pre><h2 id="初始化npm"><a href="#初始化npm" class="headerlink" title="初始化npm"></a>初始化npm</h2><p>1.生成npm配置文件 package.json</p>
+<pre><code>npm init
+</code></pre><p>2.可以粘贴如下配置内容替换到package.json中，或者根据变动进行修改</p>
+<pre><code class="language-javascript">{
+  &quot;name&quot;: &quot;demo_vue-loader-example&quot;,
+  &quot;version&quot;: &quot;0.0.1&quot;,
+  &quot;description&quot;: &quot;demo&quot;,
+  &quot;main&quot;: &quot;index.js&quot;,
+  &quot;scripts&quot;: {
+    &quot;dev&quot;: &quot;webpack-dev-server --inline --hot --quiet&quot;, 
+    &quot;build&quot;: &quot;export NODE_ENV=production &amp;&amp; webpack --progress --hide-modules&quot;
+  },
+  &quot;author&quot;: &quot;dingyiming&quot;,
+  &quot;license&quot;: &quot;MIT&quot;,
+  &quot;devDependencies&quot;: {
+    &quot;babel-core&quot;: &quot;^6.2.1&quot;,
+    &quot;babel-loader&quot;: &quot;^6.2.0&quot;,
+    &quot;babel-plugin-transform-runtime&quot;: &quot;^6.1.18&quot;,
+    &quot;babel-preset-es2015&quot;: &quot;^6.1.18&quot;,
+    &quot;babel-preset-stage-0&quot;: &quot;^6.1.18&quot;,
+    &quot;babel-runtime&quot;: &quot;^6.2.0&quot;,
+
+    &quot;css-loader&quot;: &quot;^0.23.0&quot;,
+    &quot;node-sass&quot;: &quot;^3.4.2&quot;,
+    &quot;sass-loader&quot;: &quot;^3.1.2&quot;,
+    &quot;style-loader&quot;: &quot;^0.13.0&quot;,
+    &quot;stylus-loader&quot;: &quot;^1.4.2&quot;,
+
+    &quot;file-loader&quot;: &quot;^0.8.5&quot;,
+    &quot;jade&quot;: &quot;^1.11.0&quot;,
+    &quot;template-html-loader&quot;: &quot;0.0.3&quot;,
+
+    &quot;vue-hot-reload-api&quot;: &quot;^1.2.1&quot;,
+    &quot;vue-html-loader&quot;: &quot;^1.0.0&quot;,
+    &quot;vue-loader&quot;: &quot;^7.1.4&quot;,
+
+    &quot;webpack&quot;: &quot;^1.12.9&quot;,
+    &quot;webpack-dev-server&quot;: &quot;^1.14.0&quot;
+  },
+  &quot;dependencies&quot;: {
+    &quot;vue&quot;: &quot;^1.0.10&quot;
+  }
+}
+</code></pre>
+<p>3.下载node模块</p>
+<pre><code>npm install
+</code></pre><blockquote>
+<p>也可以手动安装某个包，并写入到<code>package.json</code>文字的依赖中。</p>
+<ul>
+<li>–save-dev 把依赖名和版本要求放在了 “devDependencies”:{}，</li>
+<li>–save 放在了 “dependencies”:{}<br>每敲一个下载完后可以看到 “devDependencies”:{}依赖内容的添加</li>
+</ul>
+</blockquote>
+<h2 id="新建index-html用于展示最终页面"><a href="#新建index-html用于展示最终页面" class="headerlink" title="新建index.html用于展示最终页面"></a>新建index.html用于展示最终页面</h2><pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+    &lt;meta charset=&quot;utf-8&quot;&gt;
+    &lt;title&gt;Vue Webpack Example&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;app&gt;&lt;/app&gt;
+&lt;script src=&quot;dist/build.js&quot;&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<h2 id="新建webpack-config-js用于配置webpack"><a href="#新建webpack-config-js用于配置webpack" class="headerlink" title="新建webpack.config.js用于配置webpack"></a>新建webpack.config.js用于配置webpack</h2><pre><code class="language-javascript">var webpack = require(&#39;webpack&#39;)
+
+module.exports = {
+  entry: &#39;./src/main.js&#39;,
+  output: {
+    path: &#39;./dist&#39;,
+    publicPath: &#39;dist/&#39;,
+    filename: &#39;build.js&#39;
+  },
+  module: {
+    loaders: [
+      {
+        test: /\.vue$/,
+        loader: &#39;vue&#39;
+      },
+      {
+        // edit this for additional asset file types
+        test: /\.(png|jpg|gif)$/,
+        loader: &#39;file?name=[name].[ext]?[hash]&#39;
+      }
+    ]
+  },
+  // example: if you wish to apply custom babel options
+  // instead of using vue-loader&#39;s default:
+  babel: {
+    presets: [&#39;es2015&#39;, &#39;stage-0&#39;],
+    plugins: [&#39;transform-runtime&#39;]
+  }
+}
+
+if (process.env.NODE_ENV === &#39;production&#39;) {
+  module.exports.plugins = [
+    new webpack.DefinePlugin({
+      &#39;process.env&#39;: {
+        NODE_ENV: &#39;&quot;production&quot;&#39;
+      }
+    }),
+    new webpack.optimize.UglifyJsPlugin({
+      compress: {
+        warnings: false
+      }
+    }),
+    new webpack.optimize.OccurenceOrderPlugin()
+  ]
+} else {
+  module.exports.devtool = &#39;#source-map&#39;
+}
+</code></pre>
+<h2 id="新建src目录用于存放开发文件"><a href="#新建src目录用于存放开发文件" class="headerlink" title="新建src目录用于存放开发文件"></a>新建src目录用于存放开发文件</h2><h4 id="新建入口文件main-js"><a href="#新建入口文件main-js" class="headerlink" title="新建入口文件main.js"></a>新建入口文件main.js</h4><pre><code class="language-javascript">var Vue = require(&#39;vue&#39;)
+var App = require(&#39;./app.vue&#39;)
+
+new Vue({
+  el: &#39;body&#39;,
+  components: {
+    app: App
+  }
+})
+</code></pre>
+<h4 id="新建组件布局文件app-vue"><a href="#新建组件布局文件app-vue" class="headerlink" title="新建组件布局文件app.vue"></a>新建组件布局文件<code>app.vue</code></h4><blockquote>
+<p>组件布局将在这里设置，.vue文件将由vue-loader进行加载，.vue内同时包含html、css、js源码，使组件的独立，组件之间可以尽可能地解耦，便于开发维护</p>
+</blockquote>
+<pre><code class="language-html">&lt;template lang=&quot;jade&quot;&gt;
+div
+  img(class=&quot;logo&quot;, src=&quot;./assets/logo.png&quot;)
+  h1 {{msg}}
+  comp-a
+  comp-b
+  counter
+&lt;/template&gt;
+
+&lt;script&gt;
+import CompA from &#39;./components/a.vue&#39;
+import CompB from &#39;./components/b.vue&#39;
+import Counter from &#39;./components/counter.vue&#39;
+export default {
+  data () {
+    return {
+      msg: &#39;Hello from vue-loader!&#39;
+    }
+  },
+  components: {
+    CompA,
+    CompB,
+    Counter
+  }
+}
+&lt;/script&gt;
+
+&lt;style lang=&quot;stylus&quot;&gt;
+font-stack = Helvetica, sans-serif
+primary-color = #999
+body
+  font 100% font-stack
+  color primary-color
+.logo
+  width 40px
+  height 40px
+&lt;/style&gt;
+</code></pre>
+<h4 id="新建components文件夹"><a href="#新建components文件夹" class="headerlink" title="新建components文件夹"></a>新建components文件夹</h4><p>用于开发具体的子组件，均以.vue的后缀呈现</p>
+<ul>
+<li>a.vue</li>
+</ul>
+<pre><code class="language-html">&lt;style scoped&gt;
+.container {
+  border: 1px solid #00f;
+}
+.red {
+  color: #f00;
+}
+&lt;/style&gt;
+
+&lt;template&gt;
+  &lt;div class=&quot;container&quot;&gt;
+    &lt;h2 class=&quot;red&quot;&gt;{{msg}}&lt;/h2&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script&gt;
+export default {
+  data () {
+    return {
+      msg: &#39;Hello from Component A!&#39;
+    }
+  }
+}
+&lt;/script&gt;
+</code></pre>
+<ul>
+<li>b.vue</li>
+</ul>
+<pre><code class="language-html">&lt;style scoped&gt;
+.container {
+  border: 1px solid #f00;
+}
+h2 {
+  color: #393;
+}
+&lt;/style&gt;
+
+&lt;template&gt;
+  &lt;div class=&quot;container&quot;&gt;
+    &lt;h2&gt;Hello from Component B!&lt;/h2&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+</code></pre>
+<ul>
+<li>counter.vue</li>
+</ul>
+<pre><code class="language-html">&lt;template&gt;
+  &lt;div&gt;
+    &lt;h1&gt;I am a Counter Component. Edit me in dev mode.&lt;/h1&gt;
+    &lt;p&gt;Current count: {{count}}&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script&gt;
+export default {
+  data () {
+    return { count: 0 }
+  },
+  ready () {
+    this.handle = setInterval(() =&gt; {
+      this.count++
+    }, 1000)
+  },
+  destroyed () {
+    clearInterval(this.handle)
+  }
+}
+&lt;/script&gt;
+</code></pre>
+<h4 id="新建assets文件夹用于放一些资源"><a href="#新建assets文件夹用于放一些资源" class="headerlink" title="新建assets文件夹用于放一些资源"></a>新建assets文件夹用于放一些资源</h4><p>此项目下有一张图 logo.png</p>
+<h4 id="打包运行查看"><a href="#打包运行查看" class="headerlink" title="打包运行查看"></a>打包运行查看</h4><ul>
+<li>打包运行查看</li>
+</ul>
+<pre><code>npm run build
+</code></pre><ul>
+<li>运行</li>
+</ul>
+<pre><code>npm run dev
+</code></pre><ul>
+<li>查看</li>
+</ul>
+<p>浏览器中访问 localhost:8080</p>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/vue/">vue</a></li></ul>
+	</div>
+
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
   
     <article id="post-javascript类型判断" class="article article-type-post" itemscope itemprop="blogPost">
   
@@ -1267,145 +1592,6 @@ npm info express
       
 	<div class="article-tag tagcloud">
 		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/cnpm/">cnpm</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/npm/">npm</a></li></ul>
-	</div>
-
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-html5在iOS设备上传图片调整方向实践" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2016/07/18/html5在iOS设备上传图片调整方向实践/" class="article-date">
-  	<time datetime="2016-07-18T11:56:54.000Z" itemprop="datePublished">2016-07-18</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/07/18/html5在iOS设备上传图片调整方向实践/">html5在iOS设备上传图片调整方向实践</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <blockquote>
-<p>解决在iOS设备上，用H5上传图片，有时图片方向会错乱的问题。</p>
-</blockquote>
-<p>用html5编写图片裁切上传，在iphone手机上可能会遇到图片方向错误问题，在此把解决方法和大家分享一下，<br>用到了html5的 FileReader和Canvas，如果还没有接触的同学，先了解一下其方法。   </p>
-<pre><code class="language-javascript"> //此方法为file input元素的change事件
- function change(){
-    var file = this.files[0];
-    var orientation;
-    //EXIF js 可以读取图片的元信息  https://github.com/exif-js/exif-js
-    EXIF.getData(file,function(){
-        orientation=EXIF.getTag(this,&#39;Orientation&#39;);
-    });
-    var reader = new FileReader();
-    reader.onload = function(e) {   
-        getImgData(this.result,orientation,function(data){
-            //这里可以使用校正后的图片data了 
-        }); 
-    }
-    reader.readAsDataURL(file);
-}
-</code></pre>
-<p>下面是具体的处理方式：</p>
-<pre><code class="language-javascript">// @param {string} img 图片的base64
-// @param {int} dir exif获取的方向信息
-// @param {function} next 回调方法，返回校正方向后的base64
-function getImgData(img,dir,next){
-  var image=new Image();
-  image.onload=function(){
-    var degree=0,drawWidth,drawHeight,width,height;
-    drawWidth=this.naturalWidth;
-    drawHeight=this.naturalHeight;
-    //以下改变一下图片大小
-    var maxSide = Math.max(drawWidth, drawHeight);
-    if (maxSide &gt; 1024) {
-        var minSide = Math.min(drawWidth, drawHeight);
-        minSide = minSide / maxSide * 1024;
-        maxSide = 1024;
-        if (drawWidth &gt; drawHeight) {
-            drawWidth = maxSide;
-            drawHeight = minSide;
-        } else {
-            drawWidth = minSide;
-            drawHeight = maxSide;
-        }
-    }
-    var canvas=document.createElement(&#39;canvas&#39;);
-    canvas.width=width=drawWidth;
-    canvas.height=height=drawHeight; 
-    var context=canvas.getContext(&#39;2d&#39;);
-    //判断图片方向，重置canvas大小，确定旋转角度，iphone默认的是home键在右方的横屏拍摄方式
-    switch(dir){
-       //iphone横屏拍摄，此时home键在左侧
-        case 3:
-            degree=180;
-            drawWidth=-width;
-            drawHeight=-height;
-            break;
-        //iphone竖屏拍摄，此时home键在下方(正常拿手机的方向)
-        case 6:
-            canvas.width=height;
-            canvas.height=width; 
-            degree=90;
-            drawWidth=width;
-            drawHeight=-height;
-            break;
-        //iphone竖屏拍摄，此时home键在上方
-        case 8:
-            canvas.width=height;
-            canvas.height=width; 
-            degree=270;
-            drawWidth=-width;
-            drawHeight=height;
-            break;
-    }
-    //使用canvas旋转校正
-    context.rotate(degree*Math.PI/180);
-    context.drawImage(this,0,0,drawWidth,drawHeight);
-    //返回校正图片
-    next(canvas.toDataURL(&quot;image/jpeg&quot;,.8));
- }
-  image.src=img;
-}
-</code></pre>
-
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/js/">js</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/移动端开发/">移动端开发</a></li></ul>
 	</div>
 
       

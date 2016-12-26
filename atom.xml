@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://mmrxia.github.io/"/>
-  <updated>2016-12-22T10:03:06.841Z</updated>
+  <updated>2016-12-26T12:21:23.027Z</updated>
   <id>http://mmrxia.github.io/</id>
   
   <author>
@@ -14,6 +14,296 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>vue学习笔记</title>
+    <link href="http://mmrxia.github.io/2016/12/26/vue%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
+    <id>http://mmrxia.github.io/2016/12/26/vue学习笔记/</id>
+    <published>2016-12-26T11:57:33.000Z</published>
+    <updated>2016-12-26T12:21:23.027Z</updated>
+    
+    <content type="html">&lt;ul&gt;
+&lt;li&gt;来自vue官方示例：&lt;a href=&quot;https://github.com/vuejs/vue-loader-example&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://github.com/vuejs/vue-loader-example&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;使用vuejs和webpack，以及一系列webpack加载器，如vue-loader&lt;/li&gt;
+&lt;li&gt;简单记录下具体的做法，供新手参考。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;目录结构&quot;&gt;&lt;a href=&quot;#目录结构&quot; class=&quot;headerlink&quot; title=&quot;目录结构&quot;&gt;&lt;/a&gt;目录结构&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;- demo/
+  + package.json //npm配置文件
+  + webpack.config.js //webpack配置
+  + index.html //页面
+  - node_modules //npm加载的模块
+  - src //开发资源目录
+    - assets //一些资源
+      + logo.png  //图片资源
+    - components //vue组件
+      + a.vue 
+      + b.vue
+      + counter.vue
+    + app.vue //布局文件
+    + main.js  //入口文件
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;初始化npm&quot;&gt;&lt;a href=&quot;#初始化npm&quot; class=&quot;headerlink&quot; title=&quot;初始化npm&quot;&gt;&lt;/a&gt;初始化npm&lt;/h2&gt;&lt;p&gt;1.生成npm配置文件 package.json&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;npm init
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;2.可以粘贴如下配置内容替换到package.json中，或者根据变动进行修改&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-javascript&quot;&gt;{
+  &amp;quot;name&amp;quot;: &amp;quot;demo_vue-loader-example&amp;quot;,
+  &amp;quot;version&amp;quot;: &amp;quot;0.0.1&amp;quot;,
+  &amp;quot;description&amp;quot;: &amp;quot;demo&amp;quot;,
+  &amp;quot;main&amp;quot;: &amp;quot;index.js&amp;quot;,
+  &amp;quot;scripts&amp;quot;: {
+    &amp;quot;dev&amp;quot;: &amp;quot;webpack-dev-server --inline --hot --quiet&amp;quot;, 
+    &amp;quot;build&amp;quot;: &amp;quot;export NODE_ENV=production &amp;amp;&amp;amp; webpack --progress --hide-modules&amp;quot;
+  },
+  &amp;quot;author&amp;quot;: &amp;quot;dingyiming&amp;quot;,
+  &amp;quot;license&amp;quot;: &amp;quot;MIT&amp;quot;,
+  &amp;quot;devDependencies&amp;quot;: {
+    &amp;quot;babel-core&amp;quot;: &amp;quot;^6.2.1&amp;quot;,
+    &amp;quot;babel-loader&amp;quot;: &amp;quot;^6.2.0&amp;quot;,
+    &amp;quot;babel-plugin-transform-runtime&amp;quot;: &amp;quot;^6.1.18&amp;quot;,
+    &amp;quot;babel-preset-es2015&amp;quot;: &amp;quot;^6.1.18&amp;quot;,
+    &amp;quot;babel-preset-stage-0&amp;quot;: &amp;quot;^6.1.18&amp;quot;,
+    &amp;quot;babel-runtime&amp;quot;: &amp;quot;^6.2.0&amp;quot;,
+
+    &amp;quot;css-loader&amp;quot;: &amp;quot;^0.23.0&amp;quot;,
+    &amp;quot;node-sass&amp;quot;: &amp;quot;^3.4.2&amp;quot;,
+    &amp;quot;sass-loader&amp;quot;: &amp;quot;^3.1.2&amp;quot;,
+    &amp;quot;style-loader&amp;quot;: &amp;quot;^0.13.0&amp;quot;,
+    &amp;quot;stylus-loader&amp;quot;: &amp;quot;^1.4.2&amp;quot;,
+
+    &amp;quot;file-loader&amp;quot;: &amp;quot;^0.8.5&amp;quot;,
+    &amp;quot;jade&amp;quot;: &amp;quot;^1.11.0&amp;quot;,
+    &amp;quot;template-html-loader&amp;quot;: &amp;quot;0.0.3&amp;quot;,
+
+    &amp;quot;vue-hot-reload-api&amp;quot;: &amp;quot;^1.2.1&amp;quot;,
+    &amp;quot;vue-html-loader&amp;quot;: &amp;quot;^1.0.0&amp;quot;,
+    &amp;quot;vue-loader&amp;quot;: &amp;quot;^7.1.4&amp;quot;,
+
+    &amp;quot;webpack&amp;quot;: &amp;quot;^1.12.9&amp;quot;,
+    &amp;quot;webpack-dev-server&amp;quot;: &amp;quot;^1.14.0&amp;quot;
+  },
+  &amp;quot;dependencies&amp;quot;: {
+    &amp;quot;vue&amp;quot;: &amp;quot;^1.0.10&amp;quot;
+  }
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;3.下载node模块&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;npm install
+&lt;/code&gt;&lt;/pre&gt;&lt;blockquote&gt;
+&lt;p&gt;也可以手动安装某个包，并写入到&lt;code&gt;package.json&lt;/code&gt;文字的依赖中。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;–save-dev 把依赖名和版本要求放在了 “devDependencies”:{}，&lt;/li&gt;
+&lt;li&gt;–save 放在了 “dependencies”:{}&lt;br&gt;每敲一个下载完后可以看到 “devDependencies”:{}依赖内容的添加&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&quot;新建index-html用于展示最终页面&quot;&gt;&lt;a href=&quot;#新建index-html用于展示最终页面&quot; class=&quot;headerlink&quot; title=&quot;新建index.html用于展示最终页面&quot;&gt;&lt;/a&gt;新建index.html用于展示最终页面&lt;/h2&gt;&lt;pre&gt;&lt;code class=&quot;language-html&quot;&gt;&amp;lt;!DOCTYPE html&amp;gt;
+&amp;lt;html lang=&amp;quot;en&amp;quot;&amp;gt;
+&amp;lt;head&amp;gt;
+    &amp;lt;meta charset=&amp;quot;utf-8&amp;quot;&amp;gt;
+    &amp;lt;title&amp;gt;Vue Webpack Example&amp;lt;/title&amp;gt;
+&amp;lt;/head&amp;gt;
+&amp;lt;body&amp;gt;
+&amp;lt;app&amp;gt;&amp;lt;/app&amp;gt;
+&amp;lt;script src=&amp;quot;dist/build.js&amp;quot;&amp;gt;&amp;lt;/script&amp;gt;
+&amp;lt;/body&amp;gt;
+&amp;lt;/html&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&quot;新建webpack-config-js用于配置webpack&quot;&gt;&lt;a href=&quot;#新建webpack-config-js用于配置webpack&quot; class=&quot;headerlink&quot; title=&quot;新建webpack.config.js用于配置webpack&quot;&gt;&lt;/a&gt;新建webpack.config.js用于配置webpack&lt;/h2&gt;&lt;pre&gt;&lt;code class=&quot;language-javascript&quot;&gt;var webpack = require(&amp;#39;webpack&amp;#39;)
+
+module.exports = {
+  entry: &amp;#39;./src/main.js&amp;#39;,
+  output: {
+    path: &amp;#39;./dist&amp;#39;,
+    publicPath: &amp;#39;dist/&amp;#39;,
+    filename: &amp;#39;build.js&amp;#39;
+  },
+  module: {
+    loaders: [
+      {
+        test: /\.vue$/,
+        loader: &amp;#39;vue&amp;#39;
+      },
+      {
+        // edit this for additional asset file types
+        test: /\.(png|jpg|gif)$/,
+        loader: &amp;#39;file?name=[name].[ext]?[hash]&amp;#39;
+      }
+    ]
+  },
+  // example: if you wish to apply custom babel options
+  // instead of using vue-loader&amp;#39;s default:
+  babel: {
+    presets: [&amp;#39;es2015&amp;#39;, &amp;#39;stage-0&amp;#39;],
+    plugins: [&amp;#39;transform-runtime&amp;#39;]
+  }
+}
+
+if (process.env.NODE_ENV === &amp;#39;production&amp;#39;) {
+  module.exports.plugins = [
+    new webpack.DefinePlugin({
+      &amp;#39;process.env&amp;#39;: {
+        NODE_ENV: &amp;#39;&amp;quot;production&amp;quot;&amp;#39;
+      }
+    }),
+    new webpack.optimize.UglifyJsPlugin({
+      compress: {
+        warnings: false
+      }
+    }),
+    new webpack.optimize.OccurenceOrderPlugin()
+  ]
+} else {
+  module.exports.devtool = &amp;#39;#source-map&amp;#39;
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&quot;新建src目录用于存放开发文件&quot;&gt;&lt;a href=&quot;#新建src目录用于存放开发文件&quot; class=&quot;headerlink&quot; title=&quot;新建src目录用于存放开发文件&quot;&gt;&lt;/a&gt;新建src目录用于存放开发文件&lt;/h2&gt;&lt;h4 id=&quot;新建入口文件main-js&quot;&gt;&lt;a href=&quot;#新建入口文件main-js&quot; class=&quot;headerlink&quot; title=&quot;新建入口文件main.js&quot;&gt;&lt;/a&gt;新建入口文件main.js&lt;/h4&gt;&lt;pre&gt;&lt;code class=&quot;language-javascript&quot;&gt;var Vue = require(&amp;#39;vue&amp;#39;)
+var App = require(&amp;#39;./app.vue&amp;#39;)
+
+new Vue({
+  el: &amp;#39;body&amp;#39;,
+  components: {
+    app: App
+  }
+})
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h4 id=&quot;新建组件布局文件app-vue&quot;&gt;&lt;a href=&quot;#新建组件布局文件app-vue&quot; class=&quot;headerlink&quot; title=&quot;新建组件布局文件app.vue&quot;&gt;&lt;/a&gt;新建组件布局文件&lt;code&gt;app.vue&lt;/code&gt;&lt;/h4&gt;&lt;blockquote&gt;
+&lt;p&gt;组件布局将在这里设置，.vue文件将由vue-loader进行加载，.vue内同时包含html、css、js源码，使组件的独立，组件之间可以尽可能地解耦，便于开发维护&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;pre&gt;&lt;code class=&quot;language-html&quot;&gt;&amp;lt;template lang=&amp;quot;jade&amp;quot;&amp;gt;
+div
+  img(class=&amp;quot;logo&amp;quot;, src=&amp;quot;./assets/logo.png&amp;quot;)
+  h1 {{msg}}
+  comp-a
+  comp-b
+  counter
+&amp;lt;/template&amp;gt;
+
+&amp;lt;script&amp;gt;
+import CompA from &amp;#39;./components/a.vue&amp;#39;
+import CompB from &amp;#39;./components/b.vue&amp;#39;
+import Counter from &amp;#39;./components/counter.vue&amp;#39;
+export default {
+  data () {
+    return {
+      msg: &amp;#39;Hello from vue-loader!&amp;#39;
+    }
+  },
+  components: {
+    CompA,
+    CompB,
+    Counter
+  }
+}
+&amp;lt;/script&amp;gt;
+
+&amp;lt;style lang=&amp;quot;stylus&amp;quot;&amp;gt;
+font-stack = Helvetica, sans-serif
+primary-color = #999
+body
+  font 100% font-stack
+  color primary-color
+.logo
+  width 40px
+  height 40px
+&amp;lt;/style&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h4 id=&quot;新建components文件夹&quot;&gt;&lt;a href=&quot;#新建components文件夹&quot; class=&quot;headerlink&quot; title=&quot;新建components文件夹&quot;&gt;&lt;/a&gt;新建components文件夹&lt;/h4&gt;&lt;p&gt;用于开发具体的子组件，均以.vue的后缀呈现&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;a.vue&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code class=&quot;language-html&quot;&gt;&amp;lt;style scoped&amp;gt;
+.container {
+  border: 1px solid #00f;
+}
+.red {
+  color: #f00;
+}
+&amp;lt;/style&amp;gt;
+
+&amp;lt;template&amp;gt;
+  &amp;lt;div class=&amp;quot;container&amp;quot;&amp;gt;
+    &amp;lt;h2 class=&amp;quot;red&amp;quot;&amp;gt;{{msg}}&amp;lt;/h2&amp;gt;
+  &amp;lt;/div&amp;gt;
+&amp;lt;/template&amp;gt;
+
+&amp;lt;script&amp;gt;
+export default {
+  data () {
+    return {
+      msg: &amp;#39;Hello from Component A!&amp;#39;
+    }
+  }
+}
+&amp;lt;/script&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;ul&gt;
+&lt;li&gt;b.vue&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code class=&quot;language-html&quot;&gt;&amp;lt;style scoped&amp;gt;
+.container {
+  border: 1px solid #f00;
+}
+h2 {
+  color: #393;
+}
+&amp;lt;/style&amp;gt;
+
+&amp;lt;template&amp;gt;
+  &amp;lt;div class=&amp;quot;container&amp;quot;&amp;gt;
+    &amp;lt;h2&amp;gt;Hello from Component B!&amp;lt;/h2&amp;gt;
+  &amp;lt;/div&amp;gt;
+&amp;lt;/template&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;ul&gt;
+&lt;li&gt;counter.vue&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code class=&quot;language-html&quot;&gt;&amp;lt;template&amp;gt;
+  &amp;lt;div&amp;gt;
+    &amp;lt;h1&amp;gt;I am a Counter Component. Edit me in dev mode.&amp;lt;/h1&amp;gt;
+    &amp;lt;p&amp;gt;Current count: {{count}}&amp;lt;/p&amp;gt;
+  &amp;lt;/div&amp;gt;
+&amp;lt;/template&amp;gt;
+
+&amp;lt;script&amp;gt;
+export default {
+  data () {
+    return { count: 0 }
+  },
+  ready () {
+    this.handle = setInterval(() =&amp;gt; {
+      this.count++
+    }, 1000)
+  },
+  destroyed () {
+    clearInterval(this.handle)
+  }
+}
+&amp;lt;/script&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h4 id=&quot;新建assets文件夹用于放一些资源&quot;&gt;&lt;a href=&quot;#新建assets文件夹用于放一些资源&quot; class=&quot;headerlink&quot; title=&quot;新建assets文件夹用于放一些资源&quot;&gt;&lt;/a&gt;新建assets文件夹用于放一些资源&lt;/h4&gt;&lt;p&gt;此项目下有一张图 logo.png&lt;/p&gt;
+&lt;h4 id=&quot;打包运行查看&quot;&gt;&lt;a href=&quot;#打包运行查看&quot; class=&quot;headerlink&quot; title=&quot;打包运行查看&quot;&gt;&lt;/a&gt;打包运行查看&lt;/h4&gt;&lt;ul&gt;
+&lt;li&gt;打包运行查看&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code&gt;npm run build
+&lt;/code&gt;&lt;/pre&gt;&lt;ul&gt;
+&lt;li&gt;运行&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code&gt;npm run dev
+&lt;/code&gt;&lt;/pre&gt;&lt;ul&gt;
+&lt;li&gt;查看&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;浏览器中访问 localhost:8080&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;ul&gt;
+&lt;li&gt;来自vue官方示例：&lt;a href=&quot;https://github.com/vuejs/vue-loader-example&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://github.com/vuejs/vue-loader-
+    
+    </summary>
+    
+    
+      <category term="vue" scheme="http://mmrxia.github.io/tags/vue/"/>
+    
+  </entry>
   
   <entry>
     <title>javascript类型判断</title>
@@ -1427,49 +1717,6 @@ git config -global user.email &amp;quot;you@example.com&amp;quot;
     <summary type="html">
     
       &lt;p&gt;看《西游记》第五十七回，说是“六耳猕猴”化作孙悟空的摸样，伤了唐僧，后又和孙悟空大打出手。。。这位假孙悟空，实力不用多说了吧，和真孙悟空一般无二，大战孙悟空，闹到上天入地下海。在唐僧那：念紧箍咒，两个都喊疼，自然看不出哪个真假；到天宫：拖塔天王拿照妖镜照，也看不出；又到观音
-    
-    </summary>
-    
-    
-      <category term="西游记" scheme="http://mmrxia.github.io/tags/%E8%A5%BF%E6%B8%B8%E8%AE%B0/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>西天取经路上只有一个妖怪</title>
-    <link href="http://mmrxia.github.io/2016/05/14/%E8%A5%BF%E5%A4%A9%E5%8F%96%E7%BB%8F%E8%B7%AF%E4%B8%8A%E5%8F%AA%E6%9C%89%E4%B8%80%E4%B8%AA%E5%A6%96%E6%80%AA/"/>
-    <id>http://mmrxia.github.io/2016/05/14/西天取经路上只有一个妖怪/</id>
-    <published>2016-05-14T01:26:48.000Z</published>
-    <updated>2016-05-17T07:04:29.535Z</updated>
-    
-    <content type="html">&lt;h3 id=&quot;白骨精是谁？&quot;&gt;&lt;a href=&quot;#白骨精是谁？&quot; class=&quot;headerlink&quot; title=&quot;白骨精是谁？&quot;&gt;&lt;/a&gt;&lt;strong&gt;白骨精是谁？&lt;/strong&gt;&lt;/h3&gt;&lt;p&gt;白骨精是白虎岭上一具女尸的骨架，受天地精华后，变成的妖精。西游记里并没有记载这具女尸到底是什么来历。在明末清初的一些民间小说和故事书中零星有些记载，大致是，白骨精原本是白虎岭上一户普通人家的女儿。长到十七八岁的时候，被当地富户强行掠走。遭到淫虐后，被遗弃荒山，冻饿而死。&lt;/p&gt;
-&lt;p&gt;她死的时候恰好是农历七月十五，是天地阴阳相合的日子，所以冤魂没能上天入地，而是在人间游荡。虽是游荡，但一直不肯离开自己的尸体，直至尸体化为白骨。姑娘的游魂吸取天地精华，围绕白骨，化为人形，从此对人恨之入骨，以吸人血为生。由于修炼的年岁太少，她只有一般的变化法力，属于妖界微不足道的小角色。&lt;/p&gt;
-&lt;p&gt;妖是什么？其实是天上神仙的奴隶。所有修炼到一定果位的神仙，都会到妖界选一个坐骑，能成为神仙坐骑，是所有妖精最快的上升通道。修炼很苦，只有成为神仙才能上升到贵族阶层，从此不再遭受妖界的痛苦与磨砺。白骨精之所以会选择唐僧下手，是因为她无论如何修炼，都没有机会做神仙。&lt;/p&gt;
-&lt;p&gt;你想，哪位神仙会选一堆白骨作坐骑啊？每次神仙来妖界选坐骑，她都会去应聘，但每次都失败。她已经放弃了通过当坐骑上升的门道，而是选择走捷径。当听说吃了唐僧肉便可长生不老，成为神仙时，她毫不犹豫地盯上了唐僧师徒。尽管她知道自己不是孙悟空的对手，但还是选择下手。因为，她已经无路可走。&lt;/p&gt;
-&lt;h3 id=&quot;唐僧是谁？&quot;&gt;&lt;a href=&quot;#唐僧是谁？&quot; class=&quot;headerlink&quot; title=&quot;唐僧是谁？&quot;&gt;&lt;/a&gt;&lt;strong&gt;唐僧是谁？&lt;/strong&gt;&lt;/h3&gt;&lt;p&gt;为什么白骨精遇到唐僧师徒会有那么强烈的戏剧性？我们先来看下这帮取经人是什么身份。先看唐僧，其实他是如来二弟子金蝉长老转世。他去人间转世投胎的理由很简单——轻慢佛法，被如来打入凡尘。如来真的对他很失望吗？其实没有。他刚被打入凡尘后，如来就后悔了。但是，作为佛界的一把手，他也不能出尔反尔啊。&lt;/p&gt;
-&lt;p&gt;如来心里的小九九早被观音菩萨看到了。喜欢察言观色的观音菩萨以宣传佛法为理由，启动了取经工程。这么大的机会，无论给谁都能成佛，获得果位。观音菩萨去人间辛苦选角回来，告诉如来，除了如来朝思暮想的金蝉长老转世的陈玄奘外，没有人能完成这项工程。如来一听很高兴，就让观音菩萨操办去了。&lt;/p&gt;
-&lt;p&gt;作为取经形象工程的总策划，观音菩萨办事非常周密。她先找来各路菩萨和神仙，希望大家都能为这项工程出点力。尤其是应该让自家的坐骑妖怪都出来捣捣乱，也显示下取经的难度，同时也在关键时刻露露脸，让如来知道，大家都一心向着中央，一直在帮助金蝉长老过关。各路菩萨走后，观音菩萨找到陈玄奘，告诉他，妖怪都是自家人放出来的，为了显示取经的难度，让如来重用他，也算是好有个台阶下。&lt;/p&gt;
-&lt;p&gt;唐僧很聪明，一心想回灵山，所以当然愿意了。不过，所有的事情都没那么简单。天上也有人事关系，天上也有潜规则。观音菩萨张罗了一个这么好的取经工程，谁参与谁都会功成名就，那肯定一帮人惦记着。同时，观音菩萨自己也不会放过这次机会啊。所以他选择的第一个参与项目的人就是孙悟空。&lt;/p&gt;
-&lt;h3 id=&quot;孙悟空那些事&quot;&gt;&lt;a href=&quot;#孙悟空那些事&quot; class=&quot;headerlink&quot; title=&quot;孙悟空那些事&quot;&gt;&lt;/a&gt;&lt;strong&gt;孙悟空那些事&lt;/strong&gt;&lt;/h3&gt;&lt;p&gt;不要以为观音菩萨选孙悟空是因为他能打能杀，可以保唐僧去取经。其实与这些一点毛关系都没有。孙悟空是谁？其实他是菩提老祖的私生子。小时候，他只可以看到菩提老祖，却看不到妈妈，就很好奇问老祖，他是哪儿来的。菩提老祖告诉他，他是石头缝里变出来的。一向傻乐呵的孙悟空快1千岁的时候才知道自己的真实身世。&lt;/p&gt;
-&lt;p&gt;菩提老祖的这个秘密只有观音菩萨知道。观音菩萨为什么会帮菩提老祖保守秘密呢？是因为菩提老祖太牛逼了。他是谁？他是成佛比如来还早的佛陀。由于如来的佛法更高深，年龄与佛龄都高于如来的菩提老祖，甘愿成为如来的追随者。如来让菩提老祖三分，一直另眼相看。菩提老祖在佛教中是须菩提，他与佛祖的对话便是《金刚经》。&lt;/p&gt;
-&lt;p&gt;实际上，菩提老祖是儒释道精通的神仙，法力高于如来，但又遵从如来。菩提老祖就孙悟空一个儿子，所以一直很娇惯他。他私下教会了孙悟空很多法力，并禁止孙悟空叫他师傅，也不允许他在任何场合提到自己。孙悟空与菩提老祖闹翻，跑了出去。菩提老祖怕他惹事，便把孙悟空托付给观音菩萨管教。&lt;/p&gt;
-&lt;p&gt;观音菩萨哪管得了他，他兴风作浪，干了很多坏事。尤其是把玉皇大帝都给揍了。如来本来要灭了他，结果观音菩萨暗示他不要这样做，如来领会，就把孙悟空压到五行山下五百年。菩提老祖与如来都是大牛，观音菩萨谁都不敢得罪，所以她一直等待机会救出孙悟空，给菩提老祖一个交代。&lt;/p&gt;
-&lt;p&gt;这不，唐僧取经的工程资金都批下来了，没什么比随唐僧取经更合适的项目了。一来让如来有台阶下，二来也是给菩提老祖一个面子，算是完成了托付的重任。一开始，唐僧非常讨厌孙悟空，绝对不想和他合作。唐僧心里清楚，所有的妖怪都是观音菩萨阿姨找来的托儿，一旦孙猴子胡乱打，岂不是全给得罪了。&lt;/p&gt;
-&lt;h3 id=&quot;其他的关系户&quot;&gt;&lt;a href=&quot;#其他的关系户&quot; class=&quot;headerlink&quot; title=&quot;其他的关系户&quot;&gt;&lt;/a&gt;&lt;strong&gt;其他的关系户&lt;/strong&gt;&lt;/h3&gt;&lt;p&gt;不要以为唐僧、悟空外的几个人就清白了。猪八戒是天蓬元帅，掌管天河，所谓天河不过是银河罢了。也就是说，猪八戒是银河系的一把手。实际上他是紫薇大帝手上最亮的一颗星——北斗七星中最亮的一颗。紫薇大帝的坐骑是北斗七星，而猪八戒是最亮的一颗。他被贬下界是因为他把嫦娥给睡了。很多人不知道，玉帝把嫦娥带到天庭原本想娶他为妃，无奈王母娘娘很不高兴，发动自家亲戚的力量，差点毁了玉帝的统治。&lt;/p&gt;
-&lt;p&gt;让嫦娥当舞女是玉帝与王母相互妥协的结果。玉帝每天看嫦娥跳舞，却睡不得，这让他很扫兴。嫦娥在广寒宫整天思春，郁闷不乐。猪八戒跑过去陪她聊天，并成功把嫦娥给睡了。这件事让玉帝火冒三丈，于是把猪八戒贬入凡尘。自己最喜欢的坐骑没了，紫薇大帝很不高兴，猪八戒是他最喜欢的坐骑。然而，如来扫平魔界，建立佛国世界时，紫薇大帝一直是所有光明的提供者，照亮如来的路，如来一直无以为报。观音菩萨于是找到凡间流浪的猪八戒，将他编入了取经队伍，算是对紫薇大帝一个交代。&lt;/p&gt;
-&lt;p&gt;沙和尚是谁？他是卷帘大将，但真实的身份是玉皇大帝四女儿四仙女的相好。玉帝知道他与女儿相好后，便以打碎了某某东东为由，将他打入凡尘。王母支持四女儿，反抗玉帝，让玉帝很后悔自己的决定。当观音菩萨刚宣布要组织取经工程时，王母娘娘就知道了这件事。为了自己女儿的幸福，她拿一箩筐蟠桃，让观音菩萨把沙悟净也编入了取经队伍。&lt;/p&gt;
-&lt;p&gt;小白龙更不用说了。他是西海龙王的三太子，因为纵火烧了玉帝赏赐的明珠而被判斩首。结果观音菩萨求情，免于一死，被压在了山涧里。你可能会奇怪，观音菩萨为什么会为小白龙说情。其实是这样的，观音菩萨又叫南海观音，她常驻的地方在南海。南海是南海龙王的地盘，也就是小白龙叔叔的地盘。&lt;/p&gt;
-&lt;p&gt;三太子很小时的时候经常去观音菩萨那里玩，观音菩萨很喜欢他，视若己出。他犯事后，把他压在山涧里加以保护也是观音菩萨的主意。取经工程刚出来消息，西海龙王、南海龙王、东海龙王、北海龙王全都齐聚南海，求观音帮忙。把小白龙安排进来也是顺理成章的事情。&lt;/p&gt;
-&lt;h3 id=&quot;为什么不能降妖？&quot;&gt;&lt;a href=&quot;#为什么不能降妖？&quot; class=&quot;headerlink&quot; title=&quot;为什么不能降妖？&quot;&gt;&lt;/a&gt;&lt;strong&gt;为什么不能降妖？&lt;/strong&gt;&lt;/h3&gt;&lt;p&gt;唐僧师徒几个，唯有唐僧心里最清楚，路上根本没有什么妖怪，都是自己人当托的。所以吗，见到妖怪不要随便打，一不小心就打到自己的亲戚了。再说，观音菩萨一直背后跟着，真实遇到了妖怪猛兽，观音会保证安全的。&lt;/p&gt;
-&lt;p&gt;孙悟空等四个却不知道妖怪的真实身份，再加上他们本来就很暴烈，一上路就烧杀抢掠。为了限制孙悟空，唐僧再三要求观音菩萨要驯服他。菩萨选了折衷的办法，给他戴上了紧箍。尽管如此，孙悟空依然野性不改。打白骨精是唐僧与孙悟空矛盾的最高点。&lt;/p&gt;
-&lt;p&gt;白骨精是唐僧取经路上唯一一个真妖怪，她目标明确，就是要吃唐僧肉，成为神仙，逃离魔界的痛苦。白骨精被打死后，唐僧吓死了。如果这个白骨精是某个菩萨手上的人或坐骑，那他的取经工程就有可能被叫停。所以他第一时间念了紧箍咒，把孙猴子赶走了。&lt;/p&gt;
-&lt;p&gt;观音菩萨去请孙猴子回来，没跟他说实话，但点拨了他，告诉他，只要发现妖怪，去菩萨们那里问问就好了。孙悟空得到点拨后学精了，一旦遇到妖怪，并不好好打，而是先跑到天上打听一番，是谁家的，谁来管管。结果，一路上很顺利，几乎没遇到任何真正的危险便到了灵山，取了真经。&lt;/p&gt;
-&lt;h3 id=&quot;结尾&quot;&gt;&lt;a href=&quot;#结尾&quot; class=&quot;headerlink&quot; title=&quot;结尾&quot;&gt;&lt;/a&gt;&lt;strong&gt;结尾&lt;/strong&gt;&lt;/h3&gt;&lt;p&gt;看了上面的分析你是否有种无奈的感觉？&lt;br&gt;白骨精的故事是中国流传数百年的悲剧——屌丝向上爬的道路永远是不通的；没有背景和身份是没法做大事的；一切形象工程都有同样的逻辑。&lt;/p&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;h3 id=&quot;白骨精是谁？&quot;&gt;&lt;a href=&quot;#白骨精是谁？&quot; class=&quot;headerlink&quot; title=&quot;白骨精是谁？&quot;&gt;&lt;/a&gt;&lt;strong&gt;白骨精是谁？&lt;/strong&gt;&lt;/h3&gt;&lt;p&gt;白骨精是白虎岭上一具女尸的骨架，受天地精华后，变成的妖精。西游记里并没有记
     
     </summary>
     

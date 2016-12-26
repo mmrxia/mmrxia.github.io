@@ -1,0 +1,656 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="description" content="来自vue官方示例：https://github.com/vuejs/vue-loader-example
+使用vuejs和webpack，以及一系列webpack加载器，如vue-loader
+简单记录下具体的做法，供新手参考。
+
+目录结构- demo/
+  + package.json //npm配置文件
+  + webpack.config.js //webpack配置
+  + index">
+<meta property="og:type" content="article">
+<meta property="og:title" content="vue学习笔记">
+<meta property="og:url" content="http://mmrxia.github.io/2016/12/26/vue学习笔记/index.html">
+<meta property="og:site_name" content="芥子园 | xiaqingsong's blog">
+<meta property="og:description" content="来自vue官方示例：https://github.com/vuejs/vue-loader-example
+使用vuejs和webpack，以及一系列webpack加载器，如vue-loader
+简单记录下具体的做法，供新手参考。
+
+目录结构- demo/
+  + package.json //npm配置文件
+  + webpack.config.js //webpack配置
+  + index">
+<meta property="og:updated_time" content="2016-12-26T12:21:23.027Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="vue学习笔记">
+<meta name="twitter:description" content="来自vue官方示例：https://github.com/vuejs/vue-loader-example
+使用vuejs和webpack，以及一系列webpack加载器，如vue-loader
+简单记录下具体的做法，供新手参考。
+
+目录结构- demo/
+  + package.json //npm配置文件
+  + webpack.config.js //webpack配置
+  + index">
+    
+    <title>
+        vue学习笔记 |
+        
+        芥子园 | xiaqingsong&#39;s blog
+    </title>
+    <link rel="alternative" href="/atom.xml" title="芥子园 | xiaqingsong&#39;s blog" type="application/atom+xml"> 
+    <link rel="icon" href="http://7xth8v.com2.z0.glb.clouddn.com/icon/favicon.ico"> 
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/prism.css">
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img lazy-src="http://7xth8v.com2.z0.glb.qiniucdn.com/image/avatar_150x150.jpg" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">芥子园</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">须弥藏芥子，芥子纳须弥</p>
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						<div class="icon-wrap icon-link hide" data-idx="2">
+							<div class="loopback_l"></div>
+							<div class="loopback_r"></div>
+						</div>
+						
+						
+						<div class="icon-wrap icon-me hide" data-idx="3">
+							<div class="user"></div>
+							<div class="shoulder"></div>
+						</div>
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						
+						<li>友情链接</li>
+						
+						
+						<li>关于我</li>
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+							<li><a href="/tags/随笔">随笔</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/mmrxia" title="github">github</a>
+					        
+								<a class="weibo" target="_blank" href="http://weibo.com/u/1984883035" title="weibo">weibo</a>
+					        
+								<a class="twitter" target="_blank" href="https://twitter.com/xiaqingsong" title="twitter">twitter</a>
+					        
+								<a class="linkedin" target="_blank" href="http://www.linkedin.com/in/mrxia" title="linkedin">linkedin</a>
+					        
+								<a class="rss" target="_blank" href="/atom.xml" title="rss">rss</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/Linux/" style="font-size: 12.5px;">Linux</a> <a href="/tags/base64/" style="font-size: 10px;">base64</a> <a href="/tags/bash/" style="font-size: 10px;">bash</a> <a href="/tags/bigPipe/" style="font-size: 10px;">bigPipe</a> <a href="/tags/cnpm/" style="font-size: 10px;">cnpm</a> <a href="/tags/express/" style="font-size: 10px;">express</a> <a href="/tags/git/" style="font-size: 15px;">git</a> <a href="/tags/javascript/" style="font-size: 17.5px;">javascript</a> <a href="/tags/js/" style="font-size: 15px;">js</a> <a href="/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/tags/mongodb/" style="font-size: 12.5px;">mongodb</a> <a href="/tags/nodejs/" style="font-size: 20px;">nodejs</a> <a href="/tags/npm/" style="font-size: 10px;">npm</a> <a href="/tags/sku/" style="font-size: 10px;">sku</a> <a href="/tags/uuid/" style="font-size: 10px;">uuid</a> <a href="/tags/vue/" style="font-size: 10px;">vue</a> <a href="/tags/前端/" style="font-size: 10px;">前端</a> <a href="/tags/数组/" style="font-size: 10px;">数组</a> <a href="/tags/移动端开发/" style="font-size: 10px;">移动端开发</a> <a href="/tags/算法/" style="font-size: 10px;">算法</a> <a href="/tags/西游记/" style="font-size: 12.5px;">西游记</a> <a href="/tags/跨域/" style="font-size: 10px;">跨域</a> <a href="/tags/随笔/" style="font-size: 10px;">随笔</a>
+					</div>
+				</section>
+				
+				
+				
+				<section class="switch-part switch-part3">
+					<div id="js-friends">
+					
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://www.xiaqingsong.com">XQS</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://www.morg.cn">MORG</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://www.iamaddy.net/">Addy的网络日志</a>
+			        
+			        </div>
+				</section>
+				
+
+				
+				
+				<section class="switch-part switch-part4">
+				
+					<div id="js-aboutme">夏青松，2013年毕业于江西农大软件学院软件工程专业。<br/> <b>2012.10-2015.2</b> [北京] 锐捷网络<br/> <b>2015.2-至今</b> [杭州] 妈妈好网络<br/><br/> Mail：this.xqs@gmail.com </div>
+				</section>
+				
+			</div>
+		</div>
+	</header>				
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">芥子园</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+			
+				<img lazy-src="http://7xth8v.com2.z0.glb.qiniucdn.com/image/avatar_150x150.jpg" class="js-avatar">
+			
+			</div>
+			<hgroup>
+			  <h1 class="header-author">芥子园</h1>
+			</hgroup>
+			
+			<p class="header-subtitle">须弥藏芥子，芥子纳须弥</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+					<li><a href="/tags/随笔">随笔</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/mmrxia" title="github">github</a>
+			        
+						<a class="weibo" target="_blank" href="http://weibo.com/u/1984883035" title="weibo">weibo</a>
+			        
+						<a class="twitter" target="_blank" href="https://twitter.com/xiaqingsong" title="twitter">twitter</a>
+			        
+						<a class="linkedin" target="_blank" href="http://www.linkedin.com/in/mrxia" title="linkedin">linkedin</a>
+			        
+						<a class="rss" target="_blank" href="/atom.xml" title="rss">rss</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+
+      <div class="body-wrap"><article id="w-vue学习笔记" class="article article-type-w" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/12/26/vue学习笔记/" class="article-date">
+  	<time datetime="2016-12-26T11:57:33.000Z" itemprop="datePublished">2016-12-26</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      vue学习笔记
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/vue/">vue</a></li></ul>
+	</div>
+
+        
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <ul>
+<li>来自vue官方示例：<a href="https://github.com/vuejs/vue-loader-example" target="_blank" rel="external">https://github.com/vuejs/vue-loader-example</a></li>
+<li>使用vuejs和webpack，以及一系列webpack加载器，如vue-loader</li>
+<li>简单记录下具体的做法，供新手参考。</li>
+</ul>
+<h2 id="目录结构"><a href="#目录结构" class="headerlink" title="目录结构"></a>目录结构</h2><pre><code>- demo/
+  + package.json //npm配置文件
+  + webpack.config.js //webpack配置
+  + index.html //页面
+  - node_modules //npm加载的模块
+  - src //开发资源目录
+    - assets //一些资源
+      + logo.png  //图片资源
+    - components //vue组件
+      + a.vue 
+      + b.vue
+      + counter.vue
+    + app.vue //布局文件
+    + main.js  //入口文件
+</code></pre><h2 id="初始化npm"><a href="#初始化npm" class="headerlink" title="初始化npm"></a>初始化npm</h2><p>1.生成npm配置文件 package.json</p>
+<pre><code>npm init
+</code></pre><p>2.可以粘贴如下配置内容替换到package.json中，或者根据变动进行修改</p>
+<pre><code class="language-javascript">{
+  &quot;name&quot;: &quot;demo_vue-loader-example&quot;,
+  &quot;version&quot;: &quot;0.0.1&quot;,
+  &quot;description&quot;: &quot;demo&quot;,
+  &quot;main&quot;: &quot;index.js&quot;,
+  &quot;scripts&quot;: {
+    &quot;dev&quot;: &quot;webpack-dev-server --inline --hot --quiet&quot;, 
+    &quot;build&quot;: &quot;export NODE_ENV=production &amp;&amp; webpack --progress --hide-modules&quot;
+  },
+  &quot;author&quot;: &quot;dingyiming&quot;,
+  &quot;license&quot;: &quot;MIT&quot;,
+  &quot;devDependencies&quot;: {
+    &quot;babel-core&quot;: &quot;^6.2.1&quot;,
+    &quot;babel-loader&quot;: &quot;^6.2.0&quot;,
+    &quot;babel-plugin-transform-runtime&quot;: &quot;^6.1.18&quot;,
+    &quot;babel-preset-es2015&quot;: &quot;^6.1.18&quot;,
+    &quot;babel-preset-stage-0&quot;: &quot;^6.1.18&quot;,
+    &quot;babel-runtime&quot;: &quot;^6.2.0&quot;,
+
+    &quot;css-loader&quot;: &quot;^0.23.0&quot;,
+    &quot;node-sass&quot;: &quot;^3.4.2&quot;,
+    &quot;sass-loader&quot;: &quot;^3.1.2&quot;,
+    &quot;style-loader&quot;: &quot;^0.13.0&quot;,
+    &quot;stylus-loader&quot;: &quot;^1.4.2&quot;,
+
+    &quot;file-loader&quot;: &quot;^0.8.5&quot;,
+    &quot;jade&quot;: &quot;^1.11.0&quot;,
+    &quot;template-html-loader&quot;: &quot;0.0.3&quot;,
+
+    &quot;vue-hot-reload-api&quot;: &quot;^1.2.1&quot;,
+    &quot;vue-html-loader&quot;: &quot;^1.0.0&quot;,
+    &quot;vue-loader&quot;: &quot;^7.1.4&quot;,
+
+    &quot;webpack&quot;: &quot;^1.12.9&quot;,
+    &quot;webpack-dev-server&quot;: &quot;^1.14.0&quot;
+  },
+  &quot;dependencies&quot;: {
+    &quot;vue&quot;: &quot;^1.0.10&quot;
+  }
+}
+</code></pre>
+<p>3.下载node模块</p>
+<pre><code>npm install
+</code></pre><blockquote>
+<p>也可以手动安装某个包，并写入到<code>package.json</code>文字的依赖中。</p>
+<ul>
+<li>–save-dev 把依赖名和版本要求放在了 “devDependencies”:{}，</li>
+<li>–save 放在了 “dependencies”:{}<br>每敲一个下载完后可以看到 “devDependencies”:{}依赖内容的添加</li>
+</ul>
+</blockquote>
+<h2 id="新建index-html用于展示最终页面"><a href="#新建index-html用于展示最终页面" class="headerlink" title="新建index.html用于展示最终页面"></a>新建index.html用于展示最终页面</h2><pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+    &lt;meta charset=&quot;utf-8&quot;&gt;
+    &lt;title&gt;Vue Webpack Example&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;app&gt;&lt;/app&gt;
+&lt;script src=&quot;dist/build.js&quot;&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<h2 id="新建webpack-config-js用于配置webpack"><a href="#新建webpack-config-js用于配置webpack" class="headerlink" title="新建webpack.config.js用于配置webpack"></a>新建webpack.config.js用于配置webpack</h2><pre><code class="language-javascript">var webpack = require(&#39;webpack&#39;)
+
+module.exports = {
+  entry: &#39;./src/main.js&#39;,
+  output: {
+    path: &#39;./dist&#39;,
+    publicPath: &#39;dist/&#39;,
+    filename: &#39;build.js&#39;
+  },
+  module: {
+    loaders: [
+      {
+        test: /\.vue$/,
+        loader: &#39;vue&#39;
+      },
+      {
+        // edit this for additional asset file types
+        test: /\.(png|jpg|gif)$/,
+        loader: &#39;file?name=[name].[ext]?[hash]&#39;
+      }
+    ]
+  },
+  // example: if you wish to apply custom babel options
+  // instead of using vue-loader&#39;s default:
+  babel: {
+    presets: [&#39;es2015&#39;, &#39;stage-0&#39;],
+    plugins: [&#39;transform-runtime&#39;]
+  }
+}
+
+if (process.env.NODE_ENV === &#39;production&#39;) {
+  module.exports.plugins = [
+    new webpack.DefinePlugin({
+      &#39;process.env&#39;: {
+        NODE_ENV: &#39;&quot;production&quot;&#39;
+      }
+    }),
+    new webpack.optimize.UglifyJsPlugin({
+      compress: {
+        warnings: false
+      }
+    }),
+    new webpack.optimize.OccurenceOrderPlugin()
+  ]
+} else {
+  module.exports.devtool = &#39;#source-map&#39;
+}
+</code></pre>
+<h2 id="新建src目录用于存放开发文件"><a href="#新建src目录用于存放开发文件" class="headerlink" title="新建src目录用于存放开发文件"></a>新建src目录用于存放开发文件</h2><h4 id="新建入口文件main-js"><a href="#新建入口文件main-js" class="headerlink" title="新建入口文件main.js"></a>新建入口文件main.js</h4><pre><code class="language-javascript">var Vue = require(&#39;vue&#39;)
+var App = require(&#39;./app.vue&#39;)
+
+new Vue({
+  el: &#39;body&#39;,
+  components: {
+    app: App
+  }
+})
+</code></pre>
+<h4 id="新建组件布局文件app-vue"><a href="#新建组件布局文件app-vue" class="headerlink" title="新建组件布局文件app.vue"></a>新建组件布局文件<code>app.vue</code></h4><blockquote>
+<p>组件布局将在这里设置，.vue文件将由vue-loader进行加载，.vue内同时包含html、css、js源码，使组件的独立，组件之间可以尽可能地解耦，便于开发维护</p>
+</blockquote>
+<pre><code class="language-html">&lt;template lang=&quot;jade&quot;&gt;
+div
+  img(class=&quot;logo&quot;, src=&quot;./assets/logo.png&quot;)
+  h1 {{msg}}
+  comp-a
+  comp-b
+  counter
+&lt;/template&gt;
+
+&lt;script&gt;
+import CompA from &#39;./components/a.vue&#39;
+import CompB from &#39;./components/b.vue&#39;
+import Counter from &#39;./components/counter.vue&#39;
+export default {
+  data () {
+    return {
+      msg: &#39;Hello from vue-loader!&#39;
+    }
+  },
+  components: {
+    CompA,
+    CompB,
+    Counter
+  }
+}
+&lt;/script&gt;
+
+&lt;style lang=&quot;stylus&quot;&gt;
+font-stack = Helvetica, sans-serif
+primary-color = #999
+body
+  font 100% font-stack
+  color primary-color
+.logo
+  width 40px
+  height 40px
+&lt;/style&gt;
+</code></pre>
+<h4 id="新建components文件夹"><a href="#新建components文件夹" class="headerlink" title="新建components文件夹"></a>新建components文件夹</h4><p>用于开发具体的子组件，均以.vue的后缀呈现</p>
+<ul>
+<li>a.vue</li>
+</ul>
+<pre><code class="language-html">&lt;style scoped&gt;
+.container {
+  border: 1px solid #00f;
+}
+.red {
+  color: #f00;
+}
+&lt;/style&gt;
+
+&lt;template&gt;
+  &lt;div class=&quot;container&quot;&gt;
+    &lt;h2 class=&quot;red&quot;&gt;{{msg}}&lt;/h2&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script&gt;
+export default {
+  data () {
+    return {
+      msg: &#39;Hello from Component A!&#39;
+    }
+  }
+}
+&lt;/script&gt;
+</code></pre>
+<ul>
+<li>b.vue</li>
+</ul>
+<pre><code class="language-html">&lt;style scoped&gt;
+.container {
+  border: 1px solid #f00;
+}
+h2 {
+  color: #393;
+}
+&lt;/style&gt;
+
+&lt;template&gt;
+  &lt;div class=&quot;container&quot;&gt;
+    &lt;h2&gt;Hello from Component B!&lt;/h2&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+</code></pre>
+<ul>
+<li>counter.vue</li>
+</ul>
+<pre><code class="language-html">&lt;template&gt;
+  &lt;div&gt;
+    &lt;h1&gt;I am a Counter Component. Edit me in dev mode.&lt;/h1&gt;
+    &lt;p&gt;Current count: {{count}}&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script&gt;
+export default {
+  data () {
+    return { count: 0 }
+  },
+  ready () {
+    this.handle = setInterval(() =&gt; {
+      this.count++
+    }, 1000)
+  },
+  destroyed () {
+    clearInterval(this.handle)
+  }
+}
+&lt;/script&gt;
+</code></pre>
+<h4 id="新建assets文件夹用于放一些资源"><a href="#新建assets文件夹用于放一些资源" class="headerlink" title="新建assets文件夹用于放一些资源"></a>新建assets文件夹用于放一些资源</h4><p>此项目下有一张图 logo.png</p>
+<h4 id="打包运行查看"><a href="#打包运行查看" class="headerlink" title="打包运行查看"></a>打包运行查看</h4><ul>
+<li>打包运行查看</li>
+</ul>
+<pre><code>npm run build
+</code></pre><ul>
+<li>运行</li>
+</ul>
+<pre><code>npm run dev
+</code></pre><ul>
+<li>查看</li>
+</ul>
+<p>浏览器中访问 localhost:8080</p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2016/12/22/javascript类型判断/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">javascript类型判断</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="vue学习笔记" data-title="vue学习笔记" data-url="http://mmrxia.github.io/2016/12/26/vue学习笔记/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"mrxia"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2016 芥子园
+    	</div>
+      	<div class="footer-right">
+      		Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
+	}
+</script>
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-76943829-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  </div>
+  <script src="http://7xth8v.com2.z0.glb.qiniucdn.com/js/prism.js"></script>
+</body>
+</html>
