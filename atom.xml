@@ -1185,9 +1185,9 @@ function getImgData(img,dir,next){
     </summary>
     
     
-      <category term="移动端开发" scheme="http://mmrxia.github.io/tags/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E5%BC%80%E5%8F%91/"/>
-    
       <category term="js" scheme="http://mmrxia.github.io/tags/js/"/>
+    
+      <category term="移动端开发" scheme="http://mmrxia.github.io/tags/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E5%BC%80%E5%8F%91/"/>
     
   </entry>
   
