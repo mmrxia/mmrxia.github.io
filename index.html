@@ -1355,6 +1355,12 @@ console.log(encodedString); // 输出: &quot;SGVsbG8gV29ybGQh&quot;
 var decodedString = Base64.decode(encodedString);
 console.log(decodedString); // 输出: &quot;Hello World!&quot;
 </code></pre>
+<h4 id="Nodejs端处理"><a href="#Nodejs端处理" class="headerlink" title="Nodejs端处理"></a>Nodejs端处理</h4><pre><code class="language-javascript">// 加密
+new Buffer(string).toString(&quot;base64&quot;)
+
+// 解密
+new Buffer(string, &quot;base64&quot;).toString()
+</code></pre>
 
       
     </div>

@@ -26,7 +26,7 @@ console.log(encodedString); // 输出: &amp;quot;SGVsbG8gV29ybGQh&amp;quot;
 
 // 解密
 var de">
-<meta property="og:updated_time" content="2016-11-16T09:13:35.557Z">
+<meta property="og:updated_time" content="2017-01-10T08:09:26.750Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="js encode或decode base64格式的字符串">
 <meta name="twitter:description" content="方式一：Chrome、FireFox等现代主流浏览器或IE10及以上版本。// 测试字符
@@ -290,6 +290,12 @@ console.log(encodedString); // 输出: &quot;SGVsbG8gV29ybGQh&quot;
 // 解密
 var decodedString = Base64.decode(encodedString);
 console.log(decodedString); // 输出: &quot;Hello World!&quot;
+</code></pre>
+<h4 id="Nodejs端处理"><a href="#Nodejs端处理" class="headerlink" title="Nodejs端处理"></a>Nodejs端处理</h4><pre><code class="language-javascript">// 加密
+new Buffer(string).toString(&quot;base64&quot;)
+
+// 解密
+new Buffer(string, &quot;base64&quot;).toString()
 </code></pre>
 
       
