@@ -1185,9 +1185,9 @@ function getImgData(img,dir,next){
     </summary>
     
     
-      <category term="js" scheme="http://mmrxia.github.io/tags/js/"/>
-    
       <category term="移动端开发" scheme="http://mmrxia.github.io/tags/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E5%BC%80%E5%8F%91/"/>
+    
+      <category term="js" scheme="http://mmrxia.github.io/tags/js/"/>
     
   </entry>
   
@@ -1378,7 +1378,7 @@ res.redirect(req.session.userinfo); //从session中读取
     <link href="http://mmrxia.github.io/2016/06/27/16%E5%B9%B4%E5%90%8Eweb%E5%BC%80%E5%8F%91%E8%B6%8B%E5%8A%BF%E6%80%9D%E8%80%83/"/>
     <id>http://mmrxia.github.io/2016/06/27/16年后web开发趋势思考/</id>
     <published>2016-06-27T07:21:44.000Z</published>
-    <updated>2016-06-27T07:42:10.855Z</updated>
+    <updated>2017-01-10T03:43:34.829Z</updated>
     
     <content type="html">&lt;blockquote&gt;
 &lt;p&gt;Rewriting your Frontend Framework every six week !!!&lt;/p&gt;
@@ -1498,7 +1498,7 @@ res.redirect(req.session.userinfo); //从session中读取
     </summary>
     
     
-      <category term="前端" scheme="http://mmrxia.github.io/tags/%E5%89%8D%E7%AB%AF/"/>
+      <category term="随笔" scheme="http://mmrxia.github.io/tags/%E9%9A%8F%E7%AC%94/"/>
     
   </entry>
   
@@ -1605,10 +1605,57 @@ git config -global user.email &amp;quot;you@example.com&amp;quot;
     <link href="http://mmrxia.github.io/2016/06/02/%E5%9B%BE%E7%89%87%E7%AD%89%E6%AF%94%E5%8E%8B%E7%BC%A9%E5%B1%85%E4%B8%AD%E6%98%BE%E7%A4%BA/"/>
     <id>http://mmrxia.github.io/2016/06/02/图片等比压缩居中显示/</id>
     <published>2016-06-02T08:16:21.000Z</published>
-    <updated>2016-06-02T08:35:19.322Z</updated>
+    <updated>2017-01-10T04:08:09.718Z</updated>
     
-    <content type="html">&lt;h3 id=&quot;需求&quot;&gt;&lt;a href=&quot;#需求&quot; class=&quot;headerlink&quot; title=&quot;需求&quot;&gt;&lt;/a&gt;需求&lt;/h3&gt;&lt;p&gt;html中的img标签元素，在元素容器中保证等比压缩居中显示。不能拉伸变形，尽量做成jQuery插件的调用方式。&lt;/p&gt;
-&lt;h3 id=&quot;调用方式：&quot;&gt;&lt;a href=&quot;#调用方式：&quot; class=&quot;headerlink&quot; title=&quot;调用方式：&quot;&gt;&lt;/a&gt;调用方式：&lt;/h3&gt;&lt;p&gt;HTML:&lt;/p&gt;
+    <content type="html">&lt;h3 id=&quot;1-需求&quot;&gt;&lt;a href=&quot;#1-需求&quot; class=&quot;headerlink&quot; title=&quot;1.需求&quot;&gt;&lt;/a&gt;1.需求&lt;/h3&gt;&lt;p&gt;某些场景如幻灯片切换展示，个人资料头像展示等。&lt;br&gt;如果图片所在的外容器具有一定的宽高，而图片却又是不定宽高时，就需要我们在显示时需要注意几点：&lt;br&gt;1、图片不能被拉伸变形&lt;br&gt;2、尽量友好的显示图片内容&lt;/p&gt;
+&lt;h3 id=&quot;2-逻辑分析&quot;&gt;&lt;a href=&quot;#2-逻辑分析&quot; class=&quot;headerlink&quot; title=&quot;2.逻辑分析&quot;&gt;&lt;/a&gt;2.逻辑分析&lt;/h3&gt;&lt;p&gt;基于上面的需求，这就需要前端人员在控制显示的时候，尤其是一些图片尺寸过大，超出了外容器的图片，需要等比压缩居中显示；&lt;br&gt;对于尺寸太小，宽高都达不到外容器的范围的图片，最好也能居中显示，这样能保证最佳的显示效果。&lt;/p&gt;
+&lt;p&gt;那么这样才能做到等比压缩还居中显示呢？我们先看下图。&lt;/p&gt;
+&lt;p&gt;下面是一个宽高分别为200和100像素的外容器（块元素）。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://7xth8v.com2.z0.glb.qiniucdn.com/image/n_img_radio_commpress_01.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;内部有一张图片： 高200px、宽250px&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://7xth8v.com2.z0.glb.qiniucdn.com/image/n_img_radio_commpress_02.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;经过等比压缩后，应该如下图所示：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://7xth8v.com2.z0.glb.qiniucdn.com/image/n_img_radio_commpress_03.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;最终图片设置的宽高分别为200和160像素，这个是怎么算来的呢？&lt;/p&gt;
+&lt;p&gt;首先，我们分别取到宽高的最大压缩比ratio，也就是外容器像素值除以图片像素值。示例中分别是：&lt;br&gt;宽： 200/250 = 0.8&lt;br&gt;高： 100/200 = 0.5&lt;/p&gt;
+&lt;p&gt;所以我们取的max值是0.8，这样就能保证最终在计算的时候在宽度上完全撑满，即 250 * 0.8 = 200。&lt;/p&gt;
+&lt;p&gt;有了这个缩放比，自然就能计算出图片压缩后的高度，即 200 * 0.8 = 160。&lt;/p&gt;
+&lt;p&gt;确定了图片的宽高，接下来就需要图片居中显示，这时候只需要在外容器设置负的margin值就可以了，数值就是图片和容器差值的一半。&lt;/p&gt;
+&lt;p&gt;注意：这里涉及到一个问题，如果缩放比 ratio &amp;gt; 1， 也就是图片的宽高都比外容器值小怎么办？&lt;br&gt;这种情况很简单，只需要保持图片在容器中居中就可以了，不改变原图片的尺寸。&lt;/p&gt;
+&lt;p&gt;核心代码如下：&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-javascript&quot;&gt;/*外容器宽高*/
+var wrapper = {
+    width: me.parent().width(),
+    height: me.parent().height()
+};
+
+var size = {}; //最终要设置的宽高
+
+if (img.width &amp;gt; 0 &amp;amp;&amp;amp; img.height &amp;gt; 0) {
+    var ratio_w = wrapper.width / img.width;
+    var ratio_h = wrapper.height / img.height;
+
+    var ratio = Math.max.apply(null, [ratio_w, ratio_h]);   //取比例最大值
+
+    if (ratio &amp;gt; 1) {
+        size.width = img.width;
+        size.height = img.height;
+    } else {
+        size.width = img.width * ratio;
+        size.height = img.height * ratio;
+    }
+
+    /*设置样式*/
+    me.css({
+        &amp;quot;width&amp;quot;: size.width + &amp;#39;px&amp;#39;,
+        &amp;quot;height&amp;quot;: size.height + &amp;#39;px&amp;#39;,
+        &amp;quot;margin-top&amp;quot;: (wrapper.height - size.height) / 2 + &amp;#39;px&amp;#39;,
+        &amp;quot;margin-left&amp;quot;: (wrapper.width - size.width) / 2 + &amp;#39;px&amp;#39;
+    });
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&quot;3-调用方式：&quot;&gt;&lt;a href=&quot;#3-调用方式：&quot; class=&quot;headerlink&quot; title=&quot;3.调用方式：&quot;&gt;&lt;/a&gt;3.调用方式：&lt;/h3&gt;&lt;p&gt;结合以上逻辑，可以将代码进行封装，做成jquery插件的形式以供调用。&lt;br&gt;附上链接：&lt;br&gt;&lt;a href=&quot;https://github.com/mmrxia/lab/blob/master/examples/img-radio-compress/img-ratio-compress.js&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://github.com/mmrxia/lab/blob/master/examples/img-radio-compress/img-ratio-compress.js&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;HTML:&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&quot;language-html&quot;&gt;&amp;lt;div class=&amp;quot;img-wrapper&amp;quot;&amp;gt;
     &amp;lt;img class=&amp;quot;img&amp;quot; src=&amp;quot;image/tmp_01.jpg&amp;quot; alt=&amp;quot;demo1&amp;quot;/&amp;gt;
 &amp;lt;/div&amp;gt;
@@ -1632,18 +1679,21 @@ git config -global user.email &amp;quot;you@example.com&amp;quot;
     $(&amp;#39;.img&amp;#39;).ratioCompress({resize:true});
 &amp;lt;/script&amp;gt;
 &lt;/code&gt;&lt;/pre&gt;
-&lt;h3 id=&quot;效果如下：&quot;&gt;&lt;a href=&quot;#效果如下：&quot; class=&quot;headerlink&quot; title=&quot;效果如下：&quot;&gt;&lt;/a&gt;效果如下：&lt;/h3&gt;&lt;p&gt;&lt;img src=&quot;http://7xth8v.com2.z0.glb.qiniucdn.com/image/n_img_radio_commpress.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;h3 id=&quot;示例演示：&quot;&gt;&lt;a href=&quot;#示例演示：&quot; class=&quot;headerlink&quot; title=&quot;示例演示：&quot;&gt;&lt;/a&gt;示例演示：&lt;/h3&gt;&lt;p&gt;大家可以点开页面查看图片源文件，查看图片尺寸。&lt;br&gt;demo中设置了随窗口变化图片位置自适应，可以缩放浏览器尺寸或者F12调整为移动端模式查看。&lt;/p&gt;
-&lt;p&gt;&lt;a href=&quot;https://rawgit.com/mmrxia/lab/master/examples/img-radio-compress/index.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;点我查看示例&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&quot;4-效果展示：&quot;&gt;&lt;a href=&quot;#4-效果展示：&quot; class=&quot;headerlink&quot; title=&quot;4.效果展示：&quot;&gt;&lt;/a&gt;4.效果展示：&lt;/h3&gt;&lt;p&gt;&lt;a href=&quot;https://rawgit.com/mmrxia/lab/master/examples/img-radio-compress/index.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;点我查看示例&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://7xth8v.com2.z0.glb.qiniucdn.com/image/n_img_radio_commpress.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;（demo中设置了随窗口变化图片位置自适应，可以缩放浏览器尺寸或者F12调整为移动端模式查看。）&lt;/p&gt;
 </content>
     
     <summary type="html">
     
-      &lt;h3 id=&quot;需求&quot;&gt;&lt;a href=&quot;#需求&quot; class=&quot;headerlink&quot; title=&quot;需求&quot;&gt;&lt;/a&gt;需求&lt;/h3&gt;&lt;p&gt;html中的img标签元素，在元素容器中保证等比压缩居中显示。不能拉伸变形，尽量做成jQuery插件的调用方式。&lt;/p&gt;
-&lt;h3 id=&quot;调
+      &lt;h3 id=&quot;1-需求&quot;&gt;&lt;a href=&quot;#1-需求&quot; class=&quot;headerlink&quot; title=&quot;1.需求&quot;&gt;&lt;/a&gt;1.需求&lt;/h3&gt;&lt;p&gt;某些场景如幻灯片切换展示，个人资料头像展示等。&lt;br&gt;如果图片所在的外容器具有一定的宽高，而图片却又是不定宽高时，就需要我们
     
     </summary>
     
+    
+      <category term="随笔" scheme="http://mmrxia.github.io/tags/%E9%9A%8F%E7%AC%94/"/>
+    
+      <category term="javascript" scheme="http://mmrxia.github.io/tags/javascript/"/>
     
   </entry>
   
