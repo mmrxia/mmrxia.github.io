@@ -790,7 +790,7 @@ personEntity.speak();//我的名字叫Krouky
     <link href="http://mmrxia.github.io/2016/12/16/windows%E4%B8%8B%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AEmongodb/"/>
     <id>http://mmrxia.github.io/2016/12/16/windows下安装配置mongodb/</id>
     <published>2016-12-16T06:36:29.000Z</published>
-    <updated>2017-01-11T07:49:24.549Z</updated>
+    <updated>2017-01-11T07:57:06.157Z</updated>
     
     <content type="html">&lt;p&gt;安装文件：官方网站 &lt;a href=&quot;http://www.mongodb.org/downloads&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://www.mongodb.org/downloads&lt;/a&gt;&lt;br&gt;选择对应系统的文件下载。&lt;/p&gt;
 &lt;h3 id=&quot;一、解压缩文件。&quot;&gt;&lt;a href=&quot;#一、解压缩文件。&quot; class=&quot;headerlink&quot; title=&quot;一、解压缩文件。&quot;&gt;&lt;/a&gt;一、解压缩文件。&lt;/h3&gt;&lt;p&gt;  将压缩包解压，在D盘创建文件夹&lt;code&gt;mongodb&lt;/code&gt;,将压缩包解压到&lt;code&gt;mongodb&lt;/code&gt;文件夹中。&lt;/p&gt;
@@ -804,26 +804,39 @@ quiet=true #这个选项可以过滤掉一些无用的日志信息，若需要�
 port=27017 #端口号 默认为27017
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;这里仅指定了几个常用项，更多详细配置请参考官方文档 &lt;a href=&quot;http://docs.mongodb.org/manual/reference/configuration-options/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://docs.mongodb.org/manual/reference/configuration-options/&lt;/a&gt;&lt;/p&gt;
-&lt;h3 id=&quot;四、启动mongdb服务。&quot;&gt;&lt;a href=&quot;#四、启动mongdb服务。&quot; class=&quot;headerlink&quot; title=&quot;四、启动mongdb服务。&quot;&gt;&lt;/a&gt;四、启动mongdb服务。&lt;/h3&gt;&lt;p&gt;至此&lt;code&gt;mongodb&lt;/code&gt;文件夹下有文件夹及文件：&lt;/p&gt;
+&lt;p&gt;至此&lt;code&gt;mongodb&lt;/code&gt;文件夹下有文件夹及文件：&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&quot;language-git&quot;&gt;D:\ mongodb\bin
 D:\ mongodb\data\db
 D:\ mongodb\data\log
 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;配置文件和相关目录建好后使用如下方式启动mongodb：&lt;/p&gt;
+&lt;h3 id=&quot;四、启动mongdb服务。&quot;&gt;&lt;a href=&quot;#四、启动mongdb服务。&quot; class=&quot;headerlink&quot; title=&quot;四、启动mongdb服务。&quot;&gt;&lt;/a&gt;四、启动mongdb服务。&lt;/h3&gt;&lt;p&gt;配置文件和相关目录建好后可使用以下几种方式启动mongodb。&lt;/p&gt;
 &lt;p&gt;控制台进入&lt;code&gt;D:\ mongodb\bin&lt;/code&gt;目录，执行以下命令:&lt;/p&gt;
-&lt;p&gt;1 . 普通启动 &lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;普通启动&lt;/strong&gt; &lt;/li&gt;
+&lt;/ul&gt;
 &lt;pre&gt;&lt;code class=&quot;language-git&quot;&gt;mongod --config D:\mongodb\mongodb.cfg
 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;2 . 安装为Windows服务&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;安装为Windows服务&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
 &lt;pre&gt;&lt;code class=&quot;language-git&quot;&gt;mongod --config D:\mongodb\mongodb.cfg --install
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;注：2.6版 这种方式在win7、win8 64位版无法安装成功，其他系统未测试&lt;br&gt;BUG链接 &lt;a href=&quot;https://jira.mongodb.org/browse/SERVER-13515&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://jira.mongodb.org/browse/SERVER-13515&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;3 . 使用SC命令安装为Windows服务&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;使用SC命令安装为Windows服务&lt;/strong&gt;&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&quot;language-git&quot;&gt;sc create MongoDB binPath= &amp;quot;D:\mongodb\bin\mongod.exe --service --config=D:\mongodb\mongodb.cfg&amp;quot;
 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;在浏览器输入：&lt;a href=&quot;http://localhost:27017/，可以看到如下提示：&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://localhost:27017/，可以看到如下提示：&lt;/a&gt;&lt;br&gt;You are trying to access MongoDB on the native driver port. For http diagnostic access, add 1000 to the port number&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;在浏览器输入：&lt;a href=&quot;http://localhost:27017/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://localhost:27017/&lt;/a&gt;，可以看到如下提示：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;You are trying to access MongoDB on the native driver port. For http diagnostic access, add 1000 to the port number&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;p&gt;如此，说明MongoDB数据库服务已经成功启动了。&lt;/p&gt;
-&lt;p&gt;我们可以再启一个shell窗口，执行 &lt;code&gt;mongo&lt;/code&gt; 命令，可以看到如下提示：&lt;br&gt;MongoDB shell version: 2.6.4&lt;br&gt;connecting to: test&lt;/p&gt;
+&lt;p&gt;我们可以再启一个shell窗口，执行 &lt;code&gt;mongo&lt;/code&gt; 命令，可以看到如下提示：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;MongoDB shell version: 2.6.4&lt;br&gt;  connecting to: test&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;p&gt;这样的话，说明已经连接到mongodb默认 test 集合了。&lt;/p&gt;
 &lt;p&gt;我们也可以使用 &lt;code&gt;mongoVUE&lt;/code&gt; 等可视化工具查看库中的数据。&lt;/p&gt;
 &lt;h3 id=&quot;五、系统服务启动与删除。&quot;&gt;&lt;a href=&quot;#五、系统服务启动与删除。&quot; class=&quot;headerlink&quot; title=&quot;五、系统服务启动与删除。&quot;&gt;&lt;/a&gt;五、系统服务启动与删除。&lt;/h3&gt;&lt;pre&gt;&lt;code class=&quot;language-git&quot;&gt;net start MongoDB  //启动MongoDB服务  
@@ -1242,9 +1255,9 @@ Hi mmrxia! You&amp;#39;ve successfully authenticated, but GitHub does not provid
     </summary>
     
     
-      <category term="git" scheme="http://mmrxia.github.io/tags/git/"/>
-    
       <category term="Linux" scheme="http://mmrxia.github.io/tags/Linux/"/>
+    
+      <category term="git" scheme="http://mmrxia.github.io/tags/git/"/>
     
   </entry>
   
@@ -1286,9 +1299,9 @@ Hi mmrxia! You&amp;#39;ve successfully authenticated, but GitHub does not provid
     </summary>
     
     
-      <category term="Linux" scheme="http://mmrxia.github.io/tags/Linux/"/>
-    
       <category term="nodejs" scheme="http://mmrxia.github.io/tags/nodejs/"/>
+    
+      <category term="Linux" scheme="http://mmrxia.github.io/tags/Linux/"/>
     
   </entry>
   
@@ -1702,9 +1715,9 @@ if (img.width &amp;gt; 0 &amp;amp;&amp;amp; img.height &amp;gt; 0) {
     </summary>
     
     
-      <category term="javascript" scheme="http://mmrxia.github.io/tags/javascript/"/>
-    
       <category term="随笔" scheme="http://mmrxia.github.io/tags/%E9%9A%8F%E7%AC%94/"/>
+    
+      <category term="javascript" scheme="http://mmrxia.github.io/tags/javascript/"/>
     
   </entry>
   

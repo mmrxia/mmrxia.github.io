@@ -1186,26 +1186,39 @@ quiet=true #这个选项可以过滤掉一些无用的日志信息，若需要�
 port=27017 #端口号 默认为27017
 </code></pre>
 <p>这里仅指定了几个常用项，更多详细配置请参考官方文档 <a href="http://docs.mongodb.org/manual/reference/configuration-options/" target="_blank" rel="external">http://docs.mongodb.org/manual/reference/configuration-options/</a></p>
-<h3 id="四、启动mongdb服务。"><a href="#四、启动mongdb服务。" class="headerlink" title="四、启动mongdb服务。"></a>四、启动mongdb服务。</h3><p>至此<code>mongodb</code>文件夹下有文件夹及文件：</p>
+<p>至此<code>mongodb</code>文件夹下有文件夹及文件：</p>
 <pre><code class="language-git">D:\ mongodb\bin
 D:\ mongodb\data\db
 D:\ mongodb\data\log
 </code></pre>
-<p>配置文件和相关目录建好后使用如下方式启动mongodb：</p>
+<h3 id="四、启动mongdb服务。"><a href="#四、启动mongdb服务。" class="headerlink" title="四、启动mongdb服务。"></a>四、启动mongdb服务。</h3><p>配置文件和相关目录建好后可使用以下几种方式启动mongodb。</p>
 <p>控制台进入<code>D:\ mongodb\bin</code>目录，执行以下命令:</p>
-<p>1 . 普通启动 </p>
+<ul>
+<li><strong>普通启动</strong> </li>
+</ul>
 <pre><code class="language-git">mongod --config D:\mongodb\mongodb.cfg
 </code></pre>
-<p>2 . 安装为Windows服务</p>
+<ul>
+<li><strong>安装为Windows服务</strong></li>
+</ul>
 <pre><code class="language-git">mongod --config D:\mongodb\mongodb.cfg --install
 </code></pre>
 <p>注：2.6版 这种方式在win7、win8 64位版无法安装成功，其他系统未测试<br>BUG链接 <a href="https://jira.mongodb.org/browse/SERVER-13515" target="_blank" rel="external">https://jira.mongodb.org/browse/SERVER-13515</a></p>
-<p>3 . 使用SC命令安装为Windows服务</p>
+<ul>
+<li><p><strong>使用SC命令安装为Windows服务</strong></p>
 <pre><code class="language-git">sc create MongoDB binPath= &quot;D:\mongodb\bin\mongod.exe --service --config=D:\mongodb\mongodb.cfg&quot;
 </code></pre>
-<p>在浏览器输入：<a href="http://localhost:27017/，可以看到如下提示：" target="_blank" rel="external">http://localhost:27017/，可以看到如下提示：</a><br>You are trying to access MongoDB on the native driver port. For http diagnostic access, add 1000 to the port number</p>
+</li>
+</ul>
+<p>在浏览器输入：<a href="http://localhost:27017/" target="_blank" rel="external">http://localhost:27017/</a>，可以看到如下提示：</p>
+<blockquote>
+<p>You are trying to access MongoDB on the native driver port. For http diagnostic access, add 1000 to the port number</p>
+</blockquote>
 <p>如此，说明MongoDB数据库服务已经成功启动了。</p>
-<p>我们可以再启一个shell窗口，执行 <code>mongo</code> 命令，可以看到如下提示：<br>MongoDB shell version: 2.6.4<br>connecting to: test</p>
+<p>我们可以再启一个shell窗口，执行 <code>mongo</code> 命令，可以看到如下提示：</p>
+<blockquote>
+<p>MongoDB shell version: 2.6.4<br>  connecting to: test</p>
+</blockquote>
 <p>这样的话，说明已经连接到mongodb默认 test 集合了。</p>
 <p>我们也可以使用 <code>mongoVUE</code> 等可视化工具查看库中的数据。</p>
 <h3 id="五、系统服务启动与删除。"><a href="#五、系统服务启动与删除。" class="headerlink" title="五、系统服务启动与删除。"></a>五、系统服务启动与删除。</h3><pre><code class="language-git">net start MongoDB  //启动MongoDB服务  
