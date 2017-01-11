@@ -790,7 +790,7 @@ personEntity.speak();//我的名字叫Krouky
     <link href="http://mmrxia.github.io/2016/12/16/windows%E4%B8%8B%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AEmongodb/"/>
     <id>http://mmrxia.github.io/2016/12/16/windows下安装配置mongodb/</id>
     <published>2016-12-16T06:36:29.000Z</published>
-    <updated>2016-12-16T09:25:29.582Z</updated>
+    <updated>2017-01-11T07:49:24.549Z</updated>
     
     <content type="html">&lt;p&gt;安装文件：官方网站 &lt;a href=&quot;http://www.mongodb.org/downloads&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://www.mongodb.org/downloads&lt;/a&gt;&lt;br&gt;选择对应系统的文件下载。&lt;/p&gt;
 &lt;h3 id=&quot;一、解压缩文件。&quot;&gt;&lt;a href=&quot;#一、解压缩文件。&quot; class=&quot;headerlink&quot; title=&quot;一、解压缩文件。&quot;&gt;&lt;/a&gt;一、解压缩文件。&lt;/h3&gt;&lt;p&gt;  将压缩包解压，在D盘创建文件夹&lt;code&gt;mongodb&lt;/code&gt;,将压缩包解压到&lt;code&gt;mongodb&lt;/code&gt;文件夹中。&lt;/p&gt;
@@ -821,6 +821,11 @@ D:\ mongodb\data\log
 &lt;p&gt;3 . 使用SC命令安装为Windows服务&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&quot;language-git&quot;&gt;sc create MongoDB binPath= &amp;quot;D:\mongodb\bin\mongod.exe --service --config=D:\mongodb\mongodb.cfg&amp;quot;
 &lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;在浏览器输入：&lt;a href=&quot;http://localhost:27017/，可以看到如下提示：&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://localhost:27017/，可以看到如下提示：&lt;/a&gt;&lt;br&gt;You are trying to access MongoDB on the native driver port. For http diagnostic access, add 1000 to the port number&lt;/p&gt;
+&lt;p&gt;如此，说明MongoDB数据库服务已经成功启动了。&lt;/p&gt;
+&lt;p&gt;我们可以再启一个shell窗口，执行 &lt;code&gt;mongo&lt;/code&gt; 命令，可以看到如下提示：&lt;br&gt;MongoDB shell version: 2.6.4&lt;br&gt;connecting to: test&lt;/p&gt;
+&lt;p&gt;这样的话，说明已经连接到mongodb默认 test 集合了。&lt;/p&gt;
+&lt;p&gt;我们也可以使用 &lt;code&gt;mongoVUE&lt;/code&gt; 等可视化工具查看库中的数据。&lt;/p&gt;
 &lt;h3 id=&quot;五、系统服务启动与删除。&quot;&gt;&lt;a href=&quot;#五、系统服务启动与删除。&quot; class=&quot;headerlink&quot; title=&quot;五、系统服务启动与删除。&quot;&gt;&lt;/a&gt;五、系统服务启动与删除。&lt;/h3&gt;&lt;pre&gt;&lt;code class=&quot;language-git&quot;&gt;net start MongoDB  //启动MongoDB服务  
 net stop MongoDB  //停止MongoDB服务   
 mongod --remove  //移除MongoDB服务 
@@ -876,7 +881,7 @@ sc delete MongoDB   //通过该方式删除的话，服务中的 mongod仍会存
     <link href="http://mmrxia.github.io/2016/11/16/js-encode%E6%88%96decode-base64%E6%A0%BC%E5%BC%8F%E7%9A%84%E5%AD%97%E7%AC%A6%E4%B8%B2/"/>
     <id>http://mmrxia.github.io/2016/11/16/js-encode或decode-base64格式的字符串/</id>
     <published>2016-11-16T08:50:07.000Z</published>
-    <updated>2017-01-10T08:09:26.750Z</updated>
+    <updated>2017-01-10T08:10:53.271Z</updated>
     
     <content type="html">&lt;h4 id=&quot;方式一：Chrome、FireFox等现代主流浏览器或IE10及以上版本。&quot;&gt;&lt;a href=&quot;#方式一：Chrome、FireFox等现代主流浏览器或IE10及以上版本。&quot; class=&quot;headerlink&quot; title=&quot;方式一：Chrome、FireFox等现代主流浏览器或IE10及以上版本。&quot;&gt;&lt;/a&gt;方式一：Chrome、FireFox等现代主流浏览器或IE10及以上版本。&lt;/h4&gt;&lt;pre&gt;&lt;code class=&quot;language-javascript&quot;&gt;// 测试字符
 var string = &amp;#39;Hello World!&amp;#39;;
@@ -1237,9 +1242,9 @@ Hi mmrxia! You&amp;#39;ve successfully authenticated, but GitHub does not provid
     </summary>
     
     
-      <category term="Linux" scheme="http://mmrxia.github.io/tags/Linux/"/>
-    
       <category term="git" scheme="http://mmrxia.github.io/tags/git/"/>
+    
+      <category term="Linux" scheme="http://mmrxia.github.io/tags/Linux/"/>
     
   </entry>
   
@@ -1281,9 +1286,9 @@ Hi mmrxia! You&amp;#39;ve successfully authenticated, but GitHub does not provid
     </summary>
     
     
-      <category term="nodejs" scheme="http://mmrxia.github.io/tags/nodejs/"/>
-    
       <category term="Linux" scheme="http://mmrxia.github.io/tags/Linux/"/>
+    
+      <category term="nodejs" scheme="http://mmrxia.github.io/tags/nodejs/"/>
     
   </entry>
   
@@ -1697,9 +1702,9 @@ if (img.width &amp;gt; 0 &amp;amp;&amp;amp; img.height &amp;gt; 0) {
     </summary>
     
     
-      <category term="随笔" scheme="http://mmrxia.github.io/tags/%E9%9A%8F%E7%AC%94/"/>
-    
       <category term="javascript" scheme="http://mmrxia.github.io/tags/javascript/"/>
+    
+      <category term="随笔" scheme="http://mmrxia.github.io/tags/%E9%9A%8F%E7%AC%94/"/>
     
   </entry>
   

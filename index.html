@@ -1203,6 +1203,11 @@ D:\ mongodb\data\log
 <p>3 . 使用SC命令安装为Windows服务</p>
 <pre><code class="language-git">sc create MongoDB binPath= &quot;D:\mongodb\bin\mongod.exe --service --config=D:\mongodb\mongodb.cfg&quot;
 </code></pre>
+<p>在浏览器输入：<a href="http://localhost:27017/，可以看到如下提示：" target="_blank" rel="external">http://localhost:27017/，可以看到如下提示：</a><br>You are trying to access MongoDB on the native driver port. For http diagnostic access, add 1000 to the port number</p>
+<p>如此，说明MongoDB数据库服务已经成功启动了。</p>
+<p>我们可以再启一个shell窗口，执行 <code>mongo</code> 命令，可以看到如下提示：<br>MongoDB shell version: 2.6.4<br>connecting to: test</p>
+<p>这样的话，说明已经连接到mongodb默认 test 集合了。</p>
+<p>我们也可以使用 <code>mongoVUE</code> 等可视化工具查看库中的数据。</p>
 <h3 id="五、系统服务启动与删除。"><a href="#五、系统服务启动与删除。" class="headerlink" title="五、系统服务启动与删除。"></a>五、系统服务启动与删除。</h3><pre><code class="language-git">net start MongoDB  //启动MongoDB服务  
 net stop MongoDB  //停止MongoDB服务   
 mongod --remove  //移除MongoDB服务 
