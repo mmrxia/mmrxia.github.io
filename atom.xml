@@ -790,7 +790,7 @@ personEntity.speak();//我的名字叫Krouky
     <link href="http://mmrxia.github.io/2016/12/16/windows%E4%B8%8B%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AEmongodb/"/>
     <id>http://mmrxia.github.io/2016/12/16/windows下安装配置mongodb/</id>
     <published>2016-12-16T06:36:29.000Z</published>
-    <updated>2017-01-11T07:57:06.157Z</updated>
+    <updated>2017-01-11T08:33:15.974Z</updated>
     
     <content type="html">&lt;p&gt;安装文件：官方网站 &lt;a href=&quot;http://www.mongodb.org/downloads&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://www.mongodb.org/downloads&lt;/a&gt;&lt;br&gt;选择对应系统的文件下载。&lt;/p&gt;
 &lt;h3 id=&quot;一、解压缩文件。&quot;&gt;&lt;a href=&quot;#一、解压缩文件。&quot; class=&quot;headerlink&quot; title=&quot;一、解压缩文件。&quot;&gt;&lt;/a&gt;一、解压缩文件。&lt;/h3&gt;&lt;p&gt;  将压缩包解压，在D盘创建文件夹&lt;code&gt;mongodb&lt;/code&gt;,将压缩包解压到&lt;code&gt;mongodb&lt;/code&gt;文件夹中。&lt;/p&gt;
@@ -838,7 +838,7 @@ D:\ mongodb\data\log
 &lt;p&gt;MongoDB shell version: 2.6.4&lt;br&gt;  connecting to: test&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;这样的话，说明已经连接到mongodb默认 test 集合了。&lt;/p&gt;
-&lt;p&gt;我们也可以使用 &lt;code&gt;mongoVUE&lt;/code&gt; 等可视化工具查看库中的数据。&lt;/p&gt;
+&lt;p&gt;我们也可以使用 &lt;code&gt;mongoVUE&lt;/code&gt; 、 &lt;code&gt;Robomongo&lt;/code&gt; 等可视化工具查看库中的数据。&lt;/p&gt;
 &lt;h3 id=&quot;五、系统服务启动与删除。&quot;&gt;&lt;a href=&quot;#五、系统服务启动与删除。&quot; class=&quot;headerlink&quot; title=&quot;五、系统服务启动与删除。&quot;&gt;&lt;/a&gt;五、系统服务启动与删除。&lt;/h3&gt;&lt;pre&gt;&lt;code class=&quot;language-git&quot;&gt;net start MongoDB  //启动MongoDB服务  
 net stop MongoDB  //停止MongoDB服务   
 mongod --remove  //移除MongoDB服务 
@@ -1255,9 +1255,9 @@ Hi mmrxia! You&amp;#39;ve successfully authenticated, but GitHub does not provid
     </summary>
     
     
-      <category term="Linux" scheme="http://mmrxia.github.io/tags/Linux/"/>
-    
       <category term="git" scheme="http://mmrxia.github.io/tags/git/"/>
+    
+      <category term="Linux" scheme="http://mmrxia.github.io/tags/Linux/"/>
     
   </entry>
   
