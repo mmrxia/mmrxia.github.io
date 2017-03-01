@@ -1185,7 +1185,7 @@ journal=true #启用日志文件，默认启用
 quiet=true #这个选项可以过滤掉一些无用的日志信息，若需要调试使用请设置为false
 port=27017 #端口号 默认为27017
 </code></pre>
-<p>这里仅指定了几个常用项，更多详细配置请参考官方文档 <a href="http://docs.mongodb.org/manual/reference/configuration-options/" target="_blank" rel="external">http://docs.mongodb.org/manual/reference/configuration-options/</a></p>
+<p>这里仅指定了几个常用项，更多详细配置请参考官方文档 <a href="http://docs.mongodb.org/manual/reference/configuration-options/" target="_blank" rel="external">http://docs.mongodb.org/manual/reference/configuration-options/</a><br>正常情况下，我们一般配置<code>dbpath</code>和<code>logpath</code>就够了。</p>
 <p>至此<code>mongodb</code>文件夹下有文件夹及文件：</p>
 <pre><code class="language-git">D:\ mongodb\bin
 D:\ mongodb\data\db
@@ -1197,6 +1197,7 @@ D:\ mongodb\data\log
 <li><strong>普通启动</strong> </li>
 </ul>
 <pre><code class="language-git">mongod --config D:\mongodb\mongodb.cfg
+mongod -f ../mongodb.cfg  #简写
 </code></pre>
 <ul>
 <li><strong>安装为Windows服务</strong></li>

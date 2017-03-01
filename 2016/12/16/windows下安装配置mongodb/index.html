@@ -16,7 +16,7 @@
 一、解压缩文件。  将压缩包解压，在D盘创建文件夹mongodb,将压缩包解压到mongodb文件夹中。
 二、建立工作目录。  1、建立数据存放目录  D:\mongodb\data\db  2、建立日志文件  D:\mongodb\db\log\mongodb.log
 三、建立配置文件。">
-<meta property="og:updated_time" content="2017-01-11T08:33:15.974Z">
+<meta property="og:updated_time" content="2017-03-01T03:36:47.965Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="windows下安装配置mongodb">
 <meta name="twitter:description" content="安装文件：官方网站 http://www.mongodb.org/downloads选择对应系统的文件下载。
@@ -262,7 +262,7 @@ journal=true #启用日志文件，默认启用
 quiet=true #这个选项可以过滤掉一些无用的日志信息，若需要调试使用请设置为false
 port=27017 #端口号 默认为27017
 </code></pre>
-<p>这里仅指定了几个常用项，更多详细配置请参考官方文档 <a href="http://docs.mongodb.org/manual/reference/configuration-options/" target="_blank" rel="external">http://docs.mongodb.org/manual/reference/configuration-options/</a></p>
+<p>这里仅指定了几个常用项，更多详细配置请参考官方文档 <a href="http://docs.mongodb.org/manual/reference/configuration-options/" target="_blank" rel="external">http://docs.mongodb.org/manual/reference/configuration-options/</a><br>正常情况下，我们一般配置<code>dbpath</code>和<code>logpath</code>就够了。</p>
 <p>至此<code>mongodb</code>文件夹下有文件夹及文件：</p>
 <pre><code class="language-git">D:\ mongodb\bin
 D:\ mongodb\data\db
@@ -274,6 +274,7 @@ D:\ mongodb\data\log
 <li><strong>普通启动</strong> </li>
 </ul>
 <pre><code class="language-git">mongod --config D:\mongodb\mongodb.cfg
+mongod -f ../mongodb.cfg  #简写
 </code></pre>
 <ul>
 <li><strong>安装为Windows服务</strong></li>
