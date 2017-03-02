@@ -118,7 +118,7 @@
 				
 				<section class="switch-part switch-part2">
 					<div class="widget tagcloud" id="js-tagcloud">
-						<a href="/tags/Linux/" style="font-size: 13.33px;">Linux</a> <a href="/tags/base64/" style="font-size: 10px;">base64</a> <a href="/tags/bash/" style="font-size: 10px;">bash</a> <a href="/tags/bigPipe/" style="font-size: 10px;">bigPipe</a> <a href="/tags/cnpm/" style="font-size: 10px;">cnpm</a> <a href="/tags/express/" style="font-size: 10px;">express</a> <a href="/tags/git/" style="font-size: 16.67px;">git</a> <a href="/tags/javascript/" style="font-size: 20px;">javascript</a> <a href="/tags/js/" style="font-size: 16.67px;">js</a> <a href="/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/tags/mongodb/" style="font-size: 13.33px;">mongodb</a> <a href="/tags/nodejs/" style="font-size: 20px;">nodejs</a> <a href="/tags/npm/" style="font-size: 10px;">npm</a> <a href="/tags/sku/" style="font-size: 10px;">sku</a> <a href="/tags/uuid/" style="font-size: 10px;">uuid</a> <a href="/tags/vue/" style="font-size: 10px;">vue</a> <a href="/tags/数组/" style="font-size: 10px;">数组</a> <a href="/tags/移动端开发/" style="font-size: 10px;">移动端开发</a> <a href="/tags/算法/" style="font-size: 10px;">算法</a> <a href="/tags/西游记/" style="font-size: 13.33px;">西游记</a> <a href="/tags/跨域/" style="font-size: 10px;">跨域</a> <a href="/tags/随笔/" style="font-size: 16.67px;">随笔</a>
+						<a href="/tags/Linux/" style="font-size: 13.33px;">Linux</a> <a href="/tags/base64/" style="font-size: 10px;">base64</a> <a href="/tags/bash/" style="font-size: 10px;">bash</a> <a href="/tags/bigPipe/" style="font-size: 10px;">bigPipe</a> <a href="/tags/cnpm/" style="font-size: 10px;">cnpm</a> <a href="/tags/express/" style="font-size: 10px;">express</a> <a href="/tags/git/" style="font-size: 16.67px;">git</a> <a href="/tags/javascript/" style="font-size: 20px;">javascript</a> <a href="/tags/js/" style="font-size: 16.67px;">js</a> <a href="/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/tags/mongodb/" style="font-size: 16.67px;">mongodb</a> <a href="/tags/nodejs/" style="font-size: 20px;">nodejs</a> <a href="/tags/npm/" style="font-size: 10px;">npm</a> <a href="/tags/sku/" style="font-size: 10px;">sku</a> <a href="/tags/uuid/" style="font-size: 10px;">uuid</a> <a href="/tags/vue/" style="font-size: 10px;">vue</a> <a href="/tags/数组/" style="font-size: 10px;">数组</a> <a href="/tags/移动端开发/" style="font-size: 10px;">移动端开发</a> <a href="/tags/算法/" style="font-size: 10px;">算法</a> <a href="/tags/西游记/" style="font-size: 13.33px;">西游记</a> <a href="/tags/跨域/" style="font-size: 10px;">跨域</a> <a href="/tags/随笔/" style="font-size: 16.67px;">随笔</a>
 					</div>
 				</section>
 				
@@ -203,6 +203,107 @@
 </nav>
 
       <div class="body-wrap">
+  
+    <article id="post-localhost配置mongodb主从" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2017/03/01/localhost配置mongodb主从/" class="article-date">
+  	<time datetime="2017-03-01T03:40:38.000Z" itemprop="datePublished">2017-03-01</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/03/01/localhost配置mongodb主从/">localhost配置mongodb主从</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="一、mongodb安装配置"><a href="#一、mongodb安装配置" class="headerlink" title="一、mongodb安装配置"></a>一、mongodb安装配置</h4><p>这部分可参考 <a href="http://blog.xiaqingsong.com/2016/12/16/windows%E4%B8%8B%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AEmongodb/" target="_blank" rel="external">windows下安装配置mongodb</a></p>
+<h4 id="二、-主从配置"><a href="#二、-主从配置" class="headerlink" title="二、 主从配置"></a>二、 主从配置</h4><blockquote>
+<p>在生产环境中单台数据库一般不能满足业务稳定性的需求，所以数据库主从复制架构在生产环境中很常见，用于主从复制也是Mongodb最常用的一种架构方式。这种方式非常灵活，可用于备份、故障恢复、读扩展等,从而提高数据处理性能和冗余，常用架构模式是一主一从、一主多从、双主。</p>
+</blockquote>
+<p>本着实验目的，我们今天简单实现一主一从的配置。</p>
+<p>注：主从服务器我们指定端口分别为 <code>27017</code> 和 <code>27019</code>。  </p>
+<p>根目录下我们分别新建<code>mongodb.cfg</code>和<code>mongodb.slave.cfg</code>主从启动配置文件，详细配置如下：</p>
+<p><strong>master</strong>(mongodb.cfg): </p>
+<pre><code class="language-git">dbpath=D:\mongodb\data\db\master #规定数据库的位置
+logpath=D:\mongodb\data\log\master\mongodb.log #规定数据库的日志文件
+
+port=27017 #指定端口
+#fork=true #后台运行
+
+master=true #设置主
+
+# bind_ip=127.0.0.1,192.168.0.4 #允许的地址 为了安全
+nohttpinterface=true #禁止http访问
+</code></pre>
+<p><strong>slave</strong>(mongodb.slave.cfg): </p>
+<pre><code class="language-git">dbpath=D:\mongodb\data\db\slave #规定数据库的位置
+logpath=D:\mongodb\data\log\slave\mongodb.log #规定数据库的日志文件
+
+port=27019 #指定端口
+#fork=true #后台运行
+
+slave=true #声明从
+source=127.0.0.1:27017 #规定从属于哪个ip  注意：ip是主服务器的  最好用内网ip
+
+# bind_ip=127.0.0.1,192.168.0.4 #允许的地址 为了安全
+nohttpinterface=true #禁止http访问
+</code></pre>
+<h4 id="三、启动"><a href="#三、启动" class="headerlink" title="三、启动"></a>三、启动</h4><p>进入<code>bin</code>目录，执行下面步骤：</p>
+<pre><code class="language-git">mongod -f ../mongodb.cfg  #启动主服务器
+</code></pre>
+<p>从服务器启动，同理如上：</p>
+<pre><code class="language-git">mongod -f ../mongodb.slave.cfg  #启动从服务器
+</code></pre>
+<p>启动完成后，我们分别另起一个窗口，进入数据库：</p>
+<pre><code>mongo --host localhost --port 27017  #进入主数据库 
+mongo --host localhost --port 27019  #进入主数据库
+</code></pre><p>之后，我们在从服务器执行：</p>
+<pre><code>rs.slaveOk();
+show dbs;  #如果出现主数据库的数据，说明同步成功
+</code></pre><p>详细执行效果，可参考下图所示：<br><img src="http://7xth8v.com2.z0.glb.qiniucdn.com/image/n_mongodb%20master_and_slave_test.png" alt=""></p>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mongodb/">mongodb</a></li></ul>
+	</div>
+
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
   
     <article id="w-vue学习笔记" class="article article-type-w" itemscope itemprop="blogPost">
   
@@ -1534,91 +1635,6 @@ new Buffer(string, &quot;base64&quot;).toString()
       
 	<div class="article-tag tagcloud">
 		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/uuid/">uuid</a></li></ul>
-	</div>
-
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-使用淘宝npm镜像cnpm" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2016/08/05/使用淘宝npm镜像cnpm/" class="article-date">
-  	<time datetime="2016-08-05T03:24:36.000Z" itemprop="datePublished">2016-08-05</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/08/05/使用淘宝npm镜像cnpm/">使用淘宝npm镜像cnpm</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <blockquote>
-<p>在使用 node 模块时可以使用 npm install 查找 package.json 中的声明的依赖模块并安装。  </p>
-</blockquote>
-<p>但因为国内网络原因，使用 npm 安装某些模块会非常慢，甚至无法安装所有的包。<br>幸运的是,国内有几个镜像站点可以供我们使用,比如 <code>https://registry.cnpmjs.org</code>、<code>https://registry.npm.taobao.org</code>,速度非常快,镜像站会实时更新,为我们节省了好多时间.    </p>
-<h5 id="那么-如何给本机换源呢"><a href="#那么-如何给本机换源呢" class="headerlink" title="那么,如何给本机换源呢?"></a>那么,如何给本机换源呢?</h5><p>(1)[临时]通过 <code>config</code> 配置指向国内镜像源</p>
-<pre><code class="language-git"># 配置指向源
-npm config set registry http://registry.cnpmjs.org
-</code></pre>
-<p>(2)[临时]通过 <code>npm</code> 命令指定下载源</p>
-<pre><code class="language-git">npm --registry http://registry.cnpmjs.org
-</code></pre>
-<p>(3)[linux]在配置文件 <code>~/.npmrc</code> 文件写入源地址</p>
-<pre><code class="language-git">//打开配置文件
-nano ~/.npmrc
-//写入配置文件
-registry =https://registry.npm.taobao.org
-</code></pre>
-<p>推荐使用最后一种方法,一劳永逸,前面2钟方法都是临时改变包下载源.<br>如果你不想使用国内镜像站点,只需要将 写入 <code>~/.npmrc</code> 的配置内容删除即可.  </p>
-<p>配置后可通过下面方式来验证是否成功</p>
-<pre><code class="language-git">npm config get registry
-// 或
-npm info express
-</code></pre>
-<h5 id="使用cnpm"><a href="#使用cnpm" class="headerlink" title="使用cnpm"></a>使用cnpm</h5><p>或者你也可以安装<code>cnpm</code>包，使用<code>cnpm</code>替代<code>npm</code>：</p>
-<pre><code class="language-git">npm install -g cnpm --registry=https://registry.npm.taobao.org
-</code></pre>
-<p>然后使用 <code>cnpm</code> 安装模块：</p>
-<pre><code class="language-git">cnpm install [module-name]
-</code></pre>
-
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/cnpm/">cnpm</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/npm/">npm</a></li></ul>
 	</div>
 
       
