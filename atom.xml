@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://mmrxia.github.io/"/>
-  <updated>2017-03-02T02:25:47.703Z</updated>
+  <updated>2017-03-02T03:18:10.708Z</updated>
   <id>http://mmrxia.github.io/</id>
   
   <author>
@@ -20,11 +20,11 @@
     <link href="http://mmrxia.github.io/2017/03/01/localhost%E9%85%8D%E7%BD%AEmongodb%E4%B8%BB%E4%BB%8E/"/>
     <id>http://mmrxia.github.io/2017/03/01/localhost配置mongodb主从/</id>
     <published>2017-03-01T03:40:38.000Z</published>
-    <updated>2017-03-02T02:25:47.703Z</updated>
+    <updated>2017-03-02T03:18:10.708Z</updated>
     
-    <content type="html">&lt;h4 id=&quot;一、mongodb安装配置&quot;&gt;&lt;a href=&quot;#一、mongodb安装配置&quot; class=&quot;headerlink&quot; title=&quot;一、mongodb安装配置&quot;&gt;&lt;/a&gt;一、mongodb安装配置&lt;/h4&gt;&lt;p&gt;这部分可参考 &lt;a href=&quot;http://blog.xiaqingsong.com/2016/12/16/windows%E4%B8%8B%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AEmongodb/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;windows下安装配置mongodb&lt;/a&gt;&lt;/p&gt;
+    <content type="html">&lt;h4 id=&quot;一、mongodb安装配置&quot;&gt;&lt;a href=&quot;#一、mongodb安装配置&quot; class=&quot;headerlink&quot; title=&quot;一、mongodb安装配置&quot;&gt;&lt;/a&gt;一、mongodb安装配置&lt;/h4&gt;&lt;p&gt;这部分可参考博文 &lt;a href=&quot;http://blog.xiaqingsong.com/2016/12/16/windows%E4%B8%8B%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AEmongodb/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;windows下安装配置mongodb&lt;/a&gt;&lt;/p&gt;
 &lt;h4 id=&quot;二、-主从配置&quot;&gt;&lt;a href=&quot;#二、-主从配置&quot; class=&quot;headerlink&quot; title=&quot;二、 主从配置&quot;&gt;&lt;/a&gt;二、 主从配置&lt;/h4&gt;&lt;blockquote&gt;
-&lt;p&gt;在生产环境中单台数据库一般不能满足业务稳定性的需求，所以数据库主从复制架构在生产环境中很常见，用于主从复制也是Mongodb最常用的一种架构方式。这种方式非常灵活，可用于备份、故障恢复、读扩展等,从而提高数据处理性能和冗余，常用架构模式是一主一从、一主多从、双主。&lt;/p&gt;
+&lt;p&gt;在生产环境中单台数据库一般不能满足业务稳定性的需求，所以数据库主从复制架构在生产环境中很常见，用于主从复制也是Mongodb最常用的一种架构方式。&lt;br&gt;这种方式非常灵活，可用于备份、故障恢复、读扩展等,从而提高数据处理性能和冗余，常用架构模式是一主一从、一主多从、双主。&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;本着实验目的，我们今天简单实现一主一从的配置。&lt;/p&gt;
 &lt;p&gt;注：主从服务器我们指定端口分别为 &lt;code&gt;27017&lt;/code&gt; 和 &lt;code&gt;27019&lt;/code&gt;。  &lt;/p&gt;
@@ -66,12 +66,13 @@ mongo --host localhost --port 27019  #进入主数据库
 &lt;/code&gt;&lt;/pre&gt;&lt;p&gt;之后，我们在从服务器执行：&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;rs.slaveOk();
 show dbs;  #如果出现主数据库的数据，说明同步成功
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;详细执行效果，可参考下图所示：&lt;br&gt;&lt;img src=&quot;http://7xth8v.com2.z0.glb.qiniucdn.com/image/n_mongodb%20master_and_slave_test.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;详细执行效果，可参考下图所示：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://7xth8v.com2.z0.glb.qiniucdn.com/image/n_mongodb%20master_and_slave_test.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
 </content>
     
     <summary type="html">
     
-      &lt;h4 id=&quot;一、mongodb安装配置&quot;&gt;&lt;a href=&quot;#一、mongodb安装配置&quot; class=&quot;headerlink&quot; title=&quot;一、mongodb安装配置&quot;&gt;&lt;/a&gt;一、mongodb安装配置&lt;/h4&gt;&lt;p&gt;这部分可参考 &lt;a href=&quot;http://blo
+      &lt;h4 id=&quot;一、mongodb安装配置&quot;&gt;&lt;a href=&quot;#一、mongodb安装配置&quot; class=&quot;headerlink&quot; title=&quot;一、mongodb安装配置&quot;&gt;&lt;/a&gt;一、mongodb安装配置&lt;/h4&gt;&lt;p&gt;这部分可参考博文 &lt;a href=&quot;http://b
     
     </summary>
     
@@ -1321,9 +1322,9 @@ Hi mmrxia! You&amp;#39;ve successfully authenticated, but GitHub does not provid
     </summary>
     
     
-      <category term="git" scheme="http://mmrxia.github.io/tags/git/"/>
-    
       <category term="Linux" scheme="http://mmrxia.github.io/tags/Linux/"/>
+    
+      <category term="git" scheme="http://mmrxia.github.io/tags/git/"/>
     
   </entry>
   

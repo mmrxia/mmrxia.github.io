@@ -4,29 +4,29 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <meta name="description" content="一、mongodb安装配置这部分可参考 windows下安装配置mongodb
+    <meta name="description" content="一、mongodb安装配置这部分可参考博文 windows下安装配置mongodb
 二、 主从配置
 在生产环境中单台数据库一般不能满足业务稳定性的需求，所以数据库主从复制架构在生产环境中很常见，用于主从复制也是Mongodb最常用的一种架构方式。这种方式非常灵活，可用于备份、故障恢复、读扩展等,从而提高数据处理性能和冗余，常用架构模式是一主一从、一主多从、双主。
 
-本着实验目的，我们今天简单实现一主一">
+本着实验目的，我们今天简单实现一">
 <meta property="og:type" content="article">
 <meta property="og:title" content="localhost配置mongodb主从">
 <meta property="og:url" content="http://mmrxia.github.io/2017/03/01/localhost配置mongodb主从/index.html">
 <meta property="og:site_name" content="芥子园 | xiaqingsong's blog">
-<meta property="og:description" content="一、mongodb安装配置这部分可参考 windows下安装配置mongodb
+<meta property="og:description" content="一、mongodb安装配置这部分可参考博文 windows下安装配置mongodb
 二、 主从配置
 在生产环境中单台数据库一般不能满足业务稳定性的需求，所以数据库主从复制架构在生产环境中很常见，用于主从复制也是Mongodb最常用的一种架构方式。这种方式非常灵活，可用于备份、故障恢复、读扩展等,从而提高数据处理性能和冗余，常用架构模式是一主一从、一主多从、双主。
 
-本着实验目的，我们今天简单实现一主一">
+本着实验目的，我们今天简单实现一">
 <meta property="og:image" content="http://7xth8v.com2.z0.glb.qiniucdn.com/image/n_mongodb%20master_and_slave_test.png">
-<meta property="og:updated_time" content="2017-03-02T02:25:47.703Z">
+<meta property="og:updated_time" content="2017-03-02T03:18:10.708Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="localhost配置mongodb主从">
-<meta name="twitter:description" content="一、mongodb安装配置这部分可参考 windows下安装配置mongodb
+<meta name="twitter:description" content="一、mongodb安装配置这部分可参考博文 windows下安装配置mongodb
 二、 主从配置
 在生产环境中单台数据库一般不能满足业务稳定性的需求，所以数据库主从复制架构在生产环境中很常见，用于主从复制也是Mongodb最常用的一种架构方式。这种方式非常灵活，可用于备份、故障恢复、读扩展等,从而提高数据处理性能和冗余，常用架构模式是一主一从、一主多从、双主。
 
-本着实验目的，我们今天简单实现一主一">
+本着实验目的，我们今天简单实现一">
 <meta name="twitter:image" content="http://7xth8v.com2.z0.glb.qiniucdn.com/image/n_mongodb%20master_and_slave_test.png">
     
     <title>
@@ -256,9 +256,9 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h4 id="一、mongodb安装配置"><a href="#一、mongodb安装配置" class="headerlink" title="一、mongodb安装配置"></a>一、mongodb安装配置</h4><p>这部分可参考 <a href="http://blog.xiaqingsong.com/2016/12/16/windows%E4%B8%8B%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AEmongodb/" target="_blank" rel="external">windows下安装配置mongodb</a></p>
+        <h4 id="一、mongodb安装配置"><a href="#一、mongodb安装配置" class="headerlink" title="一、mongodb安装配置"></a>一、mongodb安装配置</h4><p>这部分可参考博文 <a href="http://blog.xiaqingsong.com/2016/12/16/windows%E4%B8%8B%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AEmongodb/" target="_blank" rel="external">windows下安装配置mongodb</a></p>
 <h4 id="二、-主从配置"><a href="#二、-主从配置" class="headerlink" title="二、 主从配置"></a>二、 主从配置</h4><blockquote>
-<p>在生产环境中单台数据库一般不能满足业务稳定性的需求，所以数据库主从复制架构在生产环境中很常见，用于主从复制也是Mongodb最常用的一种架构方式。这种方式非常灵活，可用于备份、故障恢复、读扩展等,从而提高数据处理性能和冗余，常用架构模式是一主一从、一主多从、双主。</p>
+<p>在生产环境中单台数据库一般不能满足业务稳定性的需求，所以数据库主从复制架构在生产环境中很常见，用于主从复制也是Mongodb最常用的一种架构方式。<br>这种方式非常灵活，可用于备份、故障恢复、读扩展等,从而提高数据处理性能和冗余，常用架构模式是一主一从、一主多从、双主。</p>
 </blockquote>
 <p>本着实验目的，我们今天简单实现一主一从的配置。</p>
 <p>注：主从服务器我们指定端口分别为 <code>27017</code> 和 <code>27019</code>。  </p>
@@ -300,7 +300,8 @@ mongo --host localhost --port 27019  #进入主数据库
 </code></pre><p>之后，我们在从服务器执行：</p>
 <pre><code>rs.slaveOk();
 show dbs;  #如果出现主数据库的数据，说明同步成功
-</code></pre><p>详细执行效果，可参考下图所示：<br><img src="http://7xth8v.com2.z0.glb.qiniucdn.com/image/n_mongodb%20master_and_slave_test.png" alt=""></p>
+</code></pre><p>详细执行效果，可参考下图所示：</p>
+<p><img src="http://7xth8v.com2.z0.glb.qiniucdn.com/image/n_mongodb%20master_and_slave_test.png" alt=""></p>
 
       
     </div>
@@ -423,5 +424,19 @@ MathJax.Hub.Queue(function() {
 
   </div>
   <script src="http://7xth8v.com2.z0.glb.qiniucdn.com/js/prism.js"></script>
+
+  <!--网易云跟帖代码-->
+  <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
+  <script src="https://img1.cache.netease.com/f2e/tie/yun/sdk/loader.js"></script>
+  <script>
+      var cloudTieConfig = {
+          url: document.location.href,
+          sourceId: "",
+          productKey: "17aa32dc2264402789450912a85cf52b",
+          target: "cloud-tie-wrapper"
+      };
+      var yunManualLoad = true;
+      Tie.loader("aHR0cHM6Ly9hcGkuZ2VudGllLjE2My5jb20vcGMvbGl2ZXNjcmlwdC5odG1s", true);
+  </script>
 </body>
 </html>
