@@ -395,27 +395,19 @@ AngularJS首创的双向数据绑定, 以及内置的模块注入, 以及组件�
 
 
 
-
-<div class="duoshuo">
-	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="16年后web开发趋势思考" data-title="16年后web开发趋势思考" data-url="http://mmrxia.github.io/2016/06/27/16年后web开发趋势思考/"></div>
-	<!-- 多说评论框 end -->
-	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
-	<script type="text/javascript">
-	var duoshuoQuery = {short_name:"mrxia"};
-	(function() {
-		var ds = document.createElement('script');
-		ds.type = 'text/javascript';ds.async = true;
-		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-		ds.charset = 'UTF-8';
-		(document.getElementsByTagName('head')[0] 
-		 || document.getElementsByTagName('body')[0]).appendChild(ds);
-	})();
-	</script>
-	<!-- 多说公共JS代码 end -->
-</div>
-
-
+<!--网易云跟帖代码-->
+<div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
+<script src="https://img1.cache.netease.com/f2e/tie/yun/sdk/loader.js"></script>
+<script>
+var cloudTieConfig = {
+url: document.location.href,
+sourceId: "",
+productKey: "17aa32dc2264402789450912a85cf52b",
+target: "cloud-tie-wrapper"
+};
+var yunManualLoad = true;
+Tie.loader("aHR0cHM6Ly9hcGkuZ2VudGllLjE2My5jb20vcGMvbGl2ZXNjcmlwdC5odG1s", true);
+</script>
 
 
 </div>
@@ -493,19 +485,5 @@ MathJax.Hub.Queue(function() {
 
   </div>
   <script src="http://7xth8v.com2.z0.glb.qiniucdn.com/js/prism.js"></script>
-
-  <!--网易云跟帖代码-->
-  <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
-  <script src="https://img1.cache.netease.com/f2e/tie/yun/sdk/loader.js"></script>
-  <script>
-      var cloudTieConfig = {
-          url: document.location.href,
-          sourceId: "",
-          productKey: "17aa32dc2264402789450912a85cf52b",
-          target: "cloud-tie-wrapper"
-      };
-      var yunManualLoad = true;
-      Tie.loader("aHR0cHM6Ly9hcGkuZ2VudGllLjE2My5jb20vcGMvbGl2ZXNjcmlwdC5odG1s", true);
-  </script>
 </body>
 </html>
