@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://mmrxia.github.io/"/>
-  <updated>2017-12-15T03:20:55.380Z</updated>
+  <updated>2017-12-15T03:27:30.654Z</updated>
   <id>http://mmrxia.github.io/</id>
   
   <author>
@@ -16,11 +16,11 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>&#39;weex踩坑实践记录&#39;</title>
+    <title>weex踩坑实践记录</title>
     <link href="http://mmrxia.github.io/2017/12/15/weex%E8%B8%A9%E5%9D%91%E5%AE%9E%E8%B7%B5%E8%AE%B0%E5%BD%95/"/>
     <id>http://mmrxia.github.io/2017/12/15/weex踩坑实践记录/</id>
     <published>2017-12-15T02:45:44.000Z</published>
-    <updated>2017-12-15T03:20:55.380Z</updated>
+    <updated>2017-12-15T03:27:30.654Z</updated>
     
     <content type="html">&lt;h3 id=&quot;技术概述&quot;&gt;&lt;a href=&quot;#技术概述&quot; class=&quot;headerlink&quot; title=&quot;技术概述&quot;&gt;&lt;/a&gt;技术概述&lt;/h3&gt;&lt;p&gt;&lt;code&gt;weex&lt;/code&gt;是阿里开源的一套构建高性能移动界面的原生跨平台技术框架，它的上层由&lt;code&gt;Vue&lt;/code&gt;，&lt;code&gt;Rax&lt;/code&gt;（非常类似React的开发框架）实现数据驱动，底层由&lt;code&gt;iOS&lt;/code&gt;，&lt;code&gt;Android&lt;/code&gt;实现&lt;code&gt;render engine&lt;/code&gt;来驱动界面的最终落地。类比&lt;code&gt;React Native&lt;/code&gt;它的优势在于难得的一次编写，多端运行，是的，它也很好的支持着移动Web端。&lt;/p&gt;
 &lt;h3 id=&quot;构建-build&quot;&gt;&lt;a href=&quot;#构建-build&quot; class=&quot;headerlink&quot; title=&quot;构建-build&quot;&gt;&lt;/a&gt;构建-build&lt;/h3&gt;&lt;p&gt;&lt;code&gt;Native&lt;/code&gt;使用&lt;code&gt;weex-loader&lt;/code&gt;，&lt;code&gt;Web&lt;/code&gt;则需要使用&lt;code&gt;vue-loader&lt;/code&gt;，在Web端上&lt;code&gt;vue-loader&lt;/code&gt;目前仅支持&lt;code&gt;^11.3.3&lt;/code&gt;版本，以及&lt;code&gt;weex-vue-render&lt;/code&gt;需要&lt;code&gt;&amp;gt;= 0.11.50&lt;/code&gt;，并且&lt;code&gt;vue-loader&lt;/code&gt;的配置做如下修改：&lt;/p&gt;
