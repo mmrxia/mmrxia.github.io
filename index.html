@@ -204,6 +204,234 @@
 
       <div class="body-wrap">
   
+    <article id="post-weex踩坑实践记录" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2017/12/15/weex踩坑实践记录/" class="article-date">
+  	<time datetime="2017-12-15T02:45:44.000Z" itemprop="datePublished">2017-12-15</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/12/15/weex踩坑实践记录/">&#39;weex踩坑实践记录&#39;</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="技术概述"><a href="#技术概述" class="headerlink" title="技术概述"></a>技术概述</h3><p><code>weex</code>是阿里开源的一套构建高性能移动界面的原生跨平台技术框架，它的上层由<code>Vue</code>，<code>Rax</code>（非常类似React的开发框架）实现数据驱动，底层由<code>iOS</code>，<code>Android</code>实现<code>render engine</code>来驱动界面的最终落地。类比<code>React Native</code>它的优势在于难得的一次编写，多端运行，是的，它也很好的支持着移动Web端。</p>
+<h3 id="构建-build"><a href="#构建-build" class="headerlink" title="构建-build"></a>构建-build</h3><p><code>Native</code>使用<code>weex-loader</code>，<code>Web</code>则需要使用<code>vue-loader</code>，在Web端上<code>vue-loader</code>目前仅支持<code>^11.3.3</code>版本，以及<code>weex-vue-render</code>需要<code>&gt;= 0.11.50</code>，并且<code>vue-loader</code>的配置做如下修改：</p>
+<ul>
+<li>webpack 1.x</li>
+</ul>
+<pre><code>module: {
+  loaders: [
+    {
+      test: /\.vue(\?[^?]+)?$/,
+      loaders: [&#39;vue-loader&#39;]
+    }
+  ]
+},
+vue: {
+  /**
+   * important! should use postTransformNode to add $processStyle for
+   * inline style normalization.
+   */
+  compilerModules: [
+    {
+      postTransformNode: el =&gt; {
+        el.staticStyle = `$processStyle(${el.staticStyle})`
+        el.styleBinding = `$processStyle(${el.styleBinding})`
+      }
+    }
+  ]
+}
+</code></pre><ul>
+<li>webpack 2.x</li>
+</ul>
+<pre><code>module: {
+    rules: [
+      {
+        test: /\.vue$/,
+        loader: &#39;vue-loader&#39;,
+        options: {
+          compilerModules: [
+            {
+              postTransformNode: el =&gt; {
+                el.staticStyle = `$processStyle(${el.staticStyle})`
+                el.styleBinding = `$processStyle(${el.styleBinding})`
+              }
+            }
+          ]
+        }
+      }
+    ]
+}
+</code></pre><p>最佳的实践是推荐你使用目前为止我们内部评价最高的一份脚手架工程（支持三端一致，意味着处理了降级。）：<a href="https://github.com/dingtalk-templates/webpack" target="_blank" rel="external">dingtalk-templates/webpack</a>，你可以直接下载它，自行修改<code>package.json</code>文件中的配置，或者安装 <a href="https://github.com/open-dingtalk/weex-dingtalk-cli" target="_blank" rel="external">open-dingtalk/weex-dingtalk-cli</a> 这个命令行工具来玩转脚手架，这个命令行工具就像你使用<code>vue-cli</code>一样的简单：</p>
+<pre><code class="bash">$ npm install -g weex-dingtalk-cli
+</code></pre>
+<h3 id="样式-style"><a href="#样式-style" class="headerlink" title="样式-style"></a>样式-style</h3><ul>
+<li><code>weex</code>支持的样式属于<code>css</code>子集</li>
+<li>必须写完整，如<code>background:#000</code>需要写成<code>background-color:#000</code></li>
+<li>样式不允许提取文件，必须写在<code>Vue</code>的单组件中</li>
+<li>原则上不推荐使用预处理器，因为无法预期转译出来的样式符合<code>weex</code>的<code>css</code>子集</li>
+<li>布局只能使用<code>Flexbox</code></li>
+<li>如果要显示文本必须使用<code>text</code>组件，并且你想改变字体大小必须写在<code>text</code>组件上</li>
+<li>只支持<code>class</code>，不允许继承</li>
+<li>单位只支持<code>`px</code></li>
+<li>不支持背景图片</li>
+<li>基于<code>750px</code>进行缩放，会有浮点级别的误差</li>
+<li>样式需要声明 <code>scoped</code> 属性</li>
+<li><code>Android</code>上处理圆角，必须在外层<code>div</code>中设置<code>border-radius</code></li>
+<li>如果你想动态的替换<code>class</code>，只能使用数组表达式，<code>&lt;div :class=[&#39;name&#39;, a? &#39;b&#39;: &#39;c&#39;]&gt;&lt;/div&gt;</code></li>
+</ul>
+<p>如果你想使用预处理器（只是不推荐），可以如下配置：</p>
+<pre><code>{
+    test: /\.vue$/,
+    loader: &#39;vue-loader&#39;,
+    options: {
+        loaders: {
+          scss: &#39;vue-style-loader!css-loader!sass-loader&#39;
+        }
+    }
+}
+</code></pre><pre><code>&lt;style lang=&quot;sass&quot;&gt;
+    @import &#39;./common.scss&#39;
+    // ...
+&lt;/style&gt;
+</code></pre><p>如果你想使用更精准的适配（无法忍受浮点级别的误差），可以获取<code>scale</code>、<code>deviceWidth</code>自行进行适配，推荐在loader阶段去处理（自行开发转换工具）。</p>
+<h3 id="JavaScript与内存管理-JavaScript-and-memory-manage"><a href="#JavaScript与内存管理-JavaScript-and-memory-manage" class="headerlink" title="JavaScript与内存管理-JavaScript and memory manage"></a>JavaScript与内存管理-JavaScript and memory manage</h3><blockquote>
+<p>由于JS运行在<code>JavaScriptCore/V8</code>中，此与Web有较大差异。</p>
+</blockquote>
+<p>如下：</p>
+<ul>
+<li><code>query</code>，<code>axios</code> 之类的原来Web开发领域的库都不可以使用</li>
+<li>不支持DOM操作</li>
+<li>虽然提供了<code>Native DOM</code>可以操作界面的渲染，原则上不推荐使用，方法与DOM操作类似</li>
+<li>既然不支持DOM操作，更改界面的方式应该使用数据驱动</li>
+<li>仅支持部分事件</li>
+<li><code>weex SDK &gt;= 0.10.0</code> 的才支持事件冒泡</li>
+<li>没有<code>window</code>，<code>document</code>，<code>location</code>，<code>history</code>等对象</li>
+<li>runtime是一个“全局环境”，不允许往全局环境中挂载对象，因为无法释放且所有<code>weex</code>页面共享</li>
+<li>只有<code>scroller</code>和<code>list</code>组件可以滚动</li>
+<li>不允许在<code>Vue</code>中操作<code>style</code>，遍历是很耗性能的</li>
+<li>Vue中的<code>v-show</code>等原来操作Dom的指令或Api都不可以使用</li>
+<li><code>vue-router</code> 只允许使用 <code>abstract</code> 模式</li>
+<li><code>vuex</code>必须在初始化之前使用<code>Vue.use</code>注入</li>
+<li><code>native</code>端只能使用网络图片，解决的方式是在最后上线时统一替换成<code>CDN</code></li>
+<li><ul>
+<li>热更新以及增量更新的方式都可以参考<code>React Native</code>目前成熟的方案</li>
+</ul>
+</li>
+<li>iOS由于使用了同一套<code>URL System</code>，<code>UIWebView</code>的<code>cookie</code>是会共享到<code>weex</code>中的，同理<code>weex</code>中的<code>cookie</code>也是会共享的，只有<code>WKWebView</code>不会。原则上，你不应该使用<code>cookie</code>来处理用户体系的问题</li>
+</ul>
+<blockquote>
+<p>weex native 与 weex web 之间的差异较大，那么怎么办？   </p>
+</blockquote>
+<p>我们提供了一套抹平一些常见差异的库，你也可以在weex环境中使用，<a href="https://github.com/open-dingtalk/weex-dingtalk-journey" target="_blank" rel="external">https://github.com/open-dingtalk/weex-dingtalk-journey</a>。   </p>
+<p>在说内存（memory）之前，大家先来看一副图，weex的内存分布：</p>
+<p><img src="https://segmentfault.com/img/remote/1460000010023505?w=916&amp;h=958" alt=""></p>
+<p>正常情况下，<code>Native memory</code> 业务开发人员是无法处理的，而运行在<code>js core</code> 中的内存，我们知道如果不断开引用，js是无法回收释放内存的。   </p>
+<ul>
+<li>不允许往 runtime 里去挂载对象</li>
+<li>业务代码中的一些引用在beforeDestroy 中断开设置为null</li>
+<li>学会使用工具分析内存泄漏的问题，<a href="https://webkit.org/downloads/" target="_blank" rel="external">https://webkit.org/downloads/</a></li>
+<li>不要随意的使用函数递归，缩短对象方法的执行路径（传统JS领域的内存管理最佳实践也适用一部分）</li>
+<li>由于界面的渲染需要依赖createInstance(id, code, config, data)，sendTasks(id, tasks)，receiveTasks(id, tasks)发送指令的方式进行通信，你应该减少通信的次数，在更新界面时，合并不必要的通信指令的发送。</li>
+<li>如果你使用vue-router的方式，尽量减少组件之间的共享。</li>
+</ul>
+<h3 id="转场方式-navigator"><a href="#转场方式-navigator" class="headerlink" title="转场方式-navigator"></a>转场方式-navigator</h3><p>由于weex的特殊性，它的转场方式有几种构成。</p>
+<ul>
+<li><code>weex to weex</code>，如果你需要支持钉钉<code>js-api</code>，那么你应该使用<code>openLink</code>。（如果是你自己实现，使用weex自带的navigator模块）</li>
+<li><code>weex to h5</code> 依然使用<code>openLink</code>，（如果是你自己实现，那么可以通过<code>module</code>的方式来打开一个<code>WebViewController| UIWebView or WKWebView</code>）</li>
+<li><code>native to weex</code> 直接<code>alloc weex</code> 容器的<code>Controller</code>传入<code>Url</code>即可<br>如果你使用<code>vue-router</code>，那么配置好你的路由<code>path</code>，使用<code>push</code>，<code>go</code>方法即可，唯一可惜的是使用<code>vue-router</code>的方式较为生硬。   </li>
+</ul>
+<h3 id="页面级别的数据传输-Page-level-data-transfer"><a href="#页面级别的数据传输-Page-level-data-transfer" class="headerlink" title="页面级别的数据传输-Page level data transfer"></a>页面级别的数据传输-Page level data transfer</h3><blockquote>
+<p>页面级别的数据传输基本很少会发生，钉钉的开发者推荐统一使用domainStorage方案。</p>
+<ul>
+<li><code>weex to weex</code> 通过URL传参数（携带的数据量有限），通过<code>weex storage module</code></li>
+<li><code>weex to h5</code>，<code>h5 to weex</code> 通过URL传参数</li>
+<li><code>native to weex</code> 通过<code>alloc weex</code> 容器中的<code>option</code>或者<code>data</code>传入，前者可以在<code>weex.config</code>中获取，后者可以在vm上下文中获取</li>
+<li><code>weex to native</code> 定义一个跳转<code>native</code>的<code>module</code>，使用<code>native</code>的属性或者<code>init</code>时传入</li>
+</ul>
+</blockquote>
+<h3 id="调试工具-Debug-Kit-used"><a href="#调试工具-Debug-Kit-used" class="headerlink" title="调试工具-Debug Kit used"></a>调试工具-Debug Kit used</h3><p>weex的调试工具需要额外安装weex-toolkit，weex-devtool，以及在你的Native工程中集成对应的WXDevtool（iOS）。    </p>
+<p>如果你运行weex debug遇到如下的错误：</p>
+<pre><code class="bash">Error: EACCES: permission denied, open &#39;/Users/xxx/.xtoolkit/node_modules/weex-devtool/frontend/weex/weex-bundle.js&#39;
+    at Error (native)
+</code></pre>
+<p>（非Windows用户）使用sudo即可。</p>
+<ul>
+<li>不集成 <code>WXDevtool SDK</code><br>首先，你需要安装<code>Weex Playground</code>，可自行在各大市场中下载安装。   </li>
+</ul>
+<p>不需要指明文件路径，在终端输入：</p>
+<pre><code class="bash">$ weex debug
+</code></pre>
+<p>先使用 <code>Weex Playground</code> 扫码（启动成功后会弹出一个界面），然后将你的业务代码贴到 这里，注意：   </p>
+<ul>
+<li>不允许出现<code>import</code>等导入模块的语法</li>
+<li>安装了<code>Weex Playground</code>的设备和你的电脑必须在同一局域网内</li>
+</ul>
+<p>最后用安装了<code>Weex Playground</code>的设备扫码（业务代码贴过去那里的右侧会出现的二维码）。   </p>
+<ul>
+<li>集成 <code>WXDevtool SDK</code></li>
+</ul>
+<pre><code>[WXDevTool setDebug:YES];
+[WXDevTool launchDevToolDebugWithUrl:@&quot;ws://192.168.1.108:8088/debugProxy/native&quot;];
+</code></pre><p><code>ws:// xxx.xx..x</code> 这个地址是在用<code>weex debug</code> 在终端里给你输出出来的，如果<code>setDebug</code>为<code>YES</code>会开启<code>debugger</code>模式，反之亦然。   </p>
+<p>注意<code>setDebug</code>设置为<code>YES</code>。</p>
+<h3 id="原生开发-Native"><a href="#原生开发-Native" class="headerlink" title="原生开发-Native"></a>原生开发-Native</h3><p>请直接阅读 <a href="https://zhuanlan.zhihu.com/p/25182677" target="_blank" rel="external">Weex入坑之旅</a> ，这是用<code>iOS</code>视角写的一篇文章，大概在半年之前。</p>
+<h3 id="写在最后"><a href="#写在最后" class="headerlink" title="写在最后"></a>写在最后</h3><p>希望大家可以用一个开放的心态来看待<code>weex</code>，它的设计，实现有很多是值得学习的地方，<br>比如多<code>framework</code>支持，共享<code>runtime</code>，<code>module</code>，<code>component</code>，<code>handler</code>等等，非常的自由领域，相当于它设计好了一个<code>render engine</code>。<br>理论上你可以学习它的几个关键接口，知道<code>Native DOM</code>指令后，也能开发出替代<code>Vue</code>的上层框架，不信？你看看Rax即明白了。   </p>
+<p><code>weex</code>也有一些不足的地方，开发者数量少，社区活跃度不高，很多问题并不一定能被<code>google</code>搜录到。<br>文档确实有一点不完善，<code>native</code>的实现也有一定的<code>bug</code>数量，你看<code>react</code>这么多年了，依然有<code>bug</code>，只要在逐步改进迭代修复，我觉得它就是非常棒的，万事没有十全十美，美中不足的一点瑕疵，说不定才是完美呢。</p>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+<!--网易云跟帖代码-->
+<div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
+<script src="https://img1.cache.netease.com/f2e/tie/yun/sdk/loader.js"></script>
+<script>
+var cloudTieConfig = {
+url: document.location.href,
+sourceId: "",
+productKey: "17aa32dc2264402789450912a85cf52b",
+target: "cloud-tie-wrapper"
+};
+var yunManualLoad = true;
+Tie.loader("aHR0cHM6Ly9hcGkuZ2VudGllLjE2My5jb20vcGMvbGl2ZXNjcmlwdC5odG1s", true);
+</script>
+
+
+
+  
     <article id="post-localhost配置mongodb主从" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
@@ -1587,163 +1815,6 @@ new Buffer(string, &quot;base64&quot;).toString()
       
 	<div class="article-tag tagcloud">
 		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/base64/">base64</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li></ul>
-	</div>
-
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-<!--网易云跟帖代码-->
-<div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
-<script src="https://img1.cache.netease.com/f2e/tie/yun/sdk/loader.js"></script>
-<script>
-var cloudTieConfig = {
-url: document.location.href,
-sourceId: "",
-productKey: "17aa32dc2264402789450912a85cf52b",
-target: "cloud-tie-wrapper"
-};
-var yunManualLoad = true;
-Tie.loader("aHR0cHM6Ly9hcGkuZ2VudGllLjE2My5jb20vcGMvbGl2ZXNjcmlwdC5odG1s", true);
-</script>
-
-
-
-  
-    <article id="post-怎样使用js生成uuid" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2016/09/01/怎样使用js生成uuid/" class="article-date">
-  	<time datetime="2016-09-01T06:57:55.000Z" itemprop="datePublished">2016-09-01</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/09/01/怎样使用js生成uuid/">怎样使用js生成uuid</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>原问题：<a href="http://stackoverflow.com/questions/105034/how-to-create-a-guid-uuid-in-javascript" target="_blank" rel="external">How to create a GUID / UUID in Javascript?</a></p>
-<h2 id="Introuction"><a href="#Introuction" class="headerlink" title="Introuction"></a>Introuction</h2><blockquote>
-<p>UUID = Universally Unique IDentifier, 全球唯一标识符。</p>
-</blockquote>
-<p>本来我觉得UUID不是什么事，只是一个唯一性的ID字符串而已。在Stack Overflow上看到这个问题之后，倒开始觉得，也许UUID里也有一些值得去发掘的东西。</p>
-<p>于是我想到了这几个问题：</p>
-<ul>
-<li><a href="#UUID-and-GUID">为什么有UUID和GUID这两个东西</a></li>
-<li><a href="#Specification">有什么规范吗</a></li>
-<li>好像我曾多次看到过有人讨论某种系统或变成语言下UUID的生成问题，<a href="#UUID-and-implementation">UUID跟系统或者编程语言有关系吗</a></li>
-</ul>
-<p>带着这些问题，我查找并学习了一番。现在做个整理。</p>
-<h2 id="UUID-and-GUID"><a href="#UUID-and-GUID" class="headerlink" title="UUID and GUID"></a>UUID and GUID</h2><h4 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h4><p>UUID来自于IETF发布的一个规范：<a href="http://www.ietf.org/rfc/rfc4122.txt" target="_blank" rel="external">A Universally Unique IDentifier (UUID) URN Namespace</a>。</p>
-<blockquote>
-<p>This specification defines a Uniform Resource Name namespace for UUIDs (Universally Unique IDentifier), also known as GUIDs (Globally Unique IDentifier).  A UUID is 128 bits long, and can guarantee uniqueness across space and time.  UUIDs were originally used in the Apollo Network Computing System and later in the Open Software Foundation’s (OSF) Distributed Computing Environment (DCE), and then in Microsoft Windows platforms.<br>This specification is derived from the DCE specification with the kind permission of the OSF (now known as The Open Group).</p>
-</blockquote>
-<p>UUID和GUID是同一个东西的两个名字。这两个名字的来源不同。</p>
-<ul>
-<li>UUID来源于OSF的DCE规范，也就是RFC4122的前身</li>
-<li>GUID来源于微软，注意RFC4122的作者之一是微软员工</li>
-</ul>
-<h4 id="用途"><a href="#用途" class="headerlink" title="用途"></a>用途</h4><p>UUID的出现，是为了在一个复杂的系统中，唯一的标识每个信息实体，同时不需要有一个集中的id管理。也就是说，根据某种规则来为一个信息实体分配一个唯一的id，而且不需要一个id管理器来保证这个id的唯一性。</p>
-<p>它可以用来标识任何东西，Microsoft用它来表示Windows中的软件（GUID），Linux用它来表示系统中的文件。</p>
-<h2 id="Specification"><a href="#Specification" class="headerlink" title="Specification"></a>Specification</h2><h4 id="UUID格式规范"><a href="#UUID格式规范" class="headerlink" title="UUID格式规范"></a>UUID格式规范</h4><p>这128bits的结构如下所示：</p>
-<pre><code>   0                   1                   2                   3
-    0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   |                          time_low                             |
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   |       time_mid                |         time_hi_and_version   |
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   |clk_seq_hi_res |  clk_seq_low  |         node (0-1)            |
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   |                         node (2-5)                            |
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-      time-low               = 4hexOctet
-      time-mid               = 2hexOctet
-      time-high-and-version  = 2hexOctet    // MOST IMPORTANT !
-      clock-seq-and-reserved = hexOctet
-      clock-seq-low          = hexOctet
-      node                   = 6hexOctet
-      hexOctet               = hexDigit hexDigit
-      hexDigit =
-            &quot;0&quot; / &quot;1&quot; / &quot;2&quot; / &quot;3&quot; / &quot;4&quot; / &quot;5&quot; / &quot;6&quot; / &quot;7&quot; / &quot;8&quot; / &quot;9&quot; /
-            &quot;a&quot; / &quot;b&quot; / &quot;c&quot; / &quot;d&quot; / &quot;e&quot; / &quot;f&quot; /
-            &quot;A&quot; / &quot;B&quot; / &quot;C&quot; / &quot;D&quot; / &quot;E&quot; / &quot;F&quot;
-</code></pre><p>示例：</p>
-<pre><code>uuid:f81d4fae-7dec-11d0-a765-00a0c91e6bf6
-</code></pre><h4 id="UUID生成算法"><a href="#UUID生成算法" class="headerlink" title="UUID生成算法"></a>UUID生成算法</h4><p>UUID本身也经过了<a href="http://en.wikipedia.org/wiki/Universally_unique_identifier#Variants_and_versions" target="_blank" rel="external">多个版本的演化</a>。比如node字段的定义，最开始定义为来自IEEE 802 address，演化到后来的<em>a randomly or pseudo-randomly generated 48-bit value</em>。</p>
-<p>最新的UUID生成算法是这样的：</p>
-<ul>
-<li>Set the two most significant bits (bits 6 and 7) of the clock_seq_hi_and_reserved to zero and one, respectively.</li>
-<li>Set the four most significant bits (bits 12 through 15) of the time_hi_and_version field to the 4-bit version number.</li>
-<li>Set all the other bits to randomly (or pseudo-randomly) chosen values.</li>
-</ul>
-<h2 id="UUID-and-implementation"><a href="#UUID-and-implementation" class="headerlink" title="UUID and implementation"></a>UUID and implementation</h2><p>越来越多的系统中使用着UUID，各自使用目的并不一样。而且由于限定在128bits，UUID规范本身并没有保证UUID真的是在全球唯一的。因此现在对UUID的使用，一般都是限定在一个范围内有唯一性保证，比如一个操作系统内。</p>
-<p>因此我们可以看到：</p>
-<ul>
-<li>微软有一个GUID生成lib：<a href="http://msdn.microsoft.com/en-us/library/system.guid(v=vs.110).aspx" target="_blank" rel="external">http://msdn.microsoft.com/en-us/library/system.guid(v=vs.110).aspx</a></li>
-<li>Linux也同样有UUID生成lib：<a href="http://en.wikipedia.org/wiki/Util-linux" target="_blank" rel="external">http://en.wikipedia.org/wiki/Util-linux</a></li>
-<li>Android的UUID生成lib：<a href="http://developer.android.com/reference/java/util/UUID.html" target="_blank" rel="external">http://developer.android.com/reference/java/util/UUID.html</a></li>
-</ul>
-<p>用以上系统对应的UUID生成lib可以确保产生的UUID在系统范围内是唯一的。因此可以用来标识系统资源，比如文件、软件、设备等。</p>
-<p>而对于某种具体的编程语言，UUID的使用并没有必要。因为使用UUID的目的是给某个资源分配一个在当前环境下唯一的标识符。而一个程序只有在运行的时候才谈得上有一个<strong>环境</strong>，进程之间又互不影响。因此，一般在编程语言规范中并没有对UUID生成方法进行规定。</p>
-<p>但<em>unique id</em>还是很常用的，比如：</p>
-<ul>
-<li>PHP - uniqid() <a href="http://php.net/manual/en/function.uniqid.php#94959" target="_blank" rel="external">http://php.net/manual/en/function.uniqid.php#94959</a></li>
-<li>Mysql - UUID() <a href="http://dev.mysql.com/doc/refman/5.1/en/miscellaneous-functions.html#function_uuid" target="_blank" rel="external">http://dev.mysql.com/doc/refman/5.1/en/miscellaneous-functions.html#function_uuid</a></li>
-<li>Java - UUID <a href="http://docs.oracle.com/javase/7/docs/api/java/util/UUID.html" target="_blank" rel="external">http://docs.oracle.com/javase/7/docs/api/java/util/UUID.html</a></li>
-</ul>
-<p>但这些UUID方法只是借用了<em>唯一性</em>的概念，并不是必须。而且uuid规定128bits，很多情况下有点浪费。</p>
-<p>你可以用任何方法来生成一个程序内唯一的字符串，比如mysql中的incremental id，它就比uuid实用。</p>
-<p>##UUID in Javascript<br>既然要生成UUID，那么得符合规范。</p>
-<ul>
-<li>Javascript function</li>
-</ul>
-<pre><code class="language-javascript">function generateUUID(){
-    var d = new Date().getTime();
-    var uuid = &#39;xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx&#39;.replace(/[xy]/g, function(c) {
-        var r = (d + Math.random()*16)%16 | 0;
-        d = Math.floor(d/16);
-        return (c==&#39;x&#39; ? r : (r&amp;0x7|0x8)).toString(16);
-    });
-    return uuid;
-};
-</code></pre>
-<ul>
-<li>Node module<br><a href="https://github.com/broofa/node-uuid" target="_blank" rel="external">https://github.com/broofa/node-uuid</a></li>
-</ul>
-
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/uuid/">uuid</a></li></ul>
 	</div>
 
       

@@ -204,6 +204,163 @@
 
       <div class="body-wrap">
   
+    <article id="post-怎样使用js生成uuid" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/09/01/怎样使用js生成uuid/" class="article-date">
+  	<time datetime="2016-09-01T06:57:55.000Z" itemprop="datePublished">2016-09-01</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/09/01/怎样使用js生成uuid/">怎样使用js生成uuid</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>原问题：<a href="http://stackoverflow.com/questions/105034/how-to-create-a-guid-uuid-in-javascript" target="_blank" rel="external">How to create a GUID / UUID in Javascript?</a></p>
+<h2 id="Introuction"><a href="#Introuction" class="headerlink" title="Introuction"></a>Introuction</h2><blockquote>
+<p>UUID = Universally Unique IDentifier, 全球唯一标识符。</p>
+</blockquote>
+<p>本来我觉得UUID不是什么事，只是一个唯一性的ID字符串而已。在Stack Overflow上看到这个问题之后，倒开始觉得，也许UUID里也有一些值得去发掘的东西。</p>
+<p>于是我想到了这几个问题：</p>
+<ul>
+<li><a href="#UUID-and-GUID">为什么有UUID和GUID这两个东西</a></li>
+<li><a href="#Specification">有什么规范吗</a></li>
+<li>好像我曾多次看到过有人讨论某种系统或变成语言下UUID的生成问题，<a href="#UUID-and-implementation">UUID跟系统或者编程语言有关系吗</a></li>
+</ul>
+<p>带着这些问题，我查找并学习了一番。现在做个整理。</p>
+<h2 id="UUID-and-GUID"><a href="#UUID-and-GUID" class="headerlink" title="UUID and GUID"></a>UUID and GUID</h2><h4 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h4><p>UUID来自于IETF发布的一个规范：<a href="http://www.ietf.org/rfc/rfc4122.txt" target="_blank" rel="external">A Universally Unique IDentifier (UUID) URN Namespace</a>。</p>
+<blockquote>
+<p>This specification defines a Uniform Resource Name namespace for UUIDs (Universally Unique IDentifier), also known as GUIDs (Globally Unique IDentifier).  A UUID is 128 bits long, and can guarantee uniqueness across space and time.  UUIDs were originally used in the Apollo Network Computing System and later in the Open Software Foundation’s (OSF) Distributed Computing Environment (DCE), and then in Microsoft Windows platforms.<br>This specification is derived from the DCE specification with the kind permission of the OSF (now known as The Open Group).</p>
+</blockquote>
+<p>UUID和GUID是同一个东西的两个名字。这两个名字的来源不同。</p>
+<ul>
+<li>UUID来源于OSF的DCE规范，也就是RFC4122的前身</li>
+<li>GUID来源于微软，注意RFC4122的作者之一是微软员工</li>
+</ul>
+<h4 id="用途"><a href="#用途" class="headerlink" title="用途"></a>用途</h4><p>UUID的出现，是为了在一个复杂的系统中，唯一的标识每个信息实体，同时不需要有一个集中的id管理。也就是说，根据某种规则来为一个信息实体分配一个唯一的id，而且不需要一个id管理器来保证这个id的唯一性。</p>
+<p>它可以用来标识任何东西，Microsoft用它来表示Windows中的软件（GUID），Linux用它来表示系统中的文件。</p>
+<h2 id="Specification"><a href="#Specification" class="headerlink" title="Specification"></a>Specification</h2><h4 id="UUID格式规范"><a href="#UUID格式规范" class="headerlink" title="UUID格式规范"></a>UUID格式规范</h4><p>这128bits的结构如下所示：</p>
+<pre><code>   0                   1                   2                   3
+    0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+   |                          time_low                             |
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+   |       time_mid                |         time_hi_and_version   |
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+   |clk_seq_hi_res |  clk_seq_low  |         node (0-1)            |
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+   |                         node (2-5)                            |
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+      time-low               = 4hexOctet
+      time-mid               = 2hexOctet
+      time-high-and-version  = 2hexOctet    // MOST IMPORTANT !
+      clock-seq-and-reserved = hexOctet
+      clock-seq-low          = hexOctet
+      node                   = 6hexOctet
+      hexOctet               = hexDigit hexDigit
+      hexDigit =
+            &quot;0&quot; / &quot;1&quot; / &quot;2&quot; / &quot;3&quot; / &quot;4&quot; / &quot;5&quot; / &quot;6&quot; / &quot;7&quot; / &quot;8&quot; / &quot;9&quot; /
+            &quot;a&quot; / &quot;b&quot; / &quot;c&quot; / &quot;d&quot; / &quot;e&quot; / &quot;f&quot; /
+            &quot;A&quot; / &quot;B&quot; / &quot;C&quot; / &quot;D&quot; / &quot;E&quot; / &quot;F&quot;
+</code></pre><p>示例：</p>
+<pre><code>uuid:f81d4fae-7dec-11d0-a765-00a0c91e6bf6
+</code></pre><h4 id="UUID生成算法"><a href="#UUID生成算法" class="headerlink" title="UUID生成算法"></a>UUID生成算法</h4><p>UUID本身也经过了<a href="http://en.wikipedia.org/wiki/Universally_unique_identifier#Variants_and_versions" target="_blank" rel="external">多个版本的演化</a>。比如node字段的定义，最开始定义为来自IEEE 802 address，演化到后来的<em>a randomly or pseudo-randomly generated 48-bit value</em>。</p>
+<p>最新的UUID生成算法是这样的：</p>
+<ul>
+<li>Set the two most significant bits (bits 6 and 7) of the clock_seq_hi_and_reserved to zero and one, respectively.</li>
+<li>Set the four most significant bits (bits 12 through 15) of the time_hi_and_version field to the 4-bit version number.</li>
+<li>Set all the other bits to randomly (or pseudo-randomly) chosen values.</li>
+</ul>
+<h2 id="UUID-and-implementation"><a href="#UUID-and-implementation" class="headerlink" title="UUID and implementation"></a>UUID and implementation</h2><p>越来越多的系统中使用着UUID，各自使用目的并不一样。而且由于限定在128bits，UUID规范本身并没有保证UUID真的是在全球唯一的。因此现在对UUID的使用，一般都是限定在一个范围内有唯一性保证，比如一个操作系统内。</p>
+<p>因此我们可以看到：</p>
+<ul>
+<li>微软有一个GUID生成lib：<a href="http://msdn.microsoft.com/en-us/library/system.guid(v=vs.110).aspx" target="_blank" rel="external">http://msdn.microsoft.com/en-us/library/system.guid(v=vs.110).aspx</a></li>
+<li>Linux也同样有UUID生成lib：<a href="http://en.wikipedia.org/wiki/Util-linux" target="_blank" rel="external">http://en.wikipedia.org/wiki/Util-linux</a></li>
+<li>Android的UUID生成lib：<a href="http://developer.android.com/reference/java/util/UUID.html" target="_blank" rel="external">http://developer.android.com/reference/java/util/UUID.html</a></li>
+</ul>
+<p>用以上系统对应的UUID生成lib可以确保产生的UUID在系统范围内是唯一的。因此可以用来标识系统资源，比如文件、软件、设备等。</p>
+<p>而对于某种具体的编程语言，UUID的使用并没有必要。因为使用UUID的目的是给某个资源分配一个在当前环境下唯一的标识符。而一个程序只有在运行的时候才谈得上有一个<strong>环境</strong>，进程之间又互不影响。因此，一般在编程语言规范中并没有对UUID生成方法进行规定。</p>
+<p>但<em>unique id</em>还是很常用的，比如：</p>
+<ul>
+<li>PHP - uniqid() <a href="http://php.net/manual/en/function.uniqid.php#94959" target="_blank" rel="external">http://php.net/manual/en/function.uniqid.php#94959</a></li>
+<li>Mysql - UUID() <a href="http://dev.mysql.com/doc/refman/5.1/en/miscellaneous-functions.html#function_uuid" target="_blank" rel="external">http://dev.mysql.com/doc/refman/5.1/en/miscellaneous-functions.html#function_uuid</a></li>
+<li>Java - UUID <a href="http://docs.oracle.com/javase/7/docs/api/java/util/UUID.html" target="_blank" rel="external">http://docs.oracle.com/javase/7/docs/api/java/util/UUID.html</a></li>
+</ul>
+<p>但这些UUID方法只是借用了<em>唯一性</em>的概念，并不是必须。而且uuid规定128bits，很多情况下有点浪费。</p>
+<p>你可以用任何方法来生成一个程序内唯一的字符串，比如mysql中的incremental id，它就比uuid实用。</p>
+<p>##UUID in Javascript<br>既然要生成UUID，那么得符合规范。</p>
+<ul>
+<li>Javascript function</li>
+</ul>
+<pre><code class="language-javascript">function generateUUID(){
+    var d = new Date().getTime();
+    var uuid = &#39;xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx&#39;.replace(/[xy]/g, function(c) {
+        var r = (d + Math.random()*16)%16 | 0;
+        d = Math.floor(d/16);
+        return (c==&#39;x&#39; ? r : (r&amp;0x7|0x8)).toString(16);
+    });
+    return uuid;
+};
+</code></pre>
+<ul>
+<li>Node module<br><a href="https://github.com/broofa/node-uuid" target="_blank" rel="external">https://github.com/broofa/node-uuid</a></li>
+</ul>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/uuid/">uuid</a></li></ul>
+	</div>
+
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+<!--网易云跟帖代码-->
+<div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
+<script src="https://img1.cache.netease.com/f2e/tie/yun/sdk/loader.js"></script>
+<script>
+var cloudTieConfig = {
+url: document.location.href,
+sourceId: "",
+productKey: "17aa32dc2264402789450912a85cf52b",
+target: "cloud-tie-wrapper"
+};
+var yunManualLoad = true;
+Tie.loader("aHR0cHM6Ly9hcGkuZ2VudGllLjE2My5jb20vcGMvbGl2ZXNjcmlwdC5odG1s", true);
+</script>
+
+
+
+  
     <article id="post-使用淘宝npm镜像cnpm" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
@@ -1245,84 +1402,6 @@ if (img.width &gt; 0 &amp;&amp; img.height &gt; 0) {
       
 	<div class="article-tag tagcloud">
 		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/随笔/">随笔</a></li></ul>
-	</div>
-
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-<!--网易云跟帖代码-->
-<div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
-<script src="https://img1.cache.netease.com/f2e/tie/yun/sdk/loader.js"></script>
-<script>
-var cloudTieConfig = {
-url: document.location.href,
-sourceId: "",
-productKey: "17aa32dc2264402789450912a85cf52b",
-target: "cloud-tie-wrapper"
-};
-var yunManualLoad = true;
-Tie.loader("aHR0cHM6Ly9hcGkuZ2VudGllLjE2My5jb20vcGMvbGl2ZXNjcmlwdC5odG1s", true);
-</script>
-
-
-
-  
-    <article id="post-js-数组复制操作" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2016/05/22/js-数组复制操作/" class="article-date">
-  	<time datetime="2016-05-22T03:31:55.000Z" itemprop="datePublished">2016-05-22</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/05/22/js-数组复制操作/">js 数组复制操作</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>js中数组和对象，使用“=”号赋值的时候，由于是引用类型，只是改变了引用对象的指针指向，改变值时会引起连锁反应。<br>简单效果如下：<br><img src="http://7xth8v.com2.z0.glb.qiniucdn.com/image/arr1.png" alt=""></p>
-<p>避免指针指向的方法主要有一下几种：<br>（1）使用slice()方法。slice() 函数可从已有的数组中返回选定的元素；语法为：arr.slice(start,end);<br>slice()函数将会返回一个新的数组对象，所以使用slice(0)或slice()就可以实现数组的复制。如下：<br><img src="http://7xth8v.com2.z0.glb.qiniucdn.com/image/arr2.png" alt=""></p>
-<p>（2）使用concat()方法。语法为：arr.concat(arr1,arr2,arr3,…,arrn);<br>concat()用于多个数组的合并，但是返回的结果是一个新的数组，而不再引用用于合并的任何一个数组。如下：<br><img src="http://7xth8v.com2.z0.glb.qiniucdn.com/image/arr3.png" alt=""></p>
-<p>（3）笨方法：使用for循环；原理就不说了，直接上代码：<br><img src="http://7xth8v.com2.z0.glb.qiniucdn.com/image/arr4.png" alt=""></p>
-<p>（4）使用jQuery的extend或merge方法：<br>$.extend 功能很强大，可以合并数组，对象！具体可参见jQuery api。<br><img src="http://7xth8v.com2.z0.glb.qiniucdn.com/image/arr5.png" alt=""></p>
-<p>$.merge 只能合并一维数组，且一次只能合并2个，个人觉得没有concat方法强大。<br><img src="http://7xth8v.com2.z0.glb.qiniucdn.com/image/arr6.png" alt=""></p>
-<p>其他参考：</p>
-<ol>
-<li><a href="http://www.html-js.com/article/1589" target="_blank" rel="external">javascript 原始类型和引用类型</a></li>
-</ol>
-
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/js/">js</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/数组/">数组</a></li></ul>
 	</div>
 
       

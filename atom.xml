@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://mmrxia.github.io/"/>
-  <updated>2017-03-02T03:18:10.708Z</updated>
+  <updated>2017-12-15T03:20:55.380Z</updated>
   <id>http://mmrxia.github.io/</id>
   
   <author>
@@ -14,6 +14,188 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>&#39;weex踩坑实践记录&#39;</title>
+    <link href="http://mmrxia.github.io/2017/12/15/weex%E8%B8%A9%E5%9D%91%E5%AE%9E%E8%B7%B5%E8%AE%B0%E5%BD%95/"/>
+    <id>http://mmrxia.github.io/2017/12/15/weex踩坑实践记录/</id>
+    <published>2017-12-15T02:45:44.000Z</published>
+    <updated>2017-12-15T03:20:55.380Z</updated>
+    
+    <content type="html">&lt;h3 id=&quot;技术概述&quot;&gt;&lt;a href=&quot;#技术概述&quot; class=&quot;headerlink&quot; title=&quot;技术概述&quot;&gt;&lt;/a&gt;技术概述&lt;/h3&gt;&lt;p&gt;&lt;code&gt;weex&lt;/code&gt;是阿里开源的一套构建高性能移动界面的原生跨平台技术框架，它的上层由&lt;code&gt;Vue&lt;/code&gt;，&lt;code&gt;Rax&lt;/code&gt;（非常类似React的开发框架）实现数据驱动，底层由&lt;code&gt;iOS&lt;/code&gt;，&lt;code&gt;Android&lt;/code&gt;实现&lt;code&gt;render engine&lt;/code&gt;来驱动界面的最终落地。类比&lt;code&gt;React Native&lt;/code&gt;它的优势在于难得的一次编写，多端运行，是的，它也很好的支持着移动Web端。&lt;/p&gt;
+&lt;h3 id=&quot;构建-build&quot;&gt;&lt;a href=&quot;#构建-build&quot; class=&quot;headerlink&quot; title=&quot;构建-build&quot;&gt;&lt;/a&gt;构建-build&lt;/h3&gt;&lt;p&gt;&lt;code&gt;Native&lt;/code&gt;使用&lt;code&gt;weex-loader&lt;/code&gt;，&lt;code&gt;Web&lt;/code&gt;则需要使用&lt;code&gt;vue-loader&lt;/code&gt;，在Web端上&lt;code&gt;vue-loader&lt;/code&gt;目前仅支持&lt;code&gt;^11.3.3&lt;/code&gt;版本，以及&lt;code&gt;weex-vue-render&lt;/code&gt;需要&lt;code&gt;&amp;gt;= 0.11.50&lt;/code&gt;，并且&lt;code&gt;vue-loader&lt;/code&gt;的配置做如下修改：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;webpack 1.x&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code&gt;module: {
+  loaders: [
+    {
+      test: /\.vue(\?[^?]+)?$/,
+      loaders: [&amp;#39;vue-loader&amp;#39;]
+    }
+  ]
+},
+vue: {
+  /**
+   * important! should use postTransformNode to add $processStyle for
+   * inline style normalization.
+   */
+  compilerModules: [
+    {
+      postTransformNode: el =&amp;gt; {
+        el.staticStyle = `$processStyle(${el.staticStyle})`
+        el.styleBinding = `$processStyle(${el.styleBinding})`
+      }
+    }
+  ]
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;ul&gt;
+&lt;li&gt;webpack 2.x&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code&gt;module: {
+    rules: [
+      {
+        test: /\.vue$/,
+        loader: &amp;#39;vue-loader&amp;#39;,
+        options: {
+          compilerModules: [
+            {
+              postTransformNode: el =&amp;gt; {
+                el.staticStyle = `$processStyle(${el.staticStyle})`
+                el.styleBinding = `$processStyle(${el.styleBinding})`
+              }
+            }
+          ]
+        }
+      }
+    ]
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;最佳的实践是推荐你使用目前为止我们内部评价最高的一份脚手架工程（支持三端一致，意味着处理了降级。）：&lt;a href=&quot;https://github.com/dingtalk-templates/webpack&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;dingtalk-templates/webpack&lt;/a&gt;，你可以直接下载它，自行修改&lt;code&gt;package.json&lt;/code&gt;文件中的配置，或者安装 &lt;a href=&quot;https://github.com/open-dingtalk/weex-dingtalk-cli&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;open-dingtalk/weex-dingtalk-cli&lt;/a&gt; 这个命令行工具来玩转脚手架，这个命令行工具就像你使用&lt;code&gt;vue-cli&lt;/code&gt;一样的简单：&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;bash&quot;&gt;$ npm install -g weex-dingtalk-cli
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&quot;样式-style&quot;&gt;&lt;a href=&quot;#样式-style&quot; class=&quot;headerlink&quot; title=&quot;样式-style&quot;&gt;&lt;/a&gt;样式-style&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;weex&lt;/code&gt;支持的样式属于&lt;code&gt;css&lt;/code&gt;子集&lt;/li&gt;
+&lt;li&gt;必须写完整，如&lt;code&gt;background:#000&lt;/code&gt;需要写成&lt;code&gt;background-color:#000&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;样式不允许提取文件，必须写在&lt;code&gt;Vue&lt;/code&gt;的单组件中&lt;/li&gt;
+&lt;li&gt;原则上不推荐使用预处理器，因为无法预期转译出来的样式符合&lt;code&gt;weex&lt;/code&gt;的&lt;code&gt;css&lt;/code&gt;子集&lt;/li&gt;
+&lt;li&gt;布局只能使用&lt;code&gt;Flexbox&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;如果要显示文本必须使用&lt;code&gt;text&lt;/code&gt;组件，并且你想改变字体大小必须写在&lt;code&gt;text&lt;/code&gt;组件上&lt;/li&gt;
+&lt;li&gt;只支持&lt;code&gt;class&lt;/code&gt;，不允许继承&lt;/li&gt;
+&lt;li&gt;单位只支持&lt;code&gt;`px&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;不支持背景图片&lt;/li&gt;
+&lt;li&gt;基于&lt;code&gt;750px&lt;/code&gt;进行缩放，会有浮点级别的误差&lt;/li&gt;
+&lt;li&gt;样式需要声明 &lt;code&gt;scoped&lt;/code&gt; 属性&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Android&lt;/code&gt;上处理圆角，必须在外层&lt;code&gt;div&lt;/code&gt;中设置&lt;code&gt;border-radius&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;如果你想动态的替换&lt;code&gt;class&lt;/code&gt;，只能使用数组表达式，&lt;code&gt;&amp;lt;div :class=[&amp;#39;name&amp;#39;, a? &amp;#39;b&amp;#39;: &amp;#39;c&amp;#39;]&amp;gt;&amp;lt;/div&amp;gt;&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;如果你想使用预处理器（只是不推荐），可以如下配置：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;{
+    test: /\.vue$/,
+    loader: &amp;#39;vue-loader&amp;#39;,
+    options: {
+        loaders: {
+          scss: &amp;#39;vue-style-loader!css-loader!sass-loader&amp;#39;
+        }
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;pre&gt;&lt;code&gt;&amp;lt;style lang=&amp;quot;sass&amp;quot;&amp;gt;
+    @import &amp;#39;./common.scss&amp;#39;
+    // ...
+&amp;lt;/style&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;如果你想使用更精准的适配（无法忍受浮点级别的误差），可以获取&lt;code&gt;scale&lt;/code&gt;、&lt;code&gt;deviceWidth&lt;/code&gt;自行进行适配，推荐在loader阶段去处理（自行开发转换工具）。&lt;/p&gt;
+&lt;h3 id=&quot;JavaScript与内存管理-JavaScript-and-memory-manage&quot;&gt;&lt;a href=&quot;#JavaScript与内存管理-JavaScript-and-memory-manage&quot; class=&quot;headerlink&quot; title=&quot;JavaScript与内存管理-JavaScript and memory manage&quot;&gt;&lt;/a&gt;JavaScript与内存管理-JavaScript and memory manage&lt;/h3&gt;&lt;blockquote&gt;
+&lt;p&gt;由于JS运行在&lt;code&gt;JavaScriptCore/V8&lt;/code&gt;中，此与Web有较大差异。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;如下：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;query&lt;/code&gt;，&lt;code&gt;axios&lt;/code&gt; 之类的原来Web开发领域的库都不可以使用&lt;/li&gt;
+&lt;li&gt;不支持DOM操作&lt;/li&gt;
+&lt;li&gt;虽然提供了&lt;code&gt;Native DOM&lt;/code&gt;可以操作界面的渲染，原则上不推荐使用，方法与DOM操作类似&lt;/li&gt;
+&lt;li&gt;既然不支持DOM操作，更改界面的方式应该使用数据驱动&lt;/li&gt;
+&lt;li&gt;仅支持部分事件&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;weex SDK &amp;gt;= 0.10.0&lt;/code&gt; 的才支持事件冒泡&lt;/li&gt;
+&lt;li&gt;没有&lt;code&gt;window&lt;/code&gt;，&lt;code&gt;document&lt;/code&gt;，&lt;code&gt;location&lt;/code&gt;，&lt;code&gt;history&lt;/code&gt;等对象&lt;/li&gt;
+&lt;li&gt;runtime是一个“全局环境”，不允许往全局环境中挂载对象，因为无法释放且所有&lt;code&gt;weex&lt;/code&gt;页面共享&lt;/li&gt;
+&lt;li&gt;只有&lt;code&gt;scroller&lt;/code&gt;和&lt;code&gt;list&lt;/code&gt;组件可以滚动&lt;/li&gt;
+&lt;li&gt;不允许在&lt;code&gt;Vue&lt;/code&gt;中操作&lt;code&gt;style&lt;/code&gt;，遍历是很耗性能的&lt;/li&gt;
+&lt;li&gt;Vue中的&lt;code&gt;v-show&lt;/code&gt;等原来操作Dom的指令或Api都不可以使用&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;vue-router&lt;/code&gt; 只允许使用 &lt;code&gt;abstract&lt;/code&gt; 模式&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;vuex&lt;/code&gt;必须在初始化之前使用&lt;code&gt;Vue.use&lt;/code&gt;注入&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;native&lt;/code&gt;端只能使用网络图片，解决的方式是在最后上线时统一替换成&lt;code&gt;CDN&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;ul&gt;
+&lt;li&gt;热更新以及增量更新的方式都可以参考&lt;code&gt;React Native&lt;/code&gt;目前成熟的方案&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;iOS由于使用了同一套&lt;code&gt;URL System&lt;/code&gt;，&lt;code&gt;UIWebView&lt;/code&gt;的&lt;code&gt;cookie&lt;/code&gt;是会共享到&lt;code&gt;weex&lt;/code&gt;中的，同理&lt;code&gt;weex&lt;/code&gt;中的&lt;code&gt;cookie&lt;/code&gt;也是会共享的，只有&lt;code&gt;WKWebView&lt;/code&gt;不会。原则上，你不应该使用&lt;code&gt;cookie&lt;/code&gt;来处理用户体系的问题&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;weex native 与 weex web 之间的差异较大，那么怎么办？   &lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;我们提供了一套抹平一些常见差异的库，你也可以在weex环境中使用，&lt;a href=&quot;https://github.com/open-dingtalk/weex-dingtalk-journey&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://github.com/open-dingtalk/weex-dingtalk-journey&lt;/a&gt;。   &lt;/p&gt;
+&lt;p&gt;在说内存（memory）之前，大家先来看一副图，weex的内存分布：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://segmentfault.com/img/remote/1460000010023505?w=916&amp;amp;h=958&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;正常情况下，&lt;code&gt;Native memory&lt;/code&gt; 业务开发人员是无法处理的，而运行在&lt;code&gt;js core&lt;/code&gt; 中的内存，我们知道如果不断开引用，js是无法回收释放内存的。   &lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;不允许往 runtime 里去挂载对象&lt;/li&gt;
+&lt;li&gt;业务代码中的一些引用在beforeDestroy 中断开设置为null&lt;/li&gt;
+&lt;li&gt;学会使用工具分析内存泄漏的问题，&lt;a href=&quot;https://webkit.org/downloads/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://webkit.org/downloads/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;不要随意的使用函数递归，缩短对象方法的执行路径（传统JS领域的内存管理最佳实践也适用一部分）&lt;/li&gt;
+&lt;li&gt;由于界面的渲染需要依赖createInstance(id, code, config, data)，sendTasks(id, tasks)，receiveTasks(id, tasks)发送指令的方式进行通信，你应该减少通信的次数，在更新界面时，合并不必要的通信指令的发送。&lt;/li&gt;
+&lt;li&gt;如果你使用vue-router的方式，尽量减少组件之间的共享。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&quot;转场方式-navigator&quot;&gt;&lt;a href=&quot;#转场方式-navigator&quot; class=&quot;headerlink&quot; title=&quot;转场方式-navigator&quot;&gt;&lt;/a&gt;转场方式-navigator&lt;/h3&gt;&lt;p&gt;由于weex的特殊性，它的转场方式有几种构成。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;weex to weex&lt;/code&gt;，如果你需要支持钉钉&lt;code&gt;js-api&lt;/code&gt;，那么你应该使用&lt;code&gt;openLink&lt;/code&gt;。（如果是你自己实现，使用weex自带的navigator模块）&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;weex to h5&lt;/code&gt; 依然使用&lt;code&gt;openLink&lt;/code&gt;，（如果是你自己实现，那么可以通过&lt;code&gt;module&lt;/code&gt;的方式来打开一个&lt;code&gt;WebViewController| UIWebView or WKWebView&lt;/code&gt;）&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;native to weex&lt;/code&gt; 直接&lt;code&gt;alloc weex&lt;/code&gt; 容器的&lt;code&gt;Controller&lt;/code&gt;传入&lt;code&gt;Url&lt;/code&gt;即可&lt;br&gt;如果你使用&lt;code&gt;vue-router&lt;/code&gt;，那么配置好你的路由&lt;code&gt;path&lt;/code&gt;，使用&lt;code&gt;push&lt;/code&gt;，&lt;code&gt;go&lt;/code&gt;方法即可，唯一可惜的是使用&lt;code&gt;vue-router&lt;/code&gt;的方式较为生硬。   &lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&quot;页面级别的数据传输-Page-level-data-transfer&quot;&gt;&lt;a href=&quot;#页面级别的数据传输-Page-level-data-transfer&quot; class=&quot;headerlink&quot; title=&quot;页面级别的数据传输-Page level data transfer&quot;&gt;&lt;/a&gt;页面级别的数据传输-Page level data transfer&lt;/h3&gt;&lt;blockquote&gt;
+&lt;p&gt;页面级别的数据传输基本很少会发生，钉钉的开发者推荐统一使用domainStorage方案。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;weex to weex&lt;/code&gt; 通过URL传参数（携带的数据量有限），通过&lt;code&gt;weex storage module&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;weex to h5&lt;/code&gt;，&lt;code&gt;h5 to weex&lt;/code&gt; 通过URL传参数&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;native to weex&lt;/code&gt; 通过&lt;code&gt;alloc weex&lt;/code&gt; 容器中的&lt;code&gt;option&lt;/code&gt;或者&lt;code&gt;data&lt;/code&gt;传入，前者可以在&lt;code&gt;weex.config&lt;/code&gt;中获取，后者可以在vm上下文中获取&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;weex to native&lt;/code&gt; 定义一个跳转&lt;code&gt;native&lt;/code&gt;的&lt;code&gt;module&lt;/code&gt;，使用&lt;code&gt;native&lt;/code&gt;的属性或者&lt;code&gt;init&lt;/code&gt;时传入&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&quot;调试工具-Debug-Kit-used&quot;&gt;&lt;a href=&quot;#调试工具-Debug-Kit-used&quot; class=&quot;headerlink&quot; title=&quot;调试工具-Debug Kit used&quot;&gt;&lt;/a&gt;调试工具-Debug Kit used&lt;/h3&gt;&lt;p&gt;weex的调试工具需要额外安装weex-toolkit，weex-devtool，以及在你的Native工程中集成对应的WXDevtool（iOS）。    &lt;/p&gt;
+&lt;p&gt;如果你运行weex debug遇到如下的错误：&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;bash&quot;&gt;Error: EACCES: permission denied, open &amp;#39;/Users/xxx/.xtoolkit/node_modules/weex-devtool/frontend/weex/weex-bundle.js&amp;#39;
+    at Error (native)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;（非Windows用户）使用sudo即可。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;不集成 &lt;code&gt;WXDevtool SDK&lt;/code&gt;&lt;br&gt;首先，你需要安装&lt;code&gt;Weex Playground&lt;/code&gt;，可自行在各大市场中下载安装。   &lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;不需要指明文件路径，在终端输入：&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;bash&quot;&gt;$ weex debug
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;先使用 &lt;code&gt;Weex Playground&lt;/code&gt; 扫码（启动成功后会弹出一个界面），然后将你的业务代码贴到 这里，注意：   &lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;不允许出现&lt;code&gt;import&lt;/code&gt;等导入模块的语法&lt;/li&gt;
+&lt;li&gt;安装了&lt;code&gt;Weex Playground&lt;/code&gt;的设备和你的电脑必须在同一局域网内&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;最后用安装了&lt;code&gt;Weex Playground&lt;/code&gt;的设备扫码（业务代码贴过去那里的右侧会出现的二维码）。   &lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;集成 &lt;code&gt;WXDevtool SDK&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code&gt;[WXDevTool setDebug:YES];
+[WXDevTool launchDevToolDebugWithUrl:@&amp;quot;ws://192.168.1.108:8088/debugProxy/native&amp;quot;];
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;code&gt;ws:// xxx.xx..x&lt;/code&gt; 这个地址是在用&lt;code&gt;weex debug&lt;/code&gt; 在终端里给你输出出来的，如果&lt;code&gt;setDebug&lt;/code&gt;为&lt;code&gt;YES&lt;/code&gt;会开启&lt;code&gt;debugger&lt;/code&gt;模式，反之亦然。   &lt;/p&gt;
+&lt;p&gt;注意&lt;code&gt;setDebug&lt;/code&gt;设置为&lt;code&gt;YES&lt;/code&gt;。&lt;/p&gt;
+&lt;h3 id=&quot;原生开发-Native&quot;&gt;&lt;a href=&quot;#原生开发-Native&quot; class=&quot;headerlink&quot; title=&quot;原生开发-Native&quot;&gt;&lt;/a&gt;原生开发-Native&lt;/h3&gt;&lt;p&gt;请直接阅读 &lt;a href=&quot;https://zhuanlan.zhihu.com/p/25182677&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Weex入坑之旅&lt;/a&gt; ，这是用&lt;code&gt;iOS&lt;/code&gt;视角写的一篇文章，大概在半年之前。&lt;/p&gt;
+&lt;h3 id=&quot;写在最后&quot;&gt;&lt;a href=&quot;#写在最后&quot; class=&quot;headerlink&quot; title=&quot;写在最后&quot;&gt;&lt;/a&gt;写在最后&lt;/h3&gt;&lt;p&gt;希望大家可以用一个开放的心态来看待&lt;code&gt;weex&lt;/code&gt;，它的设计，实现有很多是值得学习的地方，&lt;br&gt;比如多&lt;code&gt;framework&lt;/code&gt;支持，共享&lt;code&gt;runtime&lt;/code&gt;，&lt;code&gt;module&lt;/code&gt;，&lt;code&gt;component&lt;/code&gt;，&lt;code&gt;handler&lt;/code&gt;等等，非常的自由领域，相当于它设计好了一个&lt;code&gt;render engine&lt;/code&gt;。&lt;br&gt;理论上你可以学习它的几个关键接口，知道&lt;code&gt;Native DOM&lt;/code&gt;指令后，也能开发出替代&lt;code&gt;Vue&lt;/code&gt;的上层框架，不信？你看看Rax即明白了。   &lt;/p&gt;
+&lt;p&gt;&lt;code&gt;weex&lt;/code&gt;也有一些不足的地方，开发者数量少，社区活跃度不高，很多问题并不一定能被&lt;code&gt;google&lt;/code&gt;搜录到。&lt;br&gt;文档确实有一点不完善，&lt;code&gt;native&lt;/code&gt;的实现也有一定的&lt;code&gt;bug&lt;/code&gt;数量，你看&lt;code&gt;react&lt;/code&gt;这么多年了，依然有&lt;code&gt;bug&lt;/code&gt;，只要在逐步改进迭代修复，我觉得它就是非常棒的，万事没有十全十美，美中不足的一点瑕疵，说不定才是完美呢。&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;技术概述&quot;&gt;&lt;a href=&quot;#技术概述&quot; class=&quot;headerlink&quot; title=&quot;技术概述&quot;&gt;&lt;/a&gt;技术概述&lt;/h3&gt;&lt;p&gt;&lt;code&gt;weex&lt;/code&gt;是阿里开源的一套构建高性能移动界面的原生跨平台技术框架，它的上层由&lt;code&gt;Vue&lt;/c
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>localhost配置mongodb主从</title>
@@ -1785,38 +1967,6 @@ if (img.width &amp;gt; 0 &amp;amp;&amp;amp; img.height &amp;gt; 0) {
       <category term="随笔" scheme="http://mmrxia.github.io/tags/%E9%9A%8F%E7%AC%94/"/>
     
       <category term="javascript" scheme="http://mmrxia.github.io/tags/javascript/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>js 数组复制操作</title>
-    <link href="http://mmrxia.github.io/2016/05/22/js-%E6%95%B0%E7%BB%84%E5%A4%8D%E5%88%B6%E6%93%8D%E4%BD%9C/"/>
-    <id>http://mmrxia.github.io/2016/05/22/js-数组复制操作/</id>
-    <published>2016-05-22T03:31:55.000Z</published>
-    <updated>2016-05-22T03:45:23.699Z</updated>
-    
-    <content type="html">&lt;p&gt;js中数组和对象，使用“=”号赋值的时候，由于是引用类型，只是改变了引用对象的指针指向，改变值时会引起连锁反应。&lt;br&gt;简单效果如下：&lt;br&gt;&lt;img src=&quot;http://7xth8v.com2.z0.glb.qiniucdn.com/image/arr1.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;p&gt;避免指针指向的方法主要有一下几种：&lt;br&gt;（1）使用slice()方法。slice() 函数可从已有的数组中返回选定的元素；语法为：arr.slice(start,end);&lt;br&gt;slice()函数将会返回一个新的数组对象，所以使用slice(0)或slice()就可以实现数组的复制。如下：&lt;br&gt;&lt;img src=&quot;http://7xth8v.com2.z0.glb.qiniucdn.com/image/arr2.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;p&gt;（2）使用concat()方法。语法为：arr.concat(arr1,arr2,arr3,…,arrn);&lt;br&gt;concat()用于多个数组的合并，但是返回的结果是一个新的数组，而不再引用用于合并的任何一个数组。如下：&lt;br&gt;&lt;img src=&quot;http://7xth8v.com2.z0.glb.qiniucdn.com/image/arr3.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;p&gt;（3）笨方法：使用for循环；原理就不说了，直接上代码：&lt;br&gt;&lt;img src=&quot;http://7xth8v.com2.z0.glb.qiniucdn.com/image/arr4.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;p&gt;（4）使用jQuery的extend或merge方法：&lt;br&gt;$.extend 功能很强大，可以合并数组，对象！具体可参见jQuery api。&lt;br&gt;&lt;img src=&quot;http://7xth8v.com2.z0.glb.qiniucdn.com/image/arr5.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;p&gt;$.merge 只能合并一维数组，且一次只能合并2个，个人觉得没有concat方法强大。&lt;br&gt;&lt;img src=&quot;http://7xth8v.com2.z0.glb.qiniucdn.com/image/arr6.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;p&gt;其他参考：&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;&lt;a href=&quot;http://www.html-js.com/article/1589&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;javascript 原始类型和引用类型&lt;/a&gt;&lt;/li&gt;
-&lt;/ol&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;js中数组和对象，使用“=”号赋值的时候，由于是引用类型，只是改变了引用对象的指针指向，改变值时会引起连锁反应。&lt;br&gt;简单效果如下：&lt;br&gt;&lt;img src=&quot;http://7xth8v.com2.z0.glb.qiniucdn.com/image/arr1.png&quot; a
-    
-    </summary>
-    
-    
-      <category term="js" scheme="http://mmrxia.github.io/tags/js/"/>
-    
-      <category term="数组" scheme="http://mmrxia.github.io/tags/%E6%95%B0%E7%BB%84/"/>
     
   </entry>
   
