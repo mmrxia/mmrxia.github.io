@@ -118,7 +118,7 @@
 				
 				<section class="switch-part switch-part2">
 					<div class="widget tagcloud" id="js-tagcloud">
-						<a href="/tags/Linux/" style="font-size: 13.33px;">Linux</a> <a href="/tags/base64/" style="font-size: 10px;">base64</a> <a href="/tags/bash/" style="font-size: 10px;">bash</a> <a href="/tags/bigPipe/" style="font-size: 10px;">bigPipe</a> <a href="/tags/cnpm/" style="font-size: 10px;">cnpm</a> <a href="/tags/express/" style="font-size: 10px;">express</a> <a href="/tags/git/" style="font-size: 16.67px;">git</a> <a href="/tags/javascript/" style="font-size: 20px;">javascript</a> <a href="/tags/js/" style="font-size: 16.67px;">js</a> <a href="/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/tags/mongodb/" style="font-size: 16.67px;">mongodb</a> <a href="/tags/nodejs/" style="font-size: 20px;">nodejs</a> <a href="/tags/npm/" style="font-size: 10px;">npm</a> <a href="/tags/sku/" style="font-size: 10px;">sku</a> <a href="/tags/uuid/" style="font-size: 10px;">uuid</a> <a href="/tags/vue/" style="font-size: 10px;">vue</a> <a href="/tags/数组/" style="font-size: 10px;">数组</a> <a href="/tags/移动端开发/" style="font-size: 10px;">移动端开发</a> <a href="/tags/算法/" style="font-size: 10px;">算法</a> <a href="/tags/西游记/" style="font-size: 13.33px;">西游记</a> <a href="/tags/跨域/" style="font-size: 10px;">跨域</a> <a href="/tags/随笔/" style="font-size: 16.67px;">随笔</a>
+						<a href="/tags/Linux/" style="font-size: 12.5px;">Linux</a> <a href="/tags/base64/" style="font-size: 10px;">base64</a> <a href="/tags/bash/" style="font-size: 10px;">bash</a> <a href="/tags/bigPipe/" style="font-size: 10px;">bigPipe</a> <a href="/tags/cnpm/" style="font-size: 10px;">cnpm</a> <a href="/tags/express/" style="font-size: 10px;">express</a> <a href="/tags/git/" style="font-size: 17.5px;">git</a> <a href="/tags/javascript/" style="font-size: 20px;">javascript</a> <a href="/tags/js/" style="font-size: 15px;">js</a> <a href="/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/tags/mongodb/" style="font-size: 15px;">mongodb</a> <a href="/tags/nodejs/" style="font-size: 20px;">nodejs</a> <a href="/tags/npm/" style="font-size: 10px;">npm</a> <a href="/tags/sku/" style="font-size: 10px;">sku</a> <a href="/tags/uuid/" style="font-size: 10px;">uuid</a> <a href="/tags/vue/" style="font-size: 10px;">vue</a> <a href="/tags/数组/" style="font-size: 10px;">数组</a> <a href="/tags/移动端开发/" style="font-size: 10px;">移动端开发</a> <a href="/tags/算法/" style="font-size: 10px;">算法</a> <a href="/tags/西游记/" style="font-size: 12.5px;">西游记</a> <a href="/tags/跨域/" style="font-size: 10px;">跨域</a> <a href="/tags/随笔/" style="font-size: 15px;">随笔</a>
 					</div>
 				</section>
 				
@@ -203,6 +203,105 @@
 </nav>
 
       <div class="body-wrap">
+  
+    <article id="post-js-encode或decode-base64格式的字符串" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/11/16/js-encode或decode-base64格式的字符串/" class="article-date">
+  	<time datetime="2016-11-16T08:50:07.000Z" itemprop="datePublished">2016-11-16</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/11/16/js-encode或decode-base64格式的字符串/">js encode或decode base64格式的字符串</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="方式一：Chrome、FireFox等现代主流浏览器或IE10及以上版本。"><a href="#方式一：Chrome、FireFox等现代主流浏览器或IE10及以上版本。" class="headerlink" title="方式一：Chrome、FireFox等现代主流浏览器或IE10及以上版本。"></a>方式一：Chrome、FireFox等现代主流浏览器或IE10及以上版本。</h4><pre><code class="language-javascript">// 测试字符
+var string = &#39;Hello World!&#39;;
+
+// 加密
+var encodedString = btoa(string);
+console.log(encodedString); // 输出: &quot;SGVsbG8gV29ybGQh&quot;
+
+// 解密
+var decodedString = atob(encodedString);
+console.log(decodedString); // 输出: &quot;Hello World!&quot;
+</code></pre>
+<h4 id="方式二：跨浏览器的方法（压缩版本）"><a href="#方式二：跨浏览器的方法（压缩版本）" class="headerlink" title="方式二：跨浏览器的方法（压缩版本）"></a>方式二：跨浏览器的方法（压缩版本）</h4><pre><code class="language-javascript">// 定义Base64对象
+var Base64={_keyStr:&quot;ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=&quot;,encode:function(e){var t=&quot;&quot;;var n,r,i,s,o,u,a;var f=0;e=Base64._utf8_encode(e);while(f&lt;e.length){n=e.charCodeAt(f++);r=e.charCodeAt(f++);i=e.charCodeAt(f++);s=n&gt;&gt;2;o=(n&amp;3)&lt;&lt;4|r&gt;&gt;4;u=(r&amp;15)&lt;&lt;2|i&gt;&gt;6;a=i&amp;63;if(isNaN(r)){u=a=64}else if(isNaN(i)){a=64}t=t+this._keyStr.charAt(s)+this._keyStr.charAt(o)+this._keyStr.charAt(u)+this._keyStr.charAt(a)}return t},decode:function(e){var t=&quot;&quot;;var n,r,i;var s,o,u,a;var f=0;e=e.replace(/[^A-Za-z0-9+/=]/g,&quot;&quot;);while(f&lt;e.length){s=this._keyStr.indexOf(e.charAt(f++));o=this._keyStr.indexOf(e.charAt(f++));u=this._keyStr.indexOf(e.charAt(f++));a=this._keyStr.indexOf(e.charAt(f++));n=s&lt;&lt;2|o&gt;&gt;4;r=(o&amp;15)&lt;&lt;4|u&gt;&gt;2;i=(u&amp;3)&lt;&lt;6|a;t=t+String.fromCharCode(n);if(u!=64){t=t+String.fromCharCode(r)}if(a!=64){t=t+String.fromCharCode(i)}}t=Base64._utf8_decode(t);return t},_utf8_encode:function(e){e=e.replace(/rn/g,&quot;n&quot;);var t=&quot;&quot;;for(var n=0;n&lt;e.length;n++){var r=e.charCodeAt(n);if(r&lt;128){t+=String.fromCharCode(r)}else if(r&gt;127&amp;&amp;r&lt;2048){t+=String.fromCharCode(r&gt;&gt;6|192);t+=String.fromCharCode(r&amp;63|128)}else{t+=String.fromCharCode(r&gt;&gt;12|224);t+=String.fromCharCode(r&gt;&gt;6&amp;63|128);t+=String.fromCharCode(r&amp;63|128)}}return t},_utf8_decode:function(e){var t=&quot;&quot;;var n=0;var r=c1=c2=0;while(n&lt;e.length){r=e.charCodeAt(n);if(r&lt;128){t+=String.fromCharCode(r);n++}else if(r&gt;191&amp;&amp;r&lt;224){c2=e.charCodeAt(n+1);t+=String.fromCharCode((r&amp;31)&lt;&lt;6|c2&amp;63);n+=2}else{c2=e.charCodeAt(n+1);c3=e.charCodeAt(n+2);t+=String.fromCharCode((r&amp;15)&lt;&lt;12|(c2&amp;63)&lt;&lt;6|c3&amp;63);n+=3}}return t}}
+
+// 测试字符
+var string = &#39;Hello World!&#39;;
+
+// 加密
+var encodedString = Base64.encode(string);
+console.log(encodedString); // 输出: &quot;SGVsbG8gV29ybGQh&quot;
+
+// 解密
+var decodedString = Base64.decode(encodedString);
+console.log(decodedString); // 输出: &quot;Hello World!&quot;
+</code></pre>
+<h4 id="Nodejs端处理"><a href="#Nodejs端处理" class="headerlink" title="Nodejs端处理"></a>Nodejs端处理</h4><pre><code class="language-javascript">// 加密
+new Buffer(string).toString(&quot;base64&quot;)
+
+// 解密
+new Buffer(string, &quot;base64&quot;).toString()
+</code></pre>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/base64/">base64</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li></ul>
+	</div>
+
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+<!--网易云跟帖代码-->
+<div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
+<script src="https://img1.cache.netease.com/f2e/tie/yun/sdk/loader.js"></script>
+<script>
+var cloudTieConfig = {
+url: document.location.href,
+sourceId: "",
+productKey: "17aa32dc2264402789450912a85cf52b",
+target: "cloud-tie-wrapper"
+};
+var yunManualLoad = true;
+Tie.loader("aHR0cHM6Ly9hcGkuZ2VudGllLjE2My5jb20vcGMvbGl2ZXNjcmlwdC5odG1s", true);
+</script>
+
+
+
   
     <article id="post-怎样使用js生成uuid" class="article article-type-post" itemscope itemprop="blogPost">
   
@@ -1292,149 +1391,6 @@ Tie.loader("aHR0cHM6Ly9hcGkuZ2VudGllLjE2My5jb20vcGMvbGl2ZXNjcmlwdC5odG1s", true)
 
 
   
-    <article id="post-图片等比压缩居中显示" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2016/06/02/图片等比压缩居中显示/" class="article-date">
-  	<time datetime="2016-06-02T08:16:21.000Z" itemprop="datePublished">2016-06-02</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/06/02/图片等比压缩居中显示/">图片等比压缩居中显示</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="1-需求"><a href="#1-需求" class="headerlink" title="1.需求"></a>1.需求</h3><p>某些场景如幻灯片切换展示，个人资料头像展示等。<br>如果图片所在的外容器具有一定的宽高，而图片却又是不定宽高时，就需要我们在显示时需要注意几点：<br>1、图片不能被拉伸变形<br>2、尽量友好的显示图片内容</p>
-<h3 id="2-逻辑分析"><a href="#2-逻辑分析" class="headerlink" title="2.逻辑分析"></a>2.逻辑分析</h3><p>基于上面的需求，这就需要前端人员在控制显示的时候，尤其是一些图片尺寸过大，超出了外容器的图片，需要等比压缩居中显示；<br>对于尺寸太小，宽高都达不到外容器的范围的图片，最好也能居中显示，这样能保证最佳的显示效果。</p>
-<p>那么这样才能做到等比压缩还居中显示呢？我们先看下图。</p>
-<p>下面是一个宽高分别为200和100像素的外容器（块元素）。</p>
-<p><img src="http://7xth8v.com2.z0.glb.qiniucdn.com/image/n_img_radio_commpress_01.jpg" alt=""></p>
-<p>内部有一张图片： 高200px、宽250px</p>
-<p><img src="http://7xth8v.com2.z0.glb.qiniucdn.com/image/n_img_radio_commpress_02.jpg" alt=""></p>
-<p>经过等比压缩后，应该如下图所示：</p>
-<p><img src="http://7xth8v.com2.z0.glb.qiniucdn.com/image/n_img_radio_commpress_03.jpg" alt=""></p>
-<p>最终图片设置的宽高分别为200和160像素，这个是怎么算来的呢？</p>
-<p>首先，我们分别取到宽高的最大压缩比ratio，也就是外容器像素值除以图片像素值。示例中分别是：<br>宽： 200/250 = 0.8<br>高： 100/200 = 0.5</p>
-<p>所以我们取的max值是0.8，这样就能保证最终在计算的时候在宽度上完全撑满，即 250 * 0.8 = 200。</p>
-<p>有了这个缩放比，自然就能计算出图片压缩后的高度，即 200 * 0.8 = 160。</p>
-<p>确定了图片的宽高，接下来就需要图片居中显示，这时候只需要在外容器设置负的margin值就可以了，数值就是图片和容器差值的一半。</p>
-<p>注意：这里涉及到一个问题，如果缩放比 ratio &gt; 1， 也就是图片的宽高都比外容器值小怎么办？<br>这种情况很简单，只需要保持图片在容器中居中就可以了，不改变原图片的尺寸。</p>
-<p>核心代码如下：</p>
-<pre><code class="language-javascript">/*外容器宽高*/
-var wrapper = {
-    width: me.parent().width(),
-    height: me.parent().height()
-};
-
-var size = {}; //最终要设置的宽高
-
-if (img.width &gt; 0 &amp;&amp; img.height &gt; 0) {
-    var ratio_w = wrapper.width / img.width;
-    var ratio_h = wrapper.height / img.height;
-
-    var ratio = Math.max.apply(null, [ratio_w, ratio_h]);   //取比例最大值
-
-    if (ratio &gt; 1) {
-        size.width = img.width;
-        size.height = img.height;
-    } else {
-        size.width = img.width * ratio;
-        size.height = img.height * ratio;
-    }
-
-    /*设置样式*/
-    me.css({
-        &quot;width&quot;: size.width + &#39;px&#39;,
-        &quot;height&quot;: size.height + &#39;px&#39;,
-        &quot;margin-top&quot;: (wrapper.height - size.height) / 2 + &#39;px&#39;,
-        &quot;margin-left&quot;: (wrapper.width - size.width) / 2 + &#39;px&#39;
-    });
-}
-</code></pre>
-<h3 id="3-调用方式："><a href="#3-调用方式：" class="headerlink" title="3.调用方式："></a>3.调用方式：</h3><p>结合以上逻辑，可以将代码进行封装，做成jquery插件的形式以供调用。<br>附上链接：<br><a href="https://github.com/mmrxia/lab/blob/master/examples/img-radio-compress/img-ratio-compress.js" target="_blank" rel="external">https://github.com/mmrxia/lab/blob/master/examples/img-radio-compress/img-ratio-compress.js</a></p>
-<p>HTML:</p>
-<pre><code class="language-html">&lt;div class=&quot;img-wrapper&quot;&gt;
-    &lt;img class=&quot;img&quot; src=&quot;image/tmp_01.jpg&quot; alt=&quot;demo1&quot;/&gt;
-&lt;/div&gt;
-&lt;div class=&quot;img-wrapper&quot;&gt;
-    &lt;img class=&quot;img&quot; src=&quot;image/tmp_02.jpg&quot; alt=&quot;demo2&quot;/&gt;
-&lt;/div&gt;
-&lt;div class=&quot;img-wrapper&quot;&gt;
-    &lt;img class=&quot;img&quot; src=&quot;image/tmp_03.png&quot; alt=&quot;demo3&quot;/&gt;
-&lt;/div&gt;
-&lt;div class=&quot;img-wrapper&quot;&gt;
-    &lt;img class=&quot;img&quot; src=&quot;image/tmp_04.png&quot; alt=&quot;demo4&quot;/&gt;
-&lt;/div&gt;
-</code></pre>
-<p>CSS:</p>
-<pre><code class="language-css">.img-wrapper{border: 1px dashed #2F9DC2;height: 100px;overflow: hidden;}
-</code></pre>
-<p>JS:</p>
-<pre><code class="language-javascript">&lt;script src=&quot;../../static/js/lib/jquery.min.js&quot;&gt;&lt;/script&gt;
-&lt;script src=&quot;img-ratio-compress.js&quot;&gt;&lt;/script&gt;
-&lt;script&gt;
-    $(&#39;.img&#39;).ratioCompress({resize:true});
-&lt;/script&gt;
-</code></pre>
-<h3 id="4-效果展示："><a href="#4-效果展示：" class="headerlink" title="4.效果展示："></a>4.效果展示：</h3><p><a href="https://rawgit.com/mmrxia/lab/master/examples/img-radio-compress/index.html" target="_blank" rel="external">点我查看示例</a></p>
-<p><img src="http://7xth8v.com2.z0.glb.qiniucdn.com/image/n_img_radio_commpress.png" alt=""></p>
-<p>（demo中设置了随窗口变化图片位置自适应，可以缩放浏览器尺寸或者F12调整为移动端模式查看。）</p>
-
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/随笔/">随笔</a></li></ul>
-	</div>
-
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-<!--网易云跟帖代码-->
-<div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
-<script src="https://img1.cache.netease.com/f2e/tie/yun/sdk/loader.js"></script>
-<script>
-var cloudTieConfig = {
-url: document.location.href,
-sourceId: "",
-productKey: "17aa32dc2264402789450912a85cf52b",
-target: "cloud-tie-wrapper"
-};
-var yunManualLoad = true;
-Tie.loader("aHR0cHM6Ly9hcGkuZ2VudGllLjE2My5jb20vcGMvbGl2ZXNjcmlwdC5odG1s", true);
-</script>
-
-
-
-  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/3/">Next &raquo;</a>
@@ -1445,7 +1401,7 @@ Tie.loader("aHR0cHM6Ly9hcGkuZ2VudGllLjE2My5jb20vcGMvbGl2ZXNjcmlwdC5odG1s", true)
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2017 芥子园
+    		&copy; 2018 芥子园
     	</div>
       	<div class="footer-right">
       		Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>

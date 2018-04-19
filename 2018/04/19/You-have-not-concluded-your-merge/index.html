@@ -4,46 +4,25 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <meta name="description" content="1. 安装git[root@localhost ~]# yum install git
-
-2. 配置git1 . 进入 .ssh 目录
-[root@localhost ~]# cd .ssh/
-
-2 . 生成ssh-keygen
-[root@localhost .ssh]# ssh-keygen -t rsa -C &amp;#39;this.xqs@gmail.com&amp;#39;
-
-会出现以下提示：
-Ge">
+    <meta name="description" content="我们在使用git拉取远程服务器代码时，可能会遇到下面的报错信息：&amp;gt;    You have not concluded your merge (MERGE_HEAD exists).    Please, commit your changes before you can merge.
+遇到上面的问题，先不要慌，我们来看一下Git fetch和git pull的异同:   
+相同点：都可以">
 <meta property="og:type" content="article">
-<meta property="og:title" content="centOS下配置git">
-<meta property="og:url" content="http://mmrxia.github.io/2016/07/04/centOS下配置git/index.html">
+<meta property="og:title" content="You have not concluded your merge">
+<meta property="og:url" content="http://mmrxia.github.io/2018/04/19/You-have-not-concluded-your-merge/index.html">
 <meta property="og:site_name" content="芥子园 | xiaqingsong's blog">
-<meta property="og:description" content="1. 安装git[root@localhost ~]# yum install git
-
-2. 配置git1 . 进入 .ssh 目录
-[root@localhost ~]# cd .ssh/
-
-2 . 生成ssh-keygen
-[root@localhost .ssh]# ssh-keygen -t rsa -C &amp;#39;this.xqs@gmail.com&amp;#39;
-
-会出现以下提示：
-Ge">
-<meta property="og:updated_time" content="2016-07-17T06:26:55.420Z">
+<meta property="og:description" content="我们在使用git拉取远程服务器代码时，可能会遇到下面的报错信息：&amp;gt;    You have not concluded your merge (MERGE_HEAD exists).    Please, commit your changes before you can merge.
+遇到上面的问题，先不要慌，我们来看一下Git fetch和git pull的异同:   
+相同点：都可以">
+<meta property="og:updated_time" content="2018-04-19T12:27:09.167Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="centOS下配置git">
-<meta name="twitter:description" content="1. 安装git[root@localhost ~]# yum install git
-
-2. 配置git1 . 进入 .ssh 目录
-[root@localhost ~]# cd .ssh/
-
-2 . 生成ssh-keygen
-[root@localhost .ssh]# ssh-keygen -t rsa -C &amp;#39;this.xqs@gmail.com&amp;#39;
-
-会出现以下提示：
-Ge">
+<meta name="twitter:title" content="You have not concluded your merge">
+<meta name="twitter:description" content="我们在使用git拉取远程服务器代码时，可能会遇到下面的报错信息：&amp;gt;    You have not concluded your merge (MERGE_HEAD exists).    Please, commit your changes before you can merge.
+遇到上面的问题，先不要慌，我们来看一下Git fetch和git pull的异同:   
+相同点：都可以">
     
     <title>
-        centOS下配置git |
+        You have not concluded your merge |
         
         芥子园 | xiaqingsong&#39;s blog
     </title>
@@ -232,11 +211,11 @@ Ge">
 	</div>
 </nav>
 
-      <div class="body-wrap"><article id="post-centOS下配置git" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-You-have-not-concluded-your-merge" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2016/07/04/centOS下配置git/" class="article-date">
-  	<time datetime="2016-07-04T08:14:54.000Z" itemprop="datePublished">2016-07-04</time>
+      <a href="/2018/04/19/You-have-not-concluded-your-merge/" class="article-date">
+  	<time datetime="2018-04-19T12:19:28.000Z" itemprop="datePublished">2018-04-19</time>
 </a>
     </div>
   
@@ -249,7 +228,7 @@ Ge">
         
   
     <h1 class="article-title" itemprop="name">
-      centOS下配置git
+      You have not concluded your merge
     </h1>
   
 
@@ -258,7 +237,7 @@ Ge">
       <div class="article-info article-info-post">
         
 	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/">Linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/git/">git</a></li></ul>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/git/">git</a></li></ul>
 	</div>
 
         
@@ -269,30 +248,29 @@ Ge">
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h4 id="1-安装git"><a href="#1-安装git" class="headerlink" title="1. 安装git"></a>1. 安装git</h4><pre><code class="language-bash">[root@localhost ~]# yum install git
+        <p>我们在使用git拉取远程服务器代码时，可能会遇到下面的报错信息：<br>&gt;<br>    You have not concluded your merge (MERGE_HEAD exists).<br>    Please, commit your changes before you can merge.</p>
+<p>遇到上面的问题，先不要慌，我们来看一下Git fetch和git pull的异同:   </p>
+<p>相同点：都可以从远程获取最新版本到本地。</p>
+<p>Git fetch:只是从远程获取最新版本到本地,不会merge(合并)</p>
+<pre><code class="git">git fetch origin master   //从远程的origin的master主分支上获取最新版本到origin/master分支上   
+git log -p master..origin/master //比较本地的master分支和origin/master分支的区别   
+git merge origin/master          //合并
 </code></pre>
-<h4 id="2-配置git"><a href="#2-配置git" class="headerlink" title="2. 配置git"></a>2. 配置git</h4><p>1 . 进入 <code>.ssh</code> 目录</p>
-<pre><code class="language-bash">[root@localhost ~]# cd .ssh/
+<p>Git pull:从远程获取最新版本并merge(合并)到本地</p>
+<pre><code class="git">git pull origin master  //相当于进行了 git fetch 和 git merge两部操作
 </code></pre>
-<p>2 . 生成ssh-keygen</p>
-<pre><code class="language-bash">[root@localhost .ssh]# ssh-keygen -t rsa -C &#39;this.xqs@gmail.com&#39;
+<p>实际工作中,可能git fetch更好一些, 因为在merge前,可以根据实际情况决定是否merge。<br>再说导致报错:error: You have not concluded your merge (MERGE_HEAD exists).<br>原因可能是在以前pull下来的代码自动合并失败。</p>
+<p>对于此我们有两种解决办法。<br>解决办法一:保留本地的更改,中止合并-&gt;重新合并-&gt;重新拉取  </p>
+<pre><code class="git">git merge --abort
+git reset --merge
+git pull
 </code></pre>
-<p>会出现以下提示：</p>
-<p>Generating public/private rsa key pair.<br>Enter file in which to save the key (/root/.ssh/id_rsa): （可不填）<br>Enter passphrase (empty for no passphrase):  （可不填）<br>Enter same passphrase again:  （可不填）<br>Your identification has been saved in /root/.ssh/id_rsa.<br>Your public key has been saved in /root/.ssh/id_rsa.pub.<br>The key fingerprint is:<br>8f:8e:89:00:1a:3e:83:d1:95:fc:e8:9c:22:85:4c:a7 this.xqs@gmail.com        </p>
-<p>3 . 复制 <code>id_rsa.pub</code> 文件中的内容，粘贴到github新增的ssh keys中。</p>
-<pre><code class="language-bash">[root@localhost .ssh]# ls
-// id_rsa  id_rsa.pub
-
-[root@localhost .ssh]# vim id_rsa.pub
+<p>解决办法二:舍弃本地代码,远端版本覆盖本地版本(慎重)</p>
+<pre><code class="git">git fetch --all
+git reset --hard origin/master
+git fetch
 </code></pre>
-<p>4 . 配置用户名和邮箱</p>
-<pre><code class="language-bash">[root@localhost .ssh]# git config --global user.name &#39;bandwagonhost vps&#39;
-[root@localhost .ssh]# git config --global user.email &#39;this.xqs@gmail.com&#39;
-</code></pre>
-<p>5 . 测试连接</p>
-<pre><code class="language-bash">[root@localhost .ssh]# ssh -T git@github.com
-Hi mmrxia! You&#39;ve successfully authenticated, but GitHub does not provide shell access.
-</code></pre>
+<p>参考链接: <a href="http://stackoverflow.com/questions/11646107/you-have-not-concluded-your-merge-merge-head-exists" target="_blank" rel="external">stackoverflow</a></p>
 
       
     </div>
@@ -302,18 +280,9 @@ Hi mmrxia! You&#39;ve successfully authenticated, but GitHub does not provide sh
     
 <nav id="article-nav">
   
-    <a href="/2016/07/18/html5在iOS设备上传图片调整方向实践/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption"><</strong>
-      <div class="article-nav-title">
-        
-          html5在iOS设备上传图片调整方向实践
-        
-      </div>
-    </a>
   
-  
-    <a href="/2016/07/04/centOS下安装nodeJS/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">centOS下安装nodeJS</div>
+    <a href="/2017/12/15/weex踩坑实践记录/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">weex踩坑实践记录</div>
       <strong class="article-nav-caption">></strong>
     </a>
   
