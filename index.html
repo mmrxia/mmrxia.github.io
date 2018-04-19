@@ -230,21 +230,21 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>我们在使用git拉取远程服务器代码时，可能会遇到下面的报错信息：</p>
+        <p>我们在使用<code>git</code>拉取远程服务器代码时，可能会遇到下面的报错信息：</p>
 <blockquote>
 <p>You have not concluded your merge (MERGE_HEAD exists).<br>  Please, commit your changes before you can merge.</p>
 </blockquote>
-<p>遇到上面的问题，先不要慌，我们来看一下Git fetch和git pull的异同:   </p>
+<p>遇到上面的问题，先不要慌，我们来看一下<code>Git fetch</code>和<code>git pull</code>的异同:   </p>
 <p>相同点：都可以从远程获取最新版本到本地。</p>
-<p>Git fetch:只是从远程获取最新版本到本地,不会merge(合并)</p>
+<p><code>Git fetch</code>:只是从远程获取最新版本到本地,不会<code>merge</code>(合并)</p>
 <pre><code class="git">git fetch origin master   //从远程的origin的master主分支上获取最新版本到origin/master分支上   
 git log -p master..origin/master //比较本地的master分支和origin/master分支的区别   
 git merge origin/master          //合并
 </code></pre>
-<p>Git pull:从远程获取最新版本并merge(合并)到本地</p>
+<p><code>Git pull</code>:从远程获取最新版本并<code>merge</code>(合并)到本地</p>
 <pre><code class="git">git pull origin master  //相当于进行了 git fetch 和 git merge两部操作
 </code></pre>
-<p>实际工作中,可能git fetch更好一些, 因为在merge前,可以根据实际情况决定是否merge。<br>再说导致报错:error: You have not concluded your merge (MERGE_HEAD exists).<br>原因可能是在以前pull下来的代码自动合并失败。</p>
+<p>实际工作中,可能git fetch更好一些, 因为在merge前,可以根据实际情况决定是否merge。<br>再说导致报错:<code>error: You have not concluded your merge (MERGE_HEAD exists)</code>.<br>原因可能是在以前pull下来的代码自动合并失败。</p>
 <p>对于此我们有两种解决办法。<br>解决办法一:保留本地的更改,中止合并-&gt;重新合并-&gt;重新拉取  </p>
 <pre><code class="git">git merge --abort
 git reset --merge

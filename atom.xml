@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://mmrxia.github.io/"/>
-  <updated>2018-04-19T12:31:14.683Z</updated>
+  <updated>2018-04-19T12:32:40.388Z</updated>
   <id>http://mmrxia.github.io/</id>
   
   <author>
@@ -20,23 +20,23 @@
     <link href="http://mmrxia.github.io/2018/04/19/You-have-not-concluded-your-merge/"/>
     <id>http://mmrxia.github.io/2018/04/19/You-have-not-concluded-your-merge/</id>
     <published>2018-04-19T12:19:28.000Z</published>
-    <updated>2018-04-19T12:31:14.683Z</updated>
+    <updated>2018-04-19T12:32:40.388Z</updated>
     
-    <content type="html">&lt;p&gt;我们在使用git拉取远程服务器代码时，可能会遇到下面的报错信息：&lt;/p&gt;
+    <content type="html">&lt;p&gt;我们在使用&lt;code&gt;git&lt;/code&gt;拉取远程服务器代码时，可能会遇到下面的报错信息：&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;You have not concluded your merge (MERGE_HEAD exists).&lt;br&gt;  Please, commit your changes before you can merge.&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;p&gt;遇到上面的问题，先不要慌，我们来看一下Git fetch和git pull的异同:   &lt;/p&gt;
+&lt;p&gt;遇到上面的问题，先不要慌，我们来看一下&lt;code&gt;Git fetch&lt;/code&gt;和&lt;code&gt;git pull&lt;/code&gt;的异同:   &lt;/p&gt;
 &lt;p&gt;相同点：都可以从远程获取最新版本到本地。&lt;/p&gt;
-&lt;p&gt;Git fetch:只是从远程获取最新版本到本地,不会merge(合并)&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;Git fetch&lt;/code&gt;:只是从远程获取最新版本到本地,不会&lt;code&gt;merge&lt;/code&gt;(合并)&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&quot;git&quot;&gt;git fetch origin master   //从远程的origin的master主分支上获取最新版本到origin/master分支上   
 git log -p master..origin/master //比较本地的master分支和origin/master分支的区别   
 git merge origin/master          //合并
 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Git pull:从远程获取最新版本并merge(合并)到本地&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;Git pull&lt;/code&gt;:从远程获取最新版本并&lt;code&gt;merge&lt;/code&gt;(合并)到本地&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&quot;git&quot;&gt;git pull origin master  //相当于进行了 git fetch 和 git merge两部操作
 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;实际工作中,可能git fetch更好一些, 因为在merge前,可以根据实际情况决定是否merge。&lt;br&gt;再说导致报错:error: You have not concluded your merge (MERGE_HEAD exists).&lt;br&gt;原因可能是在以前pull下来的代码自动合并失败。&lt;/p&gt;
+&lt;p&gt;实际工作中,可能git fetch更好一些, 因为在merge前,可以根据实际情况决定是否merge。&lt;br&gt;再说导致报错:&lt;code&gt;error: You have not concluded your merge (MERGE_HEAD exists)&lt;/code&gt;.&lt;br&gt;原因可能是在以前pull下来的代码自动合并失败。&lt;/p&gt;
 &lt;p&gt;对于此我们有两种解决办法。&lt;br&gt;解决办法一:保留本地的更改,中止合并-&amp;gt;重新合并-&amp;gt;重新拉取  &lt;/p&gt;
 &lt;pre&gt;&lt;code class=&quot;git&quot;&gt;git merge --abort
 git reset --merge
@@ -52,9 +52,9 @@ git fetch
     
     <summary type="html">
     
-      &lt;p&gt;我们在使用git拉取远程服务器代码时，可能会遇到下面的报错信息：&lt;/p&gt;
+      &lt;p&gt;我们在使用&lt;code&gt;git&lt;/code&gt;拉取远程服务器代码时，可能会遇到下面的报错信息：&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;You have not concluded your merge (MERGE_HEAD exists).&lt;br&gt;  Please, commit your chan
+&lt;p&gt;You have not concluded your merge (MERGE_HEAD exists).&lt;br&gt;  Please, com
     
     </summary>
     
