@@ -4,34 +4,25 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <meta name="description" content="1 . app.render和res.render方法的区别？官方的api文档中是这么说的：   
-
-Think of app.render() as a utility function for generating rendered view strings. Internally res.render() uses app.render() to render views.
-
-我的理解：
-把">
+    <meta name="description" content="前言最近使用git来管理一个项目，到达一定阶段后，需要将稳定的代码发布成一个版本，经过查找资料发现git的标签操作刚好满足我的要求，所以记录下来，方便以后是使用查找。
+用途标签可以针对某一时间点的版本做标记，常用于版本发布，这恰恰是我所需要的功能，将本地标签推送到Github上即发布了一个Release版本，下载和查看非常方便。
+标签分类git标签分为两种类型：轻量标签和附注标签。轻量标签是指向提">
 <meta property="og:type" content="article">
-<meta property="og:title" content="express学习笔记">
-<meta property="og:url" content="http://mmrxia.github.io/2016/07/01/express学习笔记/index.html">
+<meta property="og:title" content="git tag常用操作">
+<meta property="og:url" content="http://mmrxia.github.io/2018/04/23/git-tag常用操作/index.html">
 <meta property="og:site_name" content="芥子园 | xiaqingsong's blog">
-<meta property="og:description" content="1 . app.render和res.render方法的区别？官方的api文档中是这么说的：   
-
-Think of app.render() as a utility function for generating rendered view strings. Internally res.render() uses app.render() to render views.
-
-我的理解：
-把">
-<meta property="og:updated_time" content="2016-07-18T11:44:35.814Z">
+<meta property="og:description" content="前言最近使用git来管理一个项目，到达一定阶段后，需要将稳定的代码发布成一个版本，经过查找资料发现git的标签操作刚好满足我的要求，所以记录下来，方便以后是使用查找。
+用途标签可以针对某一时间点的版本做标记，常用于版本发布，这恰恰是我所需要的功能，将本地标签推送到Github上即发布了一个Release版本，下载和查看非常方便。
+标签分类git标签分为两种类型：轻量标签和附注标签。轻量标签是指向提">
+<meta property="og:updated_time" content="2018-04-23T03:52:33.630Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="express学习笔记">
-<meta name="twitter:description" content="1 . app.render和res.render方法的区别？官方的api文档中是这么说的：   
-
-Think of app.render() as a utility function for generating rendered view strings. Internally res.render() uses app.render() to render views.
-
-我的理解：
-把">
+<meta name="twitter:title" content="git tag常用操作">
+<meta name="twitter:description" content="前言最近使用git来管理一个项目，到达一定阶段后，需要将稳定的代码发布成一个版本，经过查找资料发现git的标签操作刚好满足我的要求，所以记录下来，方便以后是使用查找。
+用途标签可以针对某一时间点的版本做标记，常用于版本发布，这恰恰是我所需要的功能，将本地标签推送到Github上即发布了一个Release版本，下载和查看非常方便。
+标签分类git标签分为两种类型：轻量标签和附注标签。轻量标签是指向提">
     
     <title>
-        express学习笔记 |
+        git tag常用操作 |
         
         芥子园 | xiaqingsong&#39;s blog
     </title>
@@ -220,11 +211,11 @@ Think of app.render() as a utility function for generating rendered view strings
 	</div>
 </nav>
 
-      <div class="body-wrap"><article id="post-express学习笔记" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-git-tag常用操作" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2016/07/01/express学习笔记/" class="article-date">
-  	<time datetime="2016-07-01T07:32:01.000Z" itemprop="datePublished">2016-07-01</time>
+      <a href="/2018/04/23/git-tag常用操作/" class="article-date">
+  	<time datetime="2018-04-23T03:46:28.000Z" itemprop="datePublished">2018-04-23</time>
 </a>
     </div>
   
@@ -237,7 +228,7 @@ Think of app.render() as a utility function for generating rendered view strings
         
   
     <h1 class="article-title" itemprop="name">
-      express学习笔记
+      git tag常用操作
     </h1>
   
 
@@ -246,7 +237,7 @@ Think of app.render() as a utility function for generating rendered view strings
       <div class="article-info article-info-post">
         
 	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/express/">express</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/nodejs/">nodejs</a></li></ul>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/git/">git</a></li></ul>
 	</div>
 
         
@@ -257,76 +248,64 @@ Think of app.render() as a utility function for generating rendered view strings
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h4 id="1-app-render和res-render方法的区别？"><a href="#1-app-render和res-render方法的区别？" class="headerlink" title="1 . app.render和res.render方法的区别？"></a>1 . app.render和res.render方法的区别？</h4><p>官方的api文档中是这么说的：   </p>
-<blockquote>
-<p>Think of app.render() as a utility function for generating rendered view strings. Internally res.render() uses app.render() to render views.</p>
-</blockquote>
-<p>我的理解：</p>
-<p>把<code>app.render</code>当成一个生成视图的工具，而且<code>res.render</code>内部也是调用了<code>app.render</code>。<br>区别是这样，<code>app.render</code>只负责生成视图，你会发现它是没能力把视图响应给客户端（浏览器）的，只有<code>res.render</code>手里有<code>response</code>对象，可以把视图响应给客户端。<br><code>res.render</code>的伪代码可以看做如下: </p>
-<pre><code class="language-javascript">res.render = function(view, locals, cb){
-    app.render(view, locals, function(err, html){
-        if(typeof cb !== &#39;undefined&#39;){
-            return cb(err, html);
-        }
-        res.send(html);
-    });
-};
+        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>最近使用<code>git</code>来管理一个项目，到达一定阶段后，需要将稳定的代码发布成一个版本，经过查找资料发现<code>git</code>的标签操作刚好满足我的要求，所以记录下来，方便以后是使用查找。</p>
+<h3 id="用途"><a href="#用途" class="headerlink" title="用途"></a>用途</h3><p>标签可以针对某一时间点的版本做标记，常用于版本发布，这恰恰是我所需要的功能，将本地标签推送到<code>Github</code>上即发布了一个<code>Release</code>版本，下载和查看非常方便。</p>
+<h3 id="标签分类"><a href="#标签分类" class="headerlink" title="标签分类"></a>标签分类</h3><p><code>git</code>标签分为两种类型：轻量标签和附注标签。轻量标签是指向提交对象的引用，附注标签则是仓库中的一个独立对象，建议使用附注标签，日后还可以查看标签信息。</p>
+<h3 id="创建标签"><a href="#创建标签" class="headerlink" title="创建标签"></a>创建标签</h3><ul>
+<li>创建轻量标签<pre><code class="git">git tag v0.2.0 -light
 </code></pre>
-<h4 id="2-res-write和res-send区别？"><a href="#2-res-write和res-send区别？" class="headerlink" title="2 . res.write和res.send区别？"></a>2 . res.write和res.send区别？</h4><blockquote>
-<p>The res object represents the HTTP response that an Express app sends when it gets an HTTP request.</p>
-</blockquote>
-<p><code>res.write</code>和<code>res.send</code>都是发送报文到浏览器response中，并渲染在浏览器窗口。<br><code>res.write</code>使用时需要配合<code>res.end</code>方法同时使用，否则浏览器http请求会一直处于pending状态，而<code>res.send</code>单独使用即可。    </p>
-<p>代码示例：     </p>
-<pre><code class="language-javascript">//res.send
-app.get(&#39;/user/:id&#39;, function(req, res){
-  res.send(&#39;user &#39; + req.params.id);
-});
-
-//res.write
-app.get(&#39;/user/:id&#39;, function(req, res){
- res.status(200).write(&#39;user &#39; + req.params.id);
- res.end();
-});
-</code></pre>
-<h4 id="3-获取request请求参数的方法？"><a href="#3-获取request请求参数的方法？" class="headerlink" title="3 . 获取request请求参数的方法？"></a>3 . 获取request请求参数的方法？</h4><p>express获取参数有三种方法：  </p>
-<p>官网实例：   </p>
-<blockquote>
-<p>Checks route params (req.params), ex: /user/:id<br>Checks query string params (req.query), ex: ?id=12<br>Checks urlencoded body params (req.body), ex: id=    </p>
-</blockquote>
-<ul>
-<li>例如：127.0.0.1:3000/index，得到index，可以通过使用<code>req.params</code>得到；   </li>
-<li>例如：127.0.0.1:3000/index?id=12，这种情况下，这种方式是获取客户端get方式传递过来的值，通过使用<code>req.query.id</code>可以获得；     </li>
-<li>例如：127.0.0.1：300/index，然后post了一个id=2的值，这种方式是获取客户端post过来的数据，可以通过<code>req.body.id</code>获取； </li>
+</li>
 </ul>
-<p>注：post请求，第三种方式需要以下配置：</p>
-<pre><code class="language-javascript">   var express        =         require(&quot;express&quot;);  
-   var bodyParser     =         require(&quot;body-parser&quot;);  
-   var app            =         express();  
-
-   app.use(bodyParser.urlencoded({ extended: false }));   // necessary
+<p>解释：创建轻量标签不需要传递参数，直接指定标签名称即可。</p>
+<ul>
+<li>创建附注标签<pre><code class="git">git tag -a v0.1.0 -m &quot;release 0.1.0 version&quot;
 </code></pre>
-<h4 id="4-session使用入门"><a href="#4-session使用入门" class="headerlink" title="4 . session使用入门"></a>4 . session使用入门</h4><p><code>express-session</code>是express中比较常用的处理session的中间件,使用npm安装：</p>
-<pre><code class="language-git">$ npm install express-session save
+</li>
+</ul>
+<p>解释：创建附注标签时，参数<code>-a</code>即<code>annotated</code>的缩写，指定标签类型，后附标签名。参数<code>m</code>指定标签说明，说明信息会保存在标签对象中。</p>
+<h3 id="查看标签"><a href="#查看标签" class="headerlink" title="查看标签"></a>查看标签</h3><ul>
+<li><p>列出当前仓库的所有标签</p>
+<pre><code class="git">git tag
 </code></pre>
-<p>session的认证机制必须依赖cookie，所以还应该同时安装一个<code>cookie-parser</code>，安装方法同上。然后再app.js中导入这两个中间件：</p>
-<pre><code class="language-javascript">var cookieParser = require(&#39;cookie-parser&#39;);
-var session = require(&#39;express-session&#39;);
+</li>
+<li><p>列出符合模式的标签</p>
+<pre><code class="git">git tag -l &#39;v0.1.*&#39;
 </code></pre>
-<p>之后定义cookie解析器，注意，该定义必须写在路由分配之前：</p>
-<pre><code class="language-javascript">app.use(cookieParser());
-app.use(session({
-  secret: &#39;secret_string&#39;,
-  name: &#39;name&#39;,
-  cookie: {maxAge: 60000},
-  resave: false,
-  saveUninitialized: true,
-}));
+</li>
+<li><p>查看标签版本信息</p>
+<pre><code class="git">git show v0.1.0
 </code></pre>
-<p>各参数意义：<br><code>secret</code>：用来对session数据进行加密的字符串.这个属性值为必须指定的属性。<br><code>name</code>：表示cookie的name，默认cookie的name是：connect.sid。<br><code>maxAge</code>：cookie过期时间，毫秒。<br><code>resave</code>：是指每次请求都重新设置session cookie，假设你的cookie是6000毫秒过期，每次请求都会再设置6000毫秒。<br><code>saveUninitialized</code>： 是指无论有没有session cookie，每次请求都设置个session cookie ，默认给个标示为 connect.sid。     </p>
-<p>之后在处理请求时直接通过以下方式对session进行读写：        </p>
-<pre><code class="language-javascript">req.session.userinfo = userinfo;  //写入至session
-res.redirect(req.session.userinfo); //从session中读取
+</li>
+</ul>
+<h3 id="切换标签"><a href="#切换标签" class="headerlink" title="切换标签"></a>切换标签</h3><ul>
+<li>切换标签与切换分支命令相同<pre><code class="git">git checkout [tagname]
 </code></pre>
+</li>
+</ul>
+<p>解释：切换标签后处于一个空的分支上，即<code>You are in ‘detached HEAD’ state.</code></p>
+<h3 id="删除标签"><a href="#删除标签" class="headerlink" title="删除标签"></a>删除标签</h3><ul>
+<li>误打或需要修改标签时，需要先将标签删除，再打新标签<pre><code class="git">git tag -d v0.1.2
+</code></pre>
+</li>
+</ul>
+<p>解释：参数<code>-d</code>即<code>delete</code>的缩写，意为删除其后指定的标签。</p>
+<h3 id="补打标签"><a href="#补打标签" class="headerlink" title="补打标签"></a>补打标签</h3><ul>
+<li>给指定的<code>commit</code>打标签<pre><code class="git">git tag -a v0.1.0 49e0cd22f6bd9510fe65084e023d9c4316b446a6
+</code></pre>
+</li>
+</ul>
+<p>解释：打标签不必要在<code>HEAD</code>之上，也可在之前的版本上打，这需要你知道某个提交对象的校验和，通过<code>git log</code>命令获取。</p>
+<h3 id="发布标签"><a href="#发布标签" class="headerlink" title="发布标签"></a>发布标签</h3><ul>
+<li>将<code>v0.1.0</code>标签提交到<code>git</code>服务器<pre><code class="git">git push origin v0.1.0
+</code></pre>
+</li>
+</ul>
+<p>解释：通常的<code>git push</code>不会将标签对象提交到<code>git</code>服务器，我们需要进行显式的操作。</p>
+<ul>
+<li>将本地所有标签一次性提交到<code>git</code>服务器<pre><code class="git">git push origin –tags
+</code></pre>
+</li>
+</ul>
 
       
     </div>
@@ -336,18 +315,9 @@ res.redirect(req.session.userinfo); //从session中读取
     
 <nav id="article-nav">
   
-    <a href="/2016/07/04/centOS下安装nodeJS/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption"><</strong>
-      <div class="article-nav-title">
-        
-          centOS下安装nodeJS
-        
-      </div>
-    </a>
   
-  
-    <a href="/2016/06/27/16年后web开发趋势思考/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">16年后web开发趋势思考</div>
+    <a href="/2018/04/19/You-have-not-concluded-your-merge/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">You have not concluded your merge</div>
       <strong class="article-nav-caption">></strong>
     </a>
   
