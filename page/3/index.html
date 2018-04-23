@@ -6,12 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <meta name="description" content="前端博客 | hexo | github">
 <meta property="og:type" content="website">
-<meta property="og:title" content="芥子园 | xiaqingsong's blog">
+<meta property="og:title" content="芥子园 | xiaqingsong&#39;s blog">
 <meta property="og:url" content="http://mmrxia.github.io/page/3/index.html">
-<meta property="og:site_name" content="芥子园 | xiaqingsong's blog">
+<meta property="og:site_name" content="芥子园 | xiaqingsong&#39;s blog">
 <meta property="og:description" content="前端博客 | hexo | github">
+<meta property="og:locale" content="zh-Hans">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="芥子园 | xiaqingsong's blog">
+<meta name="twitter:title" content="芥子园 | xiaqingsong&#39;s blog">
 <meta name="twitter:description" content="前端博客 | hexo | github">
     
     <title>
@@ -370,7 +371,7 @@ if (img.width &gt; 0 &amp;&amp; img.height &gt; 0) {
     });
 }
 </code></pre>
-<h3 id="3-调用方式："><a href="#3-调用方式：" class="headerlink" title="3.调用方式："></a>3.调用方式：</h3><p>结合以上逻辑，可以将代码进行封装，做成jquery插件的形式以供调用。<br>附上链接：<br><a href="https://github.com/mmrxia/lab/blob/master/examples/img-radio-compress/img-ratio-compress.js" target="_blank" rel="external">https://github.com/mmrxia/lab/blob/master/examples/img-radio-compress/img-ratio-compress.js</a></p>
+<h3 id="3-调用方式："><a href="#3-调用方式：" class="headerlink" title="3.调用方式："></a>3.调用方式：</h3><p>结合以上逻辑，可以将代码进行封装，做成jquery插件的形式以供调用。<br>附上链接：<br><a href="https://github.com/mmrxia/lab/blob/master/examples/img-radio-compress/img-ratio-compress.js" target="_blank" rel="noopener">https://github.com/mmrxia/lab/blob/master/examples/img-radio-compress/img-ratio-compress.js</a></p>
 <p>HTML:</p>
 <pre><code class="language-html">&lt;div class=&quot;img-wrapper&quot;&gt;
     &lt;img class=&quot;img&quot; src=&quot;image/tmp_01.jpg&quot; alt=&quot;demo1&quot;/&gt;
@@ -395,7 +396,7 @@ if (img.width &gt; 0 &amp;&amp; img.height &gt; 0) {
     $(&#39;.img&#39;).ratioCompress({resize:true});
 &lt;/script&gt;
 </code></pre>
-<h3 id="4-效果展示："><a href="#4-效果展示：" class="headerlink" title="4.效果展示："></a>4.效果展示：</h3><p><a href="https://rawgit.com/mmrxia/lab/master/examples/img-radio-compress/index.html" target="_blank" rel="external">点我查看示例</a></p>
+<h3 id="4-效果展示："><a href="#4-效果展示：" class="headerlink" title="4.效果展示："></a>4.效果展示：</h3><p><a href="https://rawgit.com/mmrxia/lab/master/examples/img-radio-compress/index.html" target="_blank" rel="noopener">点我查看示例</a></p>
 <p><img src="http://7xth8v.com2.z0.glb.qiniucdn.com/image/n_img_radio_commpress.png" alt=""></p>
 <p>（demo中设置了随窗口变化图片位置自适应，可以缩放浏览器尺寸或者F12调整为移动端模式查看。）</p>
 
@@ -474,7 +475,7 @@ Tie.loader("aHR0cHM6Ly9hcGkuZ2VudGllLjE2My5jb20vcGMvbGl2ZXNjcmlwdC5odG1s", true)
 <p>$.merge 只能合并一维数组，且一次只能合并2个，个人觉得没有concat方法强大。<br><img src="http://7xth8v.com2.z0.glb.qiniucdn.com/image/arr6.png" alt=""></p>
 <p>其他参考：</p>
 <ol>
-<li><a href="http://www.html-js.com/article/1589" target="_blank" rel="external">javascript 原始类型和引用类型</a></li>
+<li><a href="http://www.html-js.com/article/1589" target="_blank" rel="noopener">javascript 原始类型和引用类型</a></li>
 </ol>
 
       
@@ -739,8 +740,8 @@ Tie.loader("aHR0cHM6Ly9hcGkuZ2VudGllLjE2My5jb20vcGMvbGl2ZXNjcmlwdC5odG1s", true)
 <pre><code> 9999999999999999 == 10000000000000001 // true  16位和17位数竟然相等...
 </code></pre><p> 又如：</p>
 <pre><code> var x = 9007199254740992
- x + 1 == x // true
-</code></pre><h3 id="二、原因"><a href="#二、原因" class="headerlink" title="二、原因"></a>二、原因</h3><p> <strong>计算机的二进制实现和位数限制有些数无法有限表示。</strong><br> 就像一些无理数不能有限表示，如 圆周率 3.1415926…，1.3333… 等。JS 遵循 <a href="https://en.wikipedia.org/wiki/IEEE_floating_point" target="_blank" rel="external">IEEE 754</a> 规范，采用双精度存储（double precision），占用 64 bit。如图：<br> <img src="http://7xth8v.com2.z0.glb.clouddn.com/image/n_64bit.png?imageView2/2/w/800" alt=""></p>
+ x + 1 == x // true 
+</code></pre><h3 id="二、原因"><a href="#二、原因" class="headerlink" title="二、原因"></a>二、原因</h3><p> <strong>计算机的二进制实现和位数限制有些数无法有限表示。</strong><br> 就像一些无理数不能有限表示，如 圆周率 3.1415926…，1.3333… 等。JS 遵循 <a href="https://en.wikipedia.org/wiki/IEEE_floating_point" target="_blank" rel="noopener">IEEE 754</a> 规范，采用双精度存储（double precision），占用 64 bit。如图：<br> <img src="http://7xth8v.com2.z0.glb.clouddn.com/image/n_64bit.png?imageView2/2/w/800" alt=""></p>
 <p> 图中的意义：</p>
 <ul>
 <li>1位用来表示符号位</li>
@@ -760,7 +761,7 @@ Tie.loader("aHR0cHM6Ly9hcGkuZ2VudGllLjE2My5jb20vcGMvbGl2ZXNjcmlwdC5odG1s", true)
  9007199254740992 + 3 // 丢失
  9007199254740992 + 4 // 未丢失
 </code></pre><p> 以上，可以知道看似有穷的数字, 在计算机的二进制表示里却是无穷的，由于存储位数限制因此存在“舍去”，精度丢失就发生了。</p>
-<p> 想了解更深入的分析可以看这篇论文：<a href="http://docs.oracle.com/cd/E19957-01/806-3568/ncg_goldberg.html" target="_blank" rel="external">What Every Computer Scientist Should Know About Floating-Point Arithmetic</a></p>
+<p> 想了解更深入的分析可以看这篇论文：<a href="http://docs.oracle.com/cd/E19957-01/806-3568/ncg_goldberg.html" target="_blank" rel="noopener">What Every Computer Scientist Should Know About Floating-Point Arithmetic</a></p>
 <h3 id="三、解决方案"><a href="#三、解决方案" class="headerlink" title="三、解决方案"></a>三、解决方案</h3><p> 对于整数，前端出现问题的几率可能比较低，毕竟很少有业务需要需要用到超大整数，只要运算结果不超过 <code>Math.pow(2, 53)</code> 就不会丢失精度。<br> 对于小数，前端出现问题的几率还是很多的，尤其在一些电商网站涉及到金额等数据。解决方式：把小数放到位整数（乘倍数），再缩小回原来倍数（除倍数），如下所示：</p>
 <pre><code> // 0.1 + 0.2
  (0.1*10 + 0.2*10) / 10 == 0.3 // true
@@ -851,7 +852,7 @@ Tie.loader("aHR0cHM6Ly9hcGkuZ2VudGllLjE2My5jb20vcGMvbGl2ZXNjcmlwdC5odG1s", true)
      }
  }();
 </code></pre>
-<h3 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h3><p> <a href="http://0.30000000000000004.com" target="_blank" rel="external">http://0.30000000000000004.com</a><br> <a href="http://docs.oracle.com/cd/E19957-01/806-3568/ncg_goldberg.html" target="_blank" rel="external">http://docs.oracle.com/cd/E19957-01/806-3568/ncg_goldberg.html</a></p>
+<h3 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h3><p> <a href="http://0.30000000000000004.com" target="_blank" rel="noopener">http://0.30000000000000004.com</a><br> <a href="http://docs.oracle.com/cd/E19957-01/806-3568/ncg_goldberg.html" target="_blank" rel="noopener">http://docs.oracle.com/cd/E19957-01/806-3568/ncg_goldberg.html</a></p>
 
       
     </div>
@@ -1371,6 +1372,7 @@ define(function (require, exports, module) {
 
 
 });
+
 </code></pre>
 <h4 id="5-demo演示"><a href="#5-demo演示" class="headerlink" title="5. demo演示"></a>5. demo演示</h4><p><img src="http://7xth8v.com2.z0.glb.qiniucdn.com/image/sku_02.png" alt=""></p>
 
@@ -1442,14 +1444,14 @@ Tie.loader("aHR0cHM6Ly9hcGkuZ2VudGllLjE2My5jb20vcGMvbGl2ZXNjcmlwdC5odG1s", true)
     <div class="article-entry" itemprop="articleBody">
       
         <h2 id="主要内容"><a href="#主要内容" class="headerlink" title="主要内容"></a>主要内容</h2><blockquote>
-<h4 id="Markdown是什么？"><a href="#Markdown是什么？" class="headerlink" title="Markdown是什么？"></a>Markdown是<em>什么</em>？</h4><h4 id="谁发明了这么个东西？"><a href="#谁发明了这么个东西？" class="headerlink" title="谁发明了这么个东西？"></a><em>谁</em>发明了这么个东西？</h4><h4 id="为什么要使用它？"><a href="#为什么要使用它？" class="headerlink" title="为什么要使用它？"></a><em>为什么</em>要使用它？</h4><h4 id="怎么使用？"><a href="#怎么使用？" class="headerlink" title="怎么使用？"></a><em>怎么</em>使用？</h4><h4 id="都谁在用？"><a href="#都谁在用？" class="headerlink" title="都谁在用？"></a>都<em>谁</em>在用？</h4><h4 id="感觉有意思？不怕你看见，就怕你试试"><a href="#感觉有意思？不怕你看见，就怕你试试" class="headerlink" title="感觉有意思？不怕你看见，就怕你试试"></a>感觉有意思？<em>不怕你看见，就怕你试试</em></h4></blockquote>
+<h4 id="Markdown是-什么-？"><a href="#Markdown是-什么-？" class="headerlink" title="Markdown是_什么_？"></a>Markdown是_什么_？</h4><h4 id="谁-发明了这么个东西？"><a href="#谁-发明了这么个东西？" class="headerlink" title="_谁_发明了这么个东西？"></a>_谁_发明了这么个东西？</h4><h4 id="为什么要使用它？"><a href="#为什么要使用它？" class="headerlink" title="为什么要使用它？"></a><em>为什么</em>要使用它？</h4><h4 id="怎么-使用？"><a href="#怎么-使用？" class="headerlink" title="_怎么_使用？"></a>_怎么_使用？</h4><h4 id="都-谁-在用？"><a href="#都-谁-在用？" class="headerlink" title="都_谁_在用？"></a>都_谁_在用？</h4><h4 id="感觉有意思？不怕你看见，就怕你试试"><a href="#感觉有意思？不怕你看见，就怕你试试" class="headerlink" title="感觉有意思？不怕你看见，就怕你试试"></a>感觉有意思？<em>不怕你看见，就怕你试试</em></h4></blockquote>
 <h2 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h2><h3 id="1-Markdown是什么？"><a href="#1-Markdown是什么？" class="headerlink" title="1. Markdown是什么？"></a>1. Markdown是<em>什么</em>？</h3><p><strong>Markdown</strong>是一种轻量级<strong>标记语言</strong>，它以纯文本形式(<em>易读、易写、易更改</em>)编写文档，并最终以HTML格式发布。<br><strong>Markdown</strong>也可以理解为将以MARKDOWN语言编写的语言转换成HTML内容的工具，最初是一个perl脚本<em>Markdown.pl</em>。    </p>
-<h3 id="2-谁发明了这么个东西？"><a href="#2-谁发明了这么个东西？" class="headerlink" title="2. 谁发明了这么个东西？"></a>2. <em>谁</em>发明了这么个东西？</h3><p>它由<a href="http://www.aaronsw.com/" target="_blank" rel="external"><strong>Aaron Swartz</strong></a>和<strong>John Gruber</strong>共同设计，<strong>Aaron Swartz</strong>就是那位于去年（<em>2013年1月11日</em>）自杀,有着<strong>开挂</strong>一般人生经历的程序员。维基百科对他的<a href="http://zh.wikipedia.org/wiki/%E4%BA%9A%E4%BC%A6%C2%B7%E6%96%AF%E6%B2%83%E8%8C%A8" target="_blank" rel="external">介绍</a>是：<strong>软件工程师、作家、政治组织者、互联网活动家、维基百科人</strong>。    </p>
+<h3 id="2-谁-发明了这么个东西？"><a href="#2-谁-发明了这么个东西？" class="headerlink" title="2. _谁_发明了这么个东西？"></a>2. _谁_发明了这么个东西？</h3><p>它由<a href="http://www.aaronsw.com/" target="_blank" rel="noopener"><strong>Aaron Swartz</strong></a>和<strong>John Gruber</strong>共同设计，<strong>Aaron Swartz</strong>就是那位于去年（<em>2013年1月11日</em>）自杀,有着<strong>开挂</strong>一般人生经历的程序员。维基百科对他的<a href="http://zh.wikipedia.org/wiki/%E4%BA%9A%E4%BC%A6%C2%B7%E6%96%AF%E6%B2%83%E8%8C%A8" target="_blank" rel="noopener">介绍</a>是：<strong>软件工程师、作家、政治组织者、互联网活动家、维基百科人</strong>。    </p>
 <p>他有着足以让你跪拜的人生经历：    </p>
 <ul>
 <li><strong>14岁</strong>参与RSS 1.0规格标准的制订。     </li>
 <li><strong>2004</strong>年入读<strong>斯坦福</strong>，之后退学。   </li>
-<li><strong>2005</strong>年创建<a href="http://infogami.org/" target="_blank" rel="external">Infogami</a>，之后与<a href="http://www.reddit.com/" target="_blank" rel="external">Reddit</a>合并成为其合伙人。   </li>
+<li><strong>2005</strong>年创建<a href="http://infogami.org/" target="_blank" rel="noopener">Infogami</a>，之后与<a href="http://www.reddit.com/" target="_blank" rel="noopener">Reddit</a>合并成为其合伙人。   </li>
 <li><strong>2010</strong>年创立求进会（Demand Progress），积极参与禁止网络盗版法案（SOPA）活动，最终该提案<strong>居然</strong>被撤回。   </li>
 <li><strong>2011</strong>年7月19日，因被控从MIT和JSTOR下载480万篇学术论文并以免费形式上传于网络被捕。     </li>
 <li><strong>2013</strong>年1月自杀身亡。    </li>
@@ -1463,7 +1465,7 @@ Tie.loader("aHR0cHM6Ly9hcGkuZ2VudGllLjE2My5jb20vcGMvbGl2ZXNjcmlwdC5odG1s", true)
 <li>更方便清晰的组织你的电子邮件。（Markdown-here, Airmail）</li>
 <li>摆脱Word（我不是认真的）。</li>
 </ul>
-<h3 id="4-怎么使用？"><a href="#4-怎么使用？" class="headerlink" title="4. 怎么使用？"></a>4. <em>怎么</em>使用？</h3><p>如果不算<strong>扩展</strong>，Markdown的语法绝对<strong>简单</strong>到让你爱不释手。</p>
+<h3 id="4-怎么-使用？"><a href="#4-怎么-使用？" class="headerlink" title="4. _怎么_使用？"></a>4. _怎么_使用？</h3><p>如果不算<strong>扩展</strong>，Markdown的语法绝对<strong>简单</strong>到让你爱不释手。</p>
 <p>废话太多，下面正文，Markdown语法主要分为如下几大部分：<br><strong>标题</strong>，<strong>段落</strong>，<strong>区块引用</strong>，<strong>代码区块</strong>，<strong>强调</strong>，<strong>列表</strong>，<strong>分割线</strong>，<strong>链接</strong>，<strong>图片</strong>，<strong>反斜杠 <code>\</code></strong>，<strong>符号’`’</strong>。</p>
 <h4 id="4-1-标题"><a href="#4-1-标题" class="headerlink" title="4.1 标题"></a>4.1 标题</h4><p>两种形式：<br>1）使用<code>=</code>和<code>-</code>标记一级和二级标题。</p>
 <blockquote>
@@ -1505,13 +1507,13 @@ Tie.loader("aHR0cHM6Ly9hcGkuZ2VudGllLjE2My5jb20vcGMvbGl2ZXNjcmlwdC5odG1s", true)
 </blockquote>
 <p>效果：</p>
 <blockquote>
-<p><em>斜体</em>，<em>斜体</em><br><strong>粗体</strong>，<strong>粗体</strong></p>
+<p><em>斜体</em>，_斜体_<br><strong>粗体</strong>，<strong>粗体</strong></p>
 </blockquote>
 <h4 id="4-6-列表"><a href="#4-6-列表" class="headerlink" title="4.6 列表"></a>4.6 列表</h4><p>使用<code>·</code>、<code>+</code>、或<code>-</code>标记无序列表，如：</p>
 <blockquote>
 <p>-（+*） 第一项<br>-（+*） 第二项<br>- （+*）第三项</p>
 </blockquote>
-<p><strong>注意</strong>：标记后面最少有一个<em>空格</em>或<em>制表符</em>。若不在引用区块中，必须和前方段落之间存在空行。</p>
+<p><strong>注意</strong>：标记后面最少有一个_空格_或<em>制表符</em>。若不在引用区块中，必须和前方段落之间存在空行。</p>
 <p>效果：</p>
 <blockquote>
 <ul>
@@ -1539,7 +1541,7 @@ Tie.loader("aHR0cHM6Ly9hcGkuZ2VudGllLjE2My5jb20vcGMvbGl2ZXNjcmlwdC5odG1s", true)
 </blockquote>
 <p>效果：</p>
 <blockquote>
-<p><a href="https:://github.com/younghz/Markdown" title="Markdown" target="_blank" rel="external">younghz的Markdown库</a>。</p>
+<p><a href="https:://github.com/younghz/Markdown" title="Markdown" target="_blank" rel="noopener">younghz的Markdown库</a>。</p>
 </blockquote>
 <p><strong>参考式</strong>：</p>
 <blockquote>
@@ -1547,7 +1549,7 @@ Tie.loader("aHR0cHM6Ly9hcGkuZ2VudGllLjE2My5jb20vcGMvbGl2ZXNjcmlwdC5odG1s", true)
 </blockquote>
 <p>效果：</p>
 <blockquote>
-<p><a href="https:://github.com/younghz/Markdown" title="Markdown" target="_blank" rel="external">younghz的Markdown库1</a><br><a href="https:://github.com/younghz/Markdown" title="Markdown" target="_blank" rel="external">younghz的Markdown库2</a></p>
+<p><a href="https:://github.com/younghz/Markdown" title="Markdown" target="_blank" rel="noopener">younghz的Markdown库1</a><br><a href="https:://github.com/younghz/Markdown" title="Markdown" target="_blank" rel="noopener">younghz的Markdown库2</a></p>
 </blockquote>
 <p><strong>注意</strong>：上述的<code>[1]:https:://github.com/younghz/Markdown &quot;Markdown&quot;</code>不出现在区块中。</p>
 <h4 id="4-9-图片"><a href="#4-9-图片" class="headerlink" title="4.9 图片"></a>4.9 图片</h4><p>添加图片的形式和链接相似，只需在链接的基础上前方加一个<code>！</code>。</p>
@@ -1560,7 +1562,7 @@ Tie.loader("aHR0cHM6Ly9hcGkuZ2VudGllLjE2My5jb20vcGMvbGl2ZXNjcmlwdC5odG1s", true)
 <blockquote>
 <p><code>ctrl+a</code>    </p>
 </blockquote>
-<h4 id="5-都谁在用？"><a href="#5-都谁在用？" class="headerlink" title="5. 都谁在用？"></a>5. 都<em>谁</em>在用？</h4><p>Markdown的使用者：</p>
+<h4 id="5-都-谁-在用？"><a href="#5-都-谁-在用？" class="headerlink" title="5. 都_谁_在用？"></a>5. 都_谁_在用？</h4><p>Markdown的使用者：</p>
 <ul>
 <li>GitHub</li>
 <li>简书</li>
@@ -1570,7 +1572,7 @@ Tie.loader("aHR0cHM6Ly9hcGkuZ2VudGllLjE2My5jb20vcGMvbGl2ZXNjcmlwdC5odG1s", true)
 <li>Reddit</li>
 <li>等等</li>
 </ul>
-<h4 id="6-感觉有意思？趁热打铁，推荐几个工具。"><a href="#6-感觉有意思？趁热打铁，推荐几个工具。" class="headerlink" title="6. 感觉有意思？趁热打铁，推荐几个工具。"></a>6. 感觉有意思？趁热打铁，推荐几个<em>工具</em>。</h4><ul>
+<h4 id="6-感觉有意思？趁热打铁，推荐几个-工具-。"><a href="#6-感觉有意思？趁热打铁，推荐几个-工具-。" class="headerlink" title="6. 感觉有意思？趁热打铁，推荐几个_工具_。"></a>6. 感觉有意思？趁热打铁，推荐几个_工具_。</h4><ul>
 <li><strong>Chrome</strong>下的stackedit插件可以离线使用，很爽。也不用担心平台受限。<br>在线的dillinger.io算是评价好的了，可是不能离线使用。    </li>
 <li><strong>Windowns</strong>下的MarkdownPad也用过，不过免费版的体验不是很好。    </li>
 <li><strong>Mac</strong>下的Mou是国人贡献的，口碑很好。推荐。    </li>
@@ -1578,7 +1580,7 @@ Tie.loader("aHR0cHM6Ly9hcGkuZ2VudGllLjE2My5jb20vcGMvbGl2ZXNjcmlwdC5odG1s", true)
 </ul>
 <p><strong>其实在对语法了如于心的话，直接用编辑器就可以了，脑子里满满的都是格式化好的文本啊。</strong><br>我现在使用<code>马克飞象</code> + <code>Markdown-here</code>，先编辑好，然后一键格式化，挺方便。</p>
 <hr>
-<p><strong>注意</strong>：不同的Markdown解释器或工具对相应语法（扩展语法）的解释效果不尽相同，具体可参见工具的使用说明。<br>虽然有人想出面搞一个所谓的标准化的Markdown，[没想到还惹怒了健在的创始人John Gruber]<br>(<a href="http://blog.codinghorror.com/standard-markdown-is-now-common-markdown/)。" target="_blank" rel="external">http://blog.codinghorror.com/standard-markdown-is-now-common-markdown/)。</a></p>
+<p><strong>注意</strong>：不同的Markdown解释器或工具对相应语法（扩展语法）的解释效果不尽相同，具体可参见工具的使用说明。<br>虽然有人想出面搞一个所谓的标准化的Markdown，[没想到还惹怒了健在的创始人John Gruber]<br>(<a href="http://blog.codinghorror.com/standard-markdown-is-now-common-markdown/)。" target="_blank" rel="noopener">http://blog.codinghorror.com/standard-markdown-is-now-common-markdown/)。</a></p>
 <hr>
 <p>以上基本是所有traditonal markdown的语法。</p>
 <h3 id="其它："><a href="#其它：" class="headerlink" title="其它："></a>其它：</h3><p>列表的使用(非traditonal markdown)：</p>
@@ -1593,11 +1595,11 @@ Tie.loader("aHR0cHM6Ly9hcGkuZ2VudGllLjE2My5jb20vcGMvbGl2ZXNjcmlwdC5odG1s", true)
 <tbody>
 <tr>
 <td style="text-align:center">stackedit</td>
-<td><a href="https://stackedit.io/editor" title="stackedit" target="_blank" rel="external">https://stackedit.io/editor</a></td>
+<td><a href="https://stackedit.io/editor" title="stackedit" target="_blank" rel="noopener">https://stackedit.io/editor</a></td>
 </tr>
 <tr>
 <td style="text-align:center">github</td>
-<td><a href="https://github.com/mmrxia" title="xqs&#39;s github" target="_blank" rel="external">https://github.com/mmrxia</a></td>
+<td><a href="https://github.com/mmrxia" title="xqs&#39;s github" target="_blank" rel="noopener">https://github.com/mmrxia</a></td>
 </tr>
 </tbody>
 </table>

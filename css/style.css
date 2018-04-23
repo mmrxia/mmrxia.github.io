@@ -352,7 +352,6 @@ a {
   }
   #container .article .article-meta .article-date {
     font-size: 12px;
-    -webkit-border-radius: 0;
     border-radius: 0;
     color: #666;
     background: none;
@@ -492,7 +491,6 @@ a {
   text-align: center;
   display: block;
   border: 5px solid #fff;
-  -webkit-border-radius: 50%;
   border-radius: 50%;
   width: 128px;
   height: 128px;
@@ -510,7 +508,6 @@ a {
 #header .profilepic img {
   width: 20%;
   height: 20%;
-  -webkit-border-radius: 50%;
   border-radius: 50%;
   opacity: 0;
   -webkit-transition: all 0.2s ease-in;
@@ -586,7 +583,6 @@ a {
   text-align: center;
 }
 #header .header-nav .social a {
-  -webkit-border-radius: 50%;
   border-radius: 50%;
   display: -moz-inline-stack;
   display: inline-block;
@@ -700,7 +696,6 @@ a {
 }
 #header .switch-part3 .switch-friends-link {
   margin-right: 9px;
-  -webkit-border-radius: 3px;
   border-radius: 3px;
   padding: 5px;
 }
@@ -1010,7 +1005,6 @@ pre {
   content: "";
   width: 6px;
   height: 6px;
-  -webkit-border-radius: 50%;
   border-radius: 50%;
   background: #42b983;
   display: inline-block;
@@ -1132,7 +1126,6 @@ pre {
   line-height: 16px;
   -webkit-border-radius: 2px;
   -moz-border-radius: 2px;
-  -webkit-border-radius: 2px;
   border-radius: 2px;
   -webkit-transition: background 0.3s;
   -moz-transition: background 0.3s;
@@ -1166,7 +1159,6 @@ pre {
 #article-nav .article-nav-link-wrap strong {
   background: #ddd;
   color: #fff;
-  -webkit-border-radius: 100%;
   border-radius: 100%;
   width: 15px;
   height: 15px;
@@ -1498,7 +1490,6 @@ pre {
   background: #4d4d4d;
   -webkit-border-radius: 50%;
   -moz-border-radius: 50%;
-  -webkit-border-radius: 50%;
   border-radius: 50%;
   display: inline-block;
   color: #fff;
@@ -1651,7 +1642,6 @@ pre {
   color: #fff;
   width: 80px;
   text-align: center;
-  -webkit-border-radius: 3px;
   border-radius: 3px;
   opacity: 0.8;
   position: absolute;
@@ -1671,7 +1661,6 @@ pre {
   height: 32px;
   width: 32px;
   background: #cecece;
-  -webkit-border-radius: 100px;
   border-radius: 100px;
   position: relative;
   overflow: hidden;
@@ -1715,7 +1704,6 @@ pre {
   position: absolute;
   -webkit-border-radius: 60px;
   -moz-border-radius: 60px;
-  -webkit-border-radius: 60px;
   border-radius: 60px;
   left: 10px;
   top: 8px;
@@ -1730,7 +1718,6 @@ pre {
   left: 4px;
   -webkit-border-radius: 60px;
   -moz-border-radius: 60px;
-  -webkit-border-radius: 60px;
   border-radius: 60px;
 }
 .switch-btn .icon-ctn .ribbon {
@@ -1756,7 +1743,6 @@ pre {
   border-style: solid;
   border-width: 0px 3px 3px 3px;
   border-color: #333;
-  -webkit-border-radius: 0 0 50px 50px;
   border-radius: 0 0 50px 50px;
   position: absolute;
   top: 16px;
@@ -1780,7 +1766,6 @@ pre {
   border-style: solid;
   border-width: 3px 0 0 3px;
   border-color: #333;
-  -webkit-border-radius: 50px 0 0 0;
   border-radius: 50px 0 0 0;
   position: absolute;
   left: -3px;
@@ -1792,7 +1777,6 @@ pre {
   border-style: solid;
   border-width: 3px 3px 0 3px;
   border-color: #333;
-  -webkit-border-radius: 50px 50px 0 0;
   border-radius: 50px 50px 0 0;
   position: absolute;
   top: 8px;
@@ -1816,7 +1800,6 @@ pre {
   border-style: solid;
   border-width: 0 3px 3px 0;
   border-color: #333;
-  -webkit-border-radius: 0 0 50px 0;
   border-radius: 0 0 50px 0;
   position: absolute;
   left: 5px;
@@ -1826,7 +1809,6 @@ pre {
   width: 12px;
   height: 14px;
   background: #333;
-  -webkit-border-radius: 5px 5px 0 0;
   border-radius: 5px 5px 0 0;
   margin-left: 10px;
   margin-top: 2px;
@@ -1872,7 +1854,6 @@ pre {
   float: left;
   padding: 0 5px 0px 10px;
   position: relative;
-  -webkit-border-radius: 0 5px 5px 0;
   border-radius: 0 5px 5px 0;
   margin: 5px 9px 5px 8px;
   font-family: Menlo, Monaco, "Andale Mono", "lucida console", "Courier New", monospace;
@@ -1894,7 +1875,6 @@ pre {
   width: 4px;
   height: 4px;
   background-color: #fff;
-  -webkit-border-radius: 4px;
   border-radius: 4px;
   -webkit-box-shadow: 0px 0px 0px 1px rgba(0,0,0,0.3);
   box-shadow: 0px 0px 0px 1px rgba(0,0,0,0.3);
@@ -2011,12 +1991,10 @@ pre {
   display: block;
 }
 ::-webkit-scrollbar-thumb {
-  -webkit-border-radius: 8px;
   border-radius: 8px;
   background-color: rgba(0,0,0,0.2);
 }
 ::-webkit-scrollbar-thumb:hover {
-  -webkit-border-radius: 8px;
   border-radius: 8px;
   background-color: rgba(0,0,0,0.5);
 }
@@ -2084,7 +2062,6 @@ pre {
   width: 6px;
   height: 6px;
   border: 1px solid #999;
-  -webkit-border-radius: 10px;
   -webkit-border-radius: 10px;
   border-radius: 10px;
   background: #aaa;

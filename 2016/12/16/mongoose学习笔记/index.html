@@ -4,25 +4,18 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <meta name="description" content="一、快速通道1. 名词解释Schema（模式）: 一种以文件形式存储的数据库模型骨架，不具备数据库的操作能力。Model（模型）: 源于Schema生成的模型，具有抽象属性和行为的数据库操作对。Entity（实体）: 源于Model创建的实体，操作可影响数据库。
-
-注意：  1 . 本学习文档采用严格命名方式来区别不同对象，例如：
-  var PersonSchema;   //Person的文本">
+    <meta name="description" content="一、快速通道1. 名词解释Schema（模式）: 一种以文件形式存储的数据库模型骨架，不具备数据库的操作能力。Model（模型）: 源于Schema生成的模型，具有抽象属性和行为的数据库操作对。Entity（实体）: 源于Model创建的实体，操作可影响数据库。  注意：  1 . 本学习文档采用严格命名方式来区别不同对象，例如：   var PersonSchema;   //Person的文本">
+<meta name="keywords" content="mongodb">
 <meta property="og:type" content="article">
 <meta property="og:title" content="mongoose学习笔记">
 <meta property="og:url" content="http://mmrxia.github.io/2016/12/16/mongoose学习笔记/index.html">
-<meta property="og:site_name" content="芥子园 | xiaqingsong's blog">
-<meta property="og:description" content="一、快速通道1. 名词解释Schema（模式）: 一种以文件形式存储的数据库模型骨架，不具备数据库的操作能力。Model（模型）: 源于Schema生成的模型，具有抽象属性和行为的数据库操作对。Entity（实体）: 源于Model创建的实体，操作可影响数据库。
-
-注意：  1 . 本学习文档采用严格命名方式来区别不同对象，例如：
-  var PersonSchema;   //Person的文本">
+<meta property="og:site_name" content="芥子园 | xiaqingsong&#39;s blog">
+<meta property="og:description" content="一、快速通道1. 名词解释Schema（模式）: 一种以文件形式存储的数据库模型骨架，不具备数据库的操作能力。Model（模型）: 源于Schema生成的模型，具有抽象属性和行为的数据库操作对。Entity（实体）: 源于Model创建的实体，操作可影响数据库。  注意：  1 . 本学习文档采用严格命名方式来区别不同对象，例如：   var PersonSchema;   //Person的文本">
+<meta property="og:locale" content="zh-Hans">
 <meta property="og:updated_time" content="2016-12-16T09:27:04.174Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="mongoose学习笔记">
-<meta name="twitter:description" content="一、快速通道1. 名词解释Schema（模式）: 一种以文件形式存储的数据库模型骨架，不具备数据库的操作能力。Model（模型）: 源于Schema生成的模型，具有抽象属性和行为的数据库操作对。Entity（实体）: 源于Model创建的实体，操作可影响数据库。
-
-注意：  1 . 本学习文档采用严格命名方式来区别不同对象，例如：
-  var PersonSchema;   //Person的文本">
+<meta name="twitter:description" content="一、快速通道1. 名词解释Schema（模式）: 一种以文件形式存储的数据库模型骨架，不具备数据库的操作能力。Model（模型）: 源于Schema生成的模型，具有抽象属性和行为的数据库操作对。Entity（实体）: 源于Model创建的实体，操作可影响数据库。  注意：  1 . 本学习文档采用严格命名方式来区别不同对象，例如：   var PersonSchema;   //Person的文本">
     
     <title>
         mongoose学习笔记 |
@@ -260,7 +253,7 @@
 </code></pre>
 <p>  2 . Schema –&gt; Model，Model –&gt; Entity。Model和Entity都可对数据库操作造成影响，但Model比Entity更具操作性。</p>
 </blockquote>
-<h3 id="2-准备工作"><a href="#2-准备工作" class="headerlink" title="2. 准备工作"></a>2. 准备工作</h3><p>1 . 首先你必须安装MongoDB和NodeJS<br>  mongodb安装可参考： <a href="http://blog.xiaqingsong.com/2016/12/16/windows%E4%B8%8B%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AEmongodb/" target="_blank" rel="external">windows下安装配置mongodb</a></p>
+<h3 id="2-准备工作"><a href="#2-准备工作" class="headerlink" title="2. 准备工作"></a>2. 准备工作</h3><p>1 . 首先你必须安装MongoDB和NodeJS<br>  mongodb安装可参考： <a href="http://blog.xiaqingsong.com/2016/12/16/windows%E4%B8%8B%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AEmongodb/" target="_blank" rel="noopener">windows下安装配置mongodb</a></p>
 <p>2 . 在项目只能够创建一个数据库连接，如下:</p>
 <pre><code class="language-javascript">var mongoose = require(&#39;mongoose&#39;);    //引用mongoose模块
 var db = mongoose.createConnection(&#39;localhost&#39;,&#39;test&#39;); //创建一个数据库连接

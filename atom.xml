@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
   <title>芥子园 | xiaqingsong&#39;s blog</title>
+  <icon>https://www.gravatar.com/avatar/38ea8006848d121a54a18daa50e236f0</icon>
   <subtitle>须弥藏芥子，芥子纳须弥</subtitle>
   <link href="/atom.xml" rel="self"/>
   
@@ -22,69 +23,14 @@
     <published>2018-04-23T03:46:28.000Z</published>
     <updated>2018-04-23T03:52:33.630Z</updated>
     
-    <content type="html">&lt;h3 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h3&gt;&lt;p&gt;最近使用&lt;code&gt;git&lt;/code&gt;来管理一个项目，到达一定阶段后，需要将稳定的代码发布成一个版本，经过查找资料发现&lt;code&gt;git&lt;/code&gt;的标签操作刚好满足我的要求，所以记录下来，方便以后是使用查找。&lt;/p&gt;
-&lt;h3 id=&quot;用途&quot;&gt;&lt;a href=&quot;#用途&quot; class=&quot;headerlink&quot; title=&quot;用途&quot;&gt;&lt;/a&gt;用途&lt;/h3&gt;&lt;p&gt;标签可以针对某一时间点的版本做标记，常用于版本发布，这恰恰是我所需要的功能，将本地标签推送到&lt;code&gt;Github&lt;/code&gt;上即发布了一个&lt;code&gt;Release&lt;/code&gt;版本，下载和查看非常方便。&lt;/p&gt;
-&lt;h3 id=&quot;标签分类&quot;&gt;&lt;a href=&quot;#标签分类&quot; class=&quot;headerlink&quot; title=&quot;标签分类&quot;&gt;&lt;/a&gt;标签分类&lt;/h3&gt;&lt;p&gt;&lt;code&gt;git&lt;/code&gt;标签分为两种类型：轻量标签和附注标签。轻量标签是指向提交对象的引用，附注标签则是仓库中的一个独立对象，建议使用附注标签，日后还可以查看标签信息。&lt;/p&gt;
-&lt;h3 id=&quot;创建标签&quot;&gt;&lt;a href=&quot;#创建标签&quot; class=&quot;headerlink&quot; title=&quot;创建标签&quot;&gt;&lt;/a&gt;创建标签&lt;/h3&gt;&lt;ul&gt;
-&lt;li&gt;创建轻量标签&lt;pre&gt;&lt;code class=&quot;git&quot;&gt;git tag v0.2.0 -light
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;解释：创建轻量标签不需要传递参数，直接指定标签名称即可。&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;创建附注标签&lt;pre&gt;&lt;code class=&quot;git&quot;&gt;git tag -a v0.1.0 -m &amp;quot;release 0.1.0 version&amp;quot;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;解释：创建附注标签时，参数&lt;code&gt;-a&lt;/code&gt;即&lt;code&gt;annotated&lt;/code&gt;的缩写，指定标签类型，后附标签名。参数&lt;code&gt;m&lt;/code&gt;指定标签说明，说明信息会保存在标签对象中。&lt;/p&gt;
-&lt;h3 id=&quot;查看标签&quot;&gt;&lt;a href=&quot;#查看标签&quot; class=&quot;headerlink&quot; title=&quot;查看标签&quot;&gt;&lt;/a&gt;查看标签&lt;/h3&gt;&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;列出当前仓库的所有标签&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;git&quot;&gt;git tag
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;列出符合模式的标签&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;git&quot;&gt;git tag -l &amp;#39;v0.1.*&amp;#39;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;查看标签版本信息&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;git&quot;&gt;git show v0.1.0
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3 id=&quot;切换标签&quot;&gt;&lt;a href=&quot;#切换标签&quot; class=&quot;headerlink&quot; title=&quot;切换标签&quot;&gt;&lt;/a&gt;切换标签&lt;/h3&gt;&lt;ul&gt;
-&lt;li&gt;切换标签与切换分支命令相同&lt;pre&gt;&lt;code class=&quot;git&quot;&gt;git checkout [tagname]
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;解释：切换标签后处于一个空的分支上，即&lt;code&gt;You are in ‘detached HEAD’ state.&lt;/code&gt;&lt;/p&gt;
-&lt;h3 id=&quot;删除标签&quot;&gt;&lt;a href=&quot;#删除标签&quot; class=&quot;headerlink&quot; title=&quot;删除标签&quot;&gt;&lt;/a&gt;删除标签&lt;/h3&gt;&lt;ul&gt;
-&lt;li&gt;误打或需要修改标签时，需要先将标签删除，再打新标签&lt;pre&gt;&lt;code class=&quot;git&quot;&gt;git tag -d v0.1.2
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;解释：参数&lt;code&gt;-d&lt;/code&gt;即&lt;code&gt;delete&lt;/code&gt;的缩写，意为删除其后指定的标签。&lt;/p&gt;
-&lt;h3 id=&quot;补打标签&quot;&gt;&lt;a href=&quot;#补打标签&quot; class=&quot;headerlink&quot; title=&quot;补打标签&quot;&gt;&lt;/a&gt;补打标签&lt;/h3&gt;&lt;ul&gt;
-&lt;li&gt;给指定的&lt;code&gt;commit&lt;/code&gt;打标签&lt;pre&gt;&lt;code class=&quot;git&quot;&gt;git tag -a v0.1.0 49e0cd22f6bd9510fe65084e023d9c4316b446a6
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;解释：打标签不必要在&lt;code&gt;HEAD&lt;/code&gt;之上，也可在之前的版本上打，这需要你知道某个提交对象的校验和，通过&lt;code&gt;git log&lt;/code&gt;命令获取。&lt;/p&gt;
-&lt;h3 id=&quot;发布标签&quot;&gt;&lt;a href=&quot;#发布标签&quot; class=&quot;headerlink&quot; title=&quot;发布标签&quot;&gt;&lt;/a&gt;发布标签&lt;/h3&gt;&lt;ul&gt;
-&lt;li&gt;将&lt;code&gt;v0.1.0&lt;/code&gt;标签提交到&lt;code&gt;git&lt;/code&gt;服务器&lt;pre&gt;&lt;code class=&quot;git&quot;&gt;git push origin v0.1.0
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;解释：通常的&lt;code&gt;git push&lt;/code&gt;不会将标签对象提交到&lt;code&gt;git&lt;/code&gt;服务器，我们需要进行显式的操作。&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;将本地所有标签一次性提交到&lt;code&gt;git&lt;/code&gt;服务器&lt;pre&gt;&lt;code class=&quot;git&quot;&gt;git push origin –tags
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-</content>
+    <content type="html"><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>最近使用<code>git</code>来管理一个项目，到达一定阶段后，需要将稳定的代码发布成一个版本，经过查找资料发现<code>git</code>的标签操作刚好满足我的要求，所以记录下来，方便以后是使用查找。</p><h3 id="用途"><a href="#用途" class="headerlink" title="用途"></a>用途</h3><p>标签可以针对某一时间点的版本做标记，常用于版本发布，这恰恰是我所需要的功能，将本地标签推送到<code>Github</code>上即发布了一个<code>Release</code>版本，下载和查看非常方便。</p><h3 id="标签分类"><a href="#标签分类" class="headerlink" title="标签分类"></a>标签分类</h3><p><code>git</code>标签分为两种类型：轻量标签和附注标签。轻量标签是指向提交对象的引用，附注标签则是仓库中的一个独立对象，建议使用附注标签，日后还可以查看标签信息。</p><h3 id="创建标签"><a href="#创建标签" class="headerlink" title="创建标签"></a>创建标签</h3><ul><li>创建轻量标签<pre><code class="git">git tag v0.2.0 -light</code></pre></li></ul><p>解释：创建轻量标签不需要传递参数，直接指定标签名称即可。</p><ul><li>创建附注标签<pre><code class="git">git tag -a v0.1.0 -m &quot;release 0.1.0 version&quot;</code></pre></li></ul><p>解释：创建附注标签时，参数<code>-a</code>即<code>annotated</code>的缩写，指定标签类型，后附标签名。参数<code>m</code>指定标签说明，说明信息会保存在标签对象中。</p><h3 id="查看标签"><a href="#查看标签" class="headerlink" title="查看标签"></a>查看标签</h3><ul><li><p>列出当前仓库的所有标签</p><pre><code class="git">git tag</code></pre></li><li><p>列出符合模式的标签</p><pre><code class="git">git tag -l &#39;v0.1.*&#39;</code></pre></li><li><p>查看标签版本信息</p><pre><code class="git">git show v0.1.0</code></pre></li></ul><h3 id="切换标签"><a href="#切换标签" class="headerlink" title="切换标签"></a>切换标签</h3><ul><li>切换标签与切换分支命令相同<pre><code class="git">git checkout [tagname]</code></pre></li></ul><p>解释：切换标签后处于一个空的分支上，即<code>You are in ‘detached HEAD’ state.</code></p><h3 id="删除标签"><a href="#删除标签" class="headerlink" title="删除标签"></a>删除标签</h3><ul><li>误打或需要修改标签时，需要先将标签删除，再打新标签<pre><code class="git">git tag -d v0.1.2</code></pre></li></ul><p>解释：参数<code>-d</code>即<code>delete</code>的缩写，意为删除其后指定的标签。</p><h3 id="补打标签"><a href="#补打标签" class="headerlink" title="补打标签"></a>补打标签</h3><ul><li>给指定的<code>commit</code>打标签<pre><code class="git">git tag -a v0.1.0 49e0cd22f6bd9510fe65084e023d9c4316b446a6</code></pre></li></ul><p>解释：打标签不必要在<code>HEAD</code>之上，也可在之前的版本上打，这需要你知道某个提交对象的校验和，通过<code>git log</code>命令获取。</p><h3 id="发布标签"><a href="#发布标签" class="headerlink" title="发布标签"></a>发布标签</h3><ul><li>将<code>v0.1.0</code>标签提交到<code>git</code>服务器<pre><code class="git">git push origin v0.1.0</code></pre></li></ul><p>解释：通常的<code>git push</code>不会将标签对象提交到<code>git</code>服务器，我们需要进行显式的操作。</p><ul><li>将本地所有标签一次性提交到<code>git</code>服务器<pre><code class="git">git push origin –tags</code></pre></li></ul>]]></content>
     
     <summary type="html">
     
-      &lt;h3 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h3&gt;&lt;p&gt;最近使用&lt;code&gt;git&lt;/code&gt;来管理一个项目，到达一定阶段后，需要将稳定的代码发布成一个版本，经过查找资料发现&lt;code&gt;git&lt;
+      
+      
+        &lt;h3 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h3&gt;&lt;p&gt;最近使用&lt;code&gt;git&lt;/code&gt;来管理一个项目，到达一定阶段后，需要将稳定的代码发布成一个版本，经过查找资料发现&lt;code&gt;git&lt;
+      
     
     </summary>
     
@@ -100,39 +46,16 @@
     <published>2018-04-19T12:19:28.000Z</published>
     <updated>2018-04-19T12:32:40.388Z</updated>
     
-    <content type="html">&lt;p&gt;我们在使用&lt;code&gt;git&lt;/code&gt;拉取远程服务器代码时，可能会遇到下面的报错信息：&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;You have not concluded your merge (MERGE_HEAD exists).&lt;br&gt;  Please, commit your changes before you can merge.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;遇到上面的问题，先不要慌，我们来看一下&lt;code&gt;Git fetch&lt;/code&gt;和&lt;code&gt;git pull&lt;/code&gt;的异同:   &lt;/p&gt;
-&lt;p&gt;相同点：都可以从远程获取最新版本到本地。&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;Git fetch&lt;/code&gt;:只是从远程获取最新版本到本地,不会&lt;code&gt;merge&lt;/code&gt;(合并)&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;git&quot;&gt;git fetch origin master   //从远程的origin的master主分支上获取最新版本到origin/master分支上   
-git log -p master..origin/master //比较本地的master分支和origin/master分支的区别   
-git merge origin/master          //合并
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;code&gt;Git pull&lt;/code&gt;:从远程获取最新版本并&lt;code&gt;merge&lt;/code&gt;(合并)到本地&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;git&quot;&gt;git pull origin master  //相当于进行了 git fetch 和 git merge两部操作
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;实际工作中,可能git fetch更好一些, 因为在merge前,可以根据实际情况决定是否merge。&lt;br&gt;再说导致报错:&lt;code&gt;error: You have not concluded your merge (MERGE_HEAD exists)&lt;/code&gt;.&lt;br&gt;原因可能是在以前pull下来的代码自动合并失败。&lt;/p&gt;
-&lt;p&gt;对于此我们有两种解决办法。&lt;br&gt;解决办法一:保留本地的更改,中止合并-&amp;gt;重新合并-&amp;gt;重新拉取  &lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;git&quot;&gt;git merge --abort
-git reset --merge
-git pull
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;解决办法二:舍弃本地代码,远端版本覆盖本地版本(慎重)&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;git&quot;&gt;git fetch --all
-git reset --hard origin/master
-git fetch
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;参考链接: &lt;a href=&quot;http://stackoverflow.com/questions/11646107/you-have-not-concluded-your-merge-merge-head-exists&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;stackoverflow&lt;/a&gt;&lt;/p&gt;
-</content>
+    <content type="html"><![CDATA[<p>我们在使用<code>git</code>拉取远程服务器代码时，可能会遇到下面的报错信息：</p><blockquote><p>You have not concluded your merge (MERGE_HEAD exists).<br>  Please, commit your changes before you can merge.</p></blockquote><p>遇到上面的问题，先不要慌，我们来看一下<code>Git fetch</code>和<code>git pull</code>的异同:   </p><p>相同点：都可以从远程获取最新版本到本地。</p><p><code>Git fetch</code>:只是从远程获取最新版本到本地,不会<code>merge</code>(合并)</p><pre><code class="git">git fetch origin master   //从远程的origin的master主分支上获取最新版本到origin/master分支上   git log -p master..origin/master //比较本地的master分支和origin/master分支的区别   git merge origin/master          //合并   </code></pre><p><code>Git pull</code>:从远程获取最新版本并<code>merge</code>(合并)到本地</p><pre><code class="git">git pull origin master  //相当于进行了 git fetch 和 git merge两部操作   </code></pre><p>实际工作中,可能git fetch更好一些, 因为在merge前,可以根据实际情况决定是否merge。<br>再说导致报错:<code>error: You have not concluded your merge (MERGE_HEAD exists)</code>.<br>原因可能是在以前pull下来的代码自动合并失败。</p><p>对于此我们有两种解决办法。<br>解决办法一:保留本地的更改,中止合并-&gt;重新合并-&gt;重新拉取  </p><pre><code class="git">git merge --abortgit reset --mergegit pull</code></pre><p>解决办法二:舍弃本地代码,远端版本覆盖本地版本(慎重)</p><pre><code class="git">git fetch --allgit reset --hard origin/mastergit fetch</code></pre><p>参考链接: <a href="http://stackoverflow.com/questions/11646107/you-have-not-concluded-your-merge-merge-head-exists" target="_blank" rel="noopener">stackoverflow</a></p>]]></content>
     
     <summary type="html">
     
-      &lt;p&gt;我们在使用&lt;code&gt;git&lt;/code&gt;拉取远程服务器代码时，可能会遇到下面的报错信息：&lt;/p&gt;
+      
+      
+        &lt;p&gt;我们在使用&lt;code&gt;git&lt;/code&gt;拉取远程服务器代码时，可能会遇到下面的报错信息：&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;You have not concluded your merge (MERGE_HEAD exists).&lt;br&gt;  Please, com
+      
     
     </summary>
     
@@ -148,175 +71,14 @@ git fetch
     <published>2017-12-15T02:45:44.000Z</published>
     <updated>2017-12-15T03:27:30.654Z</updated>
     
-    <content type="html">&lt;h3 id=&quot;技术概述&quot;&gt;&lt;a href=&quot;#技术概述&quot; class=&quot;headerlink&quot; title=&quot;技术概述&quot;&gt;&lt;/a&gt;技术概述&lt;/h3&gt;&lt;p&gt;&lt;code&gt;weex&lt;/code&gt;是阿里开源的一套构建高性能移动界面的原生跨平台技术框架，它的上层由&lt;code&gt;Vue&lt;/code&gt;，&lt;code&gt;Rax&lt;/code&gt;（非常类似React的开发框架）实现数据驱动，底层由&lt;code&gt;iOS&lt;/code&gt;，&lt;code&gt;Android&lt;/code&gt;实现&lt;code&gt;render engine&lt;/code&gt;来驱动界面的最终落地。类比&lt;code&gt;React Native&lt;/code&gt;它的优势在于难得的一次编写，多端运行，是的，它也很好的支持着移动Web端。&lt;/p&gt;
-&lt;h3 id=&quot;构建-build&quot;&gt;&lt;a href=&quot;#构建-build&quot; class=&quot;headerlink&quot; title=&quot;构建-build&quot;&gt;&lt;/a&gt;构建-build&lt;/h3&gt;&lt;p&gt;&lt;code&gt;Native&lt;/code&gt;使用&lt;code&gt;weex-loader&lt;/code&gt;，&lt;code&gt;Web&lt;/code&gt;则需要使用&lt;code&gt;vue-loader&lt;/code&gt;，在Web端上&lt;code&gt;vue-loader&lt;/code&gt;目前仅支持&lt;code&gt;^11.3.3&lt;/code&gt;版本，以及&lt;code&gt;weex-vue-render&lt;/code&gt;需要&lt;code&gt;&amp;gt;= 0.11.50&lt;/code&gt;，并且&lt;code&gt;vue-loader&lt;/code&gt;的配置做如下修改：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;webpack 1.x&lt;/li&gt;
-&lt;/ul&gt;
-&lt;pre&gt;&lt;code&gt;module: {
-  loaders: [
-    {
-      test: /\.vue(\?[^?]+)?$/,
-      loaders: [&amp;#39;vue-loader&amp;#39;]
-    }
-  ]
-},
-vue: {
-  /**
-   * important! should use postTransformNode to add $processStyle for
-   * inline style normalization.
-   */
-  compilerModules: [
-    {
-      postTransformNode: el =&amp;gt; {
-        el.staticStyle = `$processStyle(${el.staticStyle})`
-        el.styleBinding = `$processStyle(${el.styleBinding})`
-      }
-    }
-  ]
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;ul&gt;
-&lt;li&gt;webpack 2.x&lt;/li&gt;
-&lt;/ul&gt;
-&lt;pre&gt;&lt;code&gt;module: {
-    rules: [
-      {
-        test: /\.vue$/,
-        loader: &amp;#39;vue-loader&amp;#39;,
-        options: {
-          compilerModules: [
-            {
-              postTransformNode: el =&amp;gt; {
-                el.staticStyle = `$processStyle(${el.staticStyle})`
-                el.styleBinding = `$processStyle(${el.styleBinding})`
-              }
-            }
-          ]
-        }
-      }
-    ]
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;最佳的实践是推荐你使用目前为止我们内部评价最高的一份脚手架工程（支持三端一致，意味着处理了降级。）：&lt;a href=&quot;https://github.com/dingtalk-templates/webpack&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;dingtalk-templates/webpack&lt;/a&gt;，你可以直接下载它，自行修改&lt;code&gt;package.json&lt;/code&gt;文件中的配置，或者安装 &lt;a href=&quot;https://github.com/open-dingtalk/weex-dingtalk-cli&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;open-dingtalk/weex-dingtalk-cli&lt;/a&gt; 这个命令行工具来玩转脚手架，这个命令行工具就像你使用&lt;code&gt;vue-cli&lt;/code&gt;一样的简单：&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;bash&quot;&gt;$ npm install -g weex-dingtalk-cli
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h3 id=&quot;样式-style&quot;&gt;&lt;a href=&quot;#样式-style&quot; class=&quot;headerlink&quot; title=&quot;样式-style&quot;&gt;&lt;/a&gt;样式-style&lt;/h3&gt;&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;weex&lt;/code&gt;支持的样式属于&lt;code&gt;css&lt;/code&gt;子集&lt;/li&gt;
-&lt;li&gt;必须写完整，如&lt;code&gt;background:#000&lt;/code&gt;需要写成&lt;code&gt;background-color:#000&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;样式不允许提取文件，必须写在&lt;code&gt;Vue&lt;/code&gt;的单组件中&lt;/li&gt;
-&lt;li&gt;原则上不推荐使用预处理器，因为无法预期转译出来的样式符合&lt;code&gt;weex&lt;/code&gt;的&lt;code&gt;css&lt;/code&gt;子集&lt;/li&gt;
-&lt;li&gt;布局只能使用&lt;code&gt;Flexbox&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;如果要显示文本必须使用&lt;code&gt;text&lt;/code&gt;组件，并且你想改变字体大小必须写在&lt;code&gt;text&lt;/code&gt;组件上&lt;/li&gt;
-&lt;li&gt;只支持&lt;code&gt;class&lt;/code&gt;，不允许继承&lt;/li&gt;
-&lt;li&gt;单位只支持&lt;code&gt;`px&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;不支持背景图片&lt;/li&gt;
-&lt;li&gt;基于&lt;code&gt;750px&lt;/code&gt;进行缩放，会有浮点级别的误差&lt;/li&gt;
-&lt;li&gt;样式需要声明 &lt;code&gt;scoped&lt;/code&gt; 属性&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;Android&lt;/code&gt;上处理圆角，必须在外层&lt;code&gt;div&lt;/code&gt;中设置&lt;code&gt;border-radius&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;如果你想动态的替换&lt;code&gt;class&lt;/code&gt;，只能使用数组表达式，&lt;code&gt;&amp;lt;div :class=[&amp;#39;name&amp;#39;, a? &amp;#39;b&amp;#39;: &amp;#39;c&amp;#39;]&amp;gt;&amp;lt;/div&amp;gt;&lt;/code&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;如果你想使用预处理器（只是不推荐），可以如下配置：&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;{
-    test: /\.vue$/,
-    loader: &amp;#39;vue-loader&amp;#39;,
-    options: {
-        loaders: {
-          scss: &amp;#39;vue-style-loader!css-loader!sass-loader&amp;#39;
-        }
-    }
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;pre&gt;&lt;code&gt;&amp;lt;style lang=&amp;quot;sass&amp;quot;&amp;gt;
-    @import &amp;#39;./common.scss&amp;#39;
-    // ...
-&amp;lt;/style&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;如果你想使用更精准的适配（无法忍受浮点级别的误差），可以获取&lt;code&gt;scale&lt;/code&gt;、&lt;code&gt;deviceWidth&lt;/code&gt;自行进行适配，推荐在loader阶段去处理（自行开发转换工具）。&lt;/p&gt;
-&lt;h3 id=&quot;JavaScript与内存管理-JavaScript-and-memory-manage&quot;&gt;&lt;a href=&quot;#JavaScript与内存管理-JavaScript-and-memory-manage&quot; class=&quot;headerlink&quot; title=&quot;JavaScript与内存管理-JavaScript and memory manage&quot;&gt;&lt;/a&gt;JavaScript与内存管理-JavaScript and memory manage&lt;/h3&gt;&lt;blockquote&gt;
-&lt;p&gt;由于JS运行在&lt;code&gt;JavaScriptCore/V8&lt;/code&gt;中，此与Web有较大差异。&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;如下：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;query&lt;/code&gt;，&lt;code&gt;axios&lt;/code&gt; 之类的原来Web开发领域的库都不可以使用&lt;/li&gt;
-&lt;li&gt;不支持DOM操作&lt;/li&gt;
-&lt;li&gt;虽然提供了&lt;code&gt;Native DOM&lt;/code&gt;可以操作界面的渲染，原则上不推荐使用，方法与DOM操作类似&lt;/li&gt;
-&lt;li&gt;既然不支持DOM操作，更改界面的方式应该使用数据驱动&lt;/li&gt;
-&lt;li&gt;仅支持部分事件&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;weex SDK &amp;gt;= 0.10.0&lt;/code&gt; 的才支持事件冒泡&lt;/li&gt;
-&lt;li&gt;没有&lt;code&gt;window&lt;/code&gt;，&lt;code&gt;document&lt;/code&gt;，&lt;code&gt;location&lt;/code&gt;，&lt;code&gt;history&lt;/code&gt;等对象&lt;/li&gt;
-&lt;li&gt;runtime是一个“全局环境”，不允许往全局环境中挂载对象，因为无法释放且所有&lt;code&gt;weex&lt;/code&gt;页面共享&lt;/li&gt;
-&lt;li&gt;只有&lt;code&gt;scroller&lt;/code&gt;和&lt;code&gt;list&lt;/code&gt;组件可以滚动&lt;/li&gt;
-&lt;li&gt;不允许在&lt;code&gt;Vue&lt;/code&gt;中操作&lt;code&gt;style&lt;/code&gt;，遍历是很耗性能的&lt;/li&gt;
-&lt;li&gt;Vue中的&lt;code&gt;v-show&lt;/code&gt;等原来操作Dom的指令或Api都不可以使用&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;vue-router&lt;/code&gt; 只允许使用 &lt;code&gt;abstract&lt;/code&gt; 模式&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;vuex&lt;/code&gt;必须在初始化之前使用&lt;code&gt;Vue.use&lt;/code&gt;注入&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;native&lt;/code&gt;端只能使用网络图片，解决的方式是在最后上线时统一替换成&lt;code&gt;CDN&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;&lt;ul&gt;
-&lt;li&gt;热更新以及增量更新的方式都可以参考&lt;code&gt;React Native&lt;/code&gt;目前成熟的方案&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;iOS由于使用了同一套&lt;code&gt;URL System&lt;/code&gt;，&lt;code&gt;UIWebView&lt;/code&gt;的&lt;code&gt;cookie&lt;/code&gt;是会共享到&lt;code&gt;weex&lt;/code&gt;中的，同理&lt;code&gt;weex&lt;/code&gt;中的&lt;code&gt;cookie&lt;/code&gt;也是会共享的，只有&lt;code&gt;WKWebView&lt;/code&gt;不会。原则上，你不应该使用&lt;code&gt;cookie&lt;/code&gt;来处理用户体系的问题&lt;/li&gt;
-&lt;/ul&gt;
-&lt;blockquote&gt;
-&lt;p&gt;weex native 与 weex web 之间的差异较大，那么怎么办？   &lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;我们提供了一套抹平一些常见差异的库，你也可以在weex环境中使用，&lt;a href=&quot;https://github.com/open-dingtalk/weex-dingtalk-journey&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://github.com/open-dingtalk/weex-dingtalk-journey&lt;/a&gt;。   &lt;/p&gt;
-&lt;p&gt;在说内存（memory）之前，大家先来看一副图，weex的内存分布：&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://segmentfault.com/img/remote/1460000010023505?w=916&amp;amp;h=958&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;p&gt;正常情况下，&lt;code&gt;Native memory&lt;/code&gt; 业务开发人员是无法处理的，而运行在&lt;code&gt;js core&lt;/code&gt; 中的内存，我们知道如果不断开引用，js是无法回收释放内存的。   &lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;不允许往 runtime 里去挂载对象&lt;/li&gt;
-&lt;li&gt;业务代码中的一些引用在beforeDestroy 中断开设置为null&lt;/li&gt;
-&lt;li&gt;学会使用工具分析内存泄漏的问题，&lt;a href=&quot;https://webkit.org/downloads/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://webkit.org/downloads/&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;不要随意的使用函数递归，缩短对象方法的执行路径（传统JS领域的内存管理最佳实践也适用一部分）&lt;/li&gt;
-&lt;li&gt;由于界面的渲染需要依赖createInstance(id, code, config, data)，sendTasks(id, tasks)，receiveTasks(id, tasks)发送指令的方式进行通信，你应该减少通信的次数，在更新界面时，合并不必要的通信指令的发送。&lt;/li&gt;
-&lt;li&gt;如果你使用vue-router的方式，尽量减少组件之间的共享。&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3 id=&quot;转场方式-navigator&quot;&gt;&lt;a href=&quot;#转场方式-navigator&quot; class=&quot;headerlink&quot; title=&quot;转场方式-navigator&quot;&gt;&lt;/a&gt;转场方式-navigator&lt;/h3&gt;&lt;p&gt;由于weex的特殊性，它的转场方式有几种构成。&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;weex to weex&lt;/code&gt;，如果你需要支持钉钉&lt;code&gt;js-api&lt;/code&gt;，那么你应该使用&lt;code&gt;openLink&lt;/code&gt;。（如果是你自己实现，使用weex自带的navigator模块）&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;weex to h5&lt;/code&gt; 依然使用&lt;code&gt;openLink&lt;/code&gt;，（如果是你自己实现，那么可以通过&lt;code&gt;module&lt;/code&gt;的方式来打开一个&lt;code&gt;WebViewController| UIWebView or WKWebView&lt;/code&gt;）&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;native to weex&lt;/code&gt; 直接&lt;code&gt;alloc weex&lt;/code&gt; 容器的&lt;code&gt;Controller&lt;/code&gt;传入&lt;code&gt;Url&lt;/code&gt;即可&lt;br&gt;如果你使用&lt;code&gt;vue-router&lt;/code&gt;，那么配置好你的路由&lt;code&gt;path&lt;/code&gt;，使用&lt;code&gt;push&lt;/code&gt;，&lt;code&gt;go&lt;/code&gt;方法即可，唯一可惜的是使用&lt;code&gt;vue-router&lt;/code&gt;的方式较为生硬。   &lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3 id=&quot;页面级别的数据传输-Page-level-data-transfer&quot;&gt;&lt;a href=&quot;#页面级别的数据传输-Page-level-data-transfer&quot; class=&quot;headerlink&quot; title=&quot;页面级别的数据传输-Page level data transfer&quot;&gt;&lt;/a&gt;页面级别的数据传输-Page level data transfer&lt;/h3&gt;&lt;blockquote&gt;
-&lt;p&gt;页面级别的数据传输基本很少会发生，钉钉的开发者推荐统一使用domainStorage方案。&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;weex to weex&lt;/code&gt; 通过URL传参数（携带的数据量有限），通过&lt;code&gt;weex storage module&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;weex to h5&lt;/code&gt;，&lt;code&gt;h5 to weex&lt;/code&gt; 通过URL传参数&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;native to weex&lt;/code&gt; 通过&lt;code&gt;alloc weex&lt;/code&gt; 容器中的&lt;code&gt;option&lt;/code&gt;或者&lt;code&gt;data&lt;/code&gt;传入，前者可以在&lt;code&gt;weex.config&lt;/code&gt;中获取，后者可以在vm上下文中获取&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;weex to native&lt;/code&gt; 定义一个跳转&lt;code&gt;native&lt;/code&gt;的&lt;code&gt;module&lt;/code&gt;，使用&lt;code&gt;native&lt;/code&gt;的属性或者&lt;code&gt;init&lt;/code&gt;时传入&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/blockquote&gt;
-&lt;h3 id=&quot;调试工具-Debug-Kit-used&quot;&gt;&lt;a href=&quot;#调试工具-Debug-Kit-used&quot; class=&quot;headerlink&quot; title=&quot;调试工具-Debug Kit used&quot;&gt;&lt;/a&gt;调试工具-Debug Kit used&lt;/h3&gt;&lt;p&gt;weex的调试工具需要额外安装weex-toolkit，weex-devtool，以及在你的Native工程中集成对应的WXDevtool（iOS）。    &lt;/p&gt;
-&lt;p&gt;如果你运行weex debug遇到如下的错误：&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;bash&quot;&gt;Error: EACCES: permission denied, open &amp;#39;/Users/xxx/.xtoolkit/node_modules/weex-devtool/frontend/weex/weex-bundle.js&amp;#39;
-    at Error (native)
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;（非Windows用户）使用sudo即可。&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;不集成 &lt;code&gt;WXDevtool SDK&lt;/code&gt;&lt;br&gt;首先，你需要安装&lt;code&gt;Weex Playground&lt;/code&gt;，可自行在各大市场中下载安装。   &lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;不需要指明文件路径，在终端输入：&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;bash&quot;&gt;$ weex debug
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;先使用 &lt;code&gt;Weex Playground&lt;/code&gt; 扫码（启动成功后会弹出一个界面），然后将你的业务代码贴到 这里，注意：   &lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;不允许出现&lt;code&gt;import&lt;/code&gt;等导入模块的语法&lt;/li&gt;
-&lt;li&gt;安装了&lt;code&gt;Weex Playground&lt;/code&gt;的设备和你的电脑必须在同一局域网内&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;最后用安装了&lt;code&gt;Weex Playground&lt;/code&gt;的设备扫码（业务代码贴过去那里的右侧会出现的二维码）。   &lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;集成 &lt;code&gt;WXDevtool SDK&lt;/code&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;pre&gt;&lt;code&gt;[WXDevTool setDebug:YES];
-[WXDevTool launchDevToolDebugWithUrl:@&amp;quot;ws://192.168.1.108:8088/debugProxy/native&amp;quot;];
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;code&gt;ws:// xxx.xx..x&lt;/code&gt; 这个地址是在用&lt;code&gt;weex debug&lt;/code&gt; 在终端里给你输出出来的，如果&lt;code&gt;setDebug&lt;/code&gt;为&lt;code&gt;YES&lt;/code&gt;会开启&lt;code&gt;debugger&lt;/code&gt;模式，反之亦然。   &lt;/p&gt;
-&lt;p&gt;注意&lt;code&gt;setDebug&lt;/code&gt;设置为&lt;code&gt;YES&lt;/code&gt;。&lt;/p&gt;
-&lt;h3 id=&quot;原生开发-Native&quot;&gt;&lt;a href=&quot;#原生开发-Native&quot; class=&quot;headerlink&quot; title=&quot;原生开发-Native&quot;&gt;&lt;/a&gt;原生开发-Native&lt;/h3&gt;&lt;p&gt;请直接阅读 &lt;a href=&quot;https://zhuanlan.zhihu.com/p/25182677&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Weex入坑之旅&lt;/a&gt; ，这是用&lt;code&gt;iOS&lt;/code&gt;视角写的一篇文章，大概在半年之前。&lt;/p&gt;
-&lt;h3 id=&quot;写在最后&quot;&gt;&lt;a href=&quot;#写在最后&quot; class=&quot;headerlink&quot; title=&quot;写在最后&quot;&gt;&lt;/a&gt;写在最后&lt;/h3&gt;&lt;p&gt;希望大家可以用一个开放的心态来看待&lt;code&gt;weex&lt;/code&gt;，它的设计，实现有很多是值得学习的地方，&lt;br&gt;比如多&lt;code&gt;framework&lt;/code&gt;支持，共享&lt;code&gt;runtime&lt;/code&gt;，&lt;code&gt;module&lt;/code&gt;，&lt;code&gt;component&lt;/code&gt;，&lt;code&gt;handler&lt;/code&gt;等等，非常的自由领域，相当于它设计好了一个&lt;code&gt;render engine&lt;/code&gt;。&lt;br&gt;理论上你可以学习它的几个关键接口，知道&lt;code&gt;Native DOM&lt;/code&gt;指令后，也能开发出替代&lt;code&gt;Vue&lt;/code&gt;的上层框架，不信？你看看Rax即明白了。   &lt;/p&gt;
-&lt;p&gt;&lt;code&gt;weex&lt;/code&gt;也有一些不足的地方，开发者数量少，社区活跃度不高，很多问题并不一定能被&lt;code&gt;google&lt;/code&gt;搜录到。&lt;br&gt;文档确实有一点不完善，&lt;code&gt;native&lt;/code&gt;的实现也有一定的&lt;code&gt;bug&lt;/code&gt;数量，你看&lt;code&gt;react&lt;/code&gt;这么多年了，依然有&lt;code&gt;bug&lt;/code&gt;，只要在逐步改进迭代修复，我觉得它就是非常棒的，万事没有十全十美，美中不足的一点瑕疵，说不定才是完美呢。&lt;/p&gt;
-</content>
+    <content type="html"><![CDATA[<h3 id="技术概述"><a href="#技术概述" class="headerlink" title="技术概述"></a>技术概述</h3><p><code>weex</code>是阿里开源的一套构建高性能移动界面的原生跨平台技术框架，它的上层由<code>Vue</code>，<code>Rax</code>（非常类似React的开发框架）实现数据驱动，底层由<code>iOS</code>，<code>Android</code>实现<code>render engine</code>来驱动界面的最终落地。类比<code>React Native</code>它的优势在于难得的一次编写，多端运行，是的，它也很好的支持着移动Web端。</p><h3 id="构建-build"><a href="#构建-build" class="headerlink" title="构建-build"></a>构建-build</h3><p><code>Native</code>使用<code>weex-loader</code>，<code>Web</code>则需要使用<code>vue-loader</code>，在Web端上<code>vue-loader</code>目前仅支持<code>^11.3.3</code>版本，以及<code>weex-vue-render</code>需要<code>&gt;= 0.11.50</code>，并且<code>vue-loader</code>的配置做如下修改：</p><ul><li>webpack 1.x</li></ul><pre><code>module: {  loaders: [    {      test: /\.vue(\?[^?]+)?$/,      loaders: [&#39;vue-loader&#39;]    }  ]},vue: {  /**   * important! should use postTransformNode to add $processStyle for   * inline style normalization.   */  compilerModules: [    {      postTransformNode: el =&gt; {        el.staticStyle = `$processStyle(${el.staticStyle})`        el.styleBinding = `$processStyle(${el.styleBinding})`      }    }  ]}</code></pre><ul><li>webpack 2.x</li></ul><pre><code>module: {    rules: [      {        test: /\.vue$/,        loader: &#39;vue-loader&#39;,        options: {          compilerModules: [            {              postTransformNode: el =&gt; {                el.staticStyle = `$processStyle(${el.staticStyle})`                el.styleBinding = `$processStyle(${el.styleBinding})`              }            }          ]        }      }    ]}</code></pre><p>最佳的实践是推荐你使用目前为止我们内部评价最高的一份脚手架工程（支持三端一致，意味着处理了降级。）：<a href="https://github.com/dingtalk-templates/webpack" target="_blank" rel="noopener">dingtalk-templates/webpack</a>，你可以直接下载它，自行修改<code>package.json</code>文件中的配置，或者安装 <a href="https://github.com/open-dingtalk/weex-dingtalk-cli" target="_blank" rel="noopener">open-dingtalk/weex-dingtalk-cli</a> 这个命令行工具来玩转脚手架，这个命令行工具就像你使用<code>vue-cli</code>一样的简单：</p><pre><code class="bash">$ npm install -g weex-dingtalk-cli</code></pre><h3 id="样式-style"><a href="#样式-style" class="headerlink" title="样式-style"></a>样式-style</h3><ul><li><code>weex</code>支持的样式属于<code>css</code>子集</li><li>必须写完整，如<code>background:#000</code>需要写成<code>background-color:#000</code></li><li>样式不允许提取文件，必须写在<code>Vue</code>的单组件中</li><li>原则上不推荐使用预处理器，因为无法预期转译出来的样式符合<code>weex</code>的<code>css</code>子集</li><li>布局只能使用<code>Flexbox</code></li><li>如果要显示文本必须使用<code>text</code>组件，并且你想改变字体大小必须写在<code>text</code>组件上</li><li>只支持<code>class</code>，不允许继承</li><li>单位只支持<code></code>px`</li><li>不支持背景图片</li><li>基于<code>750px</code>进行缩放，会有浮点级别的误差</li><li>样式需要声明 <code>scoped</code> 属性</li><li><code>Android</code>上处理圆角，必须在外层<code>div</code>中设置<code>border-radius</code></li><li>如果你想动态的替换<code>class</code>，只能使用数组表达式，<code>&lt;div :class=[&#39;name&#39;, a? &#39;b&#39;: &#39;c&#39;]&gt;&lt;/div&gt;</code></li></ul><p>如果你想使用预处理器（只是不推荐），可以如下配置：</p><pre><code>{    test: /\.vue$/,    loader: &#39;vue-loader&#39;,    options: {        loaders: {          scss: &#39;vue-style-loader!css-loader!sass-loader&#39;        }    }}</code></pre><pre><code>&lt;style lang=&quot;sass&quot;&gt;    @import &#39;./common.scss&#39;    // ...&lt;/style&gt;</code></pre><p>如果你想使用更精准的适配（无法忍受浮点级别的误差），可以获取<code>scale</code>、<code>deviceWidth</code>自行进行适配，推荐在loader阶段去处理（自行开发转换工具）。</p><h3 id="JavaScript与内存管理-JavaScript-and-memory-manage"><a href="#JavaScript与内存管理-JavaScript-and-memory-manage" class="headerlink" title="JavaScript与内存管理-JavaScript and memory manage"></a>JavaScript与内存管理-JavaScript and memory manage</h3><blockquote><p>由于JS运行在<code>JavaScriptCore/V8</code>中，此与Web有较大差异。</p></blockquote><p>如下：</p><ul><li><code>query</code>，<code>axios</code> 之类的原来Web开发领域的库都不可以使用</li><li>不支持DOM操作</li><li>虽然提供了<code>Native DOM</code>可以操作界面的渲染，原则上不推荐使用，方法与DOM操作类似</li><li>既然不支持DOM操作，更改界面的方式应该使用数据驱动</li><li>仅支持部分事件</li><li><code>weex SDK &gt;= 0.10.0</code> 的才支持事件冒泡</li><li>没有<code>window</code>，<code>document</code>，<code>location</code>，<code>history</code>等对象</li><li>runtime是一个“全局环境”，不允许往全局环境中挂载对象，因为无法释放且所有<code>weex</code>页面共享</li><li>只有<code>scroller</code>和<code>list</code>组件可以滚动</li><li>不允许在<code>Vue</code>中操作<code>style</code>，遍历是很耗性能的</li><li>Vue中的<code>v-show</code>等原来操作Dom的指令或Api都不可以使用</li><li><code>vue-router</code> 只允许使用 <code>abstract</code> 模式</li><li><code>vuex</code>必须在初始化之前使用<code>Vue.use</code>注入</li><li><code>native</code>端只能使用网络图片，解决的方式是在最后上线时统一替换成<code>CDN</code></li><li><ul><li>热更新以及增量更新的方式都可以参考<code>React Native</code>目前成熟的方案</li></ul></li><li>iOS由于使用了同一套<code>URL System</code>，<code>UIWebView</code>的<code>cookie</code>是会共享到<code>weex</code>中的，同理<code>weex</code>中的<code>cookie</code>也是会共享的，只有<code>WKWebView</code>不会。原则上，你不应该使用<code>cookie</code>来处理用户体系的问题</li></ul><blockquote><p>weex native 与 weex web 之间的差异较大，那么怎么办？   </p></blockquote><p>我们提供了一套抹平一些常见差异的库，你也可以在weex环境中使用，<a href="https://github.com/open-dingtalk/weex-dingtalk-journey" target="_blank" rel="noopener">https://github.com/open-dingtalk/weex-dingtalk-journey</a>。   </p><p>在说内存（memory）之前，大家先来看一副图，weex的内存分布：</p><p><img src="https://segmentfault.com/img/remote/1460000010023505?w=916&amp;h=958" alt=""></p><p>正常情况下，<code>Native memory</code> 业务开发人员是无法处理的，而运行在<code>js core</code> 中的内存，我们知道如果不断开引用，js是无法回收释放内存的。   </p><ul><li>不允许往 runtime 里去挂载对象</li><li>业务代码中的一些引用在beforeDestroy 中断开设置为null</li><li>学会使用工具分析内存泄漏的问题，<a href="https://webkit.org/downloads/" target="_blank" rel="noopener">https://webkit.org/downloads/</a></li><li>不要随意的使用函数递归，缩短对象方法的执行路径（传统JS领域的内存管理最佳实践也适用一部分）</li><li>由于界面的渲染需要依赖createInstance(id, code, config, data)，sendTasks(id, tasks)，receiveTasks(id, tasks)发送指令的方式进行通信，你应该减少通信的次数，在更新界面时，合并不必要的通信指令的发送。</li><li>如果你使用vue-router的方式，尽量减少组件之间的共享。</li></ul><h3 id="转场方式-navigator"><a href="#转场方式-navigator" class="headerlink" title="转场方式-navigator"></a>转场方式-navigator</h3><p>由于weex的特殊性，它的转场方式有几种构成。</p><ul><li><code>weex to weex</code>，如果你需要支持钉钉<code>js-api</code>，那么你应该使用<code>openLink</code>。（如果是你自己实现，使用weex自带的navigator模块）</li><li><code>weex to h5</code> 依然使用<code>openLink</code>，（如果是你自己实现，那么可以通过<code>module</code>的方式来打开一个<code>WebViewController| UIWebView or WKWebView</code>）</li><li><code>native to weex</code> 直接<code>alloc weex</code> 容器的<code>Controller</code>传入<code>Url</code>即可<br>如果你使用<code>vue-router</code>，那么配置好你的路由<code>path</code>，使用<code>push</code>，<code>go</code>方法即可，唯一可惜的是使用<code>vue-router</code>的方式较为生硬。   </li></ul><h3 id="页面级别的数据传输-Page-level-data-transfer"><a href="#页面级别的数据传输-Page-level-data-transfer" class="headerlink" title="页面级别的数据传输-Page level data transfer"></a>页面级别的数据传输-Page level data transfer</h3><blockquote><p>页面级别的数据传输基本很少会发生，钉钉的开发者推荐统一使用domainStorage方案。</p><ul><li><code>weex to weex</code> 通过URL传参数（携带的数据量有限），通过<code>weex storage module</code></li><li><code>weex to h5</code>，<code>h5 to weex</code> 通过URL传参数</li><li><code>native to weex</code> 通过<code>alloc weex</code> 容器中的<code>option</code>或者<code>data</code>传入，前者可以在<code>weex.config</code>中获取，后者可以在vm上下文中获取</li><li><code>weex to native</code> 定义一个跳转<code>native</code>的<code>module</code>，使用<code>native</code>的属性或者<code>init</code>时传入</li></ul></blockquote><h3 id="调试工具-Debug-Kit-used"><a href="#调试工具-Debug-Kit-used" class="headerlink" title="调试工具-Debug Kit used"></a>调试工具-Debug Kit used</h3><p>weex的调试工具需要额外安装weex-toolkit，weex-devtool，以及在你的Native工程中集成对应的WXDevtool（iOS）。    </p><p>如果你运行weex debug遇到如下的错误：</p><pre><code class="bash">Error: EACCES: permission denied, open &#39;/Users/xxx/.xtoolkit/node_modules/weex-devtool/frontend/weex/weex-bundle.js&#39;    at Error (native)</code></pre><p>（非Windows用户）使用sudo即可。</p><ul><li>不集成 <code>WXDevtool SDK</code><br>首先，你需要安装<code>Weex Playground</code>，可自行在各大市场中下载安装。   </li></ul><p>不需要指明文件路径，在终端输入：</p><pre><code class="bash">$ weex debug</code></pre><p>先使用 <code>Weex Playground</code> 扫码（启动成功后会弹出一个界面），然后将你的业务代码贴到 这里，注意：   </p><ul><li>不允许出现<code>import</code>等导入模块的语法</li><li>安装了<code>Weex Playground</code>的设备和你的电脑必须在同一局域网内</li></ul><p>最后用安装了<code>Weex Playground</code>的设备扫码（业务代码贴过去那里的右侧会出现的二维码）。   </p><ul><li>集成 <code>WXDevtool SDK</code></li></ul><pre><code>[WXDevTool setDebug:YES];[WXDevTool launchDevToolDebugWithUrl:@&quot;ws://192.168.1.108:8088/debugProxy/native&quot;];</code></pre><p><code>ws:// xxx.xx..x</code> 这个地址是在用<code>weex debug</code> 在终端里给你输出出来的，如果<code>setDebug</code>为<code>YES</code>会开启<code>debugger</code>模式，反之亦然。   </p><p>注意<code>setDebug</code>设置为<code>YES</code>。</p><h3 id="原生开发-Native"><a href="#原生开发-Native" class="headerlink" title="原生开发-Native"></a>原生开发-Native</h3><p>请直接阅读 <a href="https://zhuanlan.zhihu.com/p/25182677" target="_blank" rel="noopener">Weex入坑之旅</a> ，这是用<code>iOS</code>视角写的一篇文章，大概在半年之前。</p><h3 id="写在最后"><a href="#写在最后" class="headerlink" title="写在最后"></a>写在最后</h3><p>希望大家可以用一个开放的心态来看待<code>weex</code>，它的设计，实现有很多是值得学习的地方，<br>比如多<code>framework</code>支持，共享<code>runtime</code>，<code>module</code>，<code>component</code>，<code>handler</code>等等，非常的自由领域，相当于它设计好了一个<code>render engine</code>。<br>理论上你可以学习它的几个关键接口，知道<code>Native DOM</code>指令后，也能开发出替代<code>Vue</code>的上层框架，不信？你看看Rax即明白了。   </p><p><code>weex</code>也有一些不足的地方，开发者数量少，社区活跃度不高，很多问题并不一定能被<code>google</code>搜录到。<br>文档确实有一点不完善，<code>native</code>的实现也有一定的<code>bug</code>数量，你看<code>react</code>这么多年了，依然有<code>bug</code>，只要在逐步改进迭代修复，我觉得它就是非常棒的，万事没有十全十美，美中不足的一点瑕疵，说不定才是完美呢。</p>]]></content>
     
     <summary type="html">
     
-      &lt;h3 id=&quot;技术概述&quot;&gt;&lt;a href=&quot;#技术概述&quot; class=&quot;headerlink&quot; title=&quot;技术概述&quot;&gt;&lt;/a&gt;技术概述&lt;/h3&gt;&lt;p&gt;&lt;code&gt;weex&lt;/code&gt;是阿里开源的一套构建高性能移动界面的原生跨平台技术框架，它的上层由&lt;code&gt;Vue&lt;/c
+      
+      
+        &lt;h3 id=&quot;技术概述&quot;&gt;&lt;a href=&quot;#技术概述&quot; class=&quot;headerlink&quot; title=&quot;技术概述&quot;&gt;&lt;/a&gt;技术概述&lt;/h3&gt;&lt;p&gt;&lt;code&gt;weex&lt;/code&gt;是阿里开源的一套构建高性能移动界面的原生跨平台技术框架，它的上层由&lt;code&gt;Vue&lt;/c
+      
     
     </summary>
     
@@ -330,57 +92,14 @@ vue: {
     <published>2017-03-01T03:40:38.000Z</published>
     <updated>2017-03-02T03:18:10.709Z</updated>
     
-    <content type="html">&lt;h4 id=&quot;一、mongodb安装配置&quot;&gt;&lt;a href=&quot;#一、mongodb安装配置&quot; class=&quot;headerlink&quot; title=&quot;一、mongodb安装配置&quot;&gt;&lt;/a&gt;一、mongodb安装配置&lt;/h4&gt;&lt;p&gt;这部分可参考博文 &lt;a href=&quot;http://blog.xiaqingsong.com/2016/12/16/windows%E4%B8%8B%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AEmongodb/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;windows下安装配置mongodb&lt;/a&gt;&lt;/p&gt;
-&lt;h4 id=&quot;二、-主从配置&quot;&gt;&lt;a href=&quot;#二、-主从配置&quot; class=&quot;headerlink&quot; title=&quot;二、 主从配置&quot;&gt;&lt;/a&gt;二、 主从配置&lt;/h4&gt;&lt;blockquote&gt;
-&lt;p&gt;在生产环境中单台数据库一般不能满足业务稳定性的需求，所以数据库主从复制架构在生产环境中很常见，用于主从复制也是Mongodb最常用的一种架构方式。&lt;br&gt;这种方式非常灵活，可用于备份、故障恢复、读扩展等,从而提高数据处理性能和冗余，常用架构模式是一主一从、一主多从、双主。&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;本着实验目的，我们今天简单实现一主一从的配置。&lt;/p&gt;
-&lt;p&gt;注：主从服务器我们指定端口分别为 &lt;code&gt;27017&lt;/code&gt; 和 &lt;code&gt;27019&lt;/code&gt;。  &lt;/p&gt;
-&lt;p&gt;根目录下我们分别新建&lt;code&gt;mongodb.cfg&lt;/code&gt;和&lt;code&gt;mongodb.slave.cfg&lt;/code&gt;主从启动配置文件，详细配置如下：&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;master&lt;/strong&gt;(mongodb.cfg): &lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-git&quot;&gt;dbpath=D:\mongodb\data\db\master #规定数据库的位置
-logpath=D:\mongodb\data\log\master\mongodb.log #规定数据库的日志文件
-
-port=27017 #指定端口
-#fork=true #后台运行
-
-master=true #设置主
-
-# bind_ip=127.0.0.1,192.168.0.4 #允许的地址 为了安全
-nohttpinterface=true #禁止http访问
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;strong&gt;slave&lt;/strong&gt;(mongodb.slave.cfg): &lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-git&quot;&gt;dbpath=D:\mongodb\data\db\slave #规定数据库的位置
-logpath=D:\mongodb\data\log\slave\mongodb.log #规定数据库的日志文件
-
-port=27019 #指定端口
-#fork=true #后台运行
-
-slave=true #声明从
-source=127.0.0.1:27017 #规定从属于哪个ip  注意：ip是主服务器的  最好用内网ip
-
-# bind_ip=127.0.0.1,192.168.0.4 #允许的地址 为了安全
-nohttpinterface=true #禁止http访问
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h4 id=&quot;三、启动&quot;&gt;&lt;a href=&quot;#三、启动&quot; class=&quot;headerlink&quot; title=&quot;三、启动&quot;&gt;&lt;/a&gt;三、启动&lt;/h4&gt;&lt;p&gt;进入&lt;code&gt;bin&lt;/code&gt;目录，执行下面步骤：&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-git&quot;&gt;mongod -f ../mongodb.cfg  #启动主服务器
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;从服务器启动，同理如上：&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-git&quot;&gt;mongod -f ../mongodb.slave.cfg  #启动从服务器
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;启动完成后，我们分别另起一个窗口，进入数据库：&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;mongo --host localhost --port 27017  #进入主数据库 
-mongo --host localhost --port 27019  #进入主数据库
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;之后，我们在从服务器执行：&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;rs.slaveOk();
-show dbs;  #如果出现主数据库的数据，说明同步成功
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;详细执行效果，可参考下图所示：&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;http://7xth8v.com2.z0.glb.qiniucdn.com/image/n_mongodb%20master_and_slave_test.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-</content>
+    <content type="html"><![CDATA[<h4 id="一、mongodb安装配置"><a href="#一、mongodb安装配置" class="headerlink" title="一、mongodb安装配置"></a>一、mongodb安装配置</h4><p>这部分可参考博文 <a href="http://blog.xiaqingsong.com/2016/12/16/windows%E4%B8%8B%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AEmongodb/" target="_blank" rel="noopener">windows下安装配置mongodb</a></p><h4 id="二、-主从配置"><a href="#二、-主从配置" class="headerlink" title="二、 主从配置"></a>二、 主从配置</h4><blockquote><p>在生产环境中单台数据库一般不能满足业务稳定性的需求，所以数据库主从复制架构在生产环境中很常见，用于主从复制也是Mongodb最常用的一种架构方式。<br>这种方式非常灵活，可用于备份、故障恢复、读扩展等,从而提高数据处理性能和冗余，常用架构模式是一主一从、一主多从、双主。</p></blockquote><p>本着实验目的，我们今天简单实现一主一从的配置。</p><p>注：主从服务器我们指定端口分别为 <code>27017</code> 和 <code>27019</code>。  </p><p>根目录下我们分别新建<code>mongodb.cfg</code>和<code>mongodb.slave.cfg</code>主从启动配置文件，详细配置如下：</p><p><strong>master</strong>(mongodb.cfg): </p><pre><code class="language-git">dbpath=D:\mongodb\data\db\master #规定数据库的位置logpath=D:\mongodb\data\log\master\mongodb.log #规定数据库的日志文件port=27017 #指定端口#fork=true #后台运行master=true #设置主# bind_ip=127.0.0.1,192.168.0.4 #允许的地址 为了安全nohttpinterface=true #禁止http访问</code></pre><p><strong>slave</strong>(mongodb.slave.cfg): </p><pre><code class="language-git">dbpath=D:\mongodb\data\db\slave #规定数据库的位置logpath=D:\mongodb\data\log\slave\mongodb.log #规定数据库的日志文件port=27019 #指定端口#fork=true #后台运行slave=true #声明从source=127.0.0.1:27017 #规定从属于哪个ip  注意：ip是主服务器的  最好用内网ip# bind_ip=127.0.0.1,192.168.0.4 #允许的地址 为了安全nohttpinterface=true #禁止http访问</code></pre><h4 id="三、启动"><a href="#三、启动" class="headerlink" title="三、启动"></a>三、启动</h4><p>进入<code>bin</code>目录，执行下面步骤：</p><pre><code class="language-git">mongod -f ../mongodb.cfg  #启动主服务器</code></pre><p>从服务器启动，同理如上：</p><pre><code class="language-git">mongod -f ../mongodb.slave.cfg  #启动从服务器    </code></pre><p>启动完成后，我们分别另起一个窗口，进入数据库：</p><pre><code>mongo --host localhost --port 27017  #进入主数据库 mongo --host localhost --port 27019  #进入主数据库 </code></pre><p>之后，我们在从服务器执行：</p><pre><code>rs.slaveOk();show dbs;  #如果出现主数据库的数据，说明同步成功</code></pre><p>详细执行效果，可参考下图所示：</p><p><img src="http://7xth8v.com2.z0.glb.qiniucdn.com/image/n_mongodb%20master_and_slave_test.png" alt=""></p>]]></content>
     
     <summary type="html">
     
-      &lt;h4 id=&quot;一、mongodb安装配置&quot;&gt;&lt;a href=&quot;#一、mongodb安装配置&quot; class=&quot;headerlink&quot; title=&quot;一、mongodb安装配置&quot;&gt;&lt;/a&gt;一、mongodb安装配置&lt;/h4&gt;&lt;p&gt;这部分可参考博文 &lt;a href=&quot;http://b
+      
+      
+        &lt;h4 id=&quot;一、mongodb安装配置&quot;&gt;&lt;a href=&quot;#一、mongodb安装配置&quot; class=&quot;headerlink&quot; title=&quot;一、mongodb安装配置&quot;&gt;&lt;/a&gt;一、mongodb安装配置&lt;/h4&gt;&lt;p&gt;这部分可参考博文 &lt;a href=&quot;http://b
+      
     
     </summary>
     
@@ -396,281 +115,15 @@ show dbs;  #如果出现主数据库的数据，说明同步成功
     <published>2016-12-26T11:57:33.000Z</published>
     <updated>2016-12-26T12:21:23.027Z</updated>
     
-    <content type="html">&lt;ul&gt;
-&lt;li&gt;来自vue官方示例：&lt;a href=&quot;https://github.com/vuejs/vue-loader-example&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://github.com/vuejs/vue-loader-example&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;使用vuejs和webpack，以及一系列webpack加载器，如vue-loader&lt;/li&gt;
-&lt;li&gt;简单记录下具体的做法，供新手参考。&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&quot;目录结构&quot;&gt;&lt;a href=&quot;#目录结构&quot; class=&quot;headerlink&quot; title=&quot;目录结构&quot;&gt;&lt;/a&gt;目录结构&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;- demo/
-  + package.json //npm配置文件
-  + webpack.config.js //webpack配置
-  + index.html //页面
-  - node_modules //npm加载的模块
-  - src //开发资源目录
-    - assets //一些资源
-      + logo.png  //图片资源
-    - components //vue组件
-      + a.vue 
-      + b.vue
-      + counter.vue
-    + app.vue //布局文件
-    + main.js  //入口文件
-&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;初始化npm&quot;&gt;&lt;a href=&quot;#初始化npm&quot; class=&quot;headerlink&quot; title=&quot;初始化npm&quot;&gt;&lt;/a&gt;初始化npm&lt;/h2&gt;&lt;p&gt;1.生成npm配置文件 package.json&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;npm init
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;2.可以粘贴如下配置内容替换到package.json中，或者根据变动进行修改&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-javascript&quot;&gt;{
-  &amp;quot;name&amp;quot;: &amp;quot;demo_vue-loader-example&amp;quot;,
-  &amp;quot;version&amp;quot;: &amp;quot;0.0.1&amp;quot;,
-  &amp;quot;description&amp;quot;: &amp;quot;demo&amp;quot;,
-  &amp;quot;main&amp;quot;: &amp;quot;index.js&amp;quot;,
-  &amp;quot;scripts&amp;quot;: {
-    &amp;quot;dev&amp;quot;: &amp;quot;webpack-dev-server --inline --hot --quiet&amp;quot;, 
-    &amp;quot;build&amp;quot;: &amp;quot;export NODE_ENV=production &amp;amp;&amp;amp; webpack --progress --hide-modules&amp;quot;
-  },
-  &amp;quot;author&amp;quot;: &amp;quot;dingyiming&amp;quot;,
-  &amp;quot;license&amp;quot;: &amp;quot;MIT&amp;quot;,
-  &amp;quot;devDependencies&amp;quot;: {
-    &amp;quot;babel-core&amp;quot;: &amp;quot;^6.2.1&amp;quot;,
-    &amp;quot;babel-loader&amp;quot;: &amp;quot;^6.2.0&amp;quot;,
-    &amp;quot;babel-plugin-transform-runtime&amp;quot;: &amp;quot;^6.1.18&amp;quot;,
-    &amp;quot;babel-preset-es2015&amp;quot;: &amp;quot;^6.1.18&amp;quot;,
-    &amp;quot;babel-preset-stage-0&amp;quot;: &amp;quot;^6.1.18&amp;quot;,
-    &amp;quot;babel-runtime&amp;quot;: &amp;quot;^6.2.0&amp;quot;,
-
-    &amp;quot;css-loader&amp;quot;: &amp;quot;^0.23.0&amp;quot;,
-    &amp;quot;node-sass&amp;quot;: &amp;quot;^3.4.2&amp;quot;,
-    &amp;quot;sass-loader&amp;quot;: &amp;quot;^3.1.2&amp;quot;,
-    &amp;quot;style-loader&amp;quot;: &amp;quot;^0.13.0&amp;quot;,
-    &amp;quot;stylus-loader&amp;quot;: &amp;quot;^1.4.2&amp;quot;,
-
-    &amp;quot;file-loader&amp;quot;: &amp;quot;^0.8.5&amp;quot;,
-    &amp;quot;jade&amp;quot;: &amp;quot;^1.11.0&amp;quot;,
-    &amp;quot;template-html-loader&amp;quot;: &amp;quot;0.0.3&amp;quot;,
-
-    &amp;quot;vue-hot-reload-api&amp;quot;: &amp;quot;^1.2.1&amp;quot;,
-    &amp;quot;vue-html-loader&amp;quot;: &amp;quot;^1.0.0&amp;quot;,
-    &amp;quot;vue-loader&amp;quot;: &amp;quot;^7.1.4&amp;quot;,
-
-    &amp;quot;webpack&amp;quot;: &amp;quot;^1.12.9&amp;quot;,
-    &amp;quot;webpack-dev-server&amp;quot;: &amp;quot;^1.14.0&amp;quot;
-  },
-  &amp;quot;dependencies&amp;quot;: {
-    &amp;quot;vue&amp;quot;: &amp;quot;^1.0.10&amp;quot;
-  }
-}
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;3.下载node模块&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;npm install
-&lt;/code&gt;&lt;/pre&gt;&lt;blockquote&gt;
-&lt;p&gt;也可以手动安装某个包，并写入到&lt;code&gt;package.json&lt;/code&gt;文字的依赖中。&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;–save-dev 把依赖名和版本要求放在了 “devDependencies”:{}，&lt;/li&gt;
-&lt;li&gt;–save 放在了 “dependencies”:{}&lt;br&gt;每敲一个下载完后可以看到 “devDependencies”:{}依赖内容的添加&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/blockquote&gt;
-&lt;h2 id=&quot;新建index-html用于展示最终页面&quot;&gt;&lt;a href=&quot;#新建index-html用于展示最终页面&quot; class=&quot;headerlink&quot; title=&quot;新建index.html用于展示最终页面&quot;&gt;&lt;/a&gt;新建index.html用于展示最终页面&lt;/h2&gt;&lt;pre&gt;&lt;code class=&quot;language-html&quot;&gt;&amp;lt;!DOCTYPE html&amp;gt;
-&amp;lt;html lang=&amp;quot;en&amp;quot;&amp;gt;
-&amp;lt;head&amp;gt;
-    &amp;lt;meta charset=&amp;quot;utf-8&amp;quot;&amp;gt;
-    &amp;lt;title&amp;gt;Vue Webpack Example&amp;lt;/title&amp;gt;
-&amp;lt;/head&amp;gt;
-&amp;lt;body&amp;gt;
-&amp;lt;app&amp;gt;&amp;lt;/app&amp;gt;
-&amp;lt;script src=&amp;quot;dist/build.js&amp;quot;&amp;gt;&amp;lt;/script&amp;gt;
-&amp;lt;/body&amp;gt;
-&amp;lt;/html&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h2 id=&quot;新建webpack-config-js用于配置webpack&quot;&gt;&lt;a href=&quot;#新建webpack-config-js用于配置webpack&quot; class=&quot;headerlink&quot; title=&quot;新建webpack.config.js用于配置webpack&quot;&gt;&lt;/a&gt;新建webpack.config.js用于配置webpack&lt;/h2&gt;&lt;pre&gt;&lt;code class=&quot;language-javascript&quot;&gt;var webpack = require(&amp;#39;webpack&amp;#39;)
-
-module.exports = {
-  entry: &amp;#39;./src/main.js&amp;#39;,
-  output: {
-    path: &amp;#39;./dist&amp;#39;,
-    publicPath: &amp;#39;dist/&amp;#39;,
-    filename: &amp;#39;build.js&amp;#39;
-  },
-  module: {
-    loaders: [
-      {
-        test: /\.vue$/,
-        loader: &amp;#39;vue&amp;#39;
-      },
-      {
-        // edit this for additional asset file types
-        test: /\.(png|jpg|gif)$/,
-        loader: &amp;#39;file?name=[name].[ext]?[hash]&amp;#39;
-      }
-    ]
-  },
-  // example: if you wish to apply custom babel options
-  // instead of using vue-loader&amp;#39;s default:
-  babel: {
-    presets: [&amp;#39;es2015&amp;#39;, &amp;#39;stage-0&amp;#39;],
-    plugins: [&amp;#39;transform-runtime&amp;#39;]
-  }
-}
-
-if (process.env.NODE_ENV === &amp;#39;production&amp;#39;) {
-  module.exports.plugins = [
-    new webpack.DefinePlugin({
-      &amp;#39;process.env&amp;#39;: {
-        NODE_ENV: &amp;#39;&amp;quot;production&amp;quot;&amp;#39;
-      }
-    }),
-    new webpack.optimize.UglifyJsPlugin({
-      compress: {
-        warnings: false
-      }
-    }),
-    new webpack.optimize.OccurenceOrderPlugin()
-  ]
-} else {
-  module.exports.devtool = &amp;#39;#source-map&amp;#39;
-}
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h2 id=&quot;新建src目录用于存放开发文件&quot;&gt;&lt;a href=&quot;#新建src目录用于存放开发文件&quot; class=&quot;headerlink&quot; title=&quot;新建src目录用于存放开发文件&quot;&gt;&lt;/a&gt;新建src目录用于存放开发文件&lt;/h2&gt;&lt;h4 id=&quot;新建入口文件main-js&quot;&gt;&lt;a href=&quot;#新建入口文件main-js&quot; class=&quot;headerlink&quot; title=&quot;新建入口文件main.js&quot;&gt;&lt;/a&gt;新建入口文件main.js&lt;/h4&gt;&lt;pre&gt;&lt;code class=&quot;language-javascript&quot;&gt;var Vue = require(&amp;#39;vue&amp;#39;)
-var App = require(&amp;#39;./app.vue&amp;#39;)
-
-new Vue({
-  el: &amp;#39;body&amp;#39;,
-  components: {
-    app: App
-  }
-})
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h4 id=&quot;新建组件布局文件app-vue&quot;&gt;&lt;a href=&quot;#新建组件布局文件app-vue&quot; class=&quot;headerlink&quot; title=&quot;新建组件布局文件app.vue&quot;&gt;&lt;/a&gt;新建组件布局文件&lt;code&gt;app.vue&lt;/code&gt;&lt;/h4&gt;&lt;blockquote&gt;
-&lt;p&gt;组件布局将在这里设置，.vue文件将由vue-loader进行加载，.vue内同时包含html、css、js源码，使组件的独立，组件之间可以尽可能地解耦，便于开发维护&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;pre&gt;&lt;code class=&quot;language-html&quot;&gt;&amp;lt;template lang=&amp;quot;jade&amp;quot;&amp;gt;
-div
-  img(class=&amp;quot;logo&amp;quot;, src=&amp;quot;./assets/logo.png&amp;quot;)
-  h1 {{msg}}
-  comp-a
-  comp-b
-  counter
-&amp;lt;/template&amp;gt;
-
-&amp;lt;script&amp;gt;
-import CompA from &amp;#39;./components/a.vue&amp;#39;
-import CompB from &amp;#39;./components/b.vue&amp;#39;
-import Counter from &amp;#39;./components/counter.vue&amp;#39;
-export default {
-  data () {
-    return {
-      msg: &amp;#39;Hello from vue-loader!&amp;#39;
-    }
-  },
-  components: {
-    CompA,
-    CompB,
-    Counter
-  }
-}
-&amp;lt;/script&amp;gt;
-
-&amp;lt;style lang=&amp;quot;stylus&amp;quot;&amp;gt;
-font-stack = Helvetica, sans-serif
-primary-color = #999
-body
-  font 100% font-stack
-  color primary-color
-.logo
-  width 40px
-  height 40px
-&amp;lt;/style&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h4 id=&quot;新建components文件夹&quot;&gt;&lt;a href=&quot;#新建components文件夹&quot; class=&quot;headerlink&quot; title=&quot;新建components文件夹&quot;&gt;&lt;/a&gt;新建components文件夹&lt;/h4&gt;&lt;p&gt;用于开发具体的子组件，均以.vue的后缀呈现&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;a.vue&lt;/li&gt;
-&lt;/ul&gt;
-&lt;pre&gt;&lt;code class=&quot;language-html&quot;&gt;&amp;lt;style scoped&amp;gt;
-.container {
-  border: 1px solid #00f;
-}
-.red {
-  color: #f00;
-}
-&amp;lt;/style&amp;gt;
-
-&amp;lt;template&amp;gt;
-  &amp;lt;div class=&amp;quot;container&amp;quot;&amp;gt;
-    &amp;lt;h2 class=&amp;quot;red&amp;quot;&amp;gt;{{msg}}&amp;lt;/h2&amp;gt;
-  &amp;lt;/div&amp;gt;
-&amp;lt;/template&amp;gt;
-
-&amp;lt;script&amp;gt;
-export default {
-  data () {
-    return {
-      msg: &amp;#39;Hello from Component A!&amp;#39;
-    }
-  }
-}
-&amp;lt;/script&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;ul&gt;
-&lt;li&gt;b.vue&lt;/li&gt;
-&lt;/ul&gt;
-&lt;pre&gt;&lt;code class=&quot;language-html&quot;&gt;&amp;lt;style scoped&amp;gt;
-.container {
-  border: 1px solid #f00;
-}
-h2 {
-  color: #393;
-}
-&amp;lt;/style&amp;gt;
-
-&amp;lt;template&amp;gt;
-  &amp;lt;div class=&amp;quot;container&amp;quot;&amp;gt;
-    &amp;lt;h2&amp;gt;Hello from Component B!&amp;lt;/h2&amp;gt;
-  &amp;lt;/div&amp;gt;
-&amp;lt;/template&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;ul&gt;
-&lt;li&gt;counter.vue&lt;/li&gt;
-&lt;/ul&gt;
-&lt;pre&gt;&lt;code class=&quot;language-html&quot;&gt;&amp;lt;template&amp;gt;
-  &amp;lt;div&amp;gt;
-    &amp;lt;h1&amp;gt;I am a Counter Component. Edit me in dev mode.&amp;lt;/h1&amp;gt;
-    &amp;lt;p&amp;gt;Current count: {{count}}&amp;lt;/p&amp;gt;
-  &amp;lt;/div&amp;gt;
-&amp;lt;/template&amp;gt;
-
-&amp;lt;script&amp;gt;
-export default {
-  data () {
-    return { count: 0 }
-  },
-  ready () {
-    this.handle = setInterval(() =&amp;gt; {
-      this.count++
-    }, 1000)
-  },
-  destroyed () {
-    clearInterval(this.handle)
-  }
-}
-&amp;lt;/script&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h4 id=&quot;新建assets文件夹用于放一些资源&quot;&gt;&lt;a href=&quot;#新建assets文件夹用于放一些资源&quot; class=&quot;headerlink&quot; title=&quot;新建assets文件夹用于放一些资源&quot;&gt;&lt;/a&gt;新建assets文件夹用于放一些资源&lt;/h4&gt;&lt;p&gt;此项目下有一张图 logo.png&lt;/p&gt;
-&lt;h4 id=&quot;打包运行查看&quot;&gt;&lt;a href=&quot;#打包运行查看&quot; class=&quot;headerlink&quot; title=&quot;打包运行查看&quot;&gt;&lt;/a&gt;打包运行查看&lt;/h4&gt;&lt;ul&gt;
-&lt;li&gt;打包运行查看&lt;/li&gt;
-&lt;/ul&gt;
-&lt;pre&gt;&lt;code&gt;npm run build
-&lt;/code&gt;&lt;/pre&gt;&lt;ul&gt;
-&lt;li&gt;运行&lt;/li&gt;
-&lt;/ul&gt;
-&lt;pre&gt;&lt;code&gt;npm run dev
-&lt;/code&gt;&lt;/pre&gt;&lt;ul&gt;
-&lt;li&gt;查看&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;浏览器中访问 localhost:8080&lt;/p&gt;
-</content>
+    <content type="html"><![CDATA[<ul><li>来自vue官方示例：<a href="https://github.com/vuejs/vue-loader-example" target="_blank" rel="noopener">https://github.com/vuejs/vue-loader-example</a></li><li>使用vuejs和webpack，以及一系列webpack加载器，如vue-loader</li><li>简单记录下具体的做法，供新手参考。</li></ul><h2 id="目录结构"><a href="#目录结构" class="headerlink" title="目录结构"></a>目录结构</h2><pre><code>- demo/  + package.json //npm配置文件  + webpack.config.js //webpack配置  + index.html //页面  - node_modules //npm加载的模块  - src //开发资源目录    - assets //一些资源      + logo.png  //图片资源    - components //vue组件      + a.vue       + b.vue      + counter.vue    + app.vue //布局文件    + main.js  //入口文件</code></pre><h2 id="初始化npm"><a href="#初始化npm" class="headerlink" title="初始化npm"></a>初始化npm</h2><p>1.生成npm配置文件 package.json</p><pre><code>npm init</code></pre><p>2.可以粘贴如下配置内容替换到package.json中，或者根据变动进行修改</p><pre><code class="language-javascript">{  &quot;name&quot;: &quot;demo_vue-loader-example&quot;,  &quot;version&quot;: &quot;0.0.1&quot;,  &quot;description&quot;: &quot;demo&quot;,  &quot;main&quot;: &quot;index.js&quot;,  &quot;scripts&quot;: {    &quot;dev&quot;: &quot;webpack-dev-server --inline --hot --quiet&quot;,     &quot;build&quot;: &quot;export NODE_ENV=production &amp;&amp; webpack --progress --hide-modules&quot;  },  &quot;author&quot;: &quot;dingyiming&quot;,  &quot;license&quot;: &quot;MIT&quot;,  &quot;devDependencies&quot;: {    &quot;babel-core&quot;: &quot;^6.2.1&quot;,    &quot;babel-loader&quot;: &quot;^6.2.0&quot;,    &quot;babel-plugin-transform-runtime&quot;: &quot;^6.1.18&quot;,    &quot;babel-preset-es2015&quot;: &quot;^6.1.18&quot;,    &quot;babel-preset-stage-0&quot;: &quot;^6.1.18&quot;,    &quot;babel-runtime&quot;: &quot;^6.2.0&quot;,    &quot;css-loader&quot;: &quot;^0.23.0&quot;,    &quot;node-sass&quot;: &quot;^3.4.2&quot;,    &quot;sass-loader&quot;: &quot;^3.1.2&quot;,    &quot;style-loader&quot;: &quot;^0.13.0&quot;,    &quot;stylus-loader&quot;: &quot;^1.4.2&quot;,    &quot;file-loader&quot;: &quot;^0.8.5&quot;,    &quot;jade&quot;: &quot;^1.11.0&quot;,    &quot;template-html-loader&quot;: &quot;0.0.3&quot;,    &quot;vue-hot-reload-api&quot;: &quot;^1.2.1&quot;,    &quot;vue-html-loader&quot;: &quot;^1.0.0&quot;,    &quot;vue-loader&quot;: &quot;^7.1.4&quot;,    &quot;webpack&quot;: &quot;^1.12.9&quot;,    &quot;webpack-dev-server&quot;: &quot;^1.14.0&quot;  },  &quot;dependencies&quot;: {    &quot;vue&quot;: &quot;^1.0.10&quot;  }}</code></pre><p>3.下载node模块</p><pre><code>npm install</code></pre><blockquote><p>也可以手动安装某个包，并写入到<code>package.json</code>文字的依赖中。</p><ul><li>–save-dev 把依赖名和版本要求放在了 “devDependencies”:{}，</li><li>–save 放在了 “dependencies”:{}<br>每敲一个下载完后可以看到 “devDependencies”:{}依赖内容的添加</li></ul></blockquote><h2 id="新建index-html用于展示最终页面"><a href="#新建index-html用于展示最终页面" class="headerlink" title="新建index.html用于展示最终页面"></a>新建index.html用于展示最终页面</h2><pre><code class="language-html">&lt;!DOCTYPE html&gt;&lt;html lang=&quot;en&quot;&gt;&lt;head&gt;    &lt;meta charset=&quot;utf-8&quot;&gt;    &lt;title&gt;Vue Webpack Example&lt;/title&gt;&lt;/head&gt;&lt;body&gt;&lt;app&gt;&lt;/app&gt;&lt;script src=&quot;dist/build.js&quot;&gt;&lt;/script&gt;&lt;/body&gt;&lt;/html&gt;</code></pre><h2 id="新建webpack-config-js用于配置webpack"><a href="#新建webpack-config-js用于配置webpack" class="headerlink" title="新建webpack.config.js用于配置webpack"></a>新建webpack.config.js用于配置webpack</h2><pre><code class="language-javascript">var webpack = require(&#39;webpack&#39;)module.exports = {  entry: &#39;./src/main.js&#39;,  output: {    path: &#39;./dist&#39;,    publicPath: &#39;dist/&#39;,    filename: &#39;build.js&#39;  },  module: {    loaders: [      {        test: /\.vue$/,        loader: &#39;vue&#39;      },      {        // edit this for additional asset file types        test: /\.(png|jpg|gif)$/,        loader: &#39;file?name=[name].[ext]?[hash]&#39;      }    ]  },  // example: if you wish to apply custom babel options  // instead of using vue-loader&#39;s default:  babel: {    presets: [&#39;es2015&#39;, &#39;stage-0&#39;],    plugins: [&#39;transform-runtime&#39;]  }}if (process.env.NODE_ENV === &#39;production&#39;) {  module.exports.plugins = [    new webpack.DefinePlugin({      &#39;process.env&#39;: {        NODE_ENV: &#39;&quot;production&quot;&#39;      }    }),    new webpack.optimize.UglifyJsPlugin({      compress: {        warnings: false      }    }),    new webpack.optimize.OccurenceOrderPlugin()  ]} else {  module.exports.devtool = &#39;#source-map&#39;}</code></pre><h2 id="新建src目录用于存放开发文件"><a href="#新建src目录用于存放开发文件" class="headerlink" title="新建src目录用于存放开发文件"></a>新建src目录用于存放开发文件</h2><h4 id="新建入口文件main-js"><a href="#新建入口文件main-js" class="headerlink" title="新建入口文件main.js"></a>新建入口文件main.js</h4><pre><code class="language-javascript">var Vue = require(&#39;vue&#39;)var App = require(&#39;./app.vue&#39;)new Vue({  el: &#39;body&#39;,  components: {    app: App  }})</code></pre><h4 id="新建组件布局文件app-vue"><a href="#新建组件布局文件app-vue" class="headerlink" title="新建组件布局文件app.vue"></a>新建组件布局文件<code>app.vue</code></h4><blockquote><p>组件布局将在这里设置，.vue文件将由vue-loader进行加载，.vue内同时包含html、css、js源码，使组件的独立，组件之间可以尽可能地解耦，便于开发维护</p></blockquote><pre><code class="language-html">&lt;template lang=&quot;jade&quot;&gt;div  img(class=&quot;logo&quot;, src=&quot;./assets/logo.png&quot;)  h1 {{msg}}  comp-a  comp-b  counter&lt;/template&gt;&lt;script&gt;import CompA from &#39;./components/a.vue&#39;import CompB from &#39;./components/b.vue&#39;import Counter from &#39;./components/counter.vue&#39;export default {  data () {    return {      msg: &#39;Hello from vue-loader!&#39;    }  },  components: {    CompA,    CompB,    Counter  }}&lt;/script&gt;&lt;style lang=&quot;stylus&quot;&gt;font-stack = Helvetica, sans-serifprimary-color = #999body  font 100% font-stack  color primary-color.logo  width 40px  height 40px&lt;/style&gt;</code></pre><h4 id="新建components文件夹"><a href="#新建components文件夹" class="headerlink" title="新建components文件夹"></a>新建components文件夹</h4><p>用于开发具体的子组件，均以.vue的后缀呈现</p><ul><li>a.vue</li></ul><pre><code class="language-html">&lt;style scoped&gt;.container {  border: 1px solid #00f;}.red {  color: #f00;}&lt;/style&gt;&lt;template&gt;  &lt;div class=&quot;container&quot;&gt;    &lt;h2 class=&quot;red&quot;&gt;{{msg}}&lt;/h2&gt;  &lt;/div&gt;&lt;/template&gt;&lt;script&gt;export default {  data () {    return {      msg: &#39;Hello from Component A!&#39;    }  }}&lt;/script&gt;</code></pre><ul><li>b.vue</li></ul><pre><code class="language-html">&lt;style scoped&gt;.container {  border: 1px solid #f00;}h2 {  color: #393;}&lt;/style&gt;&lt;template&gt;  &lt;div class=&quot;container&quot;&gt;    &lt;h2&gt;Hello from Component B!&lt;/h2&gt;  &lt;/div&gt;&lt;/template&gt;</code></pre><ul><li>counter.vue</li></ul><pre><code class="language-html">&lt;template&gt;  &lt;div&gt;    &lt;h1&gt;I am a Counter Component. Edit me in dev mode.&lt;/h1&gt;    &lt;p&gt;Current count: {{count}}&lt;/p&gt;  &lt;/div&gt;&lt;/template&gt;&lt;script&gt;export default {  data () {    return { count: 0 }  },  ready () {    this.handle = setInterval(() =&gt; {      this.count++    }, 1000)  },  destroyed () {    clearInterval(this.handle)  }}&lt;/script&gt;</code></pre><h4 id="新建assets文件夹用于放一些资源"><a href="#新建assets文件夹用于放一些资源" class="headerlink" title="新建assets文件夹用于放一些资源"></a>新建assets文件夹用于放一些资源</h4><p>此项目下有一张图 logo.png</p><h4 id="打包运行查看"><a href="#打包运行查看" class="headerlink" title="打包运行查看"></a>打包运行查看</h4><ul><li>打包运行查看</li></ul><pre><code>npm run build</code></pre><ul><li>运行</li></ul><pre><code>npm run dev</code></pre><ul><li>查看</li></ul><p>浏览器中访问 localhost:8080</p>]]></content>
     
     <summary type="html">
     
-      &lt;ul&gt;
-&lt;li&gt;来自vue官方示例：&lt;a href=&quot;https://github.com/vuejs/vue-loader-example&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://github.com/vuejs/vue-loader-
+      
+      
+        &lt;ul&gt;
+&lt;li&gt;来自vue官方示例：&lt;a href=&quot;https://github.com/vuejs/vue-loader-example&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;https://github.com/vuejs/vue-loader-
+      
     
     </summary>
     
@@ -686,119 +139,17 @@ export default {
     <published>2016-12-22T09:50:03.000Z</published>
     <updated>2016-12-22T10:03:06.841Z</updated>
     
-    <content type="html">&lt;blockquote&gt;
-&lt;p&gt;JavaScript 中所有变量都是对象，除了两个例外 null 和 undefined。&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;理解Javascript的类型是学习Javascript的基础，但是作为新手很容易在判断Javascript上容易混淆。很容易被上面这句话误导，首先解释下上面这句话。&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-javascript&quot;&gt;false.toString(); // &amp;#39;false&amp;#39;
-[1, 2, 3].toString(); // &amp;#39;1,2,3&amp;#39;
-(2).toString(); // &amp;#39;2&amp;#39;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;通过上面的代码，可以看出布尔、数组、数字都具有&lt;code&gt;toString()&lt;/code&gt;这一方法，其实除了&lt;code&gt;null&lt;/code&gt;和&lt;code&gt;undefined&lt;/code&gt;外的数据类型都继承自&lt;code&gt;Object&lt;/code&gt;对象都具&lt;code&gt;Object&lt;/code&gt;的方法和属性，这些看似非对象的类型使用起来却很像对象，所以也可以说它们都是对象。&lt;br&gt;可是Javascript依然具有类型，大致可以分成下面几类：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Number&lt;/li&gt;
-&lt;li&gt;String&lt;/li&gt;
-&lt;li&gt;Boolean&lt;/li&gt;
-&lt;li&gt;Object&lt;/li&gt;
-&lt;li&gt;Null&lt;/li&gt;
-&lt;li&gt;Undefined&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;code&gt;Number&lt;/code&gt;、&lt;code&gt;String&lt;/code&gt;、&lt;code&gt;Boolean&lt;/code&gt;、&lt;code&gt;Null&lt;/code&gt;、&lt;code&gt;Undefined&lt;/code&gt;都是是基本数据类型，只有&lt;code&gt;Object&lt;/code&gt;属于复杂数据类型。&lt;br&gt;&lt;code&gt;Null&lt;/code&gt;和&lt;code&gt;Undefined&lt;/code&gt;都表示空，它们的区别在于：&lt;code&gt;Null&lt;/code&gt;表示无值，一般是人为的将变量的值设置为&lt;code&gt;null&lt;/code&gt;；&lt;code&gt;Undefined&lt;/code&gt;表示未知值，一般在使用&lt;code&gt;var&lt;/code&gt;声明变量但未对其加以初始化时，这个变量值为&lt;code&gt;undefined&lt;/code&gt;。&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;Object&lt;/code&gt;又分为以下几种类型：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Function&lt;/li&gt;
-&lt;li&gt;Array&lt;/li&gt;
-&lt;li&gt;Date&lt;/li&gt;
-&lt;li&gt;RegExp&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h4 id=&quot;typeof操作符&quot;&gt;&lt;a href=&quot;#typeof操作符&quot; class=&quot;headerlink&quot; title=&quot;typeof操作符&quot;&gt;&lt;/a&gt;typeof操作符&lt;/h4&gt;&lt;p&gt;&lt;code&gt;typeof&lt;/code&gt;操作符（和&lt;code&gt;instanceof&lt;/code&gt;一起）或许是 JavaScript 中最大的设计缺陷， 因为几乎不可能从它们那里得到想要的结果。&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-javascript&quot;&gt;typeof []; // object
-typeof {}; // object
-typeof &amp;#39;&amp;#39;; // string
-typeof new Date() // object
-typeof 1; // number
-typeof function () {}; // function
-typeof /test/i; // object
-typeof true; // boolean
-typeof null; // object
-typeof undefined; // undefined
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;为什么？&lt;code&gt;function&lt;/code&gt;明明是&lt;code&gt;Object&lt;/code&gt;类型，却显示&lt;code&gt;function&lt;/code&gt;；&lt;code&gt;null&lt;/code&gt;明明是&lt;code&gt;Null&lt;/code&gt;类型，却显示&lt;code&gt;object&lt;/code&gt;。所以&lt;code&gt;typeof&lt;/code&gt;操作符对类型的判断是不靠谱的，除非类型在给定的范围且&lt;code&gt;typeof&lt;/code&gt;确实能够区分这些类型。&lt;/p&gt;
-&lt;h4 id=&quot;类型的区分&quot;&gt;&lt;a href=&quot;#类型的区分&quot; class=&quot;headerlink&quot; title=&quot;类型的区分&quot;&gt;&lt;/a&gt;类型的区分&lt;/h4&gt;&lt;p&gt;Javascript标准标准文档给出了区分类型的办法：&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-javascript&quot;&gt;Object.prototype.toString.call();
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;我们来看看上面的方法输出结果：&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-javascript&quot;&gt;Object.prototype.toString.call([]); // [object Array]
-Object.prototype.toString.call({}); // [object Object]
-Object.prototype.toString.call(&amp;#39;&amp;#39;); // [object String]
-Object.prototype.toString.call(new Date()); // [object Date]
-Object.prototype.toString.call(1); // [object Number]
-Object.prototype.toString.call(function () {}); // [object Function]
-Object.prototype.toString.call(/test/i); // [object RegExp]
-Object.prototype.toString.call(true); // [object Boolean]
-Object.prototype.toString.call(null); // [object Null]
-Object.prototype.toString.call(); // [object Undefined]
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;利用上面判断类型的方法可以写个类库，此类库来自&lt;a href=&quot;//github.com/toddmotto/axis&quot;&gt;Axis.js&lt;/a&gt;:&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-javascript&quot;&gt;(function (root, factory) {
-  // 判断是否使用了模块
-  if (typeof define === &amp;#39;function&amp;#39; &amp;amp;&amp;amp; define.amd) {
-    // 使用AMD模块
-    define(factory);
-  } else if (typeof exports === &amp;#39;object&amp;#39;) {
-    // 使用CMD模块
-    module.exports = factory;
-  } else {
-    // 没有使用模块，放在全局下
-    root.axis = factory();
-  }
-})(this, function () {
-  // 严格模式
-  &amp;#39;use strict&amp;#39;;
-  var exports = {};
-  // 将字符串转为数组
-  var types = &amp;#39;Array Object String Date RegExp Function Boolean Number Null Undefined&amp;#39;.split(&amp;#39; &amp;#39;);
-  // 判断类型
-  var type = function () {
-    return Object.prototype.toString.call(this).slice(8, -1);
-  };
-  // 遍历types，为exports对象添加isArray、isObject...等方法
-  for (var i = types.length; i--;) {
-    exports[&amp;#39;is&amp;#39; + types[i]] = (function (self) {
-      return function (elem) {
-        // type.call(elem)将type方法里的this指针指向elem
-        return type.call(elem) === self;
-      };
-    })(types[i]);
-  }
-  return exports;
-});
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;使用方法也很简单：&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-javascript&quot;&gt;axis.isArray([]); // true
-axis.isObject({}); // true
-axis.isString(&amp;#39;&amp;#39;); // true
-axis.isDate(new Date()); // true
-axis.isRegExp(/test/i); // true
-axis.isFunction(function () {}); // true
-axis.isBoolean(true); // true
-axis.isNumber(1); // true
-axis.isNull(null); // true
-axis.isUndefined(); // true
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;参考链接：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;http://toddmotto.com/understanding-javascript-types-and-reliable-type-checking/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://toddmotto.com/understanding-javascript-types-and-reliable-type-checking/&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;http://bonsaiden.github.io/JavaScript-Garden/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://bonsaiden.github.io/JavaScript-Garden/&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-</content>
+    <content type="html"><![CDATA[<blockquote><p>JavaScript 中所有变量都是对象，除了两个例外 null 和 undefined。</p></blockquote><p>理解Javascript的类型是学习Javascript的基础，但是作为新手很容易在判断Javascript上容易混淆。很容易被上面这句话误导，首先解释下上面这句话。</p><pre><code class="language-javascript">false.toString(); // &#39;false&#39;[1, 2, 3].toString(); // &#39;1,2,3&#39;(2).toString(); // &#39;2&#39;</code></pre><p>通过上面的代码，可以看出布尔、数组、数字都具有<code>toString()</code>这一方法，其实除了<code>null</code>和<code>undefined</code>外的数据类型都继承自<code>Object</code>对象都具<code>Object</code>的方法和属性，这些看似非对象的类型使用起来却很像对象，所以也可以说它们都是对象。<br>可是Javascript依然具有类型，大致可以分成下面几类：</p><ul><li>Number</li><li>String</li><li>Boolean</li><li>Object</li><li>Null</li><li>Undefined</li></ul><p><code>Number</code>、<code>String</code>、<code>Boolean</code>、<code>Null</code>、<code>Undefined</code>都是是基本数据类型，只有<code>Object</code>属于复杂数据类型。<br><code>Null</code>和<code>Undefined</code>都表示空，它们的区别在于：<code>Null</code>表示无值，一般是人为的将变量的值设置为<code>null</code>；<code>Undefined</code>表示未知值，一般在使用<code>var</code>声明变量但未对其加以初始化时，这个变量值为<code>undefined</code>。</p><p><code>Object</code>又分为以下几种类型：</p><ul><li>Function</li><li>Array</li><li>Date</li><li>RegExp</li></ul><h4 id="typeof操作符"><a href="#typeof操作符" class="headerlink" title="typeof操作符"></a>typeof操作符</h4><p><code>typeof</code>操作符（和<code>instanceof</code>一起）或许是 JavaScript 中最大的设计缺陷， 因为几乎不可能从它们那里得到想要的结果。</p><pre><code class="language-javascript">typeof []; // objecttypeof {}; // objecttypeof &#39;&#39;; // stringtypeof new Date() // objecttypeof 1; // numbertypeof function () {}; // functiontypeof /test/i; // objecttypeof true; // booleantypeof null; // objecttypeof undefined; // undefined</code></pre><p>为什么？<code>function</code>明明是<code>Object</code>类型，却显示<code>function</code>；<code>null</code>明明是<code>Null</code>类型，却显示<code>object</code>。所以<code>typeof</code>操作符对类型的判断是不靠谱的，除非类型在给定的范围且<code>typeof</code>确实能够区分这些类型。</p><h4 id="类型的区分"><a href="#类型的区分" class="headerlink" title="类型的区分"></a>类型的区分</h4><p>Javascript标准标准文档给出了区分类型的办法：</p><pre><code class="language-javascript">Object.prototype.toString.call();</code></pre><p>我们来看看上面的方法输出结果：</p><pre><code class="language-javascript">Object.prototype.toString.call([]); // [object Array]Object.prototype.toString.call({}); // [object Object]Object.prototype.toString.call(&#39;&#39;); // [object String]Object.prototype.toString.call(new Date()); // [object Date]Object.prototype.toString.call(1); // [object Number]Object.prototype.toString.call(function () {}); // [object Function]Object.prototype.toString.call(/test/i); // [object RegExp]Object.prototype.toString.call(true); // [object Boolean]Object.prototype.toString.call(null); // [object Null]Object.prototype.toString.call(); // [object Undefined]</code></pre><p>利用上面判断类型的方法可以写个类库，此类库来自<a href="//github.com/toddmotto/axis">Axis.js</a>:</p><pre><code class="language-javascript">(function (root, factory) {  // 判断是否使用了模块  if (typeof define === &#39;function&#39; &amp;&amp; define.amd) {    // 使用AMD模块    define(factory);  } else if (typeof exports === &#39;object&#39;) {    // 使用CMD模块    module.exports = factory;  } else {    // 没有使用模块，放在全局下    root.axis = factory();  }})(this, function () {  // 严格模式  &#39;use strict&#39;;  var exports = {};  // 将字符串转为数组  var types = &#39;Array Object String Date RegExp Function Boolean Number Null Undefined&#39;.split(&#39; &#39;);  // 判断类型  var type = function () {    return Object.prototype.toString.call(this).slice(8, -1);  };  // 遍历types，为exports对象添加isArray、isObject...等方法  for (var i = types.length; i--;) {    exports[&#39;is&#39; + types[i]] = (function (self) {      return function (elem) {        // type.call(elem)将type方法里的this指针指向elem        return type.call(elem) === self;      };    })(types[i]);  }  return exports;});</code></pre><p>使用方法也很简单：</p><pre><code class="language-javascript">axis.isArray([]); // trueaxis.isObject({}); // trueaxis.isString(&#39;&#39;); // trueaxis.isDate(new Date()); // trueaxis.isRegExp(/test/i); // trueaxis.isFunction(function () {}); // trueaxis.isBoolean(true); // trueaxis.isNumber(1); // trueaxis.isNull(null); // trueaxis.isUndefined(); // true</code></pre><p>参考链接：</p><ul><li><a href="http://toddmotto.com/understanding-javascript-types-and-reliable-type-checking/" target="_blank" rel="noopener">http://toddmotto.com/understanding-javascript-types-and-reliable-type-checking/</a></li><li><a href="http://bonsaiden.github.io/JavaScript-Garden/" target="_blank" rel="noopener">http://bonsaiden.github.io/JavaScript-Garden/</a></li></ul>]]></content>
     
     <summary type="html">
     
-      &lt;blockquote&gt;
+      
+      
+        &lt;blockquote&gt;
 &lt;p&gt;JavaScript 中所有变量都是对象，除了两个例外 null 和 undefined。&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;理解Javascript的类型是学习Javascript的基础，但是作为新手很容易在判断Javascript上容易
+      
     
     </summary>
     
@@ -814,236 +165,16 @@ axis.isUndefined(); // true
     <published>2016-12-22T07:18:12.000Z</published>
     <updated>2016-12-22T07:41:18.728Z</updated>
     
-    <content type="html">&lt;blockquote&gt;
-&lt;p&gt;译文链接：&lt;a href=&quot;原文链接：JavaScript template engine in just 20 lines&quot;&gt;JavaScript template engine in just 20 lines&lt;/a&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;最初我的想法是这样子的：&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-javascript&quot;&gt;var TemplateEngine = function(tpl, data) {
-    // magic here ...
-}
-var template = &amp;#39;&amp;lt;p&amp;gt;Hello, my name is &amp;lt;%name%&amp;gt;. I\&amp;#39;m &amp;lt;%age%&amp;gt; years old.&amp;lt;/p&amp;gt;&amp;#39;;
-console.log(TemplateEngine(template, {
-    name: &amp;quot;Krasimir&amp;quot;,
-    age: 29
-}));
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;一个简单的函数，输入是我们的模板以及数据对象，输出么估计你也很容易想到，像下面这样子：&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-javascript&quot;&gt;&amp;lt;p&amp;gt;Hello, my name is Krasimir. I&amp;#39;m 29 years old.&amp;lt;/p&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;其中第一步要做的是寻找里面的模板参数，然后替换成传给引擎的具体数据。我决定使用正则表达式来完成这一步。不过正则不是我的强项，所以大家将就一下，如果有更好的正则也欢迎向我提出。&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-javascript&quot;&gt;var re = /&amp;lt;%([^%&amp;gt;]+)?%&amp;gt;/g;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;这句正则表达式会捕获所有以&lt;code&gt;&amp;lt;%&lt;/code&gt;开头，以&lt;code&gt;%&amp;gt;&lt;/code&gt;结尾的片段。末尾的参数&lt;code&gt;g&lt;/code&gt;（global）表示不只匹配一个，而是匹配所有符合的片段。&lt;br&gt;Javascript里面有很多种使用正则表达式的方法，我们需要的是根据正则表达式输出一个数组，包含所有的字符串，这正是&lt;code&gt;exec&lt;/code&gt;所做的。&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-javascript&quot;&gt;var re = /&amp;lt;%([^%&amp;gt;]+)?%&amp;gt;/g;
-var match = re.exec(tpl);
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;如果我们用&lt;code&gt;console.log&lt;/code&gt;把变量&lt;code&gt;match&lt;/code&gt;打印出来，我们会看见：&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-javascript&quot;&gt;[
-    &amp;quot;&amp;lt;%name%&amp;gt;&amp;quot;,
-    &amp;quot; name &amp;quot;, 
-    index: 21,
-    input: 
-    &amp;quot;&amp;lt;p&amp;gt;Hello, my name is &amp;lt;%name%&amp;gt;. I\&amp;#39;m &amp;lt;%age%&amp;gt; years old.&amp;lt;/p&amp;gt;&amp;quot;
-]
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;不过我们可以看见，返回的数组仅仅包含第一个匹配项。我们需要用&lt;code&gt;while&lt;/code&gt;循环把上述逻辑包起来，这样才能得到所有的匹配项。&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-javascript&quot;&gt;var re = /&amp;lt;%([^%&amp;gt;]+)?%&amp;gt;/g;
-while(match = re.exec(tpl)) {
-    console.log(match);
-}
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;如果把上面的代码跑一遍，你就会看见&lt;code&gt;&amp;lt;%name%&amp;gt;&lt;/code&gt; 和 &lt;code&gt;&amp;lt;%age%&amp;gt;&lt;/code&gt;都被打印出来了。&lt;/p&gt;
-&lt;p&gt;下面，有意思的部分来了。识别出模板中的匹配项后，我们要把他们替换成传递给函数的实际数据。最简单的办法就是使用&lt;code&gt;replace&lt;/code&gt;函数。我们可以像这样来写：&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-javascript&quot;&gt;var TemplateEngine = function(tpl, data) {
-    var re = /&amp;lt;%([^%&amp;gt;]+)?%&amp;gt;/g;
-    while(match = re.exec(tpl)) {
-        tpl = tpl.replace(match[0], data[match[1]])
-    }
-    return tpl;
-}
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;好了，这样就能跑了，但是还不够好。这里我们以&lt;code&gt;data[&amp;quot;property&amp;quot;]&lt;/code&gt;的方式使用了一个简单对象来传递数据，但是实际情况下我们很可能需要更复杂的嵌套对象。所以我们稍微修改了一下&lt;code&gt;data&lt;/code&gt;对象：&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-javascript&quot;&gt;{
-    name: &amp;quot;Krasimir Tsonev&amp;quot;,
-    profile: { age: 29 }
-}
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;不过直接这样子写的话还不能跑，因为在模板中使用&lt;code&gt;&amp;lt;%profile.age%&amp;gt;&lt;/code&gt;的话，代码会被替换成&lt;code&gt;data[&amp;#39;profile.age&amp;#39;]&lt;/code&gt;，结果是&lt;code&gt;undefined&lt;/code&gt;。&lt;br&gt;这样我们就不能简单地用&lt;code&gt;replace&lt;/code&gt;函数，而是要用别的方法。如果能够在&lt;code&gt;&amp;lt;%&lt;/code&gt;和&lt;code&gt;%&amp;gt;&lt;/code&gt;之间直接使用Javascript代码就最好了，这样就能对传入的数据直接求值，像下面这样：&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-javascript&quot;&gt;var template = &amp;#39;&amp;lt;p&amp;gt;Hello, my name is &amp;lt;%this.name%&amp;gt;. I\&amp;#39;m &amp;lt;%this.profile.age%&amp;gt; years old.&amp;lt;/p&amp;gt;&amp;#39;;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;你可能会好奇，这是怎么实现的？这里&lt;a href=&quot;http://ejohn.org/blog/javascript-micro-templating/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;John&lt;/a&gt;使用了&lt;code&gt;new Function&lt;/code&gt;的语法，根据字符串创建一个函数。我们不妨来看个例子：&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-javascript&quot;&gt;var fn = new Function(&amp;quot;arg&amp;quot;, &amp;quot;console.log(arg + 1);&amp;quot;);
-fn(2); // outputs 3
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;code&gt;fn&lt;/code&gt;可是一个货真价实的函数。它接受一个参数，函数体是&lt;code&gt;console.log(arg + 1)&lt;/code&gt;;。上述代码等价于下面的代码：&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-javascript&quot;&gt;var fn = function(arg) {
-    console.log(arg + 1);
-}
-fn(2); // outputs 3
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;通过这种方法，我们可以根据字符串构造函数，包括它的参数和函数体。这不正是我们想要的嘛！不过先别急，在构造函数之前，我们先来看看函数体是什么样子的。&lt;br&gt;按照之前的想法，这个模板引擎最终返回的应该是一个编译好的模板。还是用之前的模板字符串作为例子，那么返回的内容应该类似于：&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-javascript&quot;&gt;return 
-&amp;quot;&amp;lt;p&amp;gt;Hello, my name is &amp;quot; + 
-this.name + 
-&amp;quot;. I\&amp;#39;m &amp;quot; + 
-this.profile.age + 
-&amp;quot; years old.&amp;lt;/p&amp;gt;&amp;quot;;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;当然啦，实际的模板引擎中，我们会把模板切分为小段的文本和有意义的Javascript代码。前面你可能看见我使用简单的字符串拼接来达到想要的效果，不过这并不是100%符合我们要求的做法。&lt;br&gt;由于使用者很可能会传递更加复杂的Javascript代码，所以我们这儿需要再来一个循环，如下：&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-javascript&quot;&gt;var template = 
-&amp;#39;My skills:&amp;#39; + 
-&amp;#39;&amp;lt;%for(var index in this.skills) {%&gt;&#39; + 
-&#39;&lt;a href=&quot;&quot;&gt;&lt;%this.skills[index]%&gt;&lt;/%this.skills[index]%&gt;&lt;/a&gt;&#39; +
-&#39;&lt;%}%&amp;gt;&amp;#39;; &lt;=&quot;&quot; code=&quot;&quot;&gt;&lt;/%}%&amp;gt;&amp;#39;;&gt;&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;如果使用字符串拼接的话，代码就应该是下面的样子：&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-javascript&quot;&gt;return
-&amp;#39;My skills:&amp;#39; + 
-for(var index in this.skills) { +
-&amp;#39;&amp;lt;a href=&amp;quot;&amp;quot;&amp;gt;&amp;#39; + 
-this.skills[index] +
-&amp;#39;&amp;lt;/a&amp;gt;&amp;#39; +
-}
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;当然，这个代码不能直接跑，跑了会出错。于是我用了&lt;a href=&quot;http://ejohn.org/blog/javascript-micro-templating/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;John的文章&lt;/a&gt;里写的逻辑，把所有的字符串放在一个数组里，在程序的最后把它们拼接起来。&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-javascript&quot;&gt;var r = [];
-r.push(&amp;#39;My skills:&amp;#39;); 
-for(var index in this.skills) {
-r.push(&amp;#39;&amp;lt;a href=&amp;quot;&amp;quot;&amp;gt;&amp;#39;);
-r.push(this.skills[index]);
-r.push(&amp;#39;&amp;lt;/a&amp;gt;&amp;#39;);
-}
-return r.join(&amp;#39;&amp;#39;);
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;下一步就是收集模板里面不同的代码行，用于生成函数。通过前面介绍的方法，我们可以知道模板中有哪些占位符（译者注：或者说正则表达式的匹配项）以及它们的位置。&lt;br&gt;所以，依靠一个辅助变量（cursor，游标），我们就能得到想要的结果。&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-javascript&quot;&gt;var TemplateEngine = function(tpl, data) {
-    var re = /&amp;lt;%([^%&amp;gt;]+)?%&amp;gt;/g,
-        code = &amp;#39;var r=[];\n&amp;#39;,
-        cursor = 0;
-    var add = function(line) {
-        code += &amp;#39;r.push(&amp;quot;&amp;#39; + line.replace(/&amp;quot;/g, &amp;#39;\\&amp;quot;&amp;#39;) + &amp;#39;&amp;quot;);\n&amp;#39;;
-    }
-    while(match = re.exec(tpl)) {
-        add(tpl.slice(cursor, match.index));
-        add(match[1]);
-        cursor = match.index + match[0].length;
-    }
-    add(tpl.substr(cursor, tpl.length - cursor));
-    code += &amp;#39;return r.join(&amp;quot;&amp;quot;);&amp;#39;; // &amp;lt;-- return the result
-    console.log(code);
-    return tpl;
-}
-var template = &amp;#39;&amp;lt;p&amp;gt;Hello, my name is &amp;lt;%this.name%&amp;gt;. I\&amp;#39;m &amp;lt;%this.profile.age%&amp;gt; years old.&amp;lt;/p&amp;gt;&amp;#39;;
-console.log(TemplateEngine(template, {
-    name: &amp;quot;Krasimir Tsonev&amp;quot;,
-    profile: { age: 29 }
-}));
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;上述代码中的变量code保存了函数体。开头的部分定义了一个数组。游标&lt;code&gt;cursor&lt;/code&gt;告诉我们当前解析到了模板中的哪个位置。我们需要依靠它来遍历整个模板字符串。&lt;br&gt;此外还有个函数&lt;code&gt;add&lt;/code&gt;，它负责把解析出来的代码行添加到变量&lt;code&gt;code&lt;/code&gt;中去。有一个地方需要特别注意，那就是需要把&lt;code&gt;code&lt;/code&gt;包含的双引号字符进行转义（escape）。否则生成的函数代码会出错。&lt;br&gt;如果我们运行上面的代码，我们会在控制台里面看见如下的内容：&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-javascript&quot;&gt;var r=[];
-r.push(&amp;quot;&amp;lt;p&amp;gt;Hello, my name is &amp;quot;);
-r.push(&amp;quot;this.name&amp;quot;);
-r.push(&amp;quot;. I&amp;#39;m &amp;quot;);
-r.push(&amp;quot;this.profile.age&amp;quot;);
-return r.join(&amp;quot;&amp;quot;);
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;等等，貌似不太对啊，&lt;code&gt;this.name&lt;/code&gt;和&lt;code&gt;this.profile.age&lt;/code&gt;不应该有引号啊，再来改改。&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-javascript&quot;&gt;var add = function(line, js) {
-    js? code += &amp;#39;r.push(&amp;#39; + line + &amp;#39;);\n&amp;#39; :
-        code += &amp;#39;r.push(&amp;quot;&amp;#39; + line.replace(/&amp;quot;/g, &amp;#39;\\&amp;quot;&amp;#39;) + &amp;#39;&amp;quot;);\n&amp;#39;;
-}
-while(match = re.exec(tpl)) {
-    add(tpl.slice(cursor, match.index));
-    add(match[1], true); // &amp;lt;-- say that this is actually valid js
-    cursor = match.index + match[0].length;
-}
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;占位符的内容和一个布尔值一起作为参数传给&lt;code&gt;add&lt;/code&gt;函数，用作区分。这样就能生成我们想要的函数体了。&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-javascript&quot;&gt;var r=[];
-r.push(&amp;quot;&amp;lt;p&amp;gt;Hello, my name is &amp;quot;);
-r.push(this.name);
-r.push(&amp;quot;. I&amp;#39;m &amp;quot;);
-r.push(this.profile.age);
-return r.join(&amp;quot;&amp;quot;);
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;剩下来要做的就是创建函数并且执行它。因此，在模板引擎的最后，把原本返回模板字符串的语句替换成如下的内容：&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-javascript&quot;&gt;return new Function(code.replace(/[\r\t\n]/g, &amp;#39;&amp;#39;)).apply(data);
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;我们甚至不需要显式地传参数给这个函数。我们使用&lt;code&gt;apply&lt;/code&gt;方法来调用它。它会自动设定函数执行的上下文。这就是为什么我们能在函数里面使用&lt;code&gt;this.name&lt;/code&gt;。这里&lt;code&gt;this&lt;/code&gt;指向&lt;code&gt;data&lt;/code&gt;对象。&lt;/p&gt;
-&lt;p&gt;模板引擎接近完成了，不过还有一点，我们需要支持更多复杂的语句，比如条件判断和循环。我们接着上面的例子继续写。&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-javascript&quot;&gt;var template = 
-&amp;#39;My skills:&amp;#39; + 
-&amp;#39;&amp;lt;%for(var index in this.skills) {%&gt;&#39; + 
-&#39;&lt;a href=&quot;#&quot;&gt;&lt;%this.skills[index]%&gt;&lt;/%this.skills[index]%&gt;&lt;/a&gt;&#39; +
-&#39;&lt;%}%&amp;gt;&amp;#39;; console.log(templateengine(template,=&quot;&quot; {=&quot;&quot; skills:=&quot;&quot; [&amp;quot;js&amp;quot;,=&quot;&quot; &amp;quot;html&amp;quot;,=&quot;&quot; &amp;quot;css&amp;quot;]=&quot;&quot; }));=&quot;&quot; &lt;=&quot;&quot; code=&quot;&quot;&gt;&lt;/%}%&amp;gt;&amp;#39;;&gt;&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;这里会产生一个异常，&lt;code&gt;Uncaught SyntaxError: Unexpected token for&lt;/code&gt;。如果我们调试一下，把&lt;code&gt;code&lt;/code&gt;变量打印出来，我们就能发现问题所在。&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-javascript&quot;&gt;var r=[];
-r.push(&amp;quot;My skills:&amp;quot;);
-r.push(for(var index in this.skills) {);
-r.push(&amp;quot;&amp;lt;a href=\&amp;quot;\&amp;quot;&amp;gt;&amp;quot;);
-r.push(this.skills[index]);
-r.push(&amp;quot;&amp;lt;/a&amp;gt;&amp;quot;);
-r.push(});
-r.push(&amp;quot;&amp;quot;);
-return r.join(&amp;quot;&amp;quot;);
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;带有&lt;code&gt;for&lt;/code&gt;循环的那一行不应该被直接放到数组里面，而是应该作为脚本的一部分直接运行。所以我们在把内容添加到&lt;code&gt;code&lt;/code&gt;变量之前还要多做一个判断。&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-javascript&quot;&gt;var re = /&amp;lt;%([^%&amp;gt;]+)?%&amp;gt;/g,
-    reExp = /(^( )?(if|for|else|switch|case|break|{|}))(.*)?/g,
-    code = &amp;#39;var r=[];\n&amp;#39;,
-    cursor = 0;
-var add = function(line, js) {
-    js? code += line.match(reExp) ? line + &amp;#39;\n&amp;#39; : &amp;#39;r.push(&amp;#39; + line + &amp;#39;);\n&amp;#39; :
-        code += &amp;#39;r.push(&amp;quot;&amp;#39; + line.replace(/&amp;quot;/g, &amp;#39;\\&amp;quot;&amp;#39;) + &amp;#39;&amp;quot;);\n&amp;#39;;
-}
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;这里我们新增加了一个正则表达式。它会判断代码中是否包含&lt;code&gt;if&lt;/code&gt;、&lt;code&gt;for&lt;/code&gt;、&lt;code&gt;else&lt;/code&gt;等等关键字。如果有的话就直接添加到脚本代码中去，否则就添加到数组中去。运行结果如下：&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-javascript&quot;&gt;var r=[];
-r.push(&amp;quot;My skills:&amp;quot;);
-for(var index in this.skills) {
-r.push(&amp;quot;&amp;lt;a href=\&amp;quot;#\&amp;quot;&amp;gt;&amp;quot;);
-r.push(this.skills[index]);
-r.push(&amp;quot;&amp;lt;/a&amp;gt;&amp;quot;);
-}
-r.push(&amp;quot;&amp;quot;);
-return r.join(&amp;quot;&amp;quot;);
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;当然，编译出来的结果也是对的。&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-javascript&quot;&gt;My skills:&amp;lt;a href=&amp;quot;#&amp;quot;&amp;gt;js&amp;lt;/a&amp;gt;&amp;lt;a href=&amp;quot;#&amp;quot;&amp;gt;html&amp;lt;/a&amp;gt;&amp;lt;a href=&amp;quot;#&amp;quot;&amp;gt;css&amp;lt;/a&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;最后一个改进可以使我们的模板引擎更为强大。我们可以直接在模板中使用复杂逻辑，例如：&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-javascript&quot;&gt;var template = 
-&amp;#39;My skills:&amp;#39; + 
-&amp;#39;&amp;lt;%if(this.showSkills) {%&gt;&#39; +
-    &#39;&lt;%for(var index=&quot;&quot; in=&quot;&quot; this.skills)=&quot;&quot; {%=&quot;&quot;&gt;&#39; + 
-    &#39;&lt;a href=&quot;#&quot;&gt;&lt;%this.skills[index]%&gt;&lt;/%this.skills[index]%&gt;&lt;/a&gt;&#39; +
-    &#39;&lt;%}%&amp;gt;&amp;#39; +=&quot;&quot; &amp;#39;&amp;lt;%}=&quot;&quot; else=&quot;&quot; {%=&quot;&quot;&gt;&#39; +
-    &#39;&lt;p&gt;none&lt;/p&gt;&#39; +
-&#39;&lt;%}%&amp;gt;&amp;#39;; console.log(templateengine(template,=&quot;&quot; {=&quot;&quot; skills:=&quot;&quot; [&amp;quot;js&amp;quot;,=&quot;&quot; &amp;quot;html&amp;quot;,=&quot;&quot; &amp;quot;css&amp;quot;],=&quot;&quot; showskills:=&quot;&quot; true=&quot;&quot; }));=&quot;&quot; &lt;=&quot;&quot; code=&quot;&quot;&gt;&lt;/%}%&amp;gt;&amp;#39;;&gt;&lt;/%}%&amp;gt;&amp;#39;&gt;&lt;/%for(var&gt;&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;除了上面说的改进，我还对代码本身做了些优化，最终版本如下：&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-javascript&quot;&gt;var TemplateEngine = function(html, options) {
-    var re = /&amp;lt;%([^%&amp;gt;]+)?%&amp;gt;/g, reExp = /(^( )?(if|for|else|switch|case|break|{|}))(.*)?/g, code = &amp;#39;var r=[];\n&amp;#39;, cursor = 0;
-    var add = function(line, js) {
-        js? (code += line.match(reExp) ? line + &amp;#39;\n&amp;#39; : &amp;#39;r.push(&amp;#39; + line + &amp;#39;);\n&amp;#39;) :
-            (code += line != &amp;#39;&amp;#39; ? &amp;#39;r.push(&amp;quot;&amp;#39; + line.replace(/&amp;quot;/g, &amp;#39;\\&amp;quot;&amp;#39;) + &amp;#39;&amp;quot;);\n&amp;#39; : &amp;#39;&amp;#39;);
-        return add;
-    }
-    while(match = re.exec(html)) {
-        add(html.slice(cursor, match.index))(match[1], true);
-        cursor = match.index + match[0].length;
-    }
-    add(html.substr(cursor, html.length - cursor));
-    code += &amp;#39;return r.join(&amp;quot;&amp;quot;);&amp;#39;;
-    return new Function(code.replace(/[\r\t\n]/g, &amp;#39;&amp;#39;)).apply(options);
-}
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;代码比我预想的还要少，只有区区15行！&lt;/p&gt;
-</content>
+    <content type="html"><![CDATA[<blockquote><p>译文链接：<a href="原文链接：JavaScript template engine in just 20 lines">JavaScript template engine in just 20 lines</a></p></blockquote><p>最初我的想法是这样子的：</p><pre><code class="language-javascript">var TemplateEngine = function(tpl, data) {    // magic here ...}var template = &#39;&lt;p&gt;Hello, my name is &lt;%name%&gt;. I\&#39;m &lt;%age%&gt; years old.&lt;/p&gt;&#39;;console.log(TemplateEngine(template, {    name: &quot;Krasimir&quot;,    age: 29}));</code></pre><p>一个简单的函数，输入是我们的模板以及数据对象，输出么估计你也很容易想到，像下面这样子：</p><pre><code class="language-javascript">&lt;p&gt;Hello, my name is Krasimir. I&#39;m 29 years old.&lt;/p&gt;</code></pre><p>其中第一步要做的是寻找里面的模板参数，然后替换成传给引擎的具体数据。我决定使用正则表达式来完成这一步。不过正则不是我的强项，所以大家将就一下，如果有更好的正则也欢迎向我提出。</p><pre><code class="language-javascript">var re = /&lt;%([^%&gt;]+)?%&gt;/g;</code></pre><p>这句正则表达式会捕获所有以<code>&lt;%</code>开头，以<code>%&gt;</code>结尾的片段。末尾的参数<code>g</code>（global）表示不只匹配一个，而是匹配所有符合的片段。<br>Javascript里面有很多种使用正则表达式的方法，我们需要的是根据正则表达式输出一个数组，包含所有的字符串，这正是<code>exec</code>所做的。</p><pre><code class="language-javascript">var re = /&lt;%([^%&gt;]+)?%&gt;/g;var match = re.exec(tpl);</code></pre><p>如果我们用<code>console.log</code>把变量<code>match</code>打印出来，我们会看见：</p><pre><code class="language-javascript">[    &quot;&lt;%name%&gt;&quot;,    &quot; name &quot;,     index: 21,    input:     &quot;&lt;p&gt;Hello, my name is &lt;%name%&gt;. I\&#39;m &lt;%age%&gt; years old.&lt;/p&gt;&quot;]</code></pre><p>不过我们可以看见，返回的数组仅仅包含第一个匹配项。我们需要用<code>while</code>循环把上述逻辑包起来，这样才能得到所有的匹配项。</p><pre><code class="language-javascript">var re = /&lt;%([^%&gt;]+)?%&gt;/g;while(match = re.exec(tpl)) {    console.log(match);}</code></pre><p>如果把上面的代码跑一遍，你就会看见<code>&lt;%name%&gt;</code> 和 <code>&lt;%age%&gt;</code>都被打印出来了。</p><p>下面，有意思的部分来了。识别出模板中的匹配项后，我们要把他们替换成传递给函数的实际数据。最简单的办法就是使用<code>replace</code>函数。我们可以像这样来写：</p><pre><code class="language-javascript">var TemplateEngine = function(tpl, data) {    var re = /&lt;%([^%&gt;]+)?%&gt;/g;    while(match = re.exec(tpl)) {        tpl = tpl.replace(match[0], data[match[1]])    }    return tpl;}</code></pre><p>好了，这样就能跑了，但是还不够好。这里我们以<code>data[&quot;property&quot;]</code>的方式使用了一个简单对象来传递数据，但是实际情况下我们很可能需要更复杂的嵌套对象。所以我们稍微修改了一下<code>data</code>对象：</p><pre><code class="language-javascript">{    name: &quot;Krasimir Tsonev&quot;,    profile: { age: 29 }}</code></pre><p>不过直接这样子写的话还不能跑，因为在模板中使用<code>&lt;%profile.age%&gt;</code>的话，代码会被替换成<code>data[&#39;profile.age&#39;]</code>，结果是<code>undefined</code>。<br>这样我们就不能简单地用<code>replace</code>函数，而是要用别的方法。如果能够在<code>&lt;%</code>和<code>%&gt;</code>之间直接使用Javascript代码就最好了，这样就能对传入的数据直接求值，像下面这样：</p><pre><code class="language-javascript">var template = &#39;&lt;p&gt;Hello, my name is &lt;%this.name%&gt;. I\&#39;m &lt;%this.profile.age%&gt; years old.&lt;/p&gt;&#39;;</code></pre><p>你可能会好奇，这是怎么实现的？这里<a href="http://ejohn.org/blog/javascript-micro-templating/" target="_blank" rel="noopener">John</a>使用了<code>new Function</code>的语法，根据字符串创建一个函数。我们不妨来看个例子：</p><pre><code class="language-javascript">var fn = new Function(&quot;arg&quot;, &quot;console.log(arg + 1);&quot;);fn(2); // outputs 3</code></pre><p><code>fn</code>可是一个货真价实的函数。它接受一个参数，函数体是<code>console.log(arg + 1)</code>;。上述代码等价于下面的代码：</p><pre><code class="language-javascript">var fn = function(arg) {    console.log(arg + 1);}fn(2); // outputs 3</code></pre><p>通过这种方法，我们可以根据字符串构造函数，包括它的参数和函数体。这不正是我们想要的嘛！不过先别急，在构造函数之前，我们先来看看函数体是什么样子的。<br>按照之前的想法，这个模板引擎最终返回的应该是一个编译好的模板。还是用之前的模板字符串作为例子，那么返回的内容应该类似于：</p><pre><code class="language-javascript">return &quot;&lt;p&gt;Hello, my name is &quot; + this.name + &quot;. I\&#39;m &quot; + this.profile.age + &quot; years old.&lt;/p&gt;&quot;;</code></pre><p>当然啦，实际的模板引擎中，我们会把模板切分为小段的文本和有意义的Javascript代码。前面你可能看见我使用简单的字符串拼接来达到想要的效果，不过这并不是100%符合我们要求的做法。<br>由于使用者很可能会传递更加复杂的Javascript代码，所以我们这儿需要再来一个循环，如下：</p><pre><code class="language-javascript">var template = &#39;My skills:&#39; + &#39;&lt;%for(var index in this.skills) {%>' + '<a href=""><%this.skills[index]%></%this.skills[index]%></a>' +'<%}%&gt;&#39;; <="" code=""></%}%&gt;&#39;;></code></pre><p>如果使用字符串拼接的话，代码就应该是下面的样子：</p><pre><code class="language-javascript">return&#39;My skills:&#39; + for(var index in this.skills) { +&#39;&lt;a href=&quot;&quot;&gt;&#39; + this.skills[index] +&#39;&lt;/a&gt;&#39; +}</code></pre><p>当然，这个代码不能直接跑，跑了会出错。于是我用了<a href="http://ejohn.org/blog/javascript-micro-templating/" target="_blank" rel="noopener">John的文章</a>里写的逻辑，把所有的字符串放在一个数组里，在程序的最后把它们拼接起来。</p><pre><code class="language-javascript">var r = [];r.push(&#39;My skills:&#39;); for(var index in this.skills) {r.push(&#39;&lt;a href=&quot;&quot;&gt;&#39;);r.push(this.skills[index]);r.push(&#39;&lt;/a&gt;&#39;);}return r.join(&#39;&#39;);</code></pre><p>下一步就是收集模板里面不同的代码行，用于生成函数。通过前面介绍的方法，我们可以知道模板中有哪些占位符（译者注：或者说正则表达式的匹配项）以及它们的位置。<br>所以，依靠一个辅助变量（cursor，游标），我们就能得到想要的结果。</p><pre><code class="language-javascript">var TemplateEngine = function(tpl, data) {    var re = /&lt;%([^%&gt;]+)?%&gt;/g,        code = &#39;var r=[];\n&#39;,        cursor = 0;    var add = function(line) {        code += &#39;r.push(&quot;&#39; + line.replace(/&quot;/g, &#39;\\&quot;&#39;) + &#39;&quot;);\n&#39;;    }    while(match = re.exec(tpl)) {        add(tpl.slice(cursor, match.index));        add(match[1]);        cursor = match.index + match[0].length;    }    add(tpl.substr(cursor, tpl.length - cursor));    code += &#39;return r.join(&quot;&quot;);&#39;; // &lt;-- return the result    console.log(code);    return tpl;}var template = &#39;&lt;p&gt;Hello, my name is &lt;%this.name%&gt;. I\&#39;m &lt;%this.profile.age%&gt; years old.&lt;/p&gt;&#39;;console.log(TemplateEngine(template, {    name: &quot;Krasimir Tsonev&quot;,    profile: { age: 29 }}));</code></pre><p>上述代码中的变量code保存了函数体。开头的部分定义了一个数组。游标<code>cursor</code>告诉我们当前解析到了模板中的哪个位置。我们需要依靠它来遍历整个模板字符串。<br>此外还有个函数<code>add</code>，它负责把解析出来的代码行添加到变量<code>code</code>中去。有一个地方需要特别注意，那就是需要把<code>code</code>包含的双引号字符进行转义（escape）。否则生成的函数代码会出错。<br>如果我们运行上面的代码，我们会在控制台里面看见如下的内容：</p><pre><code class="language-javascript">var r=[];r.push(&quot;&lt;p&gt;Hello, my name is &quot;);r.push(&quot;this.name&quot;);r.push(&quot;. I&#39;m &quot;);r.push(&quot;this.profile.age&quot;);return r.join(&quot;&quot;);</code></pre><p>等等，貌似不太对啊，<code>this.name</code>和<code>this.profile.age</code>不应该有引号啊，再来改改。</p><pre><code class="language-javascript">var add = function(line, js) {    js? code += &#39;r.push(&#39; + line + &#39;);\n&#39; :        code += &#39;r.push(&quot;&#39; + line.replace(/&quot;/g, &#39;\\&quot;&#39;) + &#39;&quot;);\n&#39;;}while(match = re.exec(tpl)) {    add(tpl.slice(cursor, match.index));    add(match[1], true); // &lt;-- say that this is actually valid js    cursor = match.index + match[0].length;}</code></pre><p>占位符的内容和一个布尔值一起作为参数传给<code>add</code>函数，用作区分。这样就能生成我们想要的函数体了。</p><pre><code class="language-javascript">var r=[];r.push(&quot;&lt;p&gt;Hello, my name is &quot;);r.push(this.name);r.push(&quot;. I&#39;m &quot;);r.push(this.profile.age);return r.join(&quot;&quot;);</code></pre><p>剩下来要做的就是创建函数并且执行它。因此，在模板引擎的最后，把原本返回模板字符串的语句替换成如下的内容：</p><pre><code class="language-javascript">return new Function(code.replace(/[\r\t\n]/g, &#39;&#39;)).apply(data);</code></pre><p>我们甚至不需要显式地传参数给这个函数。我们使用<code>apply</code>方法来调用它。它会自动设定函数执行的上下文。这就是为什么我们能在函数里面使用<code>this.name</code>。这里<code>this</code>指向<code>data</code>对象。</p><p>模板引擎接近完成了，不过还有一点，我们需要支持更多复杂的语句，比如条件判断和循环。我们接着上面的例子继续写。</p><pre><code class="language-javascript">var template = &#39;My skills:&#39; + &#39;&lt;%for(var index in this.skills) {%>' + '<a href="#"><%this.skills[index]%></%this.skills[index]%></a>' +'<%}%&gt;&#39;; console.log(templateengine(template,="" {="" skills:="" [&quot;js&quot;,="" &quot;html&quot;,="" &quot;css&quot;]="" }));="" <="" code=""></%}%&gt;&#39;;></code></pre><p>这里会产生一个异常，<code>Uncaught SyntaxError: Unexpected token for</code>。如果我们调试一下，把<code>code</code>变量打印出来，我们就能发现问题所在。</p><pre><code class="language-javascript">var r=[];r.push(&quot;My skills:&quot;);r.push(for(var index in this.skills) {);r.push(&quot;&lt;a href=\&quot;\&quot;&gt;&quot;);r.push(this.skills[index]);r.push(&quot;&lt;/a&gt;&quot;);r.push(});r.push(&quot;&quot;);return r.join(&quot;&quot;);</code></pre><p>带有<code>for</code>循环的那一行不应该被直接放到数组里面，而是应该作为脚本的一部分直接运行。所以我们在把内容添加到<code>code</code>变量之前还要多做一个判断。</p><pre><code class="language-javascript">var re = /&lt;%([^%&gt;]+)?%&gt;/g,    reExp = /(^( )?(if|for|else|switch|case|break|{|}))(.*)?/g,    code = &#39;var r=[];\n&#39;,    cursor = 0;var add = function(line, js) {    js? code += line.match(reExp) ? line + &#39;\n&#39; : &#39;r.push(&#39; + line + &#39;);\n&#39; :        code += &#39;r.push(&quot;&#39; + line.replace(/&quot;/g, &#39;\\&quot;&#39;) + &#39;&quot;);\n&#39;;}</code></pre><p>这里我们新增加了一个正则表达式。它会判断代码中是否包含<code>if</code>、<code>for</code>、<code>else</code>等等关键字。如果有的话就直接添加到脚本代码中去，否则就添加到数组中去。运行结果如下：</p><pre><code class="language-javascript">var r=[];r.push(&quot;My skills:&quot;);for(var index in this.skills) {r.push(&quot;&lt;a href=\&quot;#\&quot;&gt;&quot;);r.push(this.skills[index]);r.push(&quot;&lt;/a&gt;&quot;);}r.push(&quot;&quot;);return r.join(&quot;&quot;);</code></pre><p>当然，编译出来的结果也是对的。</p><pre><code class="language-javascript">My skills:&lt;a href=&quot;#&quot;&gt;js&lt;/a&gt;&lt;a href=&quot;#&quot;&gt;html&lt;/a&gt;&lt;a href=&quot;#&quot;&gt;css&lt;/a&gt;</code></pre><p>最后一个改进可以使我们的模板引擎更为强大。我们可以直接在模板中使用复杂逻辑，例如：</p><pre><code class="language-javascript">var template = &#39;My skills:&#39; + &#39;&lt;%if(this.showSkills) {%>' +    '<%for(var index="" in="" this.skills)="" {%="">' +     '<a href="#"><%this.skills[index]%></%this.skills[index]%></a>' +    '<%}%&gt;&#39; +="" &#39;&lt;%}="" else="" {%="">' +    '<p>none</p>' +'<%}%&gt;&#39;; console.log(templateengine(template,="" {="" skills:="" [&quot;js&quot;,="" &quot;html&quot;,="" &quot;css&quot;],="" showskills:="" true="" }));="" <="" code=""></%}%&gt;&#39;;></%}%&gt;&#39;></%for(var></code></pre><p>除了上面说的改进，我还对代码本身做了些优化，最终版本如下：</p><pre><code class="language-javascript">var TemplateEngine = function(html, options) {    var re = /&lt;%([^%&gt;]+)?%&gt;/g, reExp = /(^( )?(if|for|else|switch|case|break|{|}))(.*)?/g, code = &#39;var r=[];\n&#39;, cursor = 0;    var add = function(line, js) {        js? (code += line.match(reExp) ? line + &#39;\n&#39; : &#39;r.push(&#39; + line + &#39;);\n&#39;) :            (code += line != &#39;&#39; ? &#39;r.push(&quot;&#39; + line.replace(/&quot;/g, &#39;\\&quot;&#39;) + &#39;&quot;);\n&#39; : &#39;&#39;);        return add;    }    while(match = re.exec(html)) {        add(html.slice(cursor, match.index))(match[1], true);        cursor = match.index + match[0].length;    }    add(html.substr(cursor, html.length - cursor));    code += &#39;return r.join(&quot;&quot;);&#39;;    return new Function(code.replace(/[\r\t\n]/g, &#39;&#39;)).apply(options);}</code></pre><p>代码比我预想的还要少，只有区区15行！</p>]]></content>
     
     <summary type="html">
     
-      &lt;blockquote&gt;
+      
+      
+        &lt;blockquote&gt;
 &lt;p&gt;译文链接：&lt;a href=&quot;原文链接：JavaScript template engine in just 20 lines&quot;&gt;JavaScript template engine in just 20 lines&lt;/a&gt;&lt;/p&gt;
 &lt;/blockq
+      
     
     </summary>
     
@@ -1059,19 +190,14 @@ return r.join(&amp;quot;&amp;quot;);
     <published>2016-12-19T03:19:21.000Z</published>
     <updated>2016-12-19T03:28:04.498Z</updated>
     
-    <content type="html">&lt;h4 id=&quot;什么是connect？&quot;&gt;&lt;a href=&quot;#什么是connect？&quot; class=&quot;headerlink&quot; title=&quot;什么是connect？&quot;&gt;&lt;/a&gt;什么是connect？&lt;/h4&gt;&lt;p&gt;Connect 是Node.js中的一个模块，可以用来创建中间件的一个框架，它自身已经包装了Node的HTTP模块的Server以及Server的req和res的对象。&lt;br&gt;它干的活其实就是处理请求，然后响应客户端或是让下一个中间件继续处理，它的原型是这个样子的:&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-javascript&quot;&gt;function (req, res, next) {
-  // 中间件
-}
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;当next回调函数被调用，中间件就完成工作并传递到下一个中间件，如果没其他中间件则进入到应用逻辑继续执行。&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;logger&lt;/code&gt;: 用户请求日志中间件&lt;br&gt;&lt;code&gt;csrf&lt;/code&gt;: 跨域请求伪造保护中间件&lt;br&gt;&lt;code&gt;compress&lt;/code&gt;: gzip压缩中间件&lt;br&gt;&lt;code&gt;basicAuth&lt;/code&gt;: basic认证中间件&lt;br&gt;&lt;code&gt;bodyParser&lt;/code&gt;: 请求内容解析中间件&lt;br&gt;&lt;code&gt;json&lt;/code&gt;: JSON解析中间件&lt;br&gt;&lt;code&gt;urlencoded&lt;/code&gt;: application/x-www-form-urlencode请求解析中间件&lt;br&gt;&lt;code&gt;multipart&lt;/code&gt;: multipart/form-data请求解析中间件&lt;br&gt;&lt;code&gt;timeout&lt;/code&gt;: 请求超时中间件&lt;br&gt;&lt;code&gt;cookieParser&lt;/code&gt;: cookie解析中间件&lt;br&gt;&lt;code&gt;session&lt;/code&gt;: 会话管理中间件&lt;br&gt;&lt;code&gt;cookieSession&lt;/code&gt;: 基于cookies的会话中间件&lt;br&gt;&lt;code&gt;methodOverride&lt;/code&gt;: HTTP伪造中间件&lt;br&gt;&lt;code&gt;reponseTime&lt;/code&gt;: 计算响应时间中间件&lt;br&gt;&lt;code&gt;staticCache&lt;/code&gt;: 缓存中间件&lt;br&gt;&lt;code&gt;static&lt;/code&gt;: 静态文件处理中间件&lt;br&gt;&lt;code&gt;directory&lt;/code&gt;: 目录列表中间件&lt;br&gt;&lt;code&gt;vhost&lt;/code&gt;: 虚拟二级域名映射中间件&lt;br&gt;&lt;code&gt;favicon&lt;/code&gt;: 网页图标中间件&lt;br&gt;&lt;code&gt;limit&lt;/code&gt;: 请求内容大小限制中间件&lt;br&gt;&lt;code&gt;query&lt;/code&gt;: URL解析中间件&lt;br&gt;&lt;code&gt;errorHadnler&lt;/code&gt;: 错误处理中间件&lt;/p&gt;
-&lt;p&gt;参考: &lt;a href=&quot;http://blog.fens.me/nodejs-connect/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://blog.fens.me/nodejs-connect/&lt;/a&gt;&lt;/p&gt;
-</content>
+    <content type="html"><![CDATA[<h4 id="什么是connect？"><a href="#什么是connect？" class="headerlink" title="什么是connect？"></a>什么是connect？</h4><p>Connect 是Node.js中的一个模块，可以用来创建中间件的一个框架，它自身已经包装了Node的HTTP模块的Server以及Server的req和res的对象。<br>它干的活其实就是处理请求，然后响应客户端或是让下一个中间件继续处理，它的原型是这个样子的:</p><pre><code class="language-javascript">function (req, res, next) {  // 中间件}</code></pre><p>当next回调函数被调用，中间件就完成工作并传递到下一个中间件，如果没其他中间件则进入到应用逻辑继续执行。</p><p><code>logger</code>: 用户请求日志中间件<br><code>csrf</code>: 跨域请求伪造保护中间件<br><code>compress</code>: gzip压缩中间件<br><code>basicAuth</code>: basic认证中间件<br><code>bodyParser</code>: 请求内容解析中间件<br><code>json</code>: JSON解析中间件<br><code>urlencoded</code>: application/x-www-form-urlencode请求解析中间件<br><code>multipart</code>: multipart/form-data请求解析中间件<br><code>timeout</code>: 请求超时中间件<br><code>cookieParser</code>: cookie解析中间件<br><code>session</code>: 会话管理中间件<br><code>cookieSession</code>: 基于cookies的会话中间件<br><code>methodOverride</code>: HTTP伪造中间件<br><code>reponseTime</code>: 计算响应时间中间件<br><code>staticCache</code>: 缓存中间件<br><code>static</code>: 静态文件处理中间件<br><code>directory</code>: 目录列表中间件<br><code>vhost</code>: 虚拟二级域名映射中间件<br><code>favicon</code>: 网页图标中间件<br><code>limit</code>: 请求内容大小限制中间件<br><code>query</code>: URL解析中间件<br><code>errorHadnler</code>: 错误处理中间件</p><p>参考: <a href="http://blog.fens.me/nodejs-connect/" target="_blank" rel="noopener">http://blog.fens.me/nodejs-connect/</a></p>]]></content>
     
     <summary type="html">
     
-      &lt;h4 id=&quot;什么是connect？&quot;&gt;&lt;a href=&quot;#什么是connect？&quot; class=&quot;headerlink&quot; title=&quot;什么是connect？&quot;&gt;&lt;/a&gt;什么是connect？&lt;/h4&gt;&lt;p&gt;Connect 是Node.js中的一个模块，可以用来创建中间件的一
+      
+      
+        &lt;h4 id=&quot;什么是connect？&quot;&gt;&lt;a href=&quot;#什么是connect？&quot; class=&quot;headerlink&quot; title=&quot;什么是connect？&quot;&gt;&lt;/a&gt;什么是connect？&lt;/h4&gt;&lt;p&gt;Connect 是Node.js中的一个模块，可以用来创建中间件的一
+      
     
     </summary>
     
@@ -1087,70 +213,14 @@ return r.join(&amp;quot;&amp;quot;);
     <published>2016-12-16T08:54:48.000Z</published>
     <updated>2016-12-16T09:27:04.174Z</updated>
     
-    <content type="html">&lt;h2 id=&quot;一、快速通道&quot;&gt;&lt;a href=&quot;#一、快速通道&quot; class=&quot;headerlink&quot; title=&quot;一、快速通道&quot;&gt;&lt;/a&gt;一、快速通道&lt;/h2&gt;&lt;h3 id=&quot;1-名词解释&quot;&gt;&lt;a href=&quot;#1-名词解释&quot; class=&quot;headerlink&quot; title=&quot;1. 名词解释&quot;&gt;&lt;/a&gt;1. 名词解释&lt;/h3&gt;&lt;p&gt;Schema（模式）: 一种以文件形式存储的数据库模型骨架，不具备数据库的操作能力。&lt;br&gt;Model（模型）: 源于Schema生成的模型，具有抽象属性和行为的数据库操作对。&lt;br&gt;Entity（实体）: 源于Model创建的实体，操作可影响数据库。&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;注意：&lt;br&gt;  1 . 本学习文档采用严格命名方式来区别不同对象，例如：&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-javascript&quot;&gt;  var PersonSchema;   //Person的文本属性
-  var PersonModel;    //Person的数据库模型
-  var PersonEntity;   //Person实体
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;  2 . Schema –&amp;gt; Model，Model –&amp;gt; Entity。Model和Entity都可对数据库操作造成影响，但Model比Entity更具操作性。&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h3 id=&quot;2-准备工作&quot;&gt;&lt;a href=&quot;#2-准备工作&quot; class=&quot;headerlink&quot; title=&quot;2. 准备工作&quot;&gt;&lt;/a&gt;2. 准备工作&lt;/h3&gt;&lt;p&gt;1 . 首先你必须安装MongoDB和NodeJS&lt;br&gt;  mongodb安装可参考： &lt;a href=&quot;http://blog.xiaqingsong.com/2016/12/16/windows%E4%B8%8B%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AEmongodb/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;windows下安装配置mongodb&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;2 . 在项目只能够创建一个数据库连接，如下:&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-javascript&quot;&gt;var mongoose = require(&amp;#39;mongoose&amp;#39;);    //引用mongoose模块
-var db = mongoose.createConnection(&amp;#39;localhost&amp;#39;,&amp;#39;test&amp;#39;); //创建一个数据库连接
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;3 . 打开本机localhost的test数据库时，我们可以监测是否有异常&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-javascript&quot;&gt;db.on(&amp;#39;error&amp;#39;,console.error.bind(console,&amp;#39;连接错误:&amp;#39;));
-db.once(&amp;#39;open&amp;#39;,function(){
-  //mongodb connected!
-});
-&lt;/code&gt;&lt;/pre&gt;
-&lt;blockquote&gt;
-&lt;p&gt;注意：&lt;br&gt;  成功开启数据库后，就可以执行数据库相应操作，假设以下代码都在回调中处理&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;4 . 定义一个Schema&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-javascript&quot;&gt;var PersonSchema = new mongoose.Schema({
-  name:String   //定义一个属性name，类型为String
-});
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;5 . 将该Schema发布为Model&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-javascript&quot;&gt;var PersonModel = db.model(&amp;#39;Person&amp;#39;,PersonSchema);
-//如果该Model已经发布，则可以直接通过名字索引到，如下：
-//var PersonModel = db.model(&amp;#39;Person&amp;#39;);
-//如果没有发布，上一段代码将会异常
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;6 . 用Model创建Entity&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-javascript&quot;&gt;var personEntity = new PersonModel({name:&amp;#39;Krouky&amp;#39;});
-//打印这个实体的名字看看
-console.log(personEntity.name); //Krouky
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;7 . 我们甚至可以为此Schema创建方法&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-javascript&quot;&gt;//为Schema模型追加speak方法
-PersonSchema.methos.speak = function(){
-  console.log(&amp;#39;我的名字叫&amp;#39;+this.name);
-}
-var PersonModel = db.model(&amp;#39;Person&amp;#39;,PersonSchema);
-var personEntity = new PersonModel({name:&amp;#39;Krouky&amp;#39;});
-personEntity.speak();//我的名字叫Krouky
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;8 . Entity是具有具体的数据库操作CRUD的&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-javascript&quot;&gt;personEntity.save();  //执行完成后，数据库就有该数据了
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;9 . 如果要执行查询，需要依赖Model，当然Entity也是可以做到的&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-javascript&quot;&gt;PersonModel.find(function(err,persons){
-  //查询到的所有person
-});
-&lt;/code&gt;&lt;/pre&gt;
-&lt;blockquote&gt;
-&lt;p&gt;注意：&lt;br&gt;  1 . 具体的如何配置Schema、Model以及Model和Entity的相关操作，我们会在后面进行&lt;br&gt;  2 . Model和Entity都有能影响数据库的操作，但仍有区别，后面我们也会做解释&lt;/p&gt;
-&lt;/blockquote&gt;
-</content>
+    <content type="html"><![CDATA[<h2 id="一、快速通道"><a href="#一、快速通道" class="headerlink" title="一、快速通道"></a>一、快速通道</h2><h3 id="1-名词解释"><a href="#1-名词解释" class="headerlink" title="1. 名词解释"></a>1. 名词解释</h3><p>Schema（模式）: 一种以文件形式存储的数据库模型骨架，不具备数据库的操作能力。<br>Model（模型）: 源于Schema生成的模型，具有抽象属性和行为的数据库操作对。<br>Entity（实体）: 源于Model创建的实体，操作可影响数据库。</p><blockquote><p>注意：<br>  1 . 本学习文档采用严格命名方式来区别不同对象，例如：</p><pre><code class="language-javascript">  var PersonSchema;   //Person的文本属性  var PersonModel;    //Person的数据库模型  var PersonEntity;   //Person实体</code></pre><p>  2 . Schema –&gt; Model，Model –&gt; Entity。Model和Entity都可对数据库操作造成影响，但Model比Entity更具操作性。</p></blockquote><h3 id="2-准备工作"><a href="#2-准备工作" class="headerlink" title="2. 准备工作"></a>2. 准备工作</h3><p>1 . 首先你必须安装MongoDB和NodeJS<br>  mongodb安装可参考： <a href="http://blog.xiaqingsong.com/2016/12/16/windows%E4%B8%8B%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AEmongodb/" target="_blank" rel="noopener">windows下安装配置mongodb</a></p><p>2 . 在项目只能够创建一个数据库连接，如下:</p><pre><code class="language-javascript">var mongoose = require(&#39;mongoose&#39;);    //引用mongoose模块var db = mongoose.createConnection(&#39;localhost&#39;,&#39;test&#39;); //创建一个数据库连接</code></pre><p>3 . 打开本机localhost的test数据库时，我们可以监测是否有异常</p><pre><code class="language-javascript">db.on(&#39;error&#39;,console.error.bind(console,&#39;连接错误:&#39;));db.once(&#39;open&#39;,function(){  //mongodb connected!});</code></pre><blockquote><p>注意：<br>  成功开启数据库后，就可以执行数据库相应操作，假设以下代码都在回调中处理</p></blockquote><p>4 . 定义一个Schema</p><pre><code class="language-javascript">var PersonSchema = new mongoose.Schema({  name:String   //定义一个属性name，类型为String});</code></pre><p>5 . 将该Schema发布为Model</p><pre><code class="language-javascript">var PersonModel = db.model(&#39;Person&#39;,PersonSchema);//如果该Model已经发布，则可以直接通过名字索引到，如下：//var PersonModel = db.model(&#39;Person&#39;);//如果没有发布，上一段代码将会异常</code></pre><p>6 . 用Model创建Entity</p><pre><code class="language-javascript">var personEntity = new PersonModel({name:&#39;Krouky&#39;});//打印这个实体的名字看看console.log(personEntity.name); //Krouky</code></pre><p>7 . 我们甚至可以为此Schema创建方法</p><pre><code class="language-javascript">//为Schema模型追加speak方法PersonSchema.methos.speak = function(){  console.log(&#39;我的名字叫&#39;+this.name);}var PersonModel = db.model(&#39;Person&#39;,PersonSchema);var personEntity = new PersonModel({name:&#39;Krouky&#39;});personEntity.speak();//我的名字叫Krouky</code></pre><p>8 . Entity是具有具体的数据库操作CRUD的</p><pre><code class="language-javascript">personEntity.save();  //执行完成后，数据库就有该数据了</code></pre><p>9 . 如果要执行查询，需要依赖Model，当然Entity也是可以做到的</p><pre><code class="language-javascript">PersonModel.find(function(err,persons){  //查询到的所有person});</code></pre><blockquote><p>注意：<br>  1 . 具体的如何配置Schema、Model以及Model和Entity的相关操作，我们会在后面进行<br>  2 . Model和Entity都有能影响数据库的操作，但仍有区别，后面我们也会做解释</p></blockquote>]]></content>
     
     <summary type="html">
     
-      &lt;h2 id=&quot;一、快速通道&quot;&gt;&lt;a href=&quot;#一、快速通道&quot; class=&quot;headerlink&quot; title=&quot;一、快速通道&quot;&gt;&lt;/a&gt;一、快速通道&lt;/h2&gt;&lt;h3 id=&quot;1-名词解释&quot;&gt;&lt;a href=&quot;#1-名词解释&quot; class=&quot;headerlink&quot; titl
+      
+      
+        &lt;h2 id=&quot;一、快速通道&quot;&gt;&lt;a href=&quot;#一、快速通道&quot; class=&quot;headerlink&quot; title=&quot;一、快速通道&quot;&gt;&lt;/a&gt;一、快速通道&lt;/h2&gt;&lt;h3 id=&quot;1-名词解释&quot;&gt;&lt;a href=&quot;#1-名词解释&quot; class=&quot;headerlink&quot; titl
+      
     
     </summary>
     
@@ -1166,64 +236,14 @@ personEntity.speak();//我的名字叫Krouky
     <published>2016-12-16T06:36:29.000Z</published>
     <updated>2017-03-01T03:36:47.965Z</updated>
     
-    <content type="html">&lt;p&gt;安装文件：官方网站 &lt;a href=&quot;http://www.mongodb.org/downloads&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://www.mongodb.org/downloads&lt;/a&gt;&lt;br&gt;选择对应系统的文件下载。&lt;/p&gt;
-&lt;h3 id=&quot;一、解压缩文件。&quot;&gt;&lt;a href=&quot;#一、解压缩文件。&quot; class=&quot;headerlink&quot; title=&quot;一、解压缩文件。&quot;&gt;&lt;/a&gt;一、解压缩文件。&lt;/h3&gt;&lt;p&gt;  将压缩包解压，在D盘创建文件夹&lt;code&gt;mongodb&lt;/code&gt;,将压缩包解压到&lt;code&gt;mongodb&lt;/code&gt;文件夹中。&lt;/p&gt;
-&lt;h3 id=&quot;二、建立工作目录。&quot;&gt;&lt;a href=&quot;#二、建立工作目录。&quot; class=&quot;headerlink&quot; title=&quot;二、建立工作目录。&quot;&gt;&lt;/a&gt;二、建立工作目录。&lt;/h3&gt;&lt;p&gt;  1、建立数据存放目录  &lt;code&gt;D:\mongodb\data\db&lt;/code&gt;&lt;br&gt;  2、建立日志文件  &lt;code&gt;D:\mongodb\db\log\mongodb.log&lt;/code&gt;&lt;/p&gt;
-&lt;h3 id=&quot;三、建立配置文件。&quot;&gt;&lt;a href=&quot;#三、建立配置文件。&quot; class=&quot;headerlink&quot; title=&quot;三、建立配置文件。&quot;&gt;&lt;/a&gt;三、建立配置文件。&lt;/h3&gt;&lt;p&gt;&lt;code&gt;mongodb&lt;/code&gt;文件夹下建立&lt;code&gt;mongodb.cfg&lt;/code&gt;文件，输入以下内容：&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-git&quot;&gt;dbpath=D:\MongoDB\data #数据库路径
-logpath=D:\MongoDB\logs\mongodb.log #日志输出文件路径
-logappend=true #错误日志采用追加模式，配置这个选项后mongodb的日志会追加到现有的日志文件，而不是从新创建一个新文件
-journal=true #启用日志文件，默认启用
-quiet=true #这个选项可以过滤掉一些无用的日志信息，若需要调试使用请设置为false
-port=27017 #端口号 默认为27017
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;这里仅指定了几个常用项，更多详细配置请参考官方文档 &lt;a href=&quot;http://docs.mongodb.org/manual/reference/configuration-options/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://docs.mongodb.org/manual/reference/configuration-options/&lt;/a&gt;&lt;br&gt;正常情况下，我们一般配置&lt;code&gt;dbpath&lt;/code&gt;和&lt;code&gt;logpath&lt;/code&gt;就够了。&lt;/p&gt;
-&lt;p&gt;至此&lt;code&gt;mongodb&lt;/code&gt;文件夹下有文件夹及文件：&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-git&quot;&gt;D:\ mongodb\bin
-D:\ mongodb\data\db
-D:\ mongodb\data\log
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h3 id=&quot;四、启动mongdb服务。&quot;&gt;&lt;a href=&quot;#四、启动mongdb服务。&quot; class=&quot;headerlink&quot; title=&quot;四、启动mongdb服务。&quot;&gt;&lt;/a&gt;四、启动mongdb服务。&lt;/h3&gt;&lt;p&gt;配置文件和相关目录建好后可使用以下几种方式启动mongodb。&lt;/p&gt;
-&lt;p&gt;控制台进入&lt;code&gt;D:\ mongodb\bin&lt;/code&gt;目录，执行以下命令:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;普通启动&lt;/strong&gt; &lt;/li&gt;
-&lt;/ul&gt;
-&lt;pre&gt;&lt;code class=&quot;language-git&quot;&gt;mongod --config D:\mongodb\mongodb.cfg
-mongod -f ../mongodb.cfg  #简写
-&lt;/code&gt;&lt;/pre&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;安装为Windows服务&lt;/strong&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;pre&gt;&lt;code class=&quot;language-git&quot;&gt;mongod --config D:\mongodb\mongodb.cfg --install
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;注：2.6版 这种方式在win7、win8 64位版无法安装成功，其他系统未测试&lt;br&gt;BUG链接 &lt;a href=&quot;https://jira.mongodb.org/browse/SERVER-13515&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://jira.mongodb.org/browse/SERVER-13515&lt;/a&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;使用SC命令安装为Windows服务&lt;/strong&gt;&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-git&quot;&gt;sc create MongoDB binPath= &amp;quot;D:\mongodb\bin\mongod.exe --service --config=D:\mongodb\mongodb.cfg&amp;quot;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;在浏览器输入：&lt;a href=&quot;http://localhost:27017/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://localhost:27017/&lt;/a&gt;，可以看到如下提示：&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;You are trying to access MongoDB on the native driver port. For http diagnostic access, add 1000 to the port number&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;如此，说明MongoDB数据库服务已经成功启动了。&lt;/p&gt;
-&lt;p&gt;我们可以再启一个shell窗口，执行 &lt;code&gt;mongo&lt;/code&gt; 命令，可以看到如下提示：&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;MongoDB shell version: 2.6.4&lt;br&gt;  connecting to: test&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;这样的话，说明已经连接到mongodb默认 test 集合了。&lt;/p&gt;
-&lt;p&gt;我们也可以使用 &lt;code&gt;mongoVUE&lt;/code&gt; 、 &lt;code&gt;Robomongo&lt;/code&gt; 等可视化工具查看库中的数据。&lt;/p&gt;
-&lt;h3 id=&quot;五、系统服务启动与删除。&quot;&gt;&lt;a href=&quot;#五、系统服务启动与删除。&quot; class=&quot;headerlink&quot; title=&quot;五、系统服务启动与删除。&quot;&gt;&lt;/a&gt;五、系统服务启动与删除。&lt;/h3&gt;&lt;pre&gt;&lt;code class=&quot;language-git&quot;&gt;net start MongoDB  //启动MongoDB服务  
-net stop MongoDB  //停止MongoDB服务   
-mongod --remove  //移除MongoDB服务 
-sc delete MongoDB   //通过该方式删除的话，服务中的 mongod仍会存在，注册表中不存在了，再重启之后服务的mongodb才会消失
-&lt;/code&gt;&lt;/pre&gt;
-</content>
+    <content type="html"><![CDATA[<p>安装文件：官方网站 <a href="http://www.mongodb.org/downloads" target="_blank" rel="noopener">http://www.mongodb.org/downloads</a><br>选择对应系统的文件下载。</p><h3 id="一、解压缩文件。"><a href="#一、解压缩文件。" class="headerlink" title="一、解压缩文件。"></a>一、解压缩文件。</h3><p>  将压缩包解压，在D盘创建文件夹<code>mongodb</code>,将压缩包解压到<code>mongodb</code>文件夹中。</p><h3 id="二、建立工作目录。"><a href="#二、建立工作目录。" class="headerlink" title="二、建立工作目录。"></a>二、建立工作目录。</h3><p>  1、建立数据存放目录  <code>D:\mongodb\data\db</code><br>  2、建立日志文件  <code>D:\mongodb\db\log\mongodb.log</code></p><h3 id="三、建立配置文件。"><a href="#三、建立配置文件。" class="headerlink" title="三、建立配置文件。"></a>三、建立配置文件。</h3><p><code>mongodb</code>文件夹下建立<code>mongodb.cfg</code>文件，输入以下内容：</p><pre><code class="language-git">dbpath=D:\MongoDB\data #数据库路径logpath=D:\MongoDB\logs\mongodb.log #日志输出文件路径logappend=true #错误日志采用追加模式，配置这个选项后mongodb的日志会追加到现有的日志文件，而不是从新创建一个新文件journal=true #启用日志文件，默认启用quiet=true #这个选项可以过滤掉一些无用的日志信息，若需要调试使用请设置为falseport=27017 #端口号 默认为27017</code></pre><p>这里仅指定了几个常用项，更多详细配置请参考官方文档 <a href="http://docs.mongodb.org/manual/reference/configuration-options/" target="_blank" rel="noopener">http://docs.mongodb.org/manual/reference/configuration-options/</a><br>正常情况下，我们一般配置<code>dbpath</code>和<code>logpath</code>就够了。</p><p>至此<code>mongodb</code>文件夹下有文件夹及文件：</p><pre><code class="language-git">D:\ mongodb\binD:\ mongodb\data\dbD:\ mongodb\data\log</code></pre><h3 id="四、启动mongdb服务。"><a href="#四、启动mongdb服务。" class="headerlink" title="四、启动mongdb服务。"></a>四、启动mongdb服务。</h3><p>配置文件和相关目录建好后可使用以下几种方式启动mongodb。</p><p>控制台进入<code>D:\ mongodb\bin</code>目录，执行以下命令:</p><ul><li><strong>普通启动</strong> </li></ul><pre><code class="language-git">mongod --config D:\mongodb\mongodb.cfgmongod -f ../mongodb.cfg  #简写</code></pre><ul><li><strong>安装为Windows服务</strong></li></ul><pre><code class="language-git">mongod --config D:\mongodb\mongodb.cfg --install</code></pre><p>注：2.6版 这种方式在win7、win8 64位版无法安装成功，其他系统未测试<br>BUG链接 <a href="https://jira.mongodb.org/browse/SERVER-13515" target="_blank" rel="noopener">https://jira.mongodb.org/browse/SERVER-13515</a></p><ul><li><p><strong>使用SC命令安装为Windows服务</strong></p><pre><code class="language-git">sc create MongoDB binPath= &quot;D:\mongodb\bin\mongod.exe --service --config=D:\mongodb\mongodb.cfg&quot;</code></pre></li></ul><p>在浏览器输入：<a href="http://localhost:27017/" target="_blank" rel="noopener">http://localhost:27017/</a>，可以看到如下提示：</p><blockquote><p>You are trying to access MongoDB on the native driver port. For http diagnostic access, add 1000 to the port number</p></blockquote><p>如此，说明MongoDB数据库服务已经成功启动了。</p><p>我们可以再启一个shell窗口，执行 <code>mongo</code> 命令，可以看到如下提示：</p><blockquote><p>MongoDB shell version: 2.6.4<br>  connecting to: test</p></blockquote><p>这样的话，说明已经连接到mongodb默认 test 集合了。</p><p>我们也可以使用 <code>mongoVUE</code> 、 <code>Robomongo</code> 等可视化工具查看库中的数据。</p><h3 id="五、系统服务启动与删除。"><a href="#五、系统服务启动与删除。" class="headerlink" title="五、系统服务启动与删除。"></a>五、系统服务启动与删除。</h3><pre><code class="language-git">net start MongoDB  //启动MongoDB服务  net stop MongoDB  //停止MongoDB服务   mongod --remove  //移除MongoDB服务 sc delete MongoDB   //通过该方式删除的话，服务中的 mongod仍会存在，注册表中不存在了，再重启之后服务的mongodb才会消失</code></pre>]]></content>
     
     <summary type="html">
     
-      &lt;p&gt;安装文件：官方网站 &lt;a href=&quot;http://www.mongodb.org/downloads&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://www.mongodb.org/downloads&lt;/a&gt;&lt;br&gt;选择对应系统的文件下载。&lt;
+      
+      
+        &lt;p&gt;安装文件：官方网站 &lt;a href=&quot;http://www.mongodb.org/downloads&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;http://www.mongodb.org/downloads&lt;/a&gt;&lt;br&gt;选择对应系统的文件下载。&lt;
+      
     
     </summary>
     
@@ -1239,21 +259,14 @@ sc delete MongoDB   //通过该方式删除的话，服务中的 mongod仍会存
     <published>2016-11-16T09:24:43.000Z</published>
     <updated>2016-11-16T09:38:16.234Z</updated>
     
-    <content type="html">&lt;h2 id=&quot;背景&quot;&gt;&lt;a href=&quot;#背景&quot; class=&quot;headerlink&quot; title=&quot;背景&quot;&gt;&lt;/a&gt;背景&lt;/h2&gt;&lt;p&gt;2010 年初的时候，Facebook 的前端性能研究小组开始了他们的优化项目，经过了六个月的努力，成功的将个人空间主页面加载耗时由原来的5 秒减少为现在的2.5 秒。&lt;br&gt;这是一个非常了不起的成就，也给用户来带来了很好的体验。在优化项目中，工程师提出了一种新的页面加载技术，称之为Bigpipe。&lt;br&gt;目前淘宝和Facebook面临的问题非常相似：海量数据和页面过大，如果可以在详情页、列表页中使用bigpipe，将会带来明显的页面加载速度提升。&lt;/p&gt;
-&lt;h2 id=&quot;相关介绍&quot;&gt;&lt;a href=&quot;#相关介绍&quot; class=&quot;headerlink&quot; title=&quot;相关介绍&quot;&gt;&lt;/a&gt;相关介绍&lt;/h2&gt;&lt;p&gt;一、BigPipe与AJAX&lt;/p&gt;
-&lt;p&gt;Web2.0的重要特征是网页显示大量动态内容，即web2.0注重网页与用户的交互。其核心技术是AJAX，如今所有主流网站都或多或少使用AJAX。与AJAX类似，BigPipe 实现了分块儿的概念，使页面能够分步输出，即每次输出一部分网页内容。接下来讨论BigPipe 与AJAX 的区别。&lt;/p&gt;
-&lt;p&gt;简单的说，BigPipe 比AJAX 有三个好处：&lt;/p&gt;
-&lt;p&gt;1 . AJAX 的核心是XMLHttpRequest，客户端需要异步的向服务器端发送请求，然后将传送过来的内容动态添加到网页上。如此实现存在一些缺陷，即发送往返请求需要耗费时间，而BigPipe 技术使浏览器并不需要发送XMLHttpRequest 请求，这样就节省时间损耗。&lt;/p&gt;
-&lt;p&gt;2 . 使用AJAX时，浏览器和服务器的工作顺序执行。服务器必须等待浏览器的请求，这样就会造成服务器的空闲。浏览器工作时，服务器在等待，而服务器工作时，浏览器在等待，这也是一种性能的浪费。使用BigPipe，浏览器和服务器可以并行同时工作，服务器不需要等待浏览器的请求，而是一直处于加载页面内容的工作阶段，这就会使效率得到更大的提高。&lt;/p&gt;
-&lt;p&gt;3 . 减少浏览器发送到请求。对一个5亿用户的网站来说，减少了使用AJAX额外带来的请求，会减少服务器的负载，同样会带来很大的性能提升。&lt;/p&gt;
-&lt;p&gt;基于以上三点，Facebook 在进行页面优化时采用了BigPipe 技术。目前淘宝主搜索结果页中，需要加载类目，相关搜索，宝贝列表，广告等内容，前端这里使用php 的curl 的批处理来并发的访问引擎获取相应的数据，并进行分步输出。这种模式还是与bigpipe有些不同，这点后面会讲到。一般来讲，在页面比较大，而且比较复杂，样式表和脚本比较多的情况下，使用BigPipe 来优化输出页面是比较合适的。另外非常重要的一点，BigPipe 并不改变浏览器的结构与网络协议，仅使用JS就可以实现，用户不需要做任何的设置，就会看到明显的访问时间缩短。&lt;/p&gt;
-&lt;p&gt;&lt;a href=&quot;http://www.searchtb.com/2011/04/an-introduction-to-bigpipe.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://www.searchtb.com/2011/04/an-introduction-to-bigpipe.html&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;待续…&lt;/p&gt;
-</content>
+    <content type="html"><![CDATA[<h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>2010 年初的时候，Facebook 的前端性能研究小组开始了他们的优化项目，经过了六个月的努力，成功的将个人空间主页面加载耗时由原来的5 秒减少为现在的2.5 秒。<br>这是一个非常了不起的成就，也给用户来带来了很好的体验。在优化项目中，工程师提出了一种新的页面加载技术，称之为Bigpipe。<br>目前淘宝和Facebook面临的问题非常相似：海量数据和页面过大，如果可以在详情页、列表页中使用bigpipe，将会带来明显的页面加载速度提升。</p><h2 id="相关介绍"><a href="#相关介绍" class="headerlink" title="相关介绍"></a>相关介绍</h2><p>一、BigPipe与AJAX</p><p>Web2.0的重要特征是网页显示大量动态内容，即web2.0注重网页与用户的交互。其核心技术是AJAX，如今所有主流网站都或多或少使用AJAX。与AJAX类似，BigPipe 实现了分块儿的概念，使页面能够分步输出，即每次输出一部分网页内容。接下来讨论BigPipe 与AJAX 的区别。</p><p>简单的说，BigPipe 比AJAX 有三个好处：</p><p>1 . AJAX 的核心是XMLHttpRequest，客户端需要异步的向服务器端发送请求，然后将传送过来的内容动态添加到网页上。如此实现存在一些缺陷，即发送往返请求需要耗费时间，而BigPipe 技术使浏览器并不需要发送XMLHttpRequest 请求，这样就节省时间损耗。</p><p>2 . 使用AJAX时，浏览器和服务器的工作顺序执行。服务器必须等待浏览器的请求，这样就会造成服务器的空闲。浏览器工作时，服务器在等待，而服务器工作时，浏览器在等待，这也是一种性能的浪费。使用BigPipe，浏览器和服务器可以并行同时工作，服务器不需要等待浏览器的请求，而是一直处于加载页面内容的工作阶段，这就会使效率得到更大的提高。</p><p>3 . 减少浏览器发送到请求。对一个5亿用户的网站来说，减少了使用AJAX额外带来的请求，会减少服务器的负载，同样会带来很大的性能提升。</p><p>基于以上三点，Facebook 在进行页面优化时采用了BigPipe 技术。目前淘宝主搜索结果页中，需要加载类目，相关搜索，宝贝列表，广告等内容，前端这里使用php 的curl 的批处理来并发的访问引擎获取相应的数据，并进行分步输出。这种模式还是与bigpipe有些不同，这点后面会讲到。一般来讲，在页面比较大，而且比较复杂，样式表和脚本比较多的情况下，使用BigPipe 来优化输出页面是比较合适的。另外非常重要的一点，BigPipe 并不改变浏览器的结构与网络协议，仅使用JS就可以实现，用户不需要做任何的设置，就会看到明显的访问时间缩短。</p><p><a href="http://www.searchtb.com/2011/04/an-introduction-to-bigpipe.html" target="_blank" rel="noopener">http://www.searchtb.com/2011/04/an-introduction-to-bigpipe.html</a></p><p>待续…</p>]]></content>
     
     <summary type="html">
     
-      &lt;h2 id=&quot;背景&quot;&gt;&lt;a href=&quot;#背景&quot; class=&quot;headerlink&quot; title=&quot;背景&quot;&gt;&lt;/a&gt;背景&lt;/h2&gt;&lt;p&gt;2010 年初的时候，Facebook 的前端性能研究小组开始了他们的优化项目，经过了六个月的努力，成功的将个人空间主页面加载耗时由原来的5
+      
+      
+        &lt;h2 id=&quot;背景&quot;&gt;&lt;a href=&quot;#背景&quot; class=&quot;headerlink&quot; title=&quot;背景&quot;&gt;&lt;/a&gt;背景&lt;/h2&gt;&lt;p&gt;2010 年初的时候，Facebook 的前端性能研究小组开始了他们的优化项目，经过了六个月的努力，成功的将个人空间主页面加载耗时由原来的5
+      
     
     </summary>
     
@@ -1271,42 +284,14 @@ sc delete MongoDB   //通过该方式删除的话，服务中的 mongod仍会存
     <published>2016-11-16T08:50:07.000Z</published>
     <updated>2017-01-10T08:10:53.271Z</updated>
     
-    <content type="html">&lt;h4 id=&quot;方式一：Chrome、FireFox等现代主流浏览器或IE10及以上版本。&quot;&gt;&lt;a href=&quot;#方式一：Chrome、FireFox等现代主流浏览器或IE10及以上版本。&quot; class=&quot;headerlink&quot; title=&quot;方式一：Chrome、FireFox等现代主流浏览器或IE10及以上版本。&quot;&gt;&lt;/a&gt;方式一：Chrome、FireFox等现代主流浏览器或IE10及以上版本。&lt;/h4&gt;&lt;pre&gt;&lt;code class=&quot;language-javascript&quot;&gt;// 测试字符
-var string = &amp;#39;Hello World!&amp;#39;;
-
-// 加密
-var encodedString = btoa(string);
-console.log(encodedString); // 输出: &amp;quot;SGVsbG8gV29ybGQh&amp;quot;
-
-// 解密
-var decodedString = atob(encodedString);
-console.log(decodedString); // 输出: &amp;quot;Hello World!&amp;quot;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h4 id=&quot;方式二：跨浏览器的方法（压缩版本）&quot;&gt;&lt;a href=&quot;#方式二：跨浏览器的方法（压缩版本）&quot; class=&quot;headerlink&quot; title=&quot;方式二：跨浏览器的方法（压缩版本）&quot;&gt;&lt;/a&gt;方式二：跨浏览器的方法（压缩版本）&lt;/h4&gt;&lt;pre&gt;&lt;code class=&quot;language-javascript&quot;&gt;// 定义Base64对象
-var Base64={_keyStr:&amp;quot;ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=&amp;quot;,encode:function(e){var t=&amp;quot;&amp;quot;;var n,r,i,s,o,u,a;var f=0;e=Base64._utf8_encode(e);while(f&amp;lt;e.length){n=e.charCodeAt(f++);r=e.charCodeAt(f++);i=e.charCodeAt(f++);s=n&amp;gt;&amp;gt;2;o=(n&amp;amp;3)&amp;lt;&amp;lt;4|r&amp;gt;&amp;gt;4;u=(r&amp;amp;15)&amp;lt;&amp;lt;2|i&amp;gt;&amp;gt;6;a=i&amp;amp;63;if(isNaN(r)){u=a=64}else if(isNaN(i)){a=64}t=t+this._keyStr.charAt(s)+this._keyStr.charAt(o)+this._keyStr.charAt(u)+this._keyStr.charAt(a)}return t},decode:function(e){var t=&amp;quot;&amp;quot;;var n,r,i;var s,o,u,a;var f=0;e=e.replace(/[^A-Za-z0-9+/=]/g,&amp;quot;&amp;quot;);while(f&amp;lt;e.length){s=this._keyStr.indexOf(e.charAt(f++));o=this._keyStr.indexOf(e.charAt(f++));u=this._keyStr.indexOf(e.charAt(f++));a=this._keyStr.indexOf(e.charAt(f++));n=s&amp;lt;&amp;lt;2|o&amp;gt;&amp;gt;4;r=(o&amp;amp;15)&amp;lt;&amp;lt;4|u&amp;gt;&amp;gt;2;i=(u&amp;amp;3)&amp;lt;&amp;lt;6|a;t=t+String.fromCharCode(n);if(u!=64){t=t+String.fromCharCode(r)}if(a!=64){t=t+String.fromCharCode(i)}}t=Base64._utf8_decode(t);return t},_utf8_encode:function(e){e=e.replace(/rn/g,&amp;quot;n&amp;quot;);var t=&amp;quot;&amp;quot;;for(var n=0;n&amp;lt;e.length;n++){var r=e.charCodeAt(n);if(r&amp;lt;128){t+=String.fromCharCode(r)}else if(r&amp;gt;127&amp;amp;&amp;amp;r&amp;lt;2048){t+=String.fromCharCode(r&amp;gt;&amp;gt;6|192);t+=String.fromCharCode(r&amp;amp;63|128)}else{t+=String.fromCharCode(r&amp;gt;&amp;gt;12|224);t+=String.fromCharCode(r&amp;gt;&amp;gt;6&amp;amp;63|128);t+=String.fromCharCode(r&amp;amp;63|128)}}return t},_utf8_decode:function(e){var t=&amp;quot;&amp;quot;;var n=0;var r=c1=c2=0;while(n&amp;lt;e.length){r=e.charCodeAt(n);if(r&amp;lt;128){t+=String.fromCharCode(r);n++}else if(r&amp;gt;191&amp;amp;&amp;amp;r&amp;lt;224){c2=e.charCodeAt(n+1);t+=String.fromCharCode((r&amp;amp;31)&amp;lt;&amp;lt;6|c2&amp;amp;63);n+=2}else{c2=e.charCodeAt(n+1);c3=e.charCodeAt(n+2);t+=String.fromCharCode((r&amp;amp;15)&amp;lt;&amp;lt;12|(c2&amp;amp;63)&amp;lt;&amp;lt;6|c3&amp;amp;63);n+=3}}return t}}
-
-// 测试字符
-var string = &amp;#39;Hello World!&amp;#39;;
-
-// 加密
-var encodedString = Base64.encode(string);
-console.log(encodedString); // 输出: &amp;quot;SGVsbG8gV29ybGQh&amp;quot;
-
-// 解密
-var decodedString = Base64.decode(encodedString);
-console.log(decodedString); // 输出: &amp;quot;Hello World!&amp;quot;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h4 id=&quot;Nodejs端处理&quot;&gt;&lt;a href=&quot;#Nodejs端处理&quot; class=&quot;headerlink&quot; title=&quot;Nodejs端处理&quot;&gt;&lt;/a&gt;Nodejs端处理&lt;/h4&gt;&lt;pre&gt;&lt;code class=&quot;language-javascript&quot;&gt;// 加密
-new Buffer(string).toString(&amp;quot;base64&amp;quot;)
-
-// 解密
-new Buffer(string, &amp;quot;base64&amp;quot;).toString()
-&lt;/code&gt;&lt;/pre&gt;
-</content>
+    <content type="html"><![CDATA[<h4 id="方式一：Chrome、FireFox等现代主流浏览器或IE10及以上版本。"><a href="#方式一：Chrome、FireFox等现代主流浏览器或IE10及以上版本。" class="headerlink" title="方式一：Chrome、FireFox等现代主流浏览器或IE10及以上版本。"></a>方式一：Chrome、FireFox等现代主流浏览器或IE10及以上版本。</h4><pre><code class="language-javascript">// 测试字符var string = &#39;Hello World!&#39;;// 加密var encodedString = btoa(string);console.log(encodedString); // 输出: &quot;SGVsbG8gV29ybGQh&quot;// 解密var decodedString = atob(encodedString);console.log(decodedString); // 输出: &quot;Hello World!&quot;</code></pre><h4 id="方式二：跨浏览器的方法（压缩版本）"><a href="#方式二：跨浏览器的方法（压缩版本）" class="headerlink" title="方式二：跨浏览器的方法（压缩版本）"></a>方式二：跨浏览器的方法（压缩版本）</h4><pre><code class="language-javascript">// 定义Base64对象var Base64={_keyStr:&quot;ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=&quot;,encode:function(e){var t=&quot;&quot;;var n,r,i,s,o,u,a;var f=0;e=Base64._utf8_encode(e);while(f&lt;e.length){n=e.charCodeAt(f++);r=e.charCodeAt(f++);i=e.charCodeAt(f++);s=n&gt;&gt;2;o=(n&amp;3)&lt;&lt;4|r&gt;&gt;4;u=(r&amp;15)&lt;&lt;2|i&gt;&gt;6;a=i&amp;63;if(isNaN(r)){u=a=64}else if(isNaN(i)){a=64}t=t+this._keyStr.charAt(s)+this._keyStr.charAt(o)+this._keyStr.charAt(u)+this._keyStr.charAt(a)}return t},decode:function(e){var t=&quot;&quot;;var n,r,i;var s,o,u,a;var f=0;e=e.replace(/[^A-Za-z0-9+/=]/g,&quot;&quot;);while(f&lt;e.length){s=this._keyStr.indexOf(e.charAt(f++));o=this._keyStr.indexOf(e.charAt(f++));u=this._keyStr.indexOf(e.charAt(f++));a=this._keyStr.indexOf(e.charAt(f++));n=s&lt;&lt;2|o&gt;&gt;4;r=(o&amp;15)&lt;&lt;4|u&gt;&gt;2;i=(u&amp;3)&lt;&lt;6|a;t=t+String.fromCharCode(n);if(u!=64){t=t+String.fromCharCode(r)}if(a!=64){t=t+String.fromCharCode(i)}}t=Base64._utf8_decode(t);return t},_utf8_encode:function(e){e=e.replace(/rn/g,&quot;n&quot;);var t=&quot;&quot;;for(var n=0;n&lt;e.length;n++){var r=e.charCodeAt(n);if(r&lt;128){t+=String.fromCharCode(r)}else if(r&gt;127&amp;&amp;r&lt;2048){t+=String.fromCharCode(r&gt;&gt;6|192);t+=String.fromCharCode(r&amp;63|128)}else{t+=String.fromCharCode(r&gt;&gt;12|224);t+=String.fromCharCode(r&gt;&gt;6&amp;63|128);t+=String.fromCharCode(r&amp;63|128)}}return t},_utf8_decode:function(e){var t=&quot;&quot;;var n=0;var r=c1=c2=0;while(n&lt;e.length){r=e.charCodeAt(n);if(r&lt;128){t+=String.fromCharCode(r);n++}else if(r&gt;191&amp;&amp;r&lt;224){c2=e.charCodeAt(n+1);t+=String.fromCharCode((r&amp;31)&lt;&lt;6|c2&amp;63);n+=2}else{c2=e.charCodeAt(n+1);c3=e.charCodeAt(n+2);t+=String.fromCharCode((r&amp;15)&lt;&lt;12|(c2&amp;63)&lt;&lt;6|c3&amp;63);n+=3}}return t}}// 测试字符var string = &#39;Hello World!&#39;;// 加密var encodedString = Base64.encode(string);console.log(encodedString); // 输出: &quot;SGVsbG8gV29ybGQh&quot;// 解密var decodedString = Base64.decode(encodedString);console.log(decodedString); // 输出: &quot;Hello World!&quot;</code></pre><h4 id="Nodejs端处理"><a href="#Nodejs端处理" class="headerlink" title="Nodejs端处理"></a>Nodejs端处理</h4><pre><code class="language-javascript">// 加密new Buffer(string).toString(&quot;base64&quot;)// 解密new Buffer(string, &quot;base64&quot;).toString()</code></pre>]]></content>
     
     <summary type="html">
     
-      &lt;h4 id=&quot;方式一：Chrome、FireFox等现代主流浏览器或IE10及以上版本。&quot;&gt;&lt;a href=&quot;#方式一：Chrome、FireFox等现代主流浏览器或IE10及以上版本。&quot; class=&quot;headerlink&quot; title=&quot;方式一：Chrome、FireFox
+      
+      
+        &lt;h4 id=&quot;方式一：Chrome、FireFox等现代主流浏览器或IE10及以上版本。&quot;&gt;&lt;a href=&quot;#方式一：Chrome、FireFox等现代主流浏览器或IE10及以上版本。&quot; class=&quot;headerlink&quot; title=&quot;方式一：Chrome、FireFox
+      
     
     </summary>
     
@@ -1324,100 +309,14 @@ new Buffer(string, &amp;quot;base64&amp;quot;).toString()
     <published>2016-09-01T06:57:55.000Z</published>
     <updated>2016-09-01T07:10:53.537Z</updated>
     
-    <content type="html">&lt;p&gt;原问题：&lt;a href=&quot;http://stackoverflow.com/questions/105034/how-to-create-a-guid-uuid-in-javascript&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;How to create a GUID / UUID in Javascript?&lt;/a&gt;&lt;/p&gt;
-&lt;h2 id=&quot;Introuction&quot;&gt;&lt;a href=&quot;#Introuction&quot; class=&quot;headerlink&quot; title=&quot;Introuction&quot;&gt;&lt;/a&gt;Introuction&lt;/h2&gt;&lt;blockquote&gt;
-&lt;p&gt;UUID = Universally Unique IDentifier, 全球唯一标识符。&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;本来我觉得UUID不是什么事，只是一个唯一性的ID字符串而已。在Stack Overflow上看到这个问题之后，倒开始觉得，也许UUID里也有一些值得去发掘的东西。&lt;/p&gt;
-&lt;p&gt;于是我想到了这几个问题：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;#UUID-and-GUID&quot;&gt;为什么有UUID和GUID这两个东西&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#Specification&quot;&gt;有什么规范吗&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;好像我曾多次看到过有人讨论某种系统或变成语言下UUID的生成问题，&lt;a href=&quot;#UUID-and-implementation&quot;&gt;UUID跟系统或者编程语言有关系吗&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;带着这些问题，我查找并学习了一番。现在做个整理。&lt;/p&gt;
-&lt;h2 id=&quot;UUID-and-GUID&quot;&gt;&lt;a href=&quot;#UUID-and-GUID&quot; class=&quot;headerlink&quot; title=&quot;UUID and GUID&quot;&gt;&lt;/a&gt;UUID and GUID&lt;/h2&gt;&lt;h4 id=&quot;定义&quot;&gt;&lt;a href=&quot;#定义&quot; class=&quot;headerlink&quot; title=&quot;定义&quot;&gt;&lt;/a&gt;定义&lt;/h4&gt;&lt;p&gt;UUID来自于IETF发布的一个规范：&lt;a href=&quot;http://www.ietf.org/rfc/rfc4122.txt&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;A Universally Unique IDentifier (UUID) URN Namespace&lt;/a&gt;。&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;This specification defines a Uniform Resource Name namespace for UUIDs (Universally Unique IDentifier), also known as GUIDs (Globally Unique IDentifier).  A UUID is 128 bits long, and can guarantee uniqueness across space and time.  UUIDs were originally used in the Apollo Network Computing System and later in the Open Software Foundation’s (OSF) Distributed Computing Environment (DCE), and then in Microsoft Windows platforms.&lt;br&gt;This specification is derived from the DCE specification with the kind permission of the OSF (now known as The Open Group).&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;UUID和GUID是同一个东西的两个名字。这两个名字的来源不同。&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;UUID来源于OSF的DCE规范，也就是RFC4122的前身&lt;/li&gt;
-&lt;li&gt;GUID来源于微软，注意RFC4122的作者之一是微软员工&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h4 id=&quot;用途&quot;&gt;&lt;a href=&quot;#用途&quot; class=&quot;headerlink&quot; title=&quot;用途&quot;&gt;&lt;/a&gt;用途&lt;/h4&gt;&lt;p&gt;UUID的出现，是为了在一个复杂的系统中，唯一的标识每个信息实体，同时不需要有一个集中的id管理。也就是说，根据某种规则来为一个信息实体分配一个唯一的id，而且不需要一个id管理器来保证这个id的唯一性。&lt;/p&gt;
-&lt;p&gt;它可以用来标识任何东西，Microsoft用它来表示Windows中的软件（GUID），Linux用它来表示系统中的文件。&lt;/p&gt;
-&lt;h2 id=&quot;Specification&quot;&gt;&lt;a href=&quot;#Specification&quot; class=&quot;headerlink&quot; title=&quot;Specification&quot;&gt;&lt;/a&gt;Specification&lt;/h2&gt;&lt;h4 id=&quot;UUID格式规范&quot;&gt;&lt;a href=&quot;#UUID格式规范&quot; class=&quot;headerlink&quot; title=&quot;UUID格式规范&quot;&gt;&lt;/a&gt;UUID格式规范&lt;/h4&gt;&lt;p&gt;这128bits的结构如下所示：&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;   0                   1                   2                   3
-    0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   |                          time_low                             |
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   |       time_mid                |         time_hi_and_version   |
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   |clk_seq_hi_res |  clk_seq_low  |         node (0-1)            |
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   |                         node (2-5)                            |
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-      time-low               = 4hexOctet
-      time-mid               = 2hexOctet
-      time-high-and-version  = 2hexOctet    // MOST IMPORTANT !
-      clock-seq-and-reserved = hexOctet
-      clock-seq-low          = hexOctet
-      node                   = 6hexOctet
-      hexOctet               = hexDigit hexDigit
-      hexDigit =
-            &amp;quot;0&amp;quot; / &amp;quot;1&amp;quot; / &amp;quot;2&amp;quot; / &amp;quot;3&amp;quot; / &amp;quot;4&amp;quot; / &amp;quot;5&amp;quot; / &amp;quot;6&amp;quot; / &amp;quot;7&amp;quot; / &amp;quot;8&amp;quot; / &amp;quot;9&amp;quot; /
-            &amp;quot;a&amp;quot; / &amp;quot;b&amp;quot; / &amp;quot;c&amp;quot; / &amp;quot;d&amp;quot; / &amp;quot;e&amp;quot; / &amp;quot;f&amp;quot; /
-            &amp;quot;A&amp;quot; / &amp;quot;B&amp;quot; / &amp;quot;C&amp;quot; / &amp;quot;D&amp;quot; / &amp;quot;E&amp;quot; / &amp;quot;F&amp;quot;
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;示例：&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;uuid:f81d4fae-7dec-11d0-a765-00a0c91e6bf6
-&lt;/code&gt;&lt;/pre&gt;&lt;h4 id=&quot;UUID生成算法&quot;&gt;&lt;a href=&quot;#UUID生成算法&quot; class=&quot;headerlink&quot; title=&quot;UUID生成算法&quot;&gt;&lt;/a&gt;UUID生成算法&lt;/h4&gt;&lt;p&gt;UUID本身也经过了&lt;a href=&quot;http://en.wikipedia.org/wiki/Universally_unique_identifier#Variants_and_versions&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;多个版本的演化&lt;/a&gt;。比如node字段的定义，最开始定义为来自IEEE 802 address，演化到后来的&lt;em&gt;a randomly or pseudo-randomly generated 48-bit value&lt;/em&gt;。&lt;/p&gt;
-&lt;p&gt;最新的UUID生成算法是这样的：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Set the two most significant bits (bits 6 and 7) of the clock_seq_hi_and_reserved to zero and one, respectively.&lt;/li&gt;
-&lt;li&gt;Set the four most significant bits (bits 12 through 15) of the time_hi_and_version field to the 4-bit version number.&lt;/li&gt;
-&lt;li&gt;Set all the other bits to randomly (or pseudo-randomly) chosen values.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&quot;UUID-and-implementation&quot;&gt;&lt;a href=&quot;#UUID-and-implementation&quot; class=&quot;headerlink&quot; title=&quot;UUID and implementation&quot;&gt;&lt;/a&gt;UUID and implementation&lt;/h2&gt;&lt;p&gt;越来越多的系统中使用着UUID，各自使用目的并不一样。而且由于限定在128bits，UUID规范本身并没有保证UUID真的是在全球唯一的。因此现在对UUID的使用，一般都是限定在一个范围内有唯一性保证，比如一个操作系统内。&lt;/p&gt;
-&lt;p&gt;因此我们可以看到：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;微软有一个GUID生成lib：&lt;a href=&quot;http://msdn.microsoft.com/en-us/library/system.guid(v=vs.110).aspx&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://msdn.microsoft.com/en-us/library/system.guid(v=vs.110).aspx&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Linux也同样有UUID生成lib：&lt;a href=&quot;http://en.wikipedia.org/wiki/Util-linux&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://en.wikipedia.org/wiki/Util-linux&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Android的UUID生成lib：&lt;a href=&quot;http://developer.android.com/reference/java/util/UUID.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://developer.android.com/reference/java/util/UUID.html&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;用以上系统对应的UUID生成lib可以确保产生的UUID在系统范围内是唯一的。因此可以用来标识系统资源，比如文件、软件、设备等。&lt;/p&gt;
-&lt;p&gt;而对于某种具体的编程语言，UUID的使用并没有必要。因为使用UUID的目的是给某个资源分配一个在当前环境下唯一的标识符。而一个程序只有在运行的时候才谈得上有一个&lt;strong&gt;环境&lt;/strong&gt;，进程之间又互不影响。因此，一般在编程语言规范中并没有对UUID生成方法进行规定。&lt;/p&gt;
-&lt;p&gt;但&lt;em&gt;unique id&lt;/em&gt;还是很常用的，比如：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;PHP - uniqid() &lt;a href=&quot;http://php.net/manual/en/function.uniqid.php#94959&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://php.net/manual/en/function.uniqid.php#94959&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Mysql - UUID() &lt;a href=&quot;http://dev.mysql.com/doc/refman/5.1/en/miscellaneous-functions.html#function_uuid&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://dev.mysql.com/doc/refman/5.1/en/miscellaneous-functions.html#function_uuid&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Java - UUID &lt;a href=&quot;http://docs.oracle.com/javase/7/docs/api/java/util/UUID.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://docs.oracle.com/javase/7/docs/api/java/util/UUID.html&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;但这些UUID方法只是借用了&lt;em&gt;唯一性&lt;/em&gt;的概念，并不是必须。而且uuid规定128bits，很多情况下有点浪费。&lt;/p&gt;
-&lt;p&gt;你可以用任何方法来生成一个程序内唯一的字符串，比如mysql中的incremental id，它就比uuid实用。&lt;/p&gt;
-&lt;p&gt;##UUID in Javascript&lt;br&gt;既然要生成UUID，那么得符合规范。&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Javascript function&lt;/li&gt;
-&lt;/ul&gt;
-&lt;pre&gt;&lt;code class=&quot;language-javascript&quot;&gt;function generateUUID(){
-    var d = new Date().getTime();
-    var uuid = &amp;#39;xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx&amp;#39;.replace(/[xy]/g, function(c) {
-        var r = (d + Math.random()*16)%16 | 0;
-        d = Math.floor(d/16);
-        return (c==&amp;#39;x&amp;#39; ? r : (r&amp;amp;0x7|0x8)).toString(16);
-    });
-    return uuid;
-};
-&lt;/code&gt;&lt;/pre&gt;
-&lt;ul&gt;
-&lt;li&gt;Node module&lt;br&gt;&lt;a href=&quot;https://github.com/broofa/node-uuid&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://github.com/broofa/node-uuid&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-</content>
+    <content type="html"><![CDATA[<p>原问题：<a href="http://stackoverflow.com/questions/105034/how-to-create-a-guid-uuid-in-javascript" target="_blank" rel="noopener">How to create a GUID / UUID in Javascript?</a></p><h2 id="Introuction"><a href="#Introuction" class="headerlink" title="Introuction"></a>Introuction</h2><blockquote><p>UUID = Universally Unique IDentifier, 全球唯一标识符。</p></blockquote><p>本来我觉得UUID不是什么事，只是一个唯一性的ID字符串而已。在Stack Overflow上看到这个问题之后，倒开始觉得，也许UUID里也有一些值得去发掘的东西。</p><p>于是我想到了这几个问题：</p><ul><li><a href="#UUID-and-GUID">为什么有UUID和GUID这两个东西</a></li><li><a href="#Specification">有什么规范吗</a></li><li>好像我曾多次看到过有人讨论某种系统或变成语言下UUID的生成问题，<a href="#UUID-and-implementation">UUID跟系统或者编程语言有关系吗</a></li></ul><p>带着这些问题，我查找并学习了一番。现在做个整理。</p><h2 id="UUID-and-GUID"><a href="#UUID-and-GUID" class="headerlink" title="UUID and GUID"></a>UUID and GUID</h2><h4 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h4><p>UUID来自于IETF发布的一个规范：<a href="http://www.ietf.org/rfc/rfc4122.txt" target="_blank" rel="noopener">A Universally Unique IDentifier (UUID) URN Namespace</a>。</p><blockquote><p>This specification defines a Uniform Resource Name namespace for UUIDs (Universally Unique IDentifier), also known as GUIDs (Globally Unique IDentifier).  A UUID is 128 bits long, and can guarantee uniqueness across space and time.  UUIDs were originally used in the Apollo Network Computing System and later in the Open Software Foundation’s (OSF) Distributed Computing Environment (DCE), and then in Microsoft Windows platforms.<br>This specification is derived from the DCE specification with the kind permission of the OSF (now known as The Open Group).</p></blockquote><p>UUID和GUID是同一个东西的两个名字。这两个名字的来源不同。</p><ul><li>UUID来源于OSF的DCE规范，也就是RFC4122的前身</li><li>GUID来源于微软，注意RFC4122的作者之一是微软员工</li></ul><h4 id="用途"><a href="#用途" class="headerlink" title="用途"></a>用途</h4><p>UUID的出现，是为了在一个复杂的系统中，唯一的标识每个信息实体，同时不需要有一个集中的id管理。也就是说，根据某种规则来为一个信息实体分配一个唯一的id，而且不需要一个id管理器来保证这个id的唯一性。</p><p>它可以用来标识任何东西，Microsoft用它来表示Windows中的软件（GUID），Linux用它来表示系统中的文件。</p><h2 id="Specification"><a href="#Specification" class="headerlink" title="Specification"></a>Specification</h2><h4 id="UUID格式规范"><a href="#UUID格式规范" class="headerlink" title="UUID格式规范"></a>UUID格式规范</h4><p>这128bits的结构如下所示：</p><pre><code>   0                   1                   2                   3    0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+   |                          time_low                             |   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+   |       time_mid                |         time_hi_and_version   |   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+   |clk_seq_hi_res |  clk_seq_low  |         node (0-1)            |   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+   |                         node (2-5)                            |   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+      time-low               = 4hexOctet      time-mid               = 2hexOctet      time-high-and-version  = 2hexOctet    // MOST IMPORTANT !      clock-seq-and-reserved = hexOctet      clock-seq-low          = hexOctet      node                   = 6hexOctet      hexOctet               = hexDigit hexDigit      hexDigit =            &quot;0&quot; / &quot;1&quot; / &quot;2&quot; / &quot;3&quot; / &quot;4&quot; / &quot;5&quot; / &quot;6&quot; / &quot;7&quot; / &quot;8&quot; / &quot;9&quot; /            &quot;a&quot; / &quot;b&quot; / &quot;c&quot; / &quot;d&quot; / &quot;e&quot; / &quot;f&quot; /            &quot;A&quot; / &quot;B&quot; / &quot;C&quot; / &quot;D&quot; / &quot;E&quot; / &quot;F&quot;</code></pre><p>示例：</p><pre><code>uuid:f81d4fae-7dec-11d0-a765-00a0c91e6bf6</code></pre><h4 id="UUID生成算法"><a href="#UUID生成算法" class="headerlink" title="UUID生成算法"></a>UUID生成算法</h4><p>UUID本身也经过了<a href="http://en.wikipedia.org/wiki/Universally_unique_identifier#Variants_and_versions" target="_blank" rel="noopener">多个版本的演化</a>。比如node字段的定义，最开始定义为来自IEEE 802 address，演化到后来的<em>a randomly or pseudo-randomly generated 48-bit value</em>。</p><p>最新的UUID生成算法是这样的：</p><ul><li>Set the two most significant bits (bits 6 and 7) of the clock_seq_hi_and_reserved to zero and one, respectively.</li><li>Set the four most significant bits (bits 12 through 15) of the time_hi_and_version field to the 4-bit version number.</li><li>Set all the other bits to randomly (or pseudo-randomly) chosen values.</li></ul><h2 id="UUID-and-implementation"><a href="#UUID-and-implementation" class="headerlink" title="UUID and implementation"></a>UUID and implementation</h2><p>越来越多的系统中使用着UUID，各自使用目的并不一样。而且由于限定在128bits，UUID规范本身并没有保证UUID真的是在全球唯一的。因此现在对UUID的使用，一般都是限定在一个范围内有唯一性保证，比如一个操作系统内。</p><p>因此我们可以看到：</p><ul><li>微软有一个GUID生成lib：<a href="http://msdn.microsoft.com/en-us/library/system.guid(v=vs.110).aspx" target="_blank" rel="noopener">http://msdn.microsoft.com/en-us/library/system.guid(v=vs.110).aspx</a></li><li>Linux也同样有UUID生成lib：<a href="http://en.wikipedia.org/wiki/Util-linux" target="_blank" rel="noopener">http://en.wikipedia.org/wiki/Util-linux</a></li><li>Android的UUID生成lib：<a href="http://developer.android.com/reference/java/util/UUID.html" target="_blank" rel="noopener">http://developer.android.com/reference/java/util/UUID.html</a></li></ul><p>用以上系统对应的UUID生成lib可以确保产生的UUID在系统范围内是唯一的。因此可以用来标识系统资源，比如文件、软件、设备等。</p><p>而对于某种具体的编程语言，UUID的使用并没有必要。因为使用UUID的目的是给某个资源分配一个在当前环境下唯一的标识符。而一个程序只有在运行的时候才谈得上有一个<strong>环境</strong>，进程之间又互不影响。因此，一般在编程语言规范中并没有对UUID生成方法进行规定。</p><p>但<em>unique id</em>还是很常用的，比如：</p><ul><li>PHP - uniqid() <a href="http://php.net/manual/en/function.uniqid.php#94959" target="_blank" rel="noopener">http://php.net/manual/en/function.uniqid.php#94959</a></li><li>Mysql - UUID() <a href="http://dev.mysql.com/doc/refman/5.1/en/miscellaneous-functions.html#function_uuid" target="_blank" rel="noopener">http://dev.mysql.com/doc/refman/5.1/en/miscellaneous-functions.html#function_uuid</a></li><li>Java - UUID <a href="http://docs.oracle.com/javase/7/docs/api/java/util/UUID.html" target="_blank" rel="noopener">http://docs.oracle.com/javase/7/docs/api/java/util/UUID.html</a></li></ul><p>但这些UUID方法只是借用了<em>唯一性</em>的概念，并不是必须。而且uuid规定128bits，很多情况下有点浪费。</p><p>你可以用任何方法来生成一个程序内唯一的字符串，比如mysql中的incremental id，它就比uuid实用。</p><p>##UUID in Javascript<br>既然要生成UUID，那么得符合规范。</p><ul><li>Javascript function</li></ul><pre><code class="language-javascript">function generateUUID(){    var d = new Date().getTime();    var uuid = &#39;xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx&#39;.replace(/[xy]/g, function(c) {        var r = (d + Math.random()*16)%16 | 0;        d = Math.floor(d/16);        return (c==&#39;x&#39; ? r : (r&amp;0x7|0x8)).toString(16);    });    return uuid;};</code></pre><ul><li>Node module<br><a href="https://github.com/broofa/node-uuid" target="_blank" rel="noopener">https://github.com/broofa/node-uuid</a></li></ul>]]></content>
     
     <summary type="html">
     
-      &lt;p&gt;原问题：&lt;a href=&quot;http://stackoverflow.com/questions/105034/how-to-create-a-guid-uuid-in-javascript&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;How to cre
+      
+      
+        &lt;p&gt;原问题：&lt;a href=&quot;http://stackoverflow.com/questions/105034/how-to-create-a-guid-uuid-in-javascript&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;How to cre
+      
     
     </summary>
     
@@ -1435,43 +334,17 @@ new Buffer(string, &amp;quot;base64&amp;quot;).toString()
     <published>2016-08-05T03:24:36.000Z</published>
     <updated>2016-08-05T03:57:36.984Z</updated>
     
-    <content type="html">&lt;blockquote&gt;
-&lt;p&gt;在使用 node 模块时可以使用 npm install 查找 package.json 中的声明的依赖模块并安装。  &lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;但因为国内网络原因，使用 npm 安装某些模块会非常慢，甚至无法安装所有的包。&lt;br&gt;幸运的是,国内有几个镜像站点可以供我们使用,比如 &lt;code&gt;https://registry.cnpmjs.org&lt;/code&gt;、&lt;code&gt;https://registry.npm.taobao.org&lt;/code&gt;,速度非常快,镜像站会实时更新,为我们节省了好多时间.    &lt;/p&gt;
-&lt;h5 id=&quot;那么-如何给本机换源呢&quot;&gt;&lt;a href=&quot;#那么-如何给本机换源呢&quot; class=&quot;headerlink&quot; title=&quot;那么,如何给本机换源呢?&quot;&gt;&lt;/a&gt;那么,如何给本机换源呢?&lt;/h5&gt;&lt;p&gt;(1)[临时]通过 &lt;code&gt;config&lt;/code&gt; 配置指向国内镜像源&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-git&quot;&gt;# 配置指向源
-npm config set registry http://registry.cnpmjs.org
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;(2)[临时]通过 &lt;code&gt;npm&lt;/code&gt; 命令指定下载源&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-git&quot;&gt;npm --registry http://registry.cnpmjs.org
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;(3)[linux]在配置文件 &lt;code&gt;~/.npmrc&lt;/code&gt; 文件写入源地址&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-git&quot;&gt;//打开配置文件
-nano ~/.npmrc
-//写入配置文件
-registry =https://registry.npm.taobao.org
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;推荐使用最后一种方法,一劳永逸,前面2钟方法都是临时改变包下载源.&lt;br&gt;如果你不想使用国内镜像站点,只需要将 写入 &lt;code&gt;~/.npmrc&lt;/code&gt; 的配置内容删除即可.  &lt;/p&gt;
-&lt;p&gt;配置后可通过下面方式来验证是否成功&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-git&quot;&gt;npm config get registry
-// 或
-npm info express
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h5 id=&quot;使用cnpm&quot;&gt;&lt;a href=&quot;#使用cnpm&quot; class=&quot;headerlink&quot; title=&quot;使用cnpm&quot;&gt;&lt;/a&gt;使用cnpm&lt;/h5&gt;&lt;p&gt;或者你也可以安装&lt;code&gt;cnpm&lt;/code&gt;包，使用&lt;code&gt;cnpm&lt;/code&gt;替代&lt;code&gt;npm&lt;/code&gt;：&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-git&quot;&gt;npm install -g cnpm --registry=https://registry.npm.taobao.org
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;然后使用 &lt;code&gt;cnpm&lt;/code&gt; 安装模块：&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-git&quot;&gt;cnpm install [module-name]
-&lt;/code&gt;&lt;/pre&gt;
-</content>
+    <content type="html"><![CDATA[<blockquote><p>在使用 node 模块时可以使用 npm install 查找 package.json 中的声明的依赖模块并安装。  </p></blockquote><p>但因为国内网络原因，使用 npm 安装某些模块会非常慢，甚至无法安装所有的包。<br>幸运的是,国内有几个镜像站点可以供我们使用,比如 <code>https://registry.cnpmjs.org</code>、<code>https://registry.npm.taobao.org</code>,速度非常快,镜像站会实时更新,为我们节省了好多时间.    </p><h5 id="那么-如何给本机换源呢"><a href="#那么-如何给本机换源呢" class="headerlink" title="那么,如何给本机换源呢?"></a>那么,如何给本机换源呢?</h5><p>(1)[临时]通过 <code>config</code> 配置指向国内镜像源</p><pre><code class="language-git"># 配置指向源npm config set registry http://registry.cnpmjs.org</code></pre><p>(2)[临时]通过 <code>npm</code> 命令指定下载源</p><pre><code class="language-git">npm --registry http://registry.cnpmjs.org </code></pre><p>(3)[linux]在配置文件 <code>~/.npmrc</code> 文件写入源地址</p><pre><code class="language-git">//打开配置文件nano ~/.npmrc//写入配置文件registry =https://registry.npm.taobao.org</code></pre><p>推荐使用最后一种方法,一劳永逸,前面2钟方法都是临时改变包下载源.<br>如果你不想使用国内镜像站点,只需要将 写入 <code>~/.npmrc</code> 的配置内容删除即可.  </p><p>配置后可通过下面方式来验证是否成功</p><pre><code class="language-git">npm config get registry// 或npm info express</code></pre><h5 id="使用cnpm"><a href="#使用cnpm" class="headerlink" title="使用cnpm"></a>使用cnpm</h5><p>或者你也可以安装<code>cnpm</code>包，使用<code>cnpm</code>替代<code>npm</code>：</p><pre><code class="language-git">npm install -g cnpm --registry=https://registry.npm.taobao.org</code></pre><p>然后使用 <code>cnpm</code> 安装模块：</p><pre><code class="language-git">cnpm install [module-name]</code></pre>]]></content>
     
     <summary type="html">
     
-      &lt;blockquote&gt;
+      
+      
+        &lt;blockquote&gt;
 &lt;p&gt;在使用 node 模块时可以使用 npm install 查找 package.json 中的声明的依赖模块并安装。  &lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;但因为国内网络原因，使用 npm 安装某些模块会非常慢，甚至无法安装所有的包。&lt;br
+      
     
     </summary>
     
@@ -1489,97 +362,17 @@ npm info express
     <published>2016-07-18T11:56:54.000Z</published>
     <updated>2016-07-18T11:59:19.353Z</updated>
     
-    <content type="html">&lt;blockquote&gt;
-&lt;p&gt;解决在iOS设备上，用H5上传图片，有时图片方向会错乱的问题。&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;用html5编写图片裁切上传，在iphone手机上可能会遇到图片方向错误问题，在此把解决方法和大家分享一下，&lt;br&gt;用到了html5的 FileReader和Canvas，如果还没有接触的同学，先了解一下其方法。   &lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-javascript&quot;&gt; //此方法为file input元素的change事件
- function change(){
-    var file = this.files[0];
-    var orientation;
-    //EXIF js 可以读取图片的元信息  https://github.com/exif-js/exif-js
-    EXIF.getData(file,function(){
-        orientation=EXIF.getTag(this,&amp;#39;Orientation&amp;#39;);
-    });
-    var reader = new FileReader();
-    reader.onload = function(e) {   
-        getImgData(this.result,orientation,function(data){
-            //这里可以使用校正后的图片data了 
-        }); 
-    }
-    reader.readAsDataURL(file);
-}
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;下面是具体的处理方式：&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-javascript&quot;&gt;// @param {string} img 图片的base64
-// @param {int} dir exif获取的方向信息
-// @param {function} next 回调方法，返回校正方向后的base64
-function getImgData(img,dir,next){
-  var image=new Image();
-  image.onload=function(){
-    var degree=0,drawWidth,drawHeight,width,height;
-    drawWidth=this.naturalWidth;
-    drawHeight=this.naturalHeight;
-    //以下改变一下图片大小
-    var maxSide = Math.max(drawWidth, drawHeight);
-    if (maxSide &amp;gt; 1024) {
-        var minSide = Math.min(drawWidth, drawHeight);
-        minSide = minSide / maxSide * 1024;
-        maxSide = 1024;
-        if (drawWidth &amp;gt; drawHeight) {
-            drawWidth = maxSide;
-            drawHeight = minSide;
-        } else {
-            drawWidth = minSide;
-            drawHeight = maxSide;
-        }
-    }
-    var canvas=document.createElement(&amp;#39;canvas&amp;#39;);
-    canvas.width=width=drawWidth;
-    canvas.height=height=drawHeight; 
-    var context=canvas.getContext(&amp;#39;2d&amp;#39;);
-    //判断图片方向，重置canvas大小，确定旋转角度，iphone默认的是home键在右方的横屏拍摄方式
-    switch(dir){
-       //iphone横屏拍摄，此时home键在左侧
-        case 3:
-            degree=180;
-            drawWidth=-width;
-            drawHeight=-height;
-            break;
-        //iphone竖屏拍摄，此时home键在下方(正常拿手机的方向)
-        case 6:
-            canvas.width=height;
-            canvas.height=width; 
-            degree=90;
-            drawWidth=width;
-            drawHeight=-height;
-            break;
-        //iphone竖屏拍摄，此时home键在上方
-        case 8:
-            canvas.width=height;
-            canvas.height=width; 
-            degree=270;
-            drawWidth=-width;
-            drawHeight=height;
-            break;
-    }
-    //使用canvas旋转校正
-    context.rotate(degree*Math.PI/180);
-    context.drawImage(this,0,0,drawWidth,drawHeight);
-    //返回校正图片
-    next(canvas.toDataURL(&amp;quot;image/jpeg&amp;quot;,.8));
- }
-  image.src=img;
-}
-&lt;/code&gt;&lt;/pre&gt;
-</content>
+    <content type="html"><![CDATA[<blockquote><p>解决在iOS设备上，用H5上传图片，有时图片方向会错乱的问题。</p></blockquote><p>用html5编写图片裁切上传，在iphone手机上可能会遇到图片方向错误问题，在此把解决方法和大家分享一下，<br>用到了html5的 FileReader和Canvas，如果还没有接触的同学，先了解一下其方法。   </p><pre><code class="language-javascript"> //此方法为file input元素的change事件 function change(){    var file = this.files[0];    var orientation;    //EXIF js 可以读取图片的元信息  https://github.com/exif-js/exif-js    EXIF.getData(file,function(){        orientation=EXIF.getTag(this,&#39;Orientation&#39;);    });    var reader = new FileReader();    reader.onload = function(e) {           getImgData(this.result,orientation,function(data){            //这里可以使用校正后的图片data了         });     }    reader.readAsDataURL(file);}</code></pre><p>下面是具体的处理方式：</p><pre><code class="language-javascript">// @param {string} img 图片的base64// @param {int} dir exif获取的方向信息// @param {function} next 回调方法，返回校正方向后的base64function getImgData(img,dir,next){  var image=new Image();  image.onload=function(){    var degree=0,drawWidth,drawHeight,width,height;    drawWidth=this.naturalWidth;    drawHeight=this.naturalHeight;    //以下改变一下图片大小    var maxSide = Math.max(drawWidth, drawHeight);    if (maxSide &gt; 1024) {        var minSide = Math.min(drawWidth, drawHeight);        minSide = minSide / maxSide * 1024;        maxSide = 1024;        if (drawWidth &gt; drawHeight) {            drawWidth = maxSide;            drawHeight = minSide;        } else {            drawWidth = minSide;            drawHeight = maxSide;        }    }    var canvas=document.createElement(&#39;canvas&#39;);    canvas.width=width=drawWidth;    canvas.height=height=drawHeight;     var context=canvas.getContext(&#39;2d&#39;);    //判断图片方向，重置canvas大小，确定旋转角度，iphone默认的是home键在右方的横屏拍摄方式    switch(dir){       //iphone横屏拍摄，此时home键在左侧        case 3:            degree=180;            drawWidth=-width;            drawHeight=-height;            break;        //iphone竖屏拍摄，此时home键在下方(正常拿手机的方向)        case 6:            canvas.width=height;            canvas.height=width;             degree=90;            drawWidth=width;            drawHeight=-height;            break;        //iphone竖屏拍摄，此时home键在上方        case 8:            canvas.width=height;            canvas.height=width;             degree=270;            drawWidth=-width;            drawHeight=height;            break;    }    //使用canvas旋转校正    context.rotate(degree*Math.PI/180);    context.drawImage(this,0,0,drawWidth,drawHeight);    //返回校正图片    next(canvas.toDataURL(&quot;image/jpeg&quot;,.8)); }  image.src=img;}</code></pre>]]></content>
     
     <summary type="html">
     
-      &lt;blockquote&gt;
+      
+      
+        &lt;blockquote&gt;
 &lt;p&gt;解决在iOS设备上，用H5上传图片，有时图片方向会错乱的问题。&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;用html5编写图片裁切上传，在iphone手机上可能会遇到图片方向错误问题，在此把解决方法和大家分享一下，&lt;br&gt;用到了html5的 Fil
+      
     
     </summary>
     
@@ -1597,35 +390,14 @@ function getImgData(img,dir,next){
     <published>2016-07-04T08:14:54.000Z</published>
     <updated>2016-07-17T06:26:55.420Z</updated>
     
-    <content type="html">&lt;h4 id=&quot;1-安装git&quot;&gt;&lt;a href=&quot;#1-安装git&quot; class=&quot;headerlink&quot; title=&quot;1. 安装git&quot;&gt;&lt;/a&gt;1. 安装git&lt;/h4&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;[root@localhost ~]# yum install git
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h4 id=&quot;2-配置git&quot;&gt;&lt;a href=&quot;#2-配置git&quot; class=&quot;headerlink&quot; title=&quot;2. 配置git&quot;&gt;&lt;/a&gt;2. 配置git&lt;/h4&gt;&lt;p&gt;1 . 进入 &lt;code&gt;.ssh&lt;/code&gt; 目录&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;[root@localhost ~]# cd .ssh/
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;2 . 生成ssh-keygen&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;[root@localhost .ssh]# ssh-keygen -t rsa -C &amp;#39;this.xqs@gmail.com&amp;#39;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;会出现以下提示：&lt;/p&gt;
-&lt;p&gt;Generating public/private rsa key pair.&lt;br&gt;Enter file in which to save the key (/root/.ssh/id_rsa): （可不填）&lt;br&gt;Enter passphrase (empty for no passphrase):  （可不填）&lt;br&gt;Enter same passphrase again:  （可不填）&lt;br&gt;Your identification has been saved in /root/.ssh/id_rsa.&lt;br&gt;Your public key has been saved in /root/.ssh/id_rsa.pub.&lt;br&gt;The key fingerprint is:&lt;br&gt;8f:8e:89:00:1a:3e:83:d1:95:fc:e8:9c:22:85:4c:a7 this.xqs@gmail.com        &lt;/p&gt;
-&lt;p&gt;3 . 复制 &lt;code&gt;id_rsa.pub&lt;/code&gt; 文件中的内容，粘贴到github新增的ssh keys中。&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;[root@localhost .ssh]# ls
-// id_rsa  id_rsa.pub
-
-[root@localhost .ssh]# vim id_rsa.pub
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;4 . 配置用户名和邮箱&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;[root@localhost .ssh]# git config --global user.name &amp;#39;bandwagonhost vps&amp;#39;
-[root@localhost .ssh]# git config --global user.email &amp;#39;this.xqs@gmail.com&amp;#39;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;5 . 测试连接&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;[root@localhost .ssh]# ssh -T git@github.com
-Hi mmrxia! You&amp;#39;ve successfully authenticated, but GitHub does not provide shell access.
-&lt;/code&gt;&lt;/pre&gt;
-</content>
+    <content type="html"><![CDATA[<h4 id="1-安装git"><a href="#1-安装git" class="headerlink" title="1. 安装git"></a>1. 安装git</h4><pre><code class="language-bash">[root@localhost ~]# yum install git</code></pre><h4 id="2-配置git"><a href="#2-配置git" class="headerlink" title="2. 配置git"></a>2. 配置git</h4><p>1 . 进入 <code>.ssh</code> 目录</p><pre><code class="language-bash">[root@localhost ~]# cd .ssh/</code></pre><p>2 . 生成ssh-keygen</p><pre><code class="language-bash">[root@localhost .ssh]# ssh-keygen -t rsa -C &#39;this.xqs@gmail.com&#39;</code></pre><p>会出现以下提示：</p><p>Generating public/private rsa key pair.<br>Enter file in which to save the key (/root/.ssh/id_rsa): （可不填）<br>Enter passphrase (empty for no passphrase):  （可不填）<br>Enter same passphrase again:  （可不填）<br>Your identification has been saved in /root/.ssh/id_rsa.<br>Your public key has been saved in /root/.ssh/id_rsa.pub.<br>The key fingerprint is:<br>8f:8e:89:00:1a:3e:83:d1:95:fc:e8:9c:22:85:4c:a7 <a href="mailto:this.xqs@gmail.com" target="_blank" rel="noopener">this.xqs@gmail.com</a>        </p><p>3 . 复制 <code>id_rsa.pub</code> 文件中的内容，粘贴到github新增的ssh keys中。</p><pre><code class="language-bash">[root@localhost .ssh]# ls// id_rsa  id_rsa.pub[root@localhost .ssh]# vim id_rsa.pub </code></pre><p>4 . 配置用户名和邮箱</p><pre><code class="language-bash">[root@localhost .ssh]# git config --global user.name &#39;bandwagonhost vps&#39;[root@localhost .ssh]# git config --global user.email &#39;this.xqs@gmail.com&#39;</code></pre><p>5 . 测试连接</p><pre><code class="language-bash">[root@localhost .ssh]# ssh -T git@github.comHi mmrxia! You&#39;ve successfully authenticated, but GitHub does not provide shell access.</code></pre>]]></content>
     
     <summary type="html">
     
-      &lt;h4 id=&quot;1-安装git&quot;&gt;&lt;a href=&quot;#1-安装git&quot; class=&quot;headerlink&quot; title=&quot;1. 安装git&quot;&gt;&lt;/a&gt;1. 安装git&lt;/h4&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;[root@localhost ~]
+      
+      
+        &lt;h4 id=&quot;1-安装git&quot;&gt;&lt;a href=&quot;#1-安装git&quot; class=&quot;headerlink&quot; title=&quot;1. 安装git&quot;&gt;&lt;/a&gt;1. 安装git&lt;/h4&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;[root@localhost ~]
+      
     
     </summary>
     
@@ -1643,33 +415,15 @@ Hi mmrxia! You&amp;#39;ve successfully authenticated, but GitHub does not provid
     <published>2016-07-04T06:30:07.000Z</published>
     <updated>2016-07-07T09:35:21.099Z</updated>
     
-    <content type="html">&lt;h4 id=&quot;一、源码安装&quot;&gt;&lt;a href=&quot;#一、源码安装&quot; class=&quot;headerlink&quot; title=&quot;一、源码安装&quot;&gt;&lt;/a&gt;一、源码安装&lt;/h4&gt;&lt;p&gt;1 . 安装gcc-c编译器&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;[root@localhost ~]# sudo yum install gcc gcc-c++
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;2 . 现在nodejs源码并解压  &lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;[root@localhost ~]# wget https://nodejs.org/dist/v4.4.7/node-v4.4.7-linux-x86.tar.gz
-[root@localhost ~]# tar xvf node-v4.4.7-linux-x86
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;3 . 编译&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;[root@localhost ~]# ./configure
-[root@localhost ~]# make &amp;amp;&amp;amp; make install
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h4 id=&quot;二、nvm安装&quot;&gt;&lt;a href=&quot;#二、nvm安装&quot; class=&quot;headerlink&quot; title=&quot;二、nvm安装&quot;&gt;&lt;/a&gt;二、nvm安装&lt;/h4&gt;&lt;p&gt;1 . 获取nvm&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;wget -qO- https://raw.githubusercontent.com/creationix/nvm/v0.31.2/install.sh | bash
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;2 . 安装nodejs&lt;/p&gt;
-&lt;p&gt; 可用 &lt;code&gt;nvm ls-remote&lt;/code&gt; 列出所有可安装的node版本，然后安装需要的版本。&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt; nvm install v4.4.7
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;安装完成后可查看node版本。&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;node -v
-&lt;/code&gt;&lt;/pre&gt;
-</content>
+    <content type="html"><![CDATA[<h4 id="一、源码安装"><a href="#一、源码安装" class="headerlink" title="一、源码安装"></a>一、源码安装</h4><p>1 . 安装gcc-c编译器</p><pre><code class="language-bash">[root@localhost ~]# sudo yum install gcc gcc-c++</code></pre><p>2 . 现在nodejs源码并解压  </p><pre><code class="language-bash">[root@localhost ~]# wget https://nodejs.org/dist/v4.4.7/node-v4.4.7-linux-x86.tar.gz[root@localhost ~]# tar xvf node-v4.4.7-linux-x86</code></pre><p>3 . 编译</p><pre><code class="language-bash">[root@localhost ~]# ./configure[root@localhost ~]# make &amp;&amp; make install</code></pre><h4 id="二、nvm安装"><a href="#二、nvm安装" class="headerlink" title="二、nvm安装"></a>二、nvm安装</h4><p>1 . 获取nvm</p><pre><code class="language-bash">wget -qO- https://raw.githubusercontent.com/creationix/nvm/v0.31.2/install.sh | bash</code></pre><p>2 . 安装nodejs</p><p> 可用 <code>nvm ls-remote</code> 列出所有可安装的node版本，然后安装需要的版本。</p><pre><code class="language-bash"> nvm install v4.4.7</code></pre><p>安装完成后可查看node版本。</p><pre><code class="language-bash">node -v</code></pre>]]></content>
     
     <summary type="html">
     
-      &lt;h4 id=&quot;一、源码安装&quot;&gt;&lt;a href=&quot;#一、源码安装&quot; class=&quot;headerlink&quot; title=&quot;一、源码安装&quot;&gt;&lt;/a&gt;一、源码安装&lt;/h4&gt;&lt;p&gt;1 . 安装gcc-c编译器&lt;/p&gt;
+      
+      
+        &lt;h4 id=&quot;一、源码安装&quot;&gt;&lt;a href=&quot;#一、源码安装&quot; class=&quot;headerlink&quot; title=&quot;一、源码安装&quot;&gt;&lt;/a&gt;一、源码安装&lt;/h4&gt;&lt;p&gt;1 . 安装gcc-c编译器&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;[r
+      
     
     </summary>
     
@@ -1687,81 +441,14 @@ Hi mmrxia! You&amp;#39;ve successfully authenticated, but GitHub does not provid
     <published>2016-07-01T07:32:01.000Z</published>
     <updated>2016-07-18T11:44:35.814Z</updated>
     
-    <content type="html">&lt;h4 id=&quot;1-app-render和res-render方法的区别？&quot;&gt;&lt;a href=&quot;#1-app-render和res-render方法的区别？&quot; class=&quot;headerlink&quot; title=&quot;1 . app.render和res.render方法的区别？&quot;&gt;&lt;/a&gt;1 . app.render和res.render方法的区别？&lt;/h4&gt;&lt;p&gt;官方的api文档中是这么说的：   &lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;Think of app.render() as a utility function for generating rendered view strings. Internally res.render() uses app.render() to render views.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;我的理解：&lt;/p&gt;
-&lt;p&gt;把&lt;code&gt;app.render&lt;/code&gt;当成一个生成视图的工具，而且&lt;code&gt;res.render&lt;/code&gt;内部也是调用了&lt;code&gt;app.render&lt;/code&gt;。&lt;br&gt;区别是这样，&lt;code&gt;app.render&lt;/code&gt;只负责生成视图，你会发现它是没能力把视图响应给客户端（浏览器）的，只有&lt;code&gt;res.render&lt;/code&gt;手里有&lt;code&gt;response&lt;/code&gt;对象，可以把视图响应给客户端。&lt;br&gt;&lt;code&gt;res.render&lt;/code&gt;的伪代码可以看做如下: &lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-javascript&quot;&gt;res.render = function(view, locals, cb){
-    app.render(view, locals, function(err, html){
-        if(typeof cb !== &amp;#39;undefined&amp;#39;){
-            return cb(err, html);
-        }
-        res.send(html);
-    });
-};
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h4 id=&quot;2-res-write和res-send区别？&quot;&gt;&lt;a href=&quot;#2-res-write和res-send区别？&quot; class=&quot;headerlink&quot; title=&quot;2 . res.write和res.send区别？&quot;&gt;&lt;/a&gt;2 . res.write和res.send区别？&lt;/h4&gt;&lt;blockquote&gt;
-&lt;p&gt;The res object represents the HTTP response that an Express app sends when it gets an HTTP request.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;&lt;code&gt;res.write&lt;/code&gt;和&lt;code&gt;res.send&lt;/code&gt;都是发送报文到浏览器response中，并渲染在浏览器窗口。&lt;br&gt;&lt;code&gt;res.write&lt;/code&gt;使用时需要配合&lt;code&gt;res.end&lt;/code&gt;方法同时使用，否则浏览器http请求会一直处于pending状态，而&lt;code&gt;res.send&lt;/code&gt;单独使用即可。    &lt;/p&gt;
-&lt;p&gt;代码示例：     &lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-javascript&quot;&gt;//res.send
-app.get(&amp;#39;/user/:id&amp;#39;, function(req, res){
-  res.send(&amp;#39;user &amp;#39; + req.params.id);
-});
-
-//res.write
-app.get(&amp;#39;/user/:id&amp;#39;, function(req, res){
- res.status(200).write(&amp;#39;user &amp;#39; + req.params.id);
- res.end();
-});
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h4 id=&quot;3-获取request请求参数的方法？&quot;&gt;&lt;a href=&quot;#3-获取request请求参数的方法？&quot; class=&quot;headerlink&quot; title=&quot;3 . 获取request请求参数的方法？&quot;&gt;&lt;/a&gt;3 . 获取request请求参数的方法？&lt;/h4&gt;&lt;p&gt;express获取参数有三种方法：  &lt;/p&gt;
-&lt;p&gt;官网实例：   &lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;Checks route params (req.params), ex: /user/:id&lt;br&gt;Checks query string params (req.query), ex: ?id=12&lt;br&gt;Checks urlencoded body params (req.body), ex: id=    &lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;ul&gt;
-&lt;li&gt;例如：127.0.0.1:3000/index，得到index，可以通过使用&lt;code&gt;req.params&lt;/code&gt;得到；   &lt;/li&gt;
-&lt;li&gt;例如：127.0.0.1:3000/index?id=12，这种情况下，这种方式是获取客户端get方式传递过来的值，通过使用&lt;code&gt;req.query.id&lt;/code&gt;可以获得；     &lt;/li&gt;
-&lt;li&gt;例如：127.0.0.1：300/index，然后post了一个id=2的值，这种方式是获取客户端post过来的数据，可以通过&lt;code&gt;req.body.id&lt;/code&gt;获取； &lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;注：post请求，第三种方式需要以下配置：&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-javascript&quot;&gt;   var express        =         require(&amp;quot;express&amp;quot;);  
-   var bodyParser     =         require(&amp;quot;body-parser&amp;quot;);  
-   var app            =         express();  
-
-   app.use(bodyParser.urlencoded({ extended: false }));   // necessary
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h4 id=&quot;4-session使用入门&quot;&gt;&lt;a href=&quot;#4-session使用入门&quot; class=&quot;headerlink&quot; title=&quot;4 . session使用入门&quot;&gt;&lt;/a&gt;4 . session使用入门&lt;/h4&gt;&lt;p&gt;&lt;code&gt;express-session&lt;/code&gt;是express中比较常用的处理session的中间件,使用npm安装：&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-git&quot;&gt;$ npm install express-session save
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;session的认证机制必须依赖cookie，所以还应该同时安装一个&lt;code&gt;cookie-parser&lt;/code&gt;，安装方法同上。然后再app.js中导入这两个中间件：&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-javascript&quot;&gt;var cookieParser = require(&amp;#39;cookie-parser&amp;#39;);
-var session = require(&amp;#39;express-session&amp;#39;);
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;之后定义cookie解析器，注意，该定义必须写在路由分配之前：&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-javascript&quot;&gt;app.use(cookieParser());
-app.use(session({
-  secret: &amp;#39;secret_string&amp;#39;,
-  name: &amp;#39;name&amp;#39;,
-  cookie: {maxAge: 60000},
-  resave: false,
-  saveUninitialized: true,
-}));
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;各参数意义：&lt;br&gt;&lt;code&gt;secret&lt;/code&gt;：用来对session数据进行加密的字符串.这个属性值为必须指定的属性。&lt;br&gt;&lt;code&gt;name&lt;/code&gt;：表示cookie的name，默认cookie的name是：connect.sid。&lt;br&gt;&lt;code&gt;maxAge&lt;/code&gt;：cookie过期时间，毫秒。&lt;br&gt;&lt;code&gt;resave&lt;/code&gt;：是指每次请求都重新设置session cookie，假设你的cookie是6000毫秒过期，每次请求都会再设置6000毫秒。&lt;br&gt;&lt;code&gt;saveUninitialized&lt;/code&gt;： 是指无论有没有session cookie，每次请求都设置个session cookie ，默认给个标示为 connect.sid。     &lt;/p&gt;
-&lt;p&gt;之后在处理请求时直接通过以下方式对session进行读写：        &lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-javascript&quot;&gt;req.session.userinfo = userinfo;  //写入至session
-res.redirect(req.session.userinfo); //从session中读取
-&lt;/code&gt;&lt;/pre&gt;
-</content>
+    <content type="html"><![CDATA[<h4 id="1-app-render和res-render方法的区别？"><a href="#1-app-render和res-render方法的区别？" class="headerlink" title="1 . app.render和res.render方法的区别？"></a>1 . app.render和res.render方法的区别？</h4><p>官方的api文档中是这么说的：   </p><blockquote><p>Think of app.render() as a utility function for generating rendered view strings. Internally res.render() uses app.render() to render views.</p></blockquote><p>我的理解：</p><p>把<code>app.render</code>当成一个生成视图的工具，而且<code>res.render</code>内部也是调用了<code>app.render</code>。<br>区别是这样，<code>app.render</code>只负责生成视图，你会发现它是没能力把视图响应给客户端（浏览器）的，只有<code>res.render</code>手里有<code>response</code>对象，可以把视图响应给客户端。<br><code>res.render</code>的伪代码可以看做如下: </p><pre><code class="language-javascript">res.render = function(view, locals, cb){    app.render(view, locals, function(err, html){        if(typeof cb !== &#39;undefined&#39;){            return cb(err, html);        }        res.send(html);    });};</code></pre><h4 id="2-res-write和res-send区别？"><a href="#2-res-write和res-send区别？" class="headerlink" title="2 . res.write和res.send区别？"></a>2 . res.write和res.send区别？</h4><blockquote><p>The res object represents the HTTP response that an Express app sends when it gets an HTTP request.</p></blockquote><p><code>res.write</code>和<code>res.send</code>都是发送报文到浏览器response中，并渲染在浏览器窗口。<br><code>res.write</code>使用时需要配合<code>res.end</code>方法同时使用，否则浏览器http请求会一直处于pending状态，而<code>res.send</code>单独使用即可。    </p><p>代码示例：     </p><pre><code class="language-javascript">//res.sendapp.get(&#39;/user/:id&#39;, function(req, res){  res.send(&#39;user &#39; + req.params.id);});//res.writeapp.get(&#39;/user/:id&#39;, function(req, res){ res.status(200).write(&#39;user &#39; + req.params.id); res.end();});</code></pre><h4 id="3-获取request请求参数的方法？"><a href="#3-获取request请求参数的方法？" class="headerlink" title="3 . 获取request请求参数的方法？"></a>3 . 获取request请求参数的方法？</h4><p>express获取参数有三种方法：  </p><p>官网实例：   </p><blockquote><p>Checks route params (req.params), ex: /user/:id<br>Checks query string params (req.query), ex: ?id=12<br>Checks urlencoded body params (req.body), ex: id=    </p></blockquote><ul><li>例如：127.0.0.1:3000/index，得到index，可以通过使用<code>req.params</code>得到；   </li><li>例如：127.0.0.1:3000/index?id=12，这种情况下，这种方式是获取客户端get方式传递过来的值，通过使用<code>req.query.id</code>可以获得；     </li><li>例如：127.0.0.1：300/index，然后post了一个id=2的值，这种方式是获取客户端post过来的数据，可以通过<code>req.body.id</code>获取； </li></ul><p>注：post请求，第三种方式需要以下配置：</p><pre><code class="language-javascript">   var express        =         require(&quot;express&quot;);     var bodyParser     =         require(&quot;body-parser&quot;);     var app            =         express();     app.use(bodyParser.urlencoded({ extended: false }));   // necessary</code></pre><h4 id="4-session使用入门"><a href="#4-session使用入门" class="headerlink" title="4 . session使用入门"></a>4 . session使用入门</h4><p><code>express-session</code>是express中比较常用的处理session的中间件,使用npm安装：</p><pre><code class="language-git">$ npm install express-session save</code></pre><p>session的认证机制必须依赖cookie，所以还应该同时安装一个<code>cookie-parser</code>，安装方法同上。然后再app.js中导入这两个中间件：</p><pre><code class="language-javascript">var cookieParser = require(&#39;cookie-parser&#39;);var session = require(&#39;express-session&#39;);</code></pre><p>之后定义cookie解析器，注意，该定义必须写在路由分配之前：</p><pre><code class="language-javascript">app.use(cookieParser());app.use(session({  secret: &#39;secret_string&#39;,  name: &#39;name&#39;,  cookie: {maxAge: 60000},  resave: false,  saveUninitialized: true,}));</code></pre><p>各参数意义：<br><code>secret</code>：用来对session数据进行加密的字符串.这个属性值为必须指定的属性。<br><code>name</code>：表示cookie的name，默认cookie的name是：connect.sid。<br><code>maxAge</code>：cookie过期时间，毫秒。<br><code>resave</code>：是指每次请求都重新设置session cookie，假设你的cookie是6000毫秒过期，每次请求都会再设置6000毫秒。<br><code>saveUninitialized</code>： 是指无论有没有session cookie，每次请求都设置个session cookie ，默认给个标示为 connect.sid。     </p><p>之后在处理请求时直接通过以下方式对session进行读写：        </p><pre><code class="language-javascript">req.session.userinfo = userinfo;  //写入至sessionres.redirect(req.session.userinfo); //从session中读取</code></pre>]]></content>
     
     <summary type="html">
     
-      &lt;h4 id=&quot;1-app-render和res-render方法的区别？&quot;&gt;&lt;a href=&quot;#1-app-render和res-render方法的区别？&quot; class=&quot;headerlink&quot; title=&quot;1 . app.render和res.render方法的区别？&quot;&gt;&lt;
+      
+      
+        &lt;h4 id=&quot;1-app-render和res-render方法的区别？&quot;&gt;&lt;a href=&quot;#1-app-render和res-render方法的区别？&quot; class=&quot;headerlink&quot; title=&quot;1 . app.render和res.render方法的区别？&quot;&gt;&lt;
+      
     
     </summary>
     
@@ -1779,120 +466,17 @@ res.redirect(req.session.userinfo); //从session中读取
     <published>2016-06-27T07:21:44.000Z</published>
     <updated>2017-01-10T03:57:08.765Z</updated>
     
-    <content type="html">&lt;blockquote&gt;
-&lt;p&gt;Rewriting your Frontend Framework every six week !!!&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h3 id=&quot;近二年的进展&quot;&gt;&lt;a href=&quot;#近二年的进展&quot; class=&quot;headerlink&quot; title=&quot;近二年的进展&quot;&gt;&lt;/a&gt;近二年的进展&lt;/h3&gt;&lt;p&gt;前端发展日新月异, 甚至有一句戏言: “每六星期重写一个前端框架”, 行业是像火箭一样, 但我们前端工程师该何去何从呢?&lt;br&gt;我们来谈谈这个问题.&lt;br&gt;先来看看最流行的几项技术栈:  &lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;AngularJS&lt;br&gt;首创的双向数据绑定, 以及内置的模块注入, 以及组件化的支持, 种种优势, 使得它迅速发展起来. 在 2014-2015 年, 有调查显示, 在使用了前端框架的项目, 有 50% 以上采用了 AngularJS. 但到底值不值我们继续学习, 我们再接下来看.&lt;br&gt;项目地址: &lt;a href=&quot;https://angularjs.org/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;EmberJS&lt;br&gt;受 Rails 全栈框架的启发, EmberJS 逐步发展成前端领域的另一个 “Rails”, 成为另一个独特的选择, 理论上, 你选择了 EmberJS, 就选择了一个完整稳定的生态, 不用再折腾的轮子. EmberJS 不仅全面支持模块化, MVC, 也实现了类似 AngularJS 的双向绑定( 当然原理不同 ), 甚至还做到了内置的打包和发布应用功能. 总而言之, 它是一个十分全面的前端框架. 事实上, 如果说 AngularJS 是当前短暂的前端史的一个高峰, 它就是另一个高峰. 但最近, 人气有一定的下降, 原因何在, 我们再分解.&lt;br&gt;项目地址: &lt;a href=&quot;http://emberjs.com/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;ReactJS&lt;br&gt;ReactJS 自发布之始, 就人气很高, 它是第一个采用虚拟节点( virtual dom )技术的框架, 通过这个技术点, 它独创性地整合了函数性编程的理念, 采用单向数据流来设计 dom 渲染与比对, 使得它轻量和灵活, 事实上, 它本身只专注于如何渲染 UI, 也不与 AngularJS 和 EmberJS 有冲突. 换言之, 你可以将它整合到其他框架中.&lt;br&gt;随着 ReactNative 和 Redux 方案的出现, ReactJS 重新回到前端的浪尖, 因为其简洁优雅的实现和对 Native APP 的冲击, 又一次成为新的弄潮儿.&lt;br&gt;但以后会怎么样, 谁也不知道, 但我也会再给一些解读.&lt;br&gt;项目地址: &lt;a href=&quot;https://facebook.github.io/react/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;流行不一定是发展最快, 我们再来看看近二年发展最快的几项前端技术栈:  &lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;ReactJS&lt;br&gt;上文已经提到, React 由于本身的简洁性和对组件化专注的实现, 一直没有被新的 ES6 标准和前端思潮落下, 它几乎不受 ES6 的影响, 以及前沿性的支持 native app 开发( 通过 ReactNative ), 所以一直发展趋势良好.&lt;br&gt;而 AngularJS 则不一样, 由于 ES6 的发布, 使得它的依赖注入特性成为鸡肋, 以及 AngularJS 第一版对组件化支持的蹩脚实现( 能支持是一回事, 好用是另一回事 ), 而组件化则学习成本过高, 过于复杂, 所以 AngularJS 决定推翻设计重新开发第二版, 而第二版过于激进的采用 Typescript, 完全不兼容的第一版的设计, 以及各种魔法的应用, 使得它离前端越走越远.   &lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;VueJS&lt;br&gt;VueJS 是近二年的新秀, 它起步之初, 只是一个简化版的类似于 AngularJS 双向绑定的实现的研究( 当然原理并不同 ). 但其理念与 ReactJS 相近, 只是专注于实现数据绑定, 模块化与组件化, 所以足够的简单灵活.&lt;br&gt;随着生态的快速发展, VueJS 正好接了 AngularJS 第一版的班, 又改良了 AngularJS 的错误设计( 事后来看, 依赖注入与组件化两部分是比较失败的设计 ), 整体发展迅速, 逐步成为后起之秀.&lt;br&gt;项目地址: &lt;a href=&quot;http://vuejs.org/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;MeteorJS&lt;br&gt;MeteorJS 本不适合与上述几个前端框架比较, 因为它实际是一个全栈框架, 更像 Rails 这种角色, 但由于它是纯 Javascript 的方案, 所以还是放在这里.&lt;br&gt;如果说上述前端框架都是解决前端工程化的产物, 那 MeteorJS 是一个颠覆思维的 web 开发框架, 它将Javascript 同构技术应用到极端, 再整合 websocket 进行实时数据通知与热代码更新, 不同于前后端分离的理念, 它在开发者角度完全没有前后端的概念, API 既在前端又在后端, 再加它全生态的支持( 移动 app 支持, 应用发布), 也是一个全新的视角, 由于它发展速度极快, 所以列在这里.&lt;br&gt;项目地址: &lt;a href=&quot;https://www.meteor.com/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;各大框架都在迅速发展中, 它们有几个共性的发展方向:  &lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;ES6 支持&lt;br&gt;每一次 Javascript 的新标准发布, 都是各大框架更新的好机会, 所以 ES6 是肯定得到各大框架的良好支持, 建议大家一定要学好.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;web 组件化&lt;br&gt;毋庸置疑, 组件化是现代前端工程化中极为重要的特性, 甚至 google 还专门出了 Polymer 这个只做组件化实现的框架. 所以每一个够格的前端框架都非常重度支持它. 同时, 组件化也将作为 w3c 标准予于定义, 所以前端框架仍将不留余力地改进与标准的兼容.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;Server-side Render&lt;br&gt;服务端渲染技术是 2016 年才开始火的概念, 它与传统的后端渲染不同, 为了解决前端框架第一次加载慢的问题, 以及 SEO 问题, 而提出的解决方案. 之前有 prerender, 现在各大框架都在尝试在内部集成并支持它. 但我个人觉得, 带来的问题远比解决的问题更多, 比如要求我们开发的时候有更多的限制.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;App Render&lt;br&gt;现在有一种大前端的概念, 可以理解为 web 前端对 App 开发的支持, 包括 Ionic ( 基于 AngularJS ), React Native( 基于 React 理念 ), Meteor 都是针对 App 开发的痛点而生.&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;分析了众多目前最流行的前端框架, 大家可能越来越胡涂了:&lt;br&gt;到底谁才是最值得我们去投入的技术呢?&lt;br&gt;接下来, 我们去掉一堆术语, 来从前端的定义本质来看它的发展. &lt;/p&gt;
-&lt;h3 id=&quot;近二年本质的演进是什么&quot;&gt;&lt;a href=&quot;#近二年本质的演进是什么&quot; class=&quot;headerlink&quot; title=&quot;近二年本质的演进是什么&quot;&gt;&lt;/a&gt;近二年本质的演进是什么&lt;/h3&gt;&lt;p&gt;前端就是面向用户这一端的技术, 然而, 随着时代的发展:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;用户体验要求越来越高( 加载速度快, 响应快, 无闪烁 )&lt;/li&gt;
-&lt;li&gt;前端需求越来越多&lt;/li&gt;
-&lt;li&gt;前端代码越来越庞大&lt;/li&gt;
-&lt;li&gt;移动端快速发展对 h5 前端的需求&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;而 jQuery, ProtoypeJS 等只解决了 Javascript 工具库的问题, 但工程化需求无好的解决方案.&lt;br&gt;前端工程化迫在眉捷. 而且有以下要求:   &lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;最好是纯 Javascript 方案&lt;/li&gt;
-&lt;li&gt;支持模块化&lt;/li&gt;
-&lt;li&gt;业务代码与框架代码分离&lt;/li&gt;
-&lt;li&gt;可测性&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;于是, 产生了几种不同的演进方案.&lt;br&gt;后端渲染技术:&lt;br&gt;ajax -&amp;gt; pjax -&amp;gt; sjr ( 需要服务端提供支持 )&lt;br&gt;后端渲染技术很快就发展到顶了. 但技术理解还是足够简单的. 我们还是回到前端框架上.&lt;br&gt;NodeJS, AMD(CMD), ES6 的出现, 使得组织起一个前端框架成为现实. 于是乎, 百团大战, 出现了上面众多框架混战的画面.&lt;br&gt;无论是 AngularJS, EmberJS, ReactJS, VueJS 都是围绕着这几点进行的不同的尝试.&lt;br&gt;但结果如何, 我们站在一个更高的高度重新思考 web 开发.      &lt;/p&gt;
-&lt;h3 id=&quot;真正的用户市场需要什么&quot;&gt;&lt;a href=&quot;#真正的用户市场需要什么&quot; class=&quot;headerlink&quot; title=&quot;真正的用户市场需要什么&quot;&gt;&lt;/a&gt;真正的用户市场需要什么&lt;/h3&gt;&lt;p&gt;对用户   &lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;更快的响应速度&lt;/li&gt;
-&lt;li&gt;更好的体验&lt;br&gt;对开发者&lt;/li&gt;
-&lt;li&gt;更快的开发速度&lt;/li&gt;
-&lt;li&gt;更好的可维护性&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;再次思考, 我们要不要前后端分离? 哪些前端框架更满足我们以上的条件?&lt;br&gt;作为 Rails 工程师, 我也一直在思考一个问题: Rails 是否在前端上走上了绝路?&lt;br&gt;对于不熟悉 Rails 的朋友, 我还是简单回顾下 Rails 的前端是什么:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;jQuery&lt;/li&gt;
-&lt;li&gt;UJS&lt;/li&gt;
-&lt;li&gt;Assets pipeline&lt;/li&gt;
-&lt;li&gt;SJR( 服务端 JS 生成技术 )&lt;/li&gt;
-&lt;li&gt;Turoblinks( 一种极小成本实现的单页效果的技术 )&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;相比 php, java, python 等语言下的传统 web 框架来说, Rails 的前端技术还是非常丰富的.&lt;br&gt;关于各个框架我列了一个分数比较, 10 分为满分, 每个列会加在一起算成一个总分.&lt;br&gt; &lt;img src=&quot;http://7xth8v.com2.z0.glb.qiniucdn.com/image/n-web-score-2016.jpeg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;p&gt;从上表可以看出:&lt;br&gt;Rails 这类的全栈框架特点有&lt;/p&gt;
-&lt;p&gt;优势:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;开发效率极高&lt;/li&gt;
-&lt;li&gt;通过 Turoblinks 技术, 体验也不错.&lt;/li&gt;
-&lt;li&gt;也能支持混合应用开发&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;缺点:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;前端代码可维护差&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;ReactJS 学习成本较低, 通过 webpack 与 npm 的配合, 能够达到不错的可维护性, 但开发成本偏高, 这也是组件化的缺点之一.&lt;br&gt;而 EmberJS 学习门槛过高, 而且 EmberJS 发展也比较迅速, 不利于学习掌握, 相对而言, 总分也不会太高.&lt;br&gt;MeteorJS 也被我列在这里, 总分最低, 所以仍然不推荐学习, 除非你的应用属于实时应用.&lt;br&gt;我们再重新思考组件化, 组件化优势在于接口清晰, 可维护性高, 但开发成本是比较高的, 前端属于工程而不是科学, 所以, 我觉得组件化是对的, 但不要过于极端把所有的 dom 都组件化.&lt;br&gt;而且, 组件化也对现有的基础技术栈进行了破坏.&lt;br&gt;通过以上的分析, 我们基本上了解了现有技术栈的情况. 那我们该继续学什么? 这才是本文的重点.&lt;br&gt;所有的一切, 都是围绕着组件化, 可维护, 高效开发, 移动支持而生, 而它们的核心都是还是最基础的东西:     &lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Javascript ( ES6, NodeJS )&lt;/li&gt;
-&lt;li&gt;HTML&lt;/li&gt;
-&lt;li&gt;CSS&lt;/li&gt;
-&lt;li&gt;API&lt;br&gt;一句话, 还是应该先把基础打好.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3 id=&quot;基础技术栈&quot;&gt;&lt;a href=&quot;#基础技术栈&quot; class=&quot;headerlink&quot; title=&quot;基础技术栈&quot;&gt;&lt;/a&gt;基础技术栈&lt;/h3&gt;&lt;p&gt;应当好好掌握的内容:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Javascript 语言( 直接看 ES6 相关的 )&lt;/li&gt;
-&lt;li&gt;NodeJS 生态( npm 与相关的包 )&lt;/li&gt;
-&lt;li&gt;webpack ( 了解如何打包, 发布 )&lt;/li&gt;
-&lt;li&gt;HTML ( 尤其是 form 标签, 以及 HTML5 的内容 )&lt;/li&gt;
-&lt;li&gt;CSS ( 学习盒模型, 最新的 flex 布局, 以及 CSS3 )&lt;/li&gt;
-&lt;li&gt;API ( 掌握如何开发 API )&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;你必须是前端工程师, 同时又是后端工程师, 才能真正摸清晰当下时代的发展, 成为弄潮儿!&lt;/p&gt;
-&lt;h3 id=&quot;预测未来&quot;&gt;&lt;a href=&quot;#预测未来&quot; class=&quot;headerlink&quot; title=&quot;预测未来&quot;&gt;&lt;/a&gt;预测未来&lt;/h3&gt;&lt;p&gt;首先, 我在 2014 年分析 web 开发的文中提到的 gulp, grunt 都已经成为过去式了. Bower 也已经有点不合事宜了.&lt;br&gt;目前前端构建建议使用 webpack 和 npm 足够, 不需要更多的工具链, 应该越简单, 越顺手!&lt;br&gt;列几个关心的问题尝试预测一下.&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;NodeJS 做后台开发怎么样 ?&lt;br&gt;NodeJS 已经是前端框架的一部分, 是极为成功的, 但对于 NodeJS 做后台开发说实在的, 它能够占一定的市场, 但将会非常少( 低于 5% ). 所以做 php 或 java 开发的朋友倒不用担心, 但如果只是搬砖写简单 API 的话, 就有危险了.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;Rails 还行不行 ?&lt;br&gt;Rails 已经到了一定的顶点, 不可能再突破性增长, 但仍然是目前最为顺手的 web 开发框架, 它的前端解决方案目前仍有不错的体验与开发效率, 但可维护性比较差, 如果是我的话, 我会带领团队采用混合式的开发, 但现在不会是引入 AngularJS 而会是 VueJS.&lt;br&gt;但 Rails 已经到达它的极限点了, 而众多前端框架才刚刚开始.( 虽然拿 Rails 与前端框架比较不够合适 )    &lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;AngularJS 还是 ReactJS ?&lt;br&gt;很简单, 建议直接上手 VueJS.&lt;br&gt;AnguarJS 第一版是个好的框架, 但 Angular2 并不是, 所以还不如直接学习 VueJS.&lt;br&gt;ReactJS 是个不错的框架, 但绝不是终点. VueJS 与 ReactJS 在实现上各有利弊. 两者可以择其一学之.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;MeteorJS 值不值得学习 ?&lt;br&gt;我的建议是不值得, 因为它一开始就走在错误的道路上, 注定后面无路可走.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;前端会取代 Native APP 开发么?&lt;br&gt;一定会的, 未来 3 年后, 至少有 70% 左右的 APP 会用前端开发方案, 比如使用类似于 Ionic 或 Meteor 这样的框架.&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3 id=&quot;重新思考-web-开发&quot;&gt;&lt;a href=&quot;#重新思考-web-开发&quot; class=&quot;headerlink&quot; title=&quot;重新思考 web 开发&quot;&gt;&lt;/a&gt;重新思考 web 开发&lt;/h3&gt;&lt;p&gt;真正能长远的前端技术一定是简单的, 专注的, 比如 jQuery. 但目前几个框架都或多或少存在着问题.&lt;br&gt;ReactJS 不是表面那么简单, 而 AngularJS 更加复杂.&lt;br&gt;是否有更简单有效的解决它们的问题, 则能够成为下一代 web 前端框架.    &lt;/p&gt;
-</content>
+    <content type="html"><![CDATA[<blockquote><p>Rewriting your Frontend Framework every six week !!!</p></blockquote><h3 id="近二年的进展"><a href="#近二年的进展" class="headerlink" title="近二年的进展"></a>近二年的进展</h3><p>前端发展日新月异, 甚至有一句戏言: “每六星期重写一个前端框架”, 行业是像火箭一样, 但我们前端工程师该何去何从呢?<br>我们来谈谈这个问题.<br>先来看看最流行的几项技术栈:  </p><ul><li><p>AngularJS<br>首创的双向数据绑定, 以及内置的模块注入, 以及组件化的支持, 种种优势, 使得它迅速发展起来. 在 2014-2015 年, 有调查显示, 在使用了前端框架的项目, 有 50% 以上采用了 AngularJS. 但到底值不值我们继续学习, 我们再接下来看.<br>项目地址: <a href="https://angularjs.org/" target="_blank" rel="noopener"></a></p></li><li><p>EmberJS<br>受 Rails 全栈框架的启发, EmberJS 逐步发展成前端领域的另一个 “Rails”, 成为另一个独特的选择, 理论上, 你选择了 EmberJS, 就选择了一个完整稳定的生态, 不用再折腾的轮子. EmberJS 不仅全面支持模块化, MVC, 也实现了类似 AngularJS 的双向绑定( 当然原理不同 ), 甚至还做到了内置的打包和发布应用功能. 总而言之, 它是一个十分全面的前端框架. 事实上, 如果说 AngularJS 是当前短暂的前端史的一个高峰, 它就是另一个高峰. 但最近, 人气有一定的下降, 原因何在, 我们再分解.<br>项目地址: <a href="http://emberjs.com/" target="_blank" rel="noopener"></a></p></li><li><p>ReactJS<br>ReactJS 自发布之始, 就人气很高, 它是第一个采用虚拟节点( virtual dom )技术的框架, 通过这个技术点, 它独创性地整合了函数性编程的理念, 采用单向数据流来设计 dom 渲染与比对, 使得它轻量和灵活, 事实上, 它本身只专注于如何渲染 UI, 也不与 AngularJS 和 EmberJS 有冲突. 换言之, 你可以将它整合到其他框架中.<br>随着 ReactNative 和 Redux 方案的出现, ReactJS 重新回到前端的浪尖, 因为其简洁优雅的实现和对 Native APP 的冲击, 又一次成为新的弄潮儿.<br>但以后会怎么样, 谁也不知道, 但我也会再给一些解读.<br>项目地址: <a href="https://facebook.github.io/react/" target="_blank" rel="noopener"></a></p></li></ul><p>流行不一定是发展最快, 我们再来看看近二年发展最快的几项前端技术栈:  </p><ul><li><p>ReactJS<br>上文已经提到, React 由于本身的简洁性和对组件化专注的实现, 一直没有被新的 ES6 标准和前端思潮落下, 它几乎不受 ES6 的影响, 以及前沿性的支持 native app 开发( 通过 ReactNative ), 所以一直发展趋势良好.<br>而 AngularJS 则不一样, 由于 ES6 的发布, 使得它的依赖注入特性成为鸡肋, 以及 AngularJS 第一版对组件化支持的蹩脚实现( 能支持是一回事, 好用是另一回事 ), 而组件化则学习成本过高, 过于复杂, 所以 AngularJS 决定推翻设计重新开发第二版, 而第二版过于激进的采用 Typescript, 完全不兼容的第一版的设计, 以及各种魔法的应用, 使得它离前端越走越远.   </p></li><li><p>VueJS<br>VueJS 是近二年的新秀, 它起步之初, 只是一个简化版的类似于 AngularJS 双向绑定的实现的研究( 当然原理并不同 ). 但其理念与 ReactJS 相近, 只是专注于实现数据绑定, 模块化与组件化, 所以足够的简单灵活.<br>随着生态的快速发展, VueJS 正好接了 AngularJS 第一版的班, 又改良了 AngularJS 的错误设计( 事后来看, 依赖注入与组件化两部分是比较失败的设计 ), 整体发展迅速, 逐步成为后起之秀.<br>项目地址: <a href="http://vuejs.org/" target="_blank" rel="noopener"></a></p></li><li><p>MeteorJS<br>MeteorJS 本不适合与上述几个前端框架比较, 因为它实际是一个全栈框架, 更像 Rails 这种角色, 但由于它是纯 Javascript 的方案, 所以还是放在这里.<br>如果说上述前端框架都是解决前端工程化的产物, 那 MeteorJS 是一个颠覆思维的 web 开发框架, 它将Javascript 同构技术应用到极端, 再整合 websocket 进行实时数据通知与热代码更新, 不同于前后端分离的理念, 它在开发者角度完全没有前后端的概念, API 既在前端又在后端, 再加它全生态的支持( 移动 app 支持, 应用发布), 也是一个全新的视角, 由于它发展速度极快, 所以列在这里.<br>项目地址: <a href="https://www.meteor.com/" target="_blank" rel="noopener"></a></p></li></ul><p>各大框架都在迅速发展中, 它们有几个共性的发展方向:  </p><ul><li><p>ES6 支持<br>每一次 Javascript 的新标准发布, 都是各大框架更新的好机会, 所以 ES6 是肯定得到各大框架的良好支持, 建议大家一定要学好.</p></li><li><p>web 组件化<br>毋庸置疑, 组件化是现代前端工程化中极为重要的特性, 甚至 google 还专门出了 Polymer 这个只做组件化实现的框架. 所以每一个够格的前端框架都非常重度支持它. 同时, 组件化也将作为 w3c 标准予于定义, 所以前端框架仍将不留余力地改进与标准的兼容.</p></li><li><p>Server-side Render<br>服务端渲染技术是 2016 年才开始火的概念, 它与传统的后端渲染不同, 为了解决前端框架第一次加载慢的问题, 以及 SEO 问题, 而提出的解决方案. 之前有 prerender, 现在各大框架都在尝试在内部集成并支持它. 但我个人觉得, 带来的问题远比解决的问题更多, 比如要求我们开发的时候有更多的限制.</p></li><li><p>App Render<br>现在有一种大前端的概念, 可以理解为 web 前端对 App 开发的支持, 包括 Ionic ( 基于 AngularJS ), React Native( 基于 React 理念 ), Meteor 都是针对 App 开发的痛点而生.</p></li></ul><p>分析了众多目前最流行的前端框架, 大家可能越来越胡涂了:<br>到底谁才是最值得我们去投入的技术呢?<br>接下来, 我们去掉一堆术语, 来从前端的定义本质来看它的发展. </p><h3 id="近二年本质的演进是什么"><a href="#近二年本质的演进是什么" class="headerlink" title="近二年本质的演进是什么"></a>近二年本质的演进是什么</h3><p>前端就是面向用户这一端的技术, 然而, 随着时代的发展:</p><ul><li>用户体验要求越来越高( 加载速度快, 响应快, 无闪烁 )</li><li>前端需求越来越多</li><li>前端代码越来越庞大</li><li>移动端快速发展对 h5 前端的需求</li></ul><p>而 jQuery, ProtoypeJS 等只解决了 Javascript 工具库的问题, 但工程化需求无好的解决方案.<br>前端工程化迫在眉捷. 而且有以下要求:   </p><ul><li>最好是纯 Javascript 方案</li><li>支持模块化</li><li>业务代码与框架代码分离</li><li>可测性</li></ul><p>于是, 产生了几种不同的演进方案.<br>后端渲染技术:<br>ajax -&gt; pjax -&gt; sjr ( 需要服务端提供支持 )<br>后端渲染技术很快就发展到顶了. 但技术理解还是足够简单的. 我们还是回到前端框架上.<br>NodeJS, AMD(CMD), ES6 的出现, 使得组织起一个前端框架成为现实. 于是乎, 百团大战, 出现了上面众多框架混战的画面.<br>无论是 AngularJS, EmberJS, ReactJS, VueJS 都是围绕着这几点进行的不同的尝试.<br>但结果如何, 我们站在一个更高的高度重新思考 web 开发.      </p><h3 id="真正的用户市场需要什么"><a href="#真正的用户市场需要什么" class="headerlink" title="真正的用户市场需要什么"></a>真正的用户市场需要什么</h3><p>对用户   </p><ul><li>更快的响应速度</li><li>更好的体验<br>对开发者</li><li>更快的开发速度</li><li>更好的可维护性</li></ul><p>再次思考, 我们要不要前后端分离? 哪些前端框架更满足我们以上的条件?<br>作为 Rails 工程师, 我也一直在思考一个问题: Rails 是否在前端上走上了绝路?<br>对于不熟悉 Rails 的朋友, 我还是简单回顾下 Rails 的前端是什么:</p><ul><li>jQuery</li><li>UJS</li><li>Assets pipeline</li><li>SJR( 服务端 JS 生成技术 )</li><li>Turoblinks( 一种极小成本实现的单页效果的技术 )</li></ul><p>相比 php, java, python 等语言下的传统 web 框架来说, Rails 的前端技术还是非常丰富的.<br>关于各个框架我列了一个分数比较, 10 分为满分, 每个列会加在一起算成一个总分.<br> <img src="http://7xth8v.com2.z0.glb.qiniucdn.com/image/n-web-score-2016.jpeg" alt=""></p><p>从上表可以看出:<br>Rails 这类的全栈框架特点有</p><p>优势:</p><ul><li>开发效率极高</li><li>通过 Turoblinks 技术, 体验也不错.</li><li>也能支持混合应用开发</li></ul><p>缺点:</p><ul><li>前端代码可维护差</li></ul><p>ReactJS 学习成本较低, 通过 webpack 与 npm 的配合, 能够达到不错的可维护性, 但开发成本偏高, 这也是组件化的缺点之一.<br>而 EmberJS 学习门槛过高, 而且 EmberJS 发展也比较迅速, 不利于学习掌握, 相对而言, 总分也不会太高.<br>MeteorJS 也被我列在这里, 总分最低, 所以仍然不推荐学习, 除非你的应用属于实时应用.<br>我们再重新思考组件化, 组件化优势在于接口清晰, 可维护性高, 但开发成本是比较高的, 前端属于工程而不是科学, 所以, 我觉得组件化是对的, 但不要过于极端把所有的 dom 都组件化.<br>而且, 组件化也对现有的基础技术栈进行了破坏.<br>通过以上的分析, 我们基本上了解了现有技术栈的情况. 那我们该继续学什么? 这才是本文的重点.<br>所有的一切, 都是围绕着组件化, 可维护, 高效开发, 移动支持而生, 而它们的核心都是还是最基础的东西:     </p><ul><li>Javascript ( ES6, NodeJS )</li><li>HTML</li><li>CSS</li><li>API<br>一句话, 还是应该先把基础打好.</li></ul><h3 id="基础技术栈"><a href="#基础技术栈" class="headerlink" title="基础技术栈"></a>基础技术栈</h3><p>应当好好掌握的内容:</p><ul><li>Javascript 语言( 直接看 ES6 相关的 )</li><li>NodeJS 生态( npm 与相关的包 )</li><li>webpack ( 了解如何打包, 发布 )</li><li>HTML ( 尤其是 form 标签, 以及 HTML5 的内容 )</li><li>CSS ( 学习盒模型, 最新的 flex 布局, 以及 CSS3 )</li><li>API ( 掌握如何开发 API )</li></ul><p>你必须是前端工程师, 同时又是后端工程师, 才能真正摸清晰当下时代的发展, 成为弄潮儿!</p><h3 id="预测未来"><a href="#预测未来" class="headerlink" title="预测未来"></a>预测未来</h3><p>首先, 我在 2014 年分析 web 开发的文中提到的 gulp, grunt 都已经成为过去式了. Bower 也已经有点不合事宜了.<br>目前前端构建建议使用 webpack 和 npm 足够, 不需要更多的工具链, 应该越简单, 越顺手!<br>列几个关心的问题尝试预测一下.</p><ul><li><p>NodeJS 做后台开发怎么样 ?<br>NodeJS 已经是前端框架的一部分, 是极为成功的, 但对于 NodeJS 做后台开发说实在的, 它能够占一定的市场, 但将会非常少( 低于 5% ). 所以做 php 或 java 开发的朋友倒不用担心, 但如果只是搬砖写简单 API 的话, 就有危险了.</p></li><li><p>Rails 还行不行 ?<br>Rails 已经到了一定的顶点, 不可能再突破性增长, 但仍然是目前最为顺手的 web 开发框架, 它的前端解决方案目前仍有不错的体验与开发效率, 但可维护性比较差, 如果是我的话, 我会带领团队采用混合式的开发, 但现在不会是引入 AngularJS 而会是 VueJS.<br>但 Rails 已经到达它的极限点了, 而众多前端框架才刚刚开始.( 虽然拿 Rails 与前端框架比较不够合适 )    </p></li><li><p>AngularJS 还是 ReactJS ?<br>很简单, 建议直接上手 VueJS.<br>AnguarJS 第一版是个好的框架, 但 Angular2 并不是, 所以还不如直接学习 VueJS.<br>ReactJS 是个不错的框架, 但绝不是终点. VueJS 与 ReactJS 在实现上各有利弊. 两者可以择其一学之.</p></li><li><p>MeteorJS 值不值得学习 ?<br>我的建议是不值得, 因为它一开始就走在错误的道路上, 注定后面无路可走.</p></li><li><p>前端会取代 Native APP 开发么?<br>一定会的, 未来 3 年后, 至少有 70% 左右的 APP 会用前端开发方案, 比如使用类似于 Ionic 或 Meteor 这样的框架.</p></li></ul><h3 id="重新思考-web-开发"><a href="#重新思考-web-开发" class="headerlink" title="重新思考 web 开发"></a>重新思考 web 开发</h3><p>真正能长远的前端技术一定是简单的, 专注的, 比如 jQuery. 但目前几个框架都或多或少存在着问题.<br>ReactJS 不是表面那么简单, 而 AngularJS 更加复杂.<br>是否有更简单有效的解决它们的问题, 则能够成为下一代 web 前端框架.    </p>]]></content>
     
     <summary type="html">
     
-      &lt;blockquote&gt;
+      
+      
+        &lt;blockquote&gt;
 &lt;p&gt;Rewriting your Frontend Framework every six week !!!&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;h3 id=&quot;近二年的进展&quot;&gt;&lt;a href=&quot;#近二年的进展&quot; class=&quot;headerlink&quot; 
+      
     
     </summary>
     
@@ -1908,41 +492,15 @@ res.redirect(req.session.userinfo); //从session中读取
     <published>2016-06-03T06:26:42.000Z</published>
     <updated>2016-07-04T07:53:36.602Z</updated>
     
-    <content type="html">&lt;h3 id=&quot;常用命令&quot;&gt;&lt;a href=&quot;#常用命令&quot; class=&quot;headerlink&quot; title=&quot;常用命令&quot;&gt;&lt;/a&gt;常用命令&lt;/h3&gt;&lt;p&gt;创建账户：&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-git&quot;&gt;git config -global user.name &amp;quot;Your name&amp;quot;
-git config -global user.email &amp;quot;you@example.com&amp;quot;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;从仓库克隆到提交文件通用流程：&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-git&quot;&gt; git clone git@github.com:mmrxia/project-name.git
- git add .
- git commit -m &amp;#39;update file&amp;#39;
- git push -u origin master
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;查看当前git仓库文件状态：&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-git&quot;&gt;git status
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h3 id=&quot;其他技巧&quot;&gt;&lt;a href=&quot;#其他技巧&quot; class=&quot;headerlink&quot; title=&quot;其他技巧&quot;&gt;&lt;/a&gt;其他技巧&lt;/h3&gt;&lt;ul&gt;
-&lt;li&gt;新建.gitignore文件&lt;/li&gt;
-&lt;/ul&gt;
-&lt;pre&gt;&lt;code class=&quot;language-git&quot;&gt;touch .gitignore
-&lt;/code&gt;&lt;/pre&gt;
-&lt;ul&gt;
-&lt;li&gt;查看文件&lt;/li&gt;
-&lt;/ul&gt;
-&lt;pre&gt;&lt;code class=&quot;language-git&quot;&gt;vim README.md
-&lt;/code&gt;&lt;/pre&gt;
-&lt;ul&gt;
-&lt;li&gt;查看提交历史记录&lt;/li&gt;
-&lt;/ul&gt;
-&lt;pre&gt;&lt;code class=&quot;language-git&quot;&gt;git log
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;我们常用 &lt;code&gt;-p&lt;/code&gt; 选项展开显示每次提交的内容差异，用 &lt;code&gt;-2&lt;/code&gt; 则仅显示最近的两次更新。&lt;/p&gt;
-</content>
+    <content type="html"><![CDATA[<h3 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h3><p>创建账户：</p><pre><code class="language-git">git config -global user.name &quot;Your name&quot;git config -global user.email &quot;you@example.com&quot;</code></pre><p>从仓库克隆到提交文件通用流程：</p><pre><code class="language-git"> git clone git@github.com:mmrxia/project-name.git git add . git commit -m &#39;update file&#39; git push -u origin master</code></pre><p>查看当前git仓库文件状态：</p><pre><code class="language-git">git status</code></pre><h3 id="其他技巧"><a href="#其他技巧" class="headerlink" title="其他技巧"></a>其他技巧</h3><ul><li>新建.gitignore文件</li></ul><pre><code class="language-git">touch .gitignore</code></pre><ul><li>查看文件</li></ul><pre><code class="language-git">vim README.md</code></pre><ul><li>查看提交历史记录</li></ul><pre><code class="language-git">git log</code></pre><p>我们常用 <code>-p</code> 选项展开显示每次提交的内容差异，用 <code>-2</code> 则仅显示最近的两次更新。</p>]]></content>
     
     <summary type="html">
     
-      &lt;h3 id=&quot;常用命令&quot;&gt;&lt;a href=&quot;#常用命令&quot; class=&quot;headerlink&quot; title=&quot;常用命令&quot;&gt;&lt;/a&gt;常用命令&lt;/h3&gt;&lt;p&gt;创建账户：&lt;/p&gt;
+      
+      
+        &lt;h3 id=&quot;常用命令&quot;&gt;&lt;a href=&quot;#常用命令&quot; class=&quot;headerlink&quot; title=&quot;常用命令&quot;&gt;&lt;/a&gt;常用命令&lt;/h3&gt;&lt;p&gt;创建账户：&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&quot;language-git&quot;&gt;git config -global u
+      
     
     </summary>
     

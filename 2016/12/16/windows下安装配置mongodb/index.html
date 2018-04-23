@@ -4,25 +4,18 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <meta name="description" content="安装文件：官方网站 http://www.mongodb.org/downloads选择对应系统的文件下载。
-一、解压缩文件。  将压缩包解压，在D盘创建文件夹mongodb,将压缩包解压到mongodb文件夹中。
-二、建立工作目录。  1、建立数据存放目录  D:\mongodb\data\db  2、建立日志文件  D:\mongodb\db\log\mongodb.log
-三、建立配置文件。">
+    <meta name="description" content="安装文件：官方网站 http://www.mongodb.org/downloads选择对应系统的文件下载。 一、解压缩文件。  将压缩包解压，在D盘创建文件夹mongodb,将压缩包解压到mongodb文件夹中。 二、建立工作目录。  1、建立数据存放目录  D:\mongodb\data\db  2、建立日志文件  D:\mongodb\db\log\mongodb.log 三、建立配置文件。">
+<meta name="keywords" content="mongodb">
 <meta property="og:type" content="article">
 <meta property="og:title" content="windows下安装配置mongodb">
 <meta property="og:url" content="http://mmrxia.github.io/2016/12/16/windows下安装配置mongodb/index.html">
-<meta property="og:site_name" content="芥子园 | xiaqingsong's blog">
-<meta property="og:description" content="安装文件：官方网站 http://www.mongodb.org/downloads选择对应系统的文件下载。
-一、解压缩文件。  将压缩包解压，在D盘创建文件夹mongodb,将压缩包解压到mongodb文件夹中。
-二、建立工作目录。  1、建立数据存放目录  D:\mongodb\data\db  2、建立日志文件  D:\mongodb\db\log\mongodb.log
-三、建立配置文件。">
+<meta property="og:site_name" content="芥子园 | xiaqingsong&#39;s blog">
+<meta property="og:description" content="安装文件：官方网站 http://www.mongodb.org/downloads选择对应系统的文件下载。 一、解压缩文件。  将压缩包解压，在D盘创建文件夹mongodb,将压缩包解压到mongodb文件夹中。 二、建立工作目录。  1、建立数据存放目录  D:\mongodb\data\db  2、建立日志文件  D:\mongodb\db\log\mongodb.log 三、建立配置文件。">
+<meta property="og:locale" content="zh-Hans">
 <meta property="og:updated_time" content="2017-03-01T03:36:47.965Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="windows下安装配置mongodb">
-<meta name="twitter:description" content="安装文件：官方网站 http://www.mongodb.org/downloads选择对应系统的文件下载。
-一、解压缩文件。  将压缩包解压，在D盘创建文件夹mongodb,将压缩包解压到mongodb文件夹中。
-二、建立工作目录。  1、建立数据存放目录  D:\mongodb\data\db  2、建立日志文件  D:\mongodb\db\log\mongodb.log
-三、建立配置文件。">
+<meta name="twitter:description" content="安装文件：官方网站 http://www.mongodb.org/downloads选择对应系统的文件下载。 一、解压缩文件。  将压缩包解压，在D盘创建文件夹mongodb,将压缩包解压到mongodb文件夹中。 二、建立工作目录。  1、建立数据存放目录  D:\mongodb\data\db  2、建立日志文件  D:\mongodb\db\log\mongodb.log 三、建立配置文件。">
     
     <title>
         windows下安装配置mongodb |
@@ -251,7 +244,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>安装文件：官方网站 <a href="http://www.mongodb.org/downloads" target="_blank" rel="external">http://www.mongodb.org/downloads</a><br>选择对应系统的文件下载。</p>
+        <p>安装文件：官方网站 <a href="http://www.mongodb.org/downloads" target="_blank" rel="noopener">http://www.mongodb.org/downloads</a><br>选择对应系统的文件下载。</p>
 <h3 id="一、解压缩文件。"><a href="#一、解压缩文件。" class="headerlink" title="一、解压缩文件。"></a>一、解压缩文件。</h3><p>  将压缩包解压，在D盘创建文件夹<code>mongodb</code>,将压缩包解压到<code>mongodb</code>文件夹中。</p>
 <h3 id="二、建立工作目录。"><a href="#二、建立工作目录。" class="headerlink" title="二、建立工作目录。"></a>二、建立工作目录。</h3><p>  1、建立数据存放目录  <code>D:\mongodb\data\db</code><br>  2、建立日志文件  <code>D:\mongodb\db\log\mongodb.log</code></p>
 <h3 id="三、建立配置文件。"><a href="#三、建立配置文件。" class="headerlink" title="三、建立配置文件。"></a>三、建立配置文件。</h3><p><code>mongodb</code>文件夹下建立<code>mongodb.cfg</code>文件，输入以下内容：</p>
@@ -262,7 +255,7 @@ journal=true #启用日志文件，默认启用
 quiet=true #这个选项可以过滤掉一些无用的日志信息，若需要调试使用请设置为false
 port=27017 #端口号 默认为27017
 </code></pre>
-<p>这里仅指定了几个常用项，更多详细配置请参考官方文档 <a href="http://docs.mongodb.org/manual/reference/configuration-options/" target="_blank" rel="external">http://docs.mongodb.org/manual/reference/configuration-options/</a><br>正常情况下，我们一般配置<code>dbpath</code>和<code>logpath</code>就够了。</p>
+<p>这里仅指定了几个常用项，更多详细配置请参考官方文档 <a href="http://docs.mongodb.org/manual/reference/configuration-options/" target="_blank" rel="noopener">http://docs.mongodb.org/manual/reference/configuration-options/</a><br>正常情况下，我们一般配置<code>dbpath</code>和<code>logpath</code>就够了。</p>
 <p>至此<code>mongodb</code>文件夹下有文件夹及文件：</p>
 <pre><code class="language-git">D:\ mongodb\bin
 D:\ mongodb\data\db
@@ -281,14 +274,14 @@ mongod -f ../mongodb.cfg  #简写
 </ul>
 <pre><code class="language-git">mongod --config D:\mongodb\mongodb.cfg --install
 </code></pre>
-<p>注：2.6版 这种方式在win7、win8 64位版无法安装成功，其他系统未测试<br>BUG链接 <a href="https://jira.mongodb.org/browse/SERVER-13515" target="_blank" rel="external">https://jira.mongodb.org/browse/SERVER-13515</a></p>
+<p>注：2.6版 这种方式在win7、win8 64位版无法安装成功，其他系统未测试<br>BUG链接 <a href="https://jira.mongodb.org/browse/SERVER-13515" target="_blank" rel="noopener">https://jira.mongodb.org/browse/SERVER-13515</a></p>
 <ul>
 <li><p><strong>使用SC命令安装为Windows服务</strong></p>
 <pre><code class="language-git">sc create MongoDB binPath= &quot;D:\mongodb\bin\mongod.exe --service --config=D:\mongodb\mongodb.cfg&quot;
 </code></pre>
 </li>
 </ul>
-<p>在浏览器输入：<a href="http://localhost:27017/" target="_blank" rel="external">http://localhost:27017/</a>，可以看到如下提示：</p>
+<p>在浏览器输入：<a href="http://localhost:27017/" target="_blank" rel="noopener">http://localhost:27017/</a>，可以看到如下提示：</p>
 <blockquote>
 <p>You are trying to access MongoDB on the native driver port. For http diagnostic access, add 1000 to the port number</p>
 </blockquote>

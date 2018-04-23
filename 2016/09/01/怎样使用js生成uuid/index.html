@@ -4,31 +4,18 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <meta name="description" content="原问题：How to create a GUID / UUID in Javascript?
-Introuction
-UUID = Universally Unique IDentifier, 全球唯一标识符。
-
-本来我觉得UUID不是什么事，只是一个唯一性的ID字符串而已。在Stack Overflow上看到这个问题之后，倒开始觉得，也许UUID里也有一些值得去发掘的东西。
-于是我想到了这几个问">
+    <meta name="description" content="原问题：How to create a GUID / UUID in Javascript? Introuction UUID = Universally Unique IDentifier, 全球唯一标识符。  本来我觉得UUID不是什么事，只是一个唯一性的ID字符串而已。在Stack Overflow上看到这个问题之后，倒开始觉得，也许UUID里也有一些值得去发掘的东西。 于是我想到了这几个问">
+<meta name="keywords" content="javascript,uuid">
 <meta property="og:type" content="article">
 <meta property="og:title" content="怎样使用js生成uuid">
 <meta property="og:url" content="http://mmrxia.github.io/2016/09/01/怎样使用js生成uuid/index.html">
-<meta property="og:site_name" content="芥子园 | xiaqingsong's blog">
-<meta property="og:description" content="原问题：How to create a GUID / UUID in Javascript?
-Introuction
-UUID = Universally Unique IDentifier, 全球唯一标识符。
-
-本来我觉得UUID不是什么事，只是一个唯一性的ID字符串而已。在Stack Overflow上看到这个问题之后，倒开始觉得，也许UUID里也有一些值得去发掘的东西。
-于是我想到了这几个问">
+<meta property="og:site_name" content="芥子园 | xiaqingsong&#39;s blog">
+<meta property="og:description" content="原问题：How to create a GUID / UUID in Javascript? Introuction UUID = Universally Unique IDentifier, 全球唯一标识符。  本来我觉得UUID不是什么事，只是一个唯一性的ID字符串而已。在Stack Overflow上看到这个问题之后，倒开始觉得，也许UUID里也有一些值得去发掘的东西。 于是我想到了这几个问">
+<meta property="og:locale" content="zh-Hans">
 <meta property="og:updated_time" content="2016-09-01T07:10:53.537Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="怎样使用js生成uuid">
-<meta name="twitter:description" content="原问题：How to create a GUID / UUID in Javascript?
-Introuction
-UUID = Universally Unique IDentifier, 全球唯一标识符。
-
-本来我觉得UUID不是什么事，只是一个唯一性的ID字符串而已。在Stack Overflow上看到这个问题之后，倒开始觉得，也许UUID里也有一些值得去发掘的东西。
-于是我想到了这几个问">
+<meta name="twitter:description" content="原问题：How to create a GUID / UUID in Javascript? Introuction UUID = Universally Unique IDentifier, 全球唯一标识符。  本来我觉得UUID不是什么事，只是一个唯一性的ID字符串而已。在Stack Overflow上看到这个问题之后，倒开始觉得，也许UUID里也有一些值得去发掘的东西。 于是我想到了这几个问">
     
     <title>
         怎样使用js生成uuid |
@@ -257,7 +244,7 @@ UUID = Universally Unique IDentifier, 全球唯一标识符。
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>原问题：<a href="http://stackoverflow.com/questions/105034/how-to-create-a-guid-uuid-in-javascript" target="_blank" rel="external">How to create a GUID / UUID in Javascript?</a></p>
+        <p>原问题：<a href="http://stackoverflow.com/questions/105034/how-to-create-a-guid-uuid-in-javascript" target="_blank" rel="noopener">How to create a GUID / UUID in Javascript?</a></p>
 <h2 id="Introuction"><a href="#Introuction" class="headerlink" title="Introuction"></a>Introuction</h2><blockquote>
 <p>UUID = Universally Unique IDentifier, 全球唯一标识符。</p>
 </blockquote>
@@ -269,7 +256,7 @@ UUID = Universally Unique IDentifier, 全球唯一标识符。
 <li>好像我曾多次看到过有人讨论某种系统或变成语言下UUID的生成问题，<a href="#UUID-and-implementation">UUID跟系统或者编程语言有关系吗</a></li>
 </ul>
 <p>带着这些问题，我查找并学习了一番。现在做个整理。</p>
-<h2 id="UUID-and-GUID"><a href="#UUID-and-GUID" class="headerlink" title="UUID and GUID"></a>UUID and GUID</h2><h4 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h4><p>UUID来自于IETF发布的一个规范：<a href="http://www.ietf.org/rfc/rfc4122.txt" target="_blank" rel="external">A Universally Unique IDentifier (UUID) URN Namespace</a>。</p>
+<h2 id="UUID-and-GUID"><a href="#UUID-and-GUID" class="headerlink" title="UUID and GUID"></a>UUID and GUID</h2><h4 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h4><p>UUID来自于IETF发布的一个规范：<a href="http://www.ietf.org/rfc/rfc4122.txt" target="_blank" rel="noopener">A Universally Unique IDentifier (UUID) URN Namespace</a>。</p>
 <blockquote>
 <p>This specification defines a Uniform Resource Name namespace for UUIDs (Universally Unique IDentifier), also known as GUIDs (Globally Unique IDentifier).  A UUID is 128 bits long, and can guarantee uniqueness across space and time.  UUIDs were originally used in the Apollo Network Computing System and later in the Open Software Foundation’s (OSF) Distributed Computing Environment (DCE), and then in Microsoft Windows platforms.<br>This specification is derived from the DCE specification with the kind permission of the OSF (now known as The Open Group).</p>
 </blockquote>
@@ -305,7 +292,7 @@ UUID = Universally Unique IDentifier, 全球唯一标识符。
             &quot;A&quot; / &quot;B&quot; / &quot;C&quot; / &quot;D&quot; / &quot;E&quot; / &quot;F&quot;
 </code></pre><p>示例：</p>
 <pre><code>uuid:f81d4fae-7dec-11d0-a765-00a0c91e6bf6
-</code></pre><h4 id="UUID生成算法"><a href="#UUID生成算法" class="headerlink" title="UUID生成算法"></a>UUID生成算法</h4><p>UUID本身也经过了<a href="http://en.wikipedia.org/wiki/Universally_unique_identifier#Variants_and_versions" target="_blank" rel="external">多个版本的演化</a>。比如node字段的定义，最开始定义为来自IEEE 802 address，演化到后来的<em>a randomly or pseudo-randomly generated 48-bit value</em>。</p>
+</code></pre><h4 id="UUID生成算法"><a href="#UUID生成算法" class="headerlink" title="UUID生成算法"></a>UUID生成算法</h4><p>UUID本身也经过了<a href="http://en.wikipedia.org/wiki/Universally_unique_identifier#Variants_and_versions" target="_blank" rel="noopener">多个版本的演化</a>。比如node字段的定义，最开始定义为来自IEEE 802 address，演化到后来的<em>a randomly or pseudo-randomly generated 48-bit value</em>。</p>
 <p>最新的UUID生成算法是这样的：</p>
 <ul>
 <li>Set the two most significant bits (bits 6 and 7) of the clock_seq_hi_and_reserved to zero and one, respectively.</li>
@@ -315,17 +302,17 @@ UUID = Universally Unique IDentifier, 全球唯一标识符。
 <h2 id="UUID-and-implementation"><a href="#UUID-and-implementation" class="headerlink" title="UUID and implementation"></a>UUID and implementation</h2><p>越来越多的系统中使用着UUID，各自使用目的并不一样。而且由于限定在128bits，UUID规范本身并没有保证UUID真的是在全球唯一的。因此现在对UUID的使用，一般都是限定在一个范围内有唯一性保证，比如一个操作系统内。</p>
 <p>因此我们可以看到：</p>
 <ul>
-<li>微软有一个GUID生成lib：<a href="http://msdn.microsoft.com/en-us/library/system.guid(v=vs.110).aspx" target="_blank" rel="external">http://msdn.microsoft.com/en-us/library/system.guid(v=vs.110).aspx</a></li>
-<li>Linux也同样有UUID生成lib：<a href="http://en.wikipedia.org/wiki/Util-linux" target="_blank" rel="external">http://en.wikipedia.org/wiki/Util-linux</a></li>
-<li>Android的UUID生成lib：<a href="http://developer.android.com/reference/java/util/UUID.html" target="_blank" rel="external">http://developer.android.com/reference/java/util/UUID.html</a></li>
+<li>微软有一个GUID生成lib：<a href="http://msdn.microsoft.com/en-us/library/system.guid(v=vs.110).aspx" target="_blank" rel="noopener">http://msdn.microsoft.com/en-us/library/system.guid(v=vs.110).aspx</a></li>
+<li>Linux也同样有UUID生成lib：<a href="http://en.wikipedia.org/wiki/Util-linux" target="_blank" rel="noopener">http://en.wikipedia.org/wiki/Util-linux</a></li>
+<li>Android的UUID生成lib：<a href="http://developer.android.com/reference/java/util/UUID.html" target="_blank" rel="noopener">http://developer.android.com/reference/java/util/UUID.html</a></li>
 </ul>
 <p>用以上系统对应的UUID生成lib可以确保产生的UUID在系统范围内是唯一的。因此可以用来标识系统资源，比如文件、软件、设备等。</p>
 <p>而对于某种具体的编程语言，UUID的使用并没有必要。因为使用UUID的目的是给某个资源分配一个在当前环境下唯一的标识符。而一个程序只有在运行的时候才谈得上有一个<strong>环境</strong>，进程之间又互不影响。因此，一般在编程语言规范中并没有对UUID生成方法进行规定。</p>
 <p>但<em>unique id</em>还是很常用的，比如：</p>
 <ul>
-<li>PHP - uniqid() <a href="http://php.net/manual/en/function.uniqid.php#94959" target="_blank" rel="external">http://php.net/manual/en/function.uniqid.php#94959</a></li>
-<li>Mysql - UUID() <a href="http://dev.mysql.com/doc/refman/5.1/en/miscellaneous-functions.html#function_uuid" target="_blank" rel="external">http://dev.mysql.com/doc/refman/5.1/en/miscellaneous-functions.html#function_uuid</a></li>
-<li>Java - UUID <a href="http://docs.oracle.com/javase/7/docs/api/java/util/UUID.html" target="_blank" rel="external">http://docs.oracle.com/javase/7/docs/api/java/util/UUID.html</a></li>
+<li>PHP - uniqid() <a href="http://php.net/manual/en/function.uniqid.php#94959" target="_blank" rel="noopener">http://php.net/manual/en/function.uniqid.php#94959</a></li>
+<li>Mysql - UUID() <a href="http://dev.mysql.com/doc/refman/5.1/en/miscellaneous-functions.html#function_uuid" target="_blank" rel="noopener">http://dev.mysql.com/doc/refman/5.1/en/miscellaneous-functions.html#function_uuid</a></li>
+<li>Java - UUID <a href="http://docs.oracle.com/javase/7/docs/api/java/util/UUID.html" target="_blank" rel="noopener">http://docs.oracle.com/javase/7/docs/api/java/util/UUID.html</a></li>
 </ul>
 <p>但这些UUID方法只是借用了<em>唯一性</em>的概念，并不是必须。而且uuid规定128bits，很多情况下有点浪费。</p>
 <p>你可以用任何方法来生成一个程序内唯一的字符串，比如mysql中的incremental id，它就比uuid实用。</p>
@@ -344,7 +331,7 @@ UUID = Universally Unique IDentifier, 全球唯一标识符。
 };
 </code></pre>
 <ul>
-<li>Node module<br><a href="https://github.com/broofa/node-uuid" target="_blank" rel="external">https://github.com/broofa/node-uuid</a></li>
+<li>Node module<br><a href="https://github.com/broofa/node-uuid" target="_blank" rel="noopener">https://github.com/broofa/node-uuid</a></li>
 </ul>
 
       

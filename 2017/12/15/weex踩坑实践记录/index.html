@@ -4,20 +4,18 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <meta name="description" content="技术概述weex是阿里开源的一套构建高性能移动界面的原生跨平台技术框架，它的上层由Vue，Rax（非常类似React的开发框架）实现数据驱动，底层由iOS，Android实现render engine来驱动界面的最终落地。类比React Native它的优势在于难得的一次编写，多端运行，是的，它也很好的支持着移动Web端。
-构建-buildNative使用weex-loader，Web则需要使用v">
+    <meta name="description" content="技术概述weex是阿里开源的一套构建高性能移动界面的原生跨平台技术框架，它的上层由Vue，Rax（非常类似React的开发框架）实现数据驱动，底层由iOS，Android实现render engine来驱动界面的最终落地。类比React Native它的优势在于难得的一次编写，多端运行，是的，它也很好的支持着移动Web端。 构建-buildNative使用weex-loader，Web则需要使用v">
 <meta property="og:type" content="article">
 <meta property="og:title" content="weex踩坑实践记录">
 <meta property="og:url" content="http://mmrxia.github.io/2017/12/15/weex踩坑实践记录/index.html">
-<meta property="og:site_name" content="芥子园 | xiaqingsong's blog">
-<meta property="og:description" content="技术概述weex是阿里开源的一套构建高性能移动界面的原生跨平台技术框架，它的上层由Vue，Rax（非常类似React的开发框架）实现数据驱动，底层由iOS，Android实现render engine来驱动界面的最终落地。类比React Native它的优势在于难得的一次编写，多端运行，是的，它也很好的支持着移动Web端。
-构建-buildNative使用weex-loader，Web则需要使用v">
+<meta property="og:site_name" content="芥子园 | xiaqingsong&#39;s blog">
+<meta property="og:description" content="技术概述weex是阿里开源的一套构建高性能移动界面的原生跨平台技术框架，它的上层由Vue，Rax（非常类似React的开发框架）实现数据驱动，底层由iOS，Android实现render engine来驱动界面的最终落地。类比React Native它的优势在于难得的一次编写，多端运行，是的，它也很好的支持着移动Web端。 构建-buildNative使用weex-loader，Web则需要使用v">
+<meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://segmentfault.com/img/remote/1460000010023505?w=916&h=958">
 <meta property="og:updated_time" content="2017-12-15T03:27:30.654Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="weex踩坑实践记录">
-<meta name="twitter:description" content="技术概述weex是阿里开源的一套构建高性能移动界面的原生跨平台技术框架，它的上层由Vue，Rax（非常类似React的开发框架）实现数据驱动，底层由iOS，Android实现render engine来驱动界面的最终落地。类比React Native它的优势在于难得的一次编写，多端运行，是的，它也很好的支持着移动Web端。
-构建-buildNative使用weex-loader，Web则需要使用v">
+<meta name="twitter:description" content="技术概述weex是阿里开源的一套构建高性能移动界面的原生跨平台技术框架，它的上层由Vue，Rax（非常类似React的开发框架）实现数据驱动，底层由iOS，Android实现render engine来驱动界面的最终落地。类比React Native它的优势在于难得的一次编写，多端运行，是的，它也很好的支持着移动Web端。 构建-buildNative使用weex-loader，Web则需要使用v">
 <meta name="twitter:image" content="https://segmentfault.com/img/remote/1460000010023505?w=916&h=958">
     
     <title>
@@ -291,7 +289,7 @@ vue: {
       }
     ]
 }
-</code></pre><p>最佳的实践是推荐你使用目前为止我们内部评价最高的一份脚手架工程（支持三端一致，意味着处理了降级。）：<a href="https://github.com/dingtalk-templates/webpack" target="_blank" rel="external">dingtalk-templates/webpack</a>，你可以直接下载它，自行修改<code>package.json</code>文件中的配置，或者安装 <a href="https://github.com/open-dingtalk/weex-dingtalk-cli" target="_blank" rel="external">open-dingtalk/weex-dingtalk-cli</a> 这个命令行工具来玩转脚手架，这个命令行工具就像你使用<code>vue-cli</code>一样的简单：</p>
+</code></pre><p>最佳的实践是推荐你使用目前为止我们内部评价最高的一份脚手架工程（支持三端一致，意味着处理了降级。）：<a href="https://github.com/dingtalk-templates/webpack" target="_blank" rel="noopener">dingtalk-templates/webpack</a>，你可以直接下载它，自行修改<code>package.json</code>文件中的配置，或者安装 <a href="https://github.com/open-dingtalk/weex-dingtalk-cli" target="_blank" rel="noopener">open-dingtalk/weex-dingtalk-cli</a> 这个命令行工具来玩转脚手架，这个命令行工具就像你使用<code>vue-cli</code>一样的简单：</p>
 <pre><code class="bash">$ npm install -g weex-dingtalk-cli
 </code></pre>
 <h3 id="样式-style"><a href="#样式-style" class="headerlink" title="样式-style"></a>样式-style</h3><ul>
@@ -302,7 +300,7 @@ vue: {
 <li>布局只能使用<code>Flexbox</code></li>
 <li>如果要显示文本必须使用<code>text</code>组件，并且你想改变字体大小必须写在<code>text</code>组件上</li>
 <li>只支持<code>class</code>，不允许继承</li>
-<li>单位只支持<code>`px</code></li>
+<li>单位只支持<code></code>px`</li>
 <li>不支持背景图片</li>
 <li>基于<code>750px</code>进行缩放，会有浮点级别的误差</li>
 <li>样式需要声明 <code>scoped</code> 属性</li>
@@ -352,14 +350,14 @@ vue: {
 <blockquote>
 <p>weex native 与 weex web 之间的差异较大，那么怎么办？   </p>
 </blockquote>
-<p>我们提供了一套抹平一些常见差异的库，你也可以在weex环境中使用，<a href="https://github.com/open-dingtalk/weex-dingtalk-journey" target="_blank" rel="external">https://github.com/open-dingtalk/weex-dingtalk-journey</a>。   </p>
+<p>我们提供了一套抹平一些常见差异的库，你也可以在weex环境中使用，<a href="https://github.com/open-dingtalk/weex-dingtalk-journey" target="_blank" rel="noopener">https://github.com/open-dingtalk/weex-dingtalk-journey</a>。   </p>
 <p>在说内存（memory）之前，大家先来看一副图，weex的内存分布：</p>
 <p><img src="https://segmentfault.com/img/remote/1460000010023505?w=916&amp;h=958" alt=""></p>
 <p>正常情况下，<code>Native memory</code> 业务开发人员是无法处理的，而运行在<code>js core</code> 中的内存，我们知道如果不断开引用，js是无法回收释放内存的。   </p>
 <ul>
 <li>不允许往 runtime 里去挂载对象</li>
 <li>业务代码中的一些引用在beforeDestroy 中断开设置为null</li>
-<li>学会使用工具分析内存泄漏的问题，<a href="https://webkit.org/downloads/" target="_blank" rel="external">https://webkit.org/downloads/</a></li>
+<li>学会使用工具分析内存泄漏的问题，<a href="https://webkit.org/downloads/" target="_blank" rel="noopener">https://webkit.org/downloads/</a></li>
 <li>不要随意的使用函数递归，缩短对象方法的执行路径（传统JS领域的内存管理最佳实践也适用一部分）</li>
 <li>由于界面的渲染需要依赖createInstance(id, code, config, data)，sendTasks(id, tasks)，receiveTasks(id, tasks)发送指令的方式进行通信，你应该减少通信的次数，在更新界面时，合并不必要的通信指令的发送。</li>
 <li>如果你使用vue-router的方式，尽量减少组件之间的共享。</li>
@@ -404,7 +402,7 @@ vue: {
 [WXDevTool launchDevToolDebugWithUrl:@&quot;ws://192.168.1.108:8088/debugProxy/native&quot;];
 </code></pre><p><code>ws:// xxx.xx..x</code> 这个地址是在用<code>weex debug</code> 在终端里给你输出出来的，如果<code>setDebug</code>为<code>YES</code>会开启<code>debugger</code>模式，反之亦然。   </p>
 <p>注意<code>setDebug</code>设置为<code>YES</code>。</p>
-<h3 id="原生开发-Native"><a href="#原生开发-Native" class="headerlink" title="原生开发-Native"></a>原生开发-Native</h3><p>请直接阅读 <a href="https://zhuanlan.zhihu.com/p/25182677" target="_blank" rel="external">Weex入坑之旅</a> ，这是用<code>iOS</code>视角写的一篇文章，大概在半年之前。</p>
+<h3 id="原生开发-Native"><a href="#原生开发-Native" class="headerlink" title="原生开发-Native"></a>原生开发-Native</h3><p>请直接阅读 <a href="https://zhuanlan.zhihu.com/p/25182677" target="_blank" rel="noopener">Weex入坑之旅</a> ，这是用<code>iOS</code>视角写的一篇文章，大概在半年之前。</p>
 <h3 id="写在最后"><a href="#写在最后" class="headerlink" title="写在最后"></a>写在最后</h3><p>希望大家可以用一个开放的心态来看待<code>weex</code>，它的设计，实现有很多是值得学习的地方，<br>比如多<code>framework</code>支持，共享<code>runtime</code>，<code>module</code>，<code>component</code>，<code>handler</code>等等，非常的自由领域，相当于它设计好了一个<code>render engine</code>。<br>理论上你可以学习它的几个关键接口，知道<code>Native DOM</code>指令后，也能开发出替代<code>Vue</code>的上层框架，不信？你看看Rax即明白了。   </p>
 <p><code>weex</code>也有一些不足的地方，开发者数量少，社区活跃度不高，很多问题并不一定能被<code>google</code>搜录到。<br>文档确实有一点不完善，<code>native</code>的实现也有一定的<code>bug</code>数量，你看<code>react</code>这么多年了，依然有<code>bug</code>，只要在逐步改进迭代修复，我觉得它就是非常棒的，万事没有十全十美，美中不足的一点瑕疵，说不定才是完美呢。</p>
 

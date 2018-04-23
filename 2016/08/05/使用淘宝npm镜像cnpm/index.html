@@ -4,22 +4,18 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <meta name="description" content="在使用 node 模块时可以使用 npm install 查找 package.json 中的声明的依赖模块并安装。  
-
-但因为国内网络原因，使用 npm 安装某些模块会非常慢，甚至无法安装所有的包。幸运的是,国内有几个镜像站点可以供我们使用,比如 https://registry.cnpmjs.org、https://registry.npm.taobao.org,速度非常快,镜像站会实时更">
+    <meta name="description" content="在使用 node 模块时可以使用 npm install 查找 package.json 中的声明的依赖模块并安装。    但因为国内网络原因，使用 npm 安装某些模块会非常慢，甚至无法安装所有的包。幸运的是,国内有几个镜像站点可以供我们使用,比如 https://registry.cnpmjs.org、https://registry.npm.taobao.org,速度非常快,镜像站会实时更">
+<meta name="keywords" content="npm,cnpm">
 <meta property="og:type" content="article">
 <meta property="og:title" content="使用淘宝npm镜像cnpm">
 <meta property="og:url" content="http://mmrxia.github.io/2016/08/05/使用淘宝npm镜像cnpm/index.html">
-<meta property="og:site_name" content="芥子园 | xiaqingsong's blog">
-<meta property="og:description" content="在使用 node 模块时可以使用 npm install 查找 package.json 中的声明的依赖模块并安装。  
-
-但因为国内网络原因，使用 npm 安装某些模块会非常慢，甚至无法安装所有的包。幸运的是,国内有几个镜像站点可以供我们使用,比如 https://registry.cnpmjs.org、https://registry.npm.taobao.org,速度非常快,镜像站会实时更">
+<meta property="og:site_name" content="芥子园 | xiaqingsong&#39;s blog">
+<meta property="og:description" content="在使用 node 模块时可以使用 npm install 查找 package.json 中的声明的依赖模块并安装。    但因为国内网络原因，使用 npm 安装某些模块会非常慢，甚至无法安装所有的包。幸运的是,国内有几个镜像站点可以供我们使用,比如 https://registry.cnpmjs.org、https://registry.npm.taobao.org,速度非常快,镜像站会实时更">
+<meta property="og:locale" content="zh-Hans">
 <meta property="og:updated_time" content="2016-08-05T03:57:36.984Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="使用淘宝npm镜像cnpm">
-<meta name="twitter:description" content="在使用 node 模块时可以使用 npm install 查找 package.json 中的声明的依赖模块并安装。  
-
-但因为国内网络原因，使用 npm 安装某些模块会非常慢，甚至无法安装所有的包。幸运的是,国内有几个镜像站点可以供我们使用,比如 https://registry.cnpmjs.org、https://registry.npm.taobao.org,速度非常快,镜像站会实时更">
+<meta name="twitter:description" content="在使用 node 模块时可以使用 npm install 查找 package.json 中的声明的依赖模块并安装。    但因为国内网络原因，使用 npm 安装某些模块会非常慢，甚至无法安装所有的包。幸运的是,国内有几个镜像站点可以供我们使用,比如 https://registry.cnpmjs.org、https://registry.npm.taobao.org,速度非常快,镜像站会实时更">
     
     <title>
         使用淘宝npm镜像cnpm |
@@ -257,7 +253,7 @@
 npm config set registry http://registry.cnpmjs.org
 </code></pre>
 <p>(2)[临时]通过 <code>npm</code> 命令指定下载源</p>
-<pre><code class="language-git">npm --registry http://registry.cnpmjs.org
+<pre><code class="language-git">npm --registry http://registry.cnpmjs.org 
 </code></pre>
 <p>(3)[linux]在配置文件 <code>~/.npmrc</code> 文件写入源地址</p>
 <pre><code class="language-git">//打开配置文件

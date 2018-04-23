@@ -4,34 +4,18 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <meta name="description" content="译文链接：JavaScript template engine in just 20 lines
-
-最初我的想法是这样子的：
-var TemplateEngine = function(tpl, data) {
-    // magic here ...
-}
-var template = &amp;#39;&amp;lt;p&amp;gt;Hello, my name is &amp;lt;%name%&amp;gt;. I\&amp;#39">
+    <meta name="description" content="译文链接：JavaScript template engine in just 20 lines  最初我的想法是这样子的： var TemplateEngine = function(tpl, data) {     // magic here ... } var template = &amp;#39;&amp;lt;p&amp;gt;Hello, my name is &amp;lt;%name%&amp;gt;. I\&amp;#39">
+<meta name="keywords" content="javascript">
 <meta property="og:type" content="article">
 <meta property="og:title" content="只用20行写一个javascript模板引擎">
 <meta property="og:url" content="http://mmrxia.github.io/2016/12/22/只用20行写一个javascript模板引擎/index.html">
-<meta property="og:site_name" content="芥子园 | xiaqingsong's blog">
-<meta property="og:description" content="译文链接：JavaScript template engine in just 20 lines
-
-最初我的想法是这样子的：
-var TemplateEngine = function(tpl, data) {
-    // magic here ...
-}
-var template = &amp;#39;&amp;lt;p&amp;gt;Hello, my name is &amp;lt;%name%&amp;gt;. I\&amp;#39">
+<meta property="og:site_name" content="芥子园 | xiaqingsong&#39;s blog">
+<meta property="og:description" content="译文链接：JavaScript template engine in just 20 lines  最初我的想法是这样子的： var TemplateEngine = function(tpl, data) {     // magic here ... } var template = &amp;#39;&amp;lt;p&amp;gt;Hello, my name is &amp;lt;%name%&amp;gt;. I\&amp;#39">
+<meta property="og:locale" content="zh-Hans">
 <meta property="og:updated_time" content="2016-12-22T07:41:18.728Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="只用20行写一个javascript模板引擎">
-<meta name="twitter:description" content="译文链接：JavaScript template engine in just 20 lines
-
-最初我的想法是这样子的：
-var TemplateEngine = function(tpl, data) {
-    // magic here ...
-}
-var template = &amp;#39;&amp;lt;p&amp;gt;Hello, my name is &amp;lt;%name%&amp;gt;. I\&amp;#39">
+<meta name="twitter:description" content="译文链接：JavaScript template engine in just 20 lines  最初我的想法是这样子的： var TemplateEngine = function(tpl, data) {     // magic here ... } var template = &amp;#39;&amp;lt;p&amp;gt;Hello, my name is &amp;lt;%name%&amp;gt;. I\&amp;#39">
     
     <title>
         只用20行写一个javascript模板引擎 |
@@ -317,7 +301,7 @@ while(match = re.exec(tpl)) {
 <p>不过直接这样子写的话还不能跑，因为在模板中使用<code>&lt;%profile.age%&gt;</code>的话，代码会被替换成<code>data[&#39;profile.age&#39;]</code>，结果是<code>undefined</code>。<br>这样我们就不能简单地用<code>replace</code>函数，而是要用别的方法。如果能够在<code>&lt;%</code>和<code>%&gt;</code>之间直接使用Javascript代码就最好了，这样就能对传入的数据直接求值，像下面这样：</p>
 <pre><code class="language-javascript">var template = &#39;&lt;p&gt;Hello, my name is &lt;%this.name%&gt;. I\&#39;m &lt;%this.profile.age%&gt; years old.&lt;/p&gt;&#39;;
 </code></pre>
-<p>你可能会好奇，这是怎么实现的？这里<a href="http://ejohn.org/blog/javascript-micro-templating/" target="_blank" rel="external">John</a>使用了<code>new Function</code>的语法，根据字符串创建一个函数。我们不妨来看个例子：</p>
+<p>你可能会好奇，这是怎么实现的？这里<a href="http://ejohn.org/blog/javascript-micro-templating/" target="_blank" rel="noopener">John</a>使用了<code>new Function</code>的语法，根据字符串创建一个函数。我们不妨来看个例子：</p>
 <pre><code class="language-javascript">var fn = new Function(&quot;arg&quot;, &quot;console.log(arg + 1);&quot;);
 fn(2); // outputs 3
 </code></pre>
@@ -350,7 +334,7 @@ this.skills[index] +
 &#39;&lt;/a&gt;&#39; +
 }
 </code></pre>
-<p>当然，这个代码不能直接跑，跑了会出错。于是我用了<a href="http://ejohn.org/blog/javascript-micro-templating/" target="_blank" rel="external">John的文章</a>里写的逻辑，把所有的字符串放在一个数组里，在程序的最后把它们拼接起来。</p>
+<p>当然，这个代码不能直接跑，跑了会出错。于是我用了<a href="http://ejohn.org/blog/javascript-micro-templating/" target="_blank" rel="noopener">John的文章</a>里写的逻辑，把所有的字符串放在一个数组里，在程序的最后把它们拼接起来。</p>
 <pre><code class="language-javascript">var r = [];
 r.push(&#39;My skills:&#39;); 
 for(var index in this.skills) {

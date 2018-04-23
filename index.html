@@ -6,12 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <meta name="description" content="前端博客 | hexo | github">
 <meta property="og:type" content="website">
-<meta property="og:title" content="芥子园 | xiaqingsong's blog">
+<meta property="og:title" content="芥子园 | xiaqingsong&#39;s blog">
 <meta property="og:url" content="http://mmrxia.github.io/index.html">
-<meta property="og:site_name" content="芥子园 | xiaqingsong's blog">
+<meta property="og:site_name" content="芥子园 | xiaqingsong&#39;s blog">
 <meta property="og:description" content="前端博客 | hexo | github">
+<meta property="og:locale" content="zh-Hans">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="芥子园 | xiaqingsong's blog">
+<meta name="twitter:title" content="芥子园 | xiaqingsong&#39;s blog">
 <meta name="twitter:description" content="前端博客 | hexo | github">
     
     <title>
@@ -365,10 +366,10 @@ Tie.loader("aHR0cHM6Ly9hcGkuZ2VudGllLjE2My5jb20vcGMvbGl2ZXNjcmlwdC5odG1s", true)
 <p><code>Git fetch</code>:只是从远程获取最新版本到本地,不会<code>merge</code>(合并)</p>
 <pre><code class="git">git fetch origin master   //从远程的origin的master主分支上获取最新版本到origin/master分支上   
 git log -p master..origin/master //比较本地的master分支和origin/master分支的区别   
-git merge origin/master          //合并
+git merge origin/master          //合并   
 </code></pre>
 <p><code>Git pull</code>:从远程获取最新版本并<code>merge</code>(合并)到本地</p>
-<pre><code class="git">git pull origin master  //相当于进行了 git fetch 和 git merge两部操作
+<pre><code class="git">git pull origin master  //相当于进行了 git fetch 和 git merge两部操作   
 </code></pre>
 <p>实际工作中,可能git fetch更好一些, 因为在merge前,可以根据实际情况决定是否merge。<br>再说导致报错:<code>error: You have not concluded your merge (MERGE_HEAD exists)</code>.<br>原因可能是在以前pull下来的代码自动合并失败。</p>
 <p>对于此我们有两种解决办法。<br>解决办法一:保留本地的更改,中止合并-&gt;重新合并-&gt;重新拉取  </p>
@@ -381,7 +382,7 @@ git pull
 git reset --hard origin/master
 git fetch
 </code></pre>
-<p>参考链接: <a href="http://stackoverflow.com/questions/11646107/you-have-not-concluded-your-merge-merge-head-exists" target="_blank" rel="external">stackoverflow</a></p>
+<p>参考链接: <a href="http://stackoverflow.com/questions/11646107/you-have-not-concluded-your-merge-merge-head-exists" target="_blank" rel="noopener">stackoverflow</a></p>
 
       
     </div>
@@ -498,7 +499,7 @@ vue: {
       }
     ]
 }
-</code></pre><p>最佳的实践是推荐你使用目前为止我们内部评价最高的一份脚手架工程（支持三端一致，意味着处理了降级。）：<a href="https://github.com/dingtalk-templates/webpack" target="_blank" rel="external">dingtalk-templates/webpack</a>，你可以直接下载它，自行修改<code>package.json</code>文件中的配置，或者安装 <a href="https://github.com/open-dingtalk/weex-dingtalk-cli" target="_blank" rel="external">open-dingtalk/weex-dingtalk-cli</a> 这个命令行工具来玩转脚手架，这个命令行工具就像你使用<code>vue-cli</code>一样的简单：</p>
+</code></pre><p>最佳的实践是推荐你使用目前为止我们内部评价最高的一份脚手架工程（支持三端一致，意味着处理了降级。）：<a href="https://github.com/dingtalk-templates/webpack" target="_blank" rel="noopener">dingtalk-templates/webpack</a>，你可以直接下载它，自行修改<code>package.json</code>文件中的配置，或者安装 <a href="https://github.com/open-dingtalk/weex-dingtalk-cli" target="_blank" rel="noopener">open-dingtalk/weex-dingtalk-cli</a> 这个命令行工具来玩转脚手架，这个命令行工具就像你使用<code>vue-cli</code>一样的简单：</p>
 <pre><code class="bash">$ npm install -g weex-dingtalk-cli
 </code></pre>
 <h3 id="样式-style"><a href="#样式-style" class="headerlink" title="样式-style"></a>样式-style</h3><ul>
@@ -509,7 +510,7 @@ vue: {
 <li>布局只能使用<code>Flexbox</code></li>
 <li>如果要显示文本必须使用<code>text</code>组件，并且你想改变字体大小必须写在<code>text</code>组件上</li>
 <li>只支持<code>class</code>，不允许继承</li>
-<li>单位只支持<code>`px</code></li>
+<li>单位只支持<code></code>px`</li>
 <li>不支持背景图片</li>
 <li>基于<code>750px</code>进行缩放，会有浮点级别的误差</li>
 <li>样式需要声明 <code>scoped</code> 属性</li>
@@ -559,14 +560,14 @@ vue: {
 <blockquote>
 <p>weex native 与 weex web 之间的差异较大，那么怎么办？   </p>
 </blockquote>
-<p>我们提供了一套抹平一些常见差异的库，你也可以在weex环境中使用，<a href="https://github.com/open-dingtalk/weex-dingtalk-journey" target="_blank" rel="external">https://github.com/open-dingtalk/weex-dingtalk-journey</a>。   </p>
+<p>我们提供了一套抹平一些常见差异的库，你也可以在weex环境中使用，<a href="https://github.com/open-dingtalk/weex-dingtalk-journey" target="_blank" rel="noopener">https://github.com/open-dingtalk/weex-dingtalk-journey</a>。   </p>
 <p>在说内存（memory）之前，大家先来看一副图，weex的内存分布：</p>
 <p><img src="https://segmentfault.com/img/remote/1460000010023505?w=916&amp;h=958" alt=""></p>
 <p>正常情况下，<code>Native memory</code> 业务开发人员是无法处理的，而运行在<code>js core</code> 中的内存，我们知道如果不断开引用，js是无法回收释放内存的。   </p>
 <ul>
 <li>不允许往 runtime 里去挂载对象</li>
 <li>业务代码中的一些引用在beforeDestroy 中断开设置为null</li>
-<li>学会使用工具分析内存泄漏的问题，<a href="https://webkit.org/downloads/" target="_blank" rel="external">https://webkit.org/downloads/</a></li>
+<li>学会使用工具分析内存泄漏的问题，<a href="https://webkit.org/downloads/" target="_blank" rel="noopener">https://webkit.org/downloads/</a></li>
 <li>不要随意的使用函数递归，缩短对象方法的执行路径（传统JS领域的内存管理最佳实践也适用一部分）</li>
 <li>由于界面的渲染需要依赖createInstance(id, code, config, data)，sendTasks(id, tasks)，receiveTasks(id, tasks)发送指令的方式进行通信，你应该减少通信的次数，在更新界面时，合并不必要的通信指令的发送。</li>
 <li>如果你使用vue-router的方式，尽量减少组件之间的共享。</li>
@@ -611,7 +612,7 @@ vue: {
 [WXDevTool launchDevToolDebugWithUrl:@&quot;ws://192.168.1.108:8088/debugProxy/native&quot;];
 </code></pre><p><code>ws:// xxx.xx..x</code> 这个地址是在用<code>weex debug</code> 在终端里给你输出出来的，如果<code>setDebug</code>为<code>YES</code>会开启<code>debugger</code>模式，反之亦然。   </p>
 <p>注意<code>setDebug</code>设置为<code>YES</code>。</p>
-<h3 id="原生开发-Native"><a href="#原生开发-Native" class="headerlink" title="原生开发-Native"></a>原生开发-Native</h3><p>请直接阅读 <a href="https://zhuanlan.zhihu.com/p/25182677" target="_blank" rel="external">Weex入坑之旅</a> ，这是用<code>iOS</code>视角写的一篇文章，大概在半年之前。</p>
+<h3 id="原生开发-Native"><a href="#原生开发-Native" class="headerlink" title="原生开发-Native"></a>原生开发-Native</h3><p>请直接阅读 <a href="https://zhuanlan.zhihu.com/p/25182677" target="_blank" rel="noopener">Weex入坑之旅</a> ，这是用<code>iOS</code>视角写的一篇文章，大概在半年之前。</p>
 <h3 id="写在最后"><a href="#写在最后" class="headerlink" title="写在最后"></a>写在最后</h3><p>希望大家可以用一个开放的心态来看待<code>weex</code>，它的设计，实现有很多是值得学习的地方，<br>比如多<code>framework</code>支持，共享<code>runtime</code>，<code>module</code>，<code>component</code>，<code>handler</code>等等，非常的自由领域，相当于它设计好了一个<code>render engine</code>。<br>理论上你可以学习它的几个关键接口，知道<code>Native DOM</code>指令后，也能开发出替代<code>Vue</code>的上层框架，不信？你看看Rax即明白了。   </p>
 <p><code>weex</code>也有一些不足的地方，开发者数量少，社区活跃度不高，很多问题并不一定能被<code>google</code>搜录到。<br>文档确实有一点不完善，<code>native</code>的实现也有一定的<code>bug</code>数量，你看<code>react</code>这么多年了，依然有<code>bug</code>，只要在逐步改进迭代修复，我觉得它就是非常棒的，万事没有十全十美，美中不足的一点瑕疵，说不定才是完美呢。</p>
 
@@ -678,7 +679,7 @@ Tie.loader("aHR0cHM6Ly9hcGkuZ2VudGllLjE2My5jb20vcGMvbGl2ZXNjcmlwdC5odG1s", true)
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h4 id="一、mongodb安装配置"><a href="#一、mongodb安装配置" class="headerlink" title="一、mongodb安装配置"></a>一、mongodb安装配置</h4><p>这部分可参考博文 <a href="http://blog.xiaqingsong.com/2016/12/16/windows%E4%B8%8B%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AEmongodb/" target="_blank" rel="external">windows下安装配置mongodb</a></p>
+        <h4 id="一、mongodb安装配置"><a href="#一、mongodb安装配置" class="headerlink" title="一、mongodb安装配置"></a>一、mongodb安装配置</h4><p>这部分可参考博文 <a href="http://blog.xiaqingsong.com/2016/12/16/windows%E4%B8%8B%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AEmongodb/" target="_blank" rel="noopener">windows下安装配置mongodb</a></p>
 <h4 id="二、-主从配置"><a href="#二、-主从配置" class="headerlink" title="二、 主从配置"></a>二、 主从配置</h4><blockquote>
 <p>在生产环境中单台数据库一般不能满足业务稳定性的需求，所以数据库主从复制架构在生产环境中很常见，用于主从复制也是Mongodb最常用的一种架构方式。<br>这种方式非常灵活，可用于备份、故障恢复、读扩展等,从而提高数据处理性能和冗余，常用架构模式是一主一从、一主多从、双主。</p>
 </blockquote>
@@ -714,11 +715,11 @@ nohttpinterface=true #禁止http访问
 <pre><code class="language-git">mongod -f ../mongodb.cfg  #启动主服务器
 </code></pre>
 <p>从服务器启动，同理如上：</p>
-<pre><code class="language-git">mongod -f ../mongodb.slave.cfg  #启动从服务器
+<pre><code class="language-git">mongod -f ../mongodb.slave.cfg  #启动从服务器    
 </code></pre>
 <p>启动完成后，我们分别另起一个窗口，进入数据库：</p>
 <pre><code>mongo --host localhost --port 27017  #进入主数据库 
-mongo --host localhost --port 27019  #进入主数据库
+mongo --host localhost --port 27019  #进入主数据库 
 </code></pre><p>之后，我们在从服务器执行：</p>
 <pre><code>rs.slaveOk();
 show dbs;  #如果出现主数据库的数据，说明同步成功
@@ -793,7 +794,7 @@ Tie.loader("aHR0cHM6Ly9hcGkuZ2VudGllLjE2My5jb20vcGMvbGl2ZXNjcmlwdC5odG1s", true)
     <div class="article-entry" itemprop="articleBody">
       
         <ul>
-<li>来自vue官方示例：<a href="https://github.com/vuejs/vue-loader-example" target="_blank" rel="external">https://github.com/vuejs/vue-loader-example</a></li>
+<li>来自vue官方示例：<a href="https://github.com/vuejs/vue-loader-example" target="_blank" rel="noopener">https://github.com/vuejs/vue-loader-example</a></li>
 <li>使用vuejs和webpack，以及一系列webpack加载器，如vue-loader</li>
 <li>简单记录下具体的做法，供新手参考。</li>
 </ul>
@@ -1231,8 +1232,8 @@ axis.isUndefined(); // true
 </code></pre>
 <p>参考链接：</p>
 <ul>
-<li><a href="http://toddmotto.com/understanding-javascript-types-and-reliable-type-checking/" target="_blank" rel="external">http://toddmotto.com/understanding-javascript-types-and-reliable-type-checking/</a></li>
-<li><a href="http://bonsaiden.github.io/JavaScript-Garden/" target="_blank" rel="external">http://bonsaiden.github.io/JavaScript-Garden/</a></li>
+<li><a href="http://toddmotto.com/understanding-javascript-types-and-reliable-type-checking/" target="_blank" rel="noopener">http://toddmotto.com/understanding-javascript-types-and-reliable-type-checking/</a></li>
+<li><a href="http://bonsaiden.github.io/JavaScript-Garden/" target="_blank" rel="noopener">http://bonsaiden.github.io/JavaScript-Garden/</a></li>
 </ul>
 
       
@@ -1359,7 +1360,7 @@ while(match = re.exec(tpl)) {
 <p>不过直接这样子写的话还不能跑，因为在模板中使用<code>&lt;%profile.age%&gt;</code>的话，代码会被替换成<code>data[&#39;profile.age&#39;]</code>，结果是<code>undefined</code>。<br>这样我们就不能简单地用<code>replace</code>函数，而是要用别的方法。如果能够在<code>&lt;%</code>和<code>%&gt;</code>之间直接使用Javascript代码就最好了，这样就能对传入的数据直接求值，像下面这样：</p>
 <pre><code class="language-javascript">var template = &#39;&lt;p&gt;Hello, my name is &lt;%this.name%&gt;. I\&#39;m &lt;%this.profile.age%&gt; years old.&lt;/p&gt;&#39;;
 </code></pre>
-<p>你可能会好奇，这是怎么实现的？这里<a href="http://ejohn.org/blog/javascript-micro-templating/" target="_blank" rel="external">John</a>使用了<code>new Function</code>的语法，根据字符串创建一个函数。我们不妨来看个例子：</p>
+<p>你可能会好奇，这是怎么实现的？这里<a href="http://ejohn.org/blog/javascript-micro-templating/" target="_blank" rel="noopener">John</a>使用了<code>new Function</code>的语法，根据字符串创建一个函数。我们不妨来看个例子：</p>
 <pre><code class="language-javascript">var fn = new Function(&quot;arg&quot;, &quot;console.log(arg + 1);&quot;);
 fn(2); // outputs 3
 </code></pre>
@@ -1392,7 +1393,7 @@ this.skills[index] +
 &#39;&lt;/a&gt;&#39; +
 }
 </code></pre>
-<p>当然，这个代码不能直接跑，跑了会出错。于是我用了<a href="http://ejohn.org/blog/javascript-micro-templating/" target="_blank" rel="external">John的文章</a>里写的逻辑，把所有的字符串放在一个数组里，在程序的最后把它们拼接起来。</p>
+<p>当然，这个代码不能直接跑，跑了会出错。于是我用了<a href="http://ejohn.org/blog/javascript-micro-templating/" target="_blank" rel="noopener">John的文章</a>里写的逻辑，把所有的字符串放在一个数组里，在程序的最后把它们拼接起来。</p>
 <pre><code class="language-javascript">var r = [];
 r.push(&#39;My skills:&#39;); 
 for(var index in this.skills) {
@@ -1600,7 +1601,7 @@ Tie.loader("aHR0cHM6Ly9hcGkuZ2VudGllLjE2My5jb20vcGMvbGl2ZXNjcmlwdC5odG1s", true)
 </code></pre>
 <p>当next回调函数被调用，中间件就完成工作并传递到下一个中间件，如果没其他中间件则进入到应用逻辑继续执行。</p>
 <p><code>logger</code>: 用户请求日志中间件<br><code>csrf</code>: 跨域请求伪造保护中间件<br><code>compress</code>: gzip压缩中间件<br><code>basicAuth</code>: basic认证中间件<br><code>bodyParser</code>: 请求内容解析中间件<br><code>json</code>: JSON解析中间件<br><code>urlencoded</code>: application/x-www-form-urlencode请求解析中间件<br><code>multipart</code>: multipart/form-data请求解析中间件<br><code>timeout</code>: 请求超时中间件<br><code>cookieParser</code>: cookie解析中间件<br><code>session</code>: 会话管理中间件<br><code>cookieSession</code>: 基于cookies的会话中间件<br><code>methodOverride</code>: HTTP伪造中间件<br><code>reponseTime</code>: 计算响应时间中间件<br><code>staticCache</code>: 缓存中间件<br><code>static</code>: 静态文件处理中间件<br><code>directory</code>: 目录列表中间件<br><code>vhost</code>: 虚拟二级域名映射中间件<br><code>favicon</code>: 网页图标中间件<br><code>limit</code>: 请求内容大小限制中间件<br><code>query</code>: URL解析中间件<br><code>errorHadnler</code>: 错误处理中间件</p>
-<p>参考: <a href="http://blog.fens.me/nodejs-connect/" target="_blank" rel="external">http://blog.fens.me/nodejs-connect/</a></p>
+<p>参考: <a href="http://blog.fens.me/nodejs-connect/" target="_blank" rel="noopener">http://blog.fens.me/nodejs-connect/</a></p>
 
       
     </div>
@@ -1678,7 +1679,7 @@ Tie.loader("aHR0cHM6Ly9hcGkuZ2VudGllLjE2My5jb20vcGMvbGl2ZXNjcmlwdC5odG1s", true)
 </code></pre>
 <p>  2 . Schema –&gt; Model，Model –&gt; Entity。Model和Entity都可对数据库操作造成影响，但Model比Entity更具操作性。</p>
 </blockquote>
-<h3 id="2-准备工作"><a href="#2-准备工作" class="headerlink" title="2. 准备工作"></a>2. 准备工作</h3><p>1 . 首先你必须安装MongoDB和NodeJS<br>  mongodb安装可参考： <a href="http://blog.xiaqingsong.com/2016/12/16/windows%E4%B8%8B%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AEmongodb/" target="_blank" rel="external">windows下安装配置mongodb</a></p>
+<h3 id="2-准备工作"><a href="#2-准备工作" class="headerlink" title="2. 准备工作"></a>2. 准备工作</h3><p>1 . 首先你必须安装MongoDB和NodeJS<br>  mongodb安装可参考： <a href="http://blog.xiaqingsong.com/2016/12/16/windows%E4%B8%8B%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AEmongodb/" target="_blank" rel="noopener">windows下安装配置mongodb</a></p>
 <p>2 . 在项目只能够创建一个数据库连接，如下:</p>
 <pre><code class="language-javascript">var mongoose = require(&#39;mongoose&#39;);    //引用mongoose模块
 var db = mongoose.createConnection(&#39;localhost&#39;,&#39;test&#39;); //创建一个数据库连接
@@ -1796,7 +1797,7 @@ Tie.loader("aHR0cHM6Ly9hcGkuZ2VudGllLjE2My5jb20vcGMvbGl2ZXNjcmlwdC5odG1s", true)
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>安装文件：官方网站 <a href="http://www.mongodb.org/downloads" target="_blank" rel="external">http://www.mongodb.org/downloads</a><br>选择对应系统的文件下载。</p>
+        <p>安装文件：官方网站 <a href="http://www.mongodb.org/downloads" target="_blank" rel="noopener">http://www.mongodb.org/downloads</a><br>选择对应系统的文件下载。</p>
 <h3 id="一、解压缩文件。"><a href="#一、解压缩文件。" class="headerlink" title="一、解压缩文件。"></a>一、解压缩文件。</h3><p>  将压缩包解压，在D盘创建文件夹<code>mongodb</code>,将压缩包解压到<code>mongodb</code>文件夹中。</p>
 <h3 id="二、建立工作目录。"><a href="#二、建立工作目录。" class="headerlink" title="二、建立工作目录。"></a>二、建立工作目录。</h3><p>  1、建立数据存放目录  <code>D:\mongodb\data\db</code><br>  2、建立日志文件  <code>D:\mongodb\db\log\mongodb.log</code></p>
 <h3 id="三、建立配置文件。"><a href="#三、建立配置文件。" class="headerlink" title="三、建立配置文件。"></a>三、建立配置文件。</h3><p><code>mongodb</code>文件夹下建立<code>mongodb.cfg</code>文件，输入以下内容：</p>
@@ -1807,7 +1808,7 @@ journal=true #启用日志文件，默认启用
 quiet=true #这个选项可以过滤掉一些无用的日志信息，若需要调试使用请设置为false
 port=27017 #端口号 默认为27017
 </code></pre>
-<p>这里仅指定了几个常用项，更多详细配置请参考官方文档 <a href="http://docs.mongodb.org/manual/reference/configuration-options/" target="_blank" rel="external">http://docs.mongodb.org/manual/reference/configuration-options/</a><br>正常情况下，我们一般配置<code>dbpath</code>和<code>logpath</code>就够了。</p>
+<p>这里仅指定了几个常用项，更多详细配置请参考官方文档 <a href="http://docs.mongodb.org/manual/reference/configuration-options/" target="_blank" rel="noopener">http://docs.mongodb.org/manual/reference/configuration-options/</a><br>正常情况下，我们一般配置<code>dbpath</code>和<code>logpath</code>就够了。</p>
 <p>至此<code>mongodb</code>文件夹下有文件夹及文件：</p>
 <pre><code class="language-git">D:\ mongodb\bin
 D:\ mongodb\data\db
@@ -1826,14 +1827,14 @@ mongod -f ../mongodb.cfg  #简写
 </ul>
 <pre><code class="language-git">mongod --config D:\mongodb\mongodb.cfg --install
 </code></pre>
-<p>注：2.6版 这种方式在win7、win8 64位版无法安装成功，其他系统未测试<br>BUG链接 <a href="https://jira.mongodb.org/browse/SERVER-13515" target="_blank" rel="external">https://jira.mongodb.org/browse/SERVER-13515</a></p>
+<p>注：2.6版 这种方式在win7、win8 64位版无法安装成功，其他系统未测试<br>BUG链接 <a href="https://jira.mongodb.org/browse/SERVER-13515" target="_blank" rel="noopener">https://jira.mongodb.org/browse/SERVER-13515</a></p>
 <ul>
 <li><p><strong>使用SC命令安装为Windows服务</strong></p>
 <pre><code class="language-git">sc create MongoDB binPath= &quot;D:\mongodb\bin\mongod.exe --service --config=D:\mongodb\mongodb.cfg&quot;
 </code></pre>
 </li>
 </ul>
-<p>在浏览器输入：<a href="http://localhost:27017/" target="_blank" rel="external">http://localhost:27017/</a>，可以看到如下提示：</p>
+<p>在浏览器输入：<a href="http://localhost:27017/" target="_blank" rel="noopener">http://localhost:27017/</a>，可以看到如下提示：</p>
 <blockquote>
 <p>You are trying to access MongoDB on the native driver port. For http diagnostic access, add 1000 to the port number</p>
 </blockquote>

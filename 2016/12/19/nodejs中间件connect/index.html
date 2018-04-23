@@ -4,31 +4,18 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <meta name="description" content="什么是connect？Connect 是Node.js中的一个模块，可以用来创建中间件的一个框架，它自身已经包装了Node的HTTP模块的Server以及Server的req和res的对象。它干的活其实就是处理请求，然后响应客户端或是让下一个中间件继续处理，它的原型是这个样子的:
-function (req, res, next) {
-  // 中间件
-}
-
-当next回调函数被调用，中间件就完成">
+    <meta name="description" content="什么是connect？Connect 是Node.js中的一个模块，可以用来创建中间件的一个框架，它自身已经包装了Node的HTTP模块的Server以及Server的req和res的对象。它干的活其实就是处理请求，然后响应客户端或是让下一个中间件继续处理，它的原型是这个样子的: function (req, res, next) {   // 中间件 }  当next回调函数被调用，中间件就完成">
+<meta name="keywords" content="nodejs">
 <meta property="og:type" content="article">
 <meta property="og:title" content="nodejs中间件connect">
 <meta property="og:url" content="http://mmrxia.github.io/2016/12/19/nodejs中间件connect/index.html">
-<meta property="og:site_name" content="芥子园 | xiaqingsong's blog">
-<meta property="og:description" content="什么是connect？Connect 是Node.js中的一个模块，可以用来创建中间件的一个框架，它自身已经包装了Node的HTTP模块的Server以及Server的req和res的对象。它干的活其实就是处理请求，然后响应客户端或是让下一个中间件继续处理，它的原型是这个样子的:
-function (req, res, next) {
-  // 中间件
-}
-
-当next回调函数被调用，中间件就完成">
+<meta property="og:site_name" content="芥子园 | xiaqingsong&#39;s blog">
+<meta property="og:description" content="什么是connect？Connect 是Node.js中的一个模块，可以用来创建中间件的一个框架，它自身已经包装了Node的HTTP模块的Server以及Server的req和res的对象。它干的活其实就是处理请求，然后响应客户端或是让下一个中间件继续处理，它的原型是这个样子的: function (req, res, next) {   // 中间件 }  当next回调函数被调用，中间件就完成">
+<meta property="og:locale" content="zh-Hans">
 <meta property="og:updated_time" content="2016-12-19T03:28:04.498Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="nodejs中间件connect">
-<meta name="twitter:description" content="什么是connect？Connect 是Node.js中的一个模块，可以用来创建中间件的一个框架，它自身已经包装了Node的HTTP模块的Server以及Server的req和res的对象。它干的活其实就是处理请求，然后响应客户端或是让下一个中间件继续处理，它的原型是这个样子的:
-function (req, res, next) {
-  // 中间件
-}
-
-当next回调函数被调用，中间件就完成">
+<meta name="twitter:description" content="什么是connect？Connect 是Node.js中的一个模块，可以用来创建中间件的一个框架，它自身已经包装了Node的HTTP模块的Server以及Server的req和res的对象。它干的活其实就是处理请求，然后响应客户端或是让下一个中间件继续处理，它的原型是这个样子的: function (req, res, next) {   // 中间件 }  当next回调函数被调用，中间件就完成">
     
     <title>
         nodejs中间件connect |
@@ -264,7 +251,7 @@ function (req, res, next) {
 </code></pre>
 <p>当next回调函数被调用，中间件就完成工作并传递到下一个中间件，如果没其他中间件则进入到应用逻辑继续执行。</p>
 <p><code>logger</code>: 用户请求日志中间件<br><code>csrf</code>: 跨域请求伪造保护中间件<br><code>compress</code>: gzip压缩中间件<br><code>basicAuth</code>: basic认证中间件<br><code>bodyParser</code>: 请求内容解析中间件<br><code>json</code>: JSON解析中间件<br><code>urlencoded</code>: application/x-www-form-urlencode请求解析中间件<br><code>multipart</code>: multipart/form-data请求解析中间件<br><code>timeout</code>: 请求超时中间件<br><code>cookieParser</code>: cookie解析中间件<br><code>session</code>: 会话管理中间件<br><code>cookieSession</code>: 基于cookies的会话中间件<br><code>methodOverride</code>: HTTP伪造中间件<br><code>reponseTime</code>: 计算响应时间中间件<br><code>staticCache</code>: 缓存中间件<br><code>static</code>: 静态文件处理中间件<br><code>directory</code>: 目录列表中间件<br><code>vhost</code>: 虚拟二级域名映射中间件<br><code>favicon</code>: 网页图标中间件<br><code>limit</code>: 请求内容大小限制中间件<br><code>query</code>: URL解析中间件<br><code>errorHadnler</code>: 错误处理中间件</p>
-<p>参考: <a href="http://blog.fens.me/nodejs-connect/" target="_blank" rel="external">http://blog.fens.me/nodejs-connect/</a></p>
+<p>参考: <a href="http://blog.fens.me/nodejs-connect/" target="_blank" rel="noopener">http://blog.fens.me/nodejs-connect/</a></p>
 
       
     </div>

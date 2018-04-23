@@ -4,14 +4,14 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <meta name="description" content="js中数组和对象，使用“=”号赋值的时候，由于是引用类型，只是改变了引用对象的指针指向，改变值时会引起连锁反应。简单效果如下：
-避免指针指向的方法主要有一下几种：（1）使用slice()方法。slice() 函数可从已有的数组中返回选定的元素；语法为：arr.slice(start,end);slice()函数将会返回一个新的数组对象，所以使用slice(0)或slice()就可以实现数组的复制。">
+    <meta name="description" content="js中数组和对象，使用“=”号赋值的时候，由于是引用类型，只是改变了引用对象的指针指向，改变值时会引起连锁反应。简单效果如下： 避免指针指向的方法主要有一下几种：（1）使用slice()方法。slice() 函数可从已有的数组中返回选定的元素；语法为：arr.slice(start,end);slice()函数将会返回一个新的数组对象，所以使用slice(0)或slice()就可以实现数组的复制。">
+<meta name="keywords" content="js,数组">
 <meta property="og:type" content="article">
 <meta property="og:title" content="js 数组复制操作">
 <meta property="og:url" content="http://mmrxia.github.io/2016/05/22/js-数组复制操作/index.html">
-<meta property="og:site_name" content="芥子园 | xiaqingsong's blog">
-<meta property="og:description" content="js中数组和对象，使用“=”号赋值的时候，由于是引用类型，只是改变了引用对象的指针指向，改变值时会引起连锁反应。简单效果如下：
-避免指针指向的方法主要有一下几种：（1）使用slice()方法。slice() 函数可从已有的数组中返回选定的元素；语法为：arr.slice(start,end);slice()函数将会返回一个新的数组对象，所以使用slice(0)或slice()就可以实现数组的复制。">
+<meta property="og:site_name" content="芥子园 | xiaqingsong&#39;s blog">
+<meta property="og:description" content="js中数组和对象，使用“=”号赋值的时候，由于是引用类型，只是改变了引用对象的指针指向，改变值时会引起连锁反应。简单效果如下： 避免指针指向的方法主要有一下几种：（1）使用slice()方法。slice() 函数可从已有的数组中返回选定的元素；语法为：arr.slice(start,end);slice()函数将会返回一个新的数组对象，所以使用slice(0)或slice()就可以实现数组的复制。">
+<meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://7xth8v.com2.z0.glb.qiniucdn.com/image/arr1.png">
 <meta property="og:image" content="http://7xth8v.com2.z0.glb.qiniucdn.com/image/arr2.png">
 <meta property="og:image" content="http://7xth8v.com2.z0.glb.qiniucdn.com/image/arr3.png">
@@ -21,8 +21,7 @@
 <meta property="og:updated_time" content="2016-05-22T03:45:23.699Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="js 数组复制操作">
-<meta name="twitter:description" content="js中数组和对象，使用“=”号赋值的时候，由于是引用类型，只是改变了引用对象的指针指向，改变值时会引起连锁反应。简单效果如下：
-避免指针指向的方法主要有一下几种：（1）使用slice()方法。slice() 函数可从已有的数组中返回选定的元素；语法为：arr.slice(start,end);slice()函数将会返回一个新的数组对象，所以使用slice(0)或slice()就可以实现数组的复制。">
+<meta name="twitter:description" content="js中数组和对象，使用“=”号赋值的时候，由于是引用类型，只是改变了引用对象的指针指向，改变值时会引起连锁反应。简单效果如下： 避免指针指向的方法主要有一下几种：（1）使用slice()方法。slice() 函数可从已有的数组中返回选定的元素；语法为：arr.slice(start,end);slice()函数将会返回一个新的数组对象，所以使用slice(0)或slice()就可以实现数组的复制。">
 <meta name="twitter:image" content="http://7xth8v.com2.z0.glb.qiniucdn.com/image/arr1.png">
     
     <title>
@@ -260,7 +259,7 @@
 <p>$.merge 只能合并一维数组，且一次只能合并2个，个人觉得没有concat方法强大。<br><img src="http://7xth8v.com2.z0.glb.qiniucdn.com/image/arr6.png" alt=""></p>
 <p>其他参考：</p>
 <ol>
-<li><a href="http://www.html-js.com/article/1589" target="_blank" rel="external">javascript 原始类型和引用类型</a></li>
+<li><a href="http://www.html-js.com/article/1589" target="_blank" rel="noopener">javascript 原始类型和引用类型</a></li>
 </ol>
 
       
